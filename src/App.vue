@@ -38,24 +38,19 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld />
+      <Frontpage />
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { Vue, Component } from 'vue-property-decorator';
+import Frontpage from './components/Frontpage.vue';
 
-export default Vue.extend({
-  name: 'App',
-
+@Component({
   components: {
-    HelloWorld,
+    Frontpage,
   },
-
-  data: () => ({
-    //
-  }),
-});
+})
+export default class App extends Vue {}
 </script>

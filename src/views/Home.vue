@@ -8,14 +8,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import Frontpage from '@/components/Frontpage.vue';
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld,
-  },
-};
+ @Component({
+   components: {
+     Frontpage,
+   },
+ })
+export default class Home extends Vue {}
 </script>
