@@ -48,11 +48,24 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
-import getTrendingGif from '../request';
+import { Vue, Component, Watch } from 'vue-property-decorator';
+import { getTrendingGif, getGifAsBuffer } from '../request';
+import { base64ToGif } from '../request/imageHelper';
 
 @Component
 export default class Frontpage extends Vue {
+  @Watch('rating')
+  async ratingWatcher(): Promise<void> {
+    let base64Image: string = '';
+    const { rating, trendingGif } = this;
+    if (trendingGif) {
+      base64Image = await getGifAsBuffer(trendingGif);
+    }
+    await this.$store.dispatch('setGifData', { rating, base64Image });
+  }
+
+  testImg: string = '';
+
   trendingGif: string|null = null;
 
   rating: number = 0;
