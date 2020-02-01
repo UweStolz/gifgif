@@ -50,7 +50,7 @@
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import { getTrendingGif, getGifAsBuffer } from '../request';
-import { base64ToGif } from '../request/imageHelper';
+import { base64ToGif } from '../util/imageHelper';
 
 @Component
 export default class Frontpage extends Vue {

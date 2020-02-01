@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { arrayBufferToBase64 } from './imageHelper';
+import { arrayBufferToBase64 } from '../util/imageHelper';
 
 const apiKey = 'IT2EfZQf0HqGmKIlg0Ts9p7akXdKSBl7';
 
