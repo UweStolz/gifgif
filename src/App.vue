@@ -1,15 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="red darken-3"
-      flat
-      dark
-    >
-      <div class="d-flex align-center">
-        <h1>GIFGIF</h1>
-      </div>
-    </v-app-bar>
+    <Toolbar />
     <v-content>
       <Frontpage />
     </v-content>
@@ -19,11 +10,13 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import Toolbar from '@/components/Toolbar.vue';
 import Frontpage from './components/Frontpage.vue';
 import Footer from '@/components/Footer.vue';
 
 @Component({
   components: {
+    Toolbar,
     Frontpage,
     Footer,
   },
