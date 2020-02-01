@@ -3,6 +3,7 @@
     app
     color="red darken-3"
     flat
+    clipped-left
     dark
   >
     <div class="d-flex align-center">

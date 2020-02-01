@@ -1,7 +1,7 @@
 <template>
   <v-footer
     color="red darken-3"
-    absolute
+    app
     padless
   >
     <v-col
