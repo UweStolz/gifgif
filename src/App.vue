@@ -4,7 +4,21 @@
     <Drawer />
     <Footer />
     <v-content>
-      <Frontpage />
+      <v-container
+        fluid
+        fill-height
+      >
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-col
+            align-self="center"
+          >
+            <Frontpage />
+          </v-col>
+        </v-row>
+      </v-container>
     </v-content>
   </v-app>
 </template>

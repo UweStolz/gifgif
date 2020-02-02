@@ -12,12 +12,15 @@
           mdi-heart
         </v-icon>
       </v-subheader>
-      <v-list-item>
-        <v-list-item-icon />
-        <v-list-item-content>
-          <v-list-item-title />
-        </v-list-item-content>
-      </v-list-item>
+      <v-list-item-group>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon color="white">
+              mdi-heart
+            </v-icon>
+          </v-list-item-icon>
+        </v-list-item>
+      </v-list-item-group>
     </v-list>
   </v-navigation-drawer>
 </template>
