@@ -101,29 +101,21 @@ export default class Frontpage extends Vue {
   }
 
   async getRating() {
-    try {
-      let keyForGifRating: string = '';
-      if (this.currentGif) {
-        keyForGifRating = await getGifAsBuffer(this.currentGif);
-      }
-      const savedRating: number = await this.$store.dispatch('getGifData', keyForGifRating);
-      this.rating = savedRating ? this.rating = savedRating : this.rating = 0;
-    } catch (err) {
-      console.error(err);
+    let keyForGifRating: string = '';
+    if (this.currentGif) {
+      keyForGifRating = await getGifAsBuffer(this.currentGif);
     }
+    const savedRating: number = await this.$store.dispatch('getGifData', keyForGifRating);
+    this.rating = savedRating ? this.rating = savedRating : this.rating = 0;
   }
 
   async removeGif() {
-    try {
-      let keyForDeletionCandidate: string = '';
-      if (this.currentGif) {
-        keyForDeletionCandidate = await getGifAsBuffer(this.currentGif);
-      }
-      await await this.$store.dispatch('removeGifData', keyForDeletionCandidate);
-      this.rating = 0;
-    } catch (err) {
-      console.error(err);
+    let keyForDeletionCandidate: string = '';
+    if (this.currentGif) {
+      keyForDeletionCandidate = await getGifAsBuffer(this.currentGif);
     }
+    await await this.$store.dispatch('removeGifData', keyForDeletionCandidate);
+    this.rating = 0;
   }
 
   async loadGif(index: number) {
