@@ -21,8 +21,18 @@ export default {
     return database;
   },
 
+  async getGifData(key: string): Promise<number|undefined> {
+    database = await this.createDatabase();
+    return database.get('gifdata', key);
+  },
+
   async setGifdata(rating: number, imageData: string): Promise<string> {
     database = await this.createDatabase();
     return database.put('gifdata', rating, imageData);
+  },
+
+  async removeGifData(key: string): Promise<void> {
+    database = await this.createDatabase();
+    return database.delete('gifdata', key);
   },
 };

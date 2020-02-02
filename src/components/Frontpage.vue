@@ -9,7 +9,7 @@
       justify="center"
     >
       <v-img
-        :src="trendingGif || require('../assets/placeholder-loading.gif')"
+        :src="currentGif || require('../assets/placeholder-loading.gif')"
         contain
         max-width="640"
         max-height="480"
@@ -20,6 +20,14 @@
       align="center"
       justify="center"
     >
+      <v-btn
+        v-if="rating !== 0"
+        icon
+        large
+        @click="removeGif"
+      >
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
       <v-rating
         v-model="rating"
         length="5"
@@ -65,19 +73,21 @@ import { base64ToGif } from '../util/imageHelper';
 export default class Frontpage extends Vue {
   @Watch('rating')
   async ratingWatcher(): Promise<void> {
-    let base64Image: string = '';
-    const { rating, trendingGif } = this;
-    if (trendingGif) {
-      base64Image = await getGifAsBuffer(trendingGif);
+    if (this.rating !== 0) {
+      let base64Image: string = '';
+      const { rating, currentGif } = this;
+      if (currentGif) {
+        base64Image = await getGifAsBuffer(currentGif);
+      }
+      await this.$store.dispatch('setGifData', { rating, base64Image });
     }
-    await this.$store.dispatch('setGifData', { rating, base64Image });
   }
 
   isFirstItem: boolean = true;
 
   isLastItem: boolean = false;
 
-  trendingGif: string|null = null;
+  currentGif: string|null = null;
 
   rating: number = 0;
 
@@ -90,9 +100,35 @@ export default class Frontpage extends Vue {
     this.trendingListSize = listSize;
   }
 
+  async getRating() {
+    try {
+      let keyForGifRating: string = '';
+      if (this.currentGif) {
+        keyForGifRating = await getGifAsBuffer(this.currentGif);
+      }
+      const savedRating: number = await this.$store.dispatch('getGifData', keyForGifRating);
+      this.rating = savedRating ? this.rating = savedRating : this.rating = 0;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async removeGif() {
+    try {
+      let keyForDeletionCandidate: string = '';
+      if (this.currentGif) {
+        keyForDeletionCandidate = await getGifAsBuffer(this.currentGif);
+      }
+      await await this.$store.dispatch('removeGifData', keyForDeletionCandidate);
+      this.rating = 0;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   async loadGif(index: number) {
     const { originalUrl } = await getTrendingGif(index);
-    this.trendingGif = originalUrl;
+    this.currentGif = originalUrl;
   }
 
   async getGif(direction?: string): Promise<void> {
@@ -100,6 +136,7 @@ export default class Frontpage extends Vue {
       case 'next':
         this.currentIndex += 1;
         await this.loadGif(this.currentIndex);
+        await this.getRating();
         if (this.currentIndex === this.trendingListSize - 1) {
           this.isLastItem = true;
           this.isFirstItem = false;
@@ -109,6 +146,7 @@ export default class Frontpage extends Vue {
       case 'previous':
         this.currentIndex -= 1;
         await this.loadGif(this.currentIndex);
+        await this.getRating();
         if (this.currentIndex === 0) {
           this.isLastItem = false;
           this.isFirstItem = true;
@@ -117,9 +155,9 @@ export default class Frontpage extends Vue {
         break;
       default:
         await this.loadGif(0);
+        await this.getRating();
         break;
     }
-    this.rating = 0;
   }
 }
 </script>

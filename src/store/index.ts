@@ -10,9 +10,15 @@ export default new Vuex.Store({
   mutations: {
   },
   actions: {
-    async setGifData(context: any, gifdata: any) {
+    async getGifData(context: any, key: string): Promise<number|undefined> {
+      return idb.getGifData(key);
+    },
+    async setGifData(context: any, gifdata: any): Promise<void> {
       const { rating, base64Image } = gifdata;
       await idb.setGifdata(rating, base64Image);
+    },
+    async removeGifData(context: any, key: string): Promise<void> {
+      await idb.removeGifData(key);
     },
   },
   modules: {
