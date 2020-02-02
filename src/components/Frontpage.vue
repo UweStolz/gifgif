@@ -1,50 +1,59 @@
 <template>
-  <v-container
-    fill-height
-    fluid
+  <v-card
+    class="mx-auto"
+    height="90%"
+    width="90%"
   >
     <v-row
       align="center"
       justify="center"
-      class="grey lighten-5"
     >
-      <v-col
-        cols="12"
-        sm="4"
-      >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-img
-            :src="trendingGif || require('../assets/placeholder-loading.gif')"
-            contain
-            max-width="640"
-            max-height="480"
-            @load.once="getGif"
-            @click="getGif"
-          />
-        </v-row>
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-rating
-            v-model="rating"
-            length="5"
-            empty-icon="mdi-heart-outline"
-            full-icon="mdi-heart"
-            half-icon="mdi-heart-half-full"
-            half-increments
-            hover
-            size="32"
-            color="red"
-            background-color="grey lighten-1"
-          />
-        </v-row>
-      </v-col>
+      <v-img
+        :src="trendingGif || require('../assets/placeholder-loading.gif')"
+        contain
+        max-width="640"
+        max-height="480"
+        @load.once="getGif"
+      />
     </v-row>
-  </v-container>
+    <v-row
+      align="center"
+      justify="center"
+    >
+      <v-rating
+        v-model="rating"
+        length="5"
+        empty-icon="mdi-heart-outline"
+        full-icon="mdi-heart"
+        half-icon="mdi-heart-half-full"
+        hover
+        size="32"
+        color="red"
+        background-color="red"
+      />
+    </v-row>
+    <v-row
+      align="center"
+      justify="center"
+    >
+      <v-btn
+        icon
+        large
+        :disabled="isFirstItem"
+        @click="getGif('previous')"
+      >
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-btn
+        icon
+        large
+        :disabled="isLastItem"
+        @click="getGif('next')"
+      >
+        <v-icon>mdi-arrow-right</v-icon>
+      </v-btn>
+    </v-row>
+  </v-card>
 </template>
 
 <script lang="ts">
@@ -64,13 +73,15 @@ export default class Frontpage extends Vue {
     await this.$store.dispatch('setGifData', { rating, base64Image });
   }
 
-  testImg: string = '';
+  isFirstItem: boolean = true;
+
+  isLastItem: boolean = false;
 
   trendingGif: string|null = null;
 
   rating: number = 0;
 
-  trendingIndex: number = 0;
+  currentIndex: number = 0;
 
   trendingListSize: number = -1;
 
@@ -79,11 +90,35 @@ export default class Frontpage extends Vue {
     this.trendingListSize = listSize;
   }
 
-  async getGif(): Promise<void> {
-    if (this.trendingIndex === this.trendingListSize) { this.trendingIndex = 0; }
-    const { originalUrl } = await getTrendingGif(this.trendingIndex);
+  async loadGif(index: number) {
+    const { originalUrl } = await getTrendingGif(index);
     this.trendingGif = originalUrl;
-    this.trendingIndex += 1;
+  }
+
+  async getGif(direction?: string): Promise<void> {
+    switch (direction) {
+      case 'next':
+        this.currentIndex += 1;
+        await this.loadGif(this.currentIndex);
+        if (this.currentIndex === this.trendingListSize - 1) {
+          this.isLastItem = true;
+          this.isFirstItem = false;
+        }
+        this.isFirstItem = false;
+        break;
+      case 'previous':
+        this.currentIndex -= 1;
+        await this.loadGif(this.currentIndex);
+        if (this.currentIndex === 0) {
+          this.isLastItem = false;
+          this.isFirstItem = true;
+        }
+        this.isLastItem = false;
+        break;
+      default:
+        await this.loadGif(0);
+        break;
+    }
     this.rating = 0;
   }
 }
