@@ -7,7 +7,7 @@ let database: IDBPDatabase<GifGif>;
 export interface GifGif extends DBSchema {
   gifdata: {
       key: string;
-      value: number;
+      value: number
     };
   }
 
@@ -26,9 +26,9 @@ export default {
     return database.get('gifdata', key);
   },
 
-  async setGifdata(rating: number, imageData: string): Promise<string> {
+  async setGifdata(value: number, key: string): Promise<string> {
     database = await this.createDatabase();
-    return database.put('gifdata', rating, imageData);
+    return database.put('gifdata', value, key);
   },
 
   async removeGifData(key: string): Promise<void> {
