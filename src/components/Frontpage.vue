@@ -13,7 +13,6 @@
         contain
         max-width="640"
         max-height="480"
-        @load.once="getGif"
       />
     </v-row>
     <v-row
@@ -66,20 +65,19 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
-import { getTrendingGif, getGifAsBuffer } from '../request';
-import { base64ToGif } from '../util/imageHelper';
+import getTrendingGifsList from '../request';
+import { imageToBase64Image, base64ImageToGif } from '../util/imageHelper';
 
 @Component
 export default class Frontpage extends Vue {
   @Watch('rating')
   async ratingWatcher(): Promise<void> {
     if (this.rating !== 0) {
-      let base64Image: string = '';
       const { rating, currentGif } = this;
       if (currentGif) {
-        base64Image = await getGifAsBuffer(currentGif);
+        const base64Image = await imageToBase64Image(currentGif);
+        await this.$store.dispatch('setGifData', { rating, base64Image });
       }
-      await this.$store.dispatch('setGifData', { rating, base64Image });
     }
   }
 
@@ -95,60 +93,56 @@ export default class Frontpage extends Vue {
 
   trendingListSize: number = -1;
 
+  trendingGifsList: Giphy.Response|null = null;
+
   async mounted(): Promise<void> {
-    const { listSize } = await getTrendingGif();
-    this.trendingListSize = listSize;
+    this.trendingGifsList = await getTrendingGifsList();
+    await this.getRating();
+    this.currentGif = this.trendingGifsList[0].images.original.url;
   }
 
   async getRating() {
-    let keyForGifRating: string = '';
     if (this.currentGif) {
-      keyForGifRating = await getGifAsBuffer(this.currentGif);
+      const base64Image = await imageToBase64Image(this.currentGif);
+      const savedRating: number = await this.$store.dispatch('getGifData', base64Image);
+      this.rating = savedRating ? this.rating = savedRating : this.rating = 0;
     }
-    const savedRating: number = await this.$store.dispatch('getGifData', keyForGifRating);
-    this.rating = savedRating ? this.rating = savedRating : this.rating = 0;
   }
 
   async removeGif() {
-    let keyForDeletionCandidate: string = '';
     if (this.currentGif) {
-      keyForDeletionCandidate = await getGifAsBuffer(this.currentGif);
+      const base64Image = await imageToBase64Image(this.currentGif);
+      await this.$store.dispatch('removeGifData', base64Image);
+      this.rating = 0;
     }
-    await await this.$store.dispatch('removeGifData', keyForDeletionCandidate);
-    this.rating = 0;
   }
 
   async loadGif(index: number) {
-    const { originalUrl } = await getTrendingGif(index);
-    this.currentGif = originalUrl;
+    if (this.trendingGifsList) {
+      this.currentGif = this.trendingGifsList[index].images.original.url;
+    }
   }
 
-  async getGif(direction?: string): Promise<void> {
-    switch (direction) {
-      case 'next':
-        this.currentIndex += 1;
-        await this.loadGif(this.currentIndex);
-        await this.getRating();
-        if (this.currentIndex === this.trendingListSize - 1) {
-          this.isLastItem = true;
-          this.isFirstItem = false;
-        }
+  async getGif(direction: string): Promise<void> {
+    if (direction === 'next') {
+      this.currentIndex += 1;
+      await this.loadGif(this.currentIndex);
+      await this.getRating();
+      if (this.currentIndex === this.trendingListSize - 1) {
+        this.isLastItem = true;
         this.isFirstItem = false;
-        break;
-      case 'previous':
-        this.currentIndex -= 1;
-        await this.loadGif(this.currentIndex);
-        await this.getRating();
-        if (this.currentIndex === 0) {
-          this.isLastItem = false;
-          this.isFirstItem = true;
-        }
+      }
+      this.isFirstItem = false;
+    }
+    if (direction === 'previous') {
+      this.currentIndex -= 1;
+      await this.loadGif(this.currentIndex);
+      await this.getRating();
+      if (this.currentIndex === 0) {
         this.isLastItem = false;
-        break;
-      default:
-        await this.loadGif(0);
-        await this.getRating();
-        break;
+        this.isFirstItem = true;
+      }
+      this.isLastItem = false;
     }
   }
 }
