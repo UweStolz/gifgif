@@ -73,11 +73,10 @@ export default class Frontpage extends Vue {
   @Watch('rating')
   async ratingWatcher(): Promise<void> {
     if (this.rating !== 0) {
-      const { rating, currentGif } = this;
-      if (currentGif) {
-        const base64Image = await imageToBase64Image(currentGif);
-        await this.$store.dispatch('setGifData', { rating, base64Image });
-      }
+      const { rating } = this;
+      const currentImageElement = this.createImageElement();
+      const base64Image = await imageToBase64Image(currentImageElement);
+      await this.$store.dispatch('setGifData', { rating, base64Image });
     }
   }
 
@@ -95,6 +94,30 @@ export default class Frontpage extends Vue {
 
   trendingGifsList: Giphy.Response|null = null;
 
+  widthOfCurrentGif: number = 0;
+
+  heightOfCurrentGif: number = 0;
+
+  setResolutionOfCurrentGif() {
+    if (this.trendingGifsList) {
+      const { width } = this.trendingGifsList[this.currentIndex].images.original;
+      this.widthOfCurrentGif = parseInt(width, 10);
+      const { height } = this.trendingGifsList[this.currentIndex].images.original;
+      this.heightOfCurrentGif = parseInt(height, 10);
+    }
+  }
+
+  createImageElement(): HTMLImageElement {
+    this.setResolutionOfCurrentGif();
+    const { widthOfCurrentGif, heightOfCurrentGif } = this;
+    const currentImageElement: HTMLImageElement = new Image(widthOfCurrentGif, heightOfCurrentGif);
+    if (this.currentGif) {
+      currentImageElement.setAttribute('crossorigin', 'anonymous');
+      currentImageElement.src = this.currentGif;
+    }
+    return currentImageElement;
+  }
+
   async mounted(): Promise<void> {
     this.trendingGifsList = await getTrendingGifsList();
     await this.getRating();
@@ -103,7 +126,8 @@ export default class Frontpage extends Vue {
 
   async getRating() {
     if (this.currentGif) {
-      const base64Image = await imageToBase64Image(this.currentGif);
+      const currentImageElement = this.createImageElement();
+      const base64Image = await imageToBase64Image(currentImageElement);
       const savedRating: number = await this.$store.dispatch('getGifData', base64Image);
       this.rating = savedRating ? this.rating = savedRating : this.rating = 0;
     }
@@ -111,7 +135,8 @@ export default class Frontpage extends Vue {
 
   async removeGif() {
     if (this.currentGif) {
-      const base64Image = await imageToBase64Image(this.currentGif);
+      const currentImageElement = this.createImageElement();
+      const base64Image = await imageToBase64Image(currentImageElement);
       await this.$store.dispatch('removeGifData', base64Image);
       this.rating = 0;
     }
@@ -122,6 +147,7 @@ export default class Frontpage extends Vue {
       this.currentGif = this.trendingGifsList[index].images.original.url;
     }
   }
+
 
   async getGif(direction: string): Promise<void> {
     if (direction === 'next') {

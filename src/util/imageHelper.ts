@@ -1,16 +1,15 @@
-export function base64ToGif(base64Image: string) {
-  const image = new Image();
-  image.src = `data:image/gif;base64,${base64Image}`;
-  return image.src;
+
+export function imageToBase64Image(imageElement: HTMLImageElement) {
+  const canvas = document.createElement('canvas');
+  canvas.width = imageElement.width;
+  canvas.height = imageElement.height;
+  canvas.getContext('2d')?.drawImage(imageElement, 0, 0);
+  const dataURL = canvas.toDataURL('image/webp');
+  return dataURL;
 }
 
-export function arrayBufferToBase64(buffer: ArrayBuffer): string {
-  let binary = '';
-  const bytes = new Uint8Array(buffer);
-  const len = bytes.byteLength;
-  for (let i = 0; i < len; i += 1) {
-    binary += String.fromCharCode(bytes[i]);
-  }
-  const base64Image = window.btoa(binary);
-  return base64Image;
+export function base64ImageToGif(base64Image: string) {
+  const image = new Image();
+  image.src = `data:image/webp;base64,${base64Image}`;
+  return image.src;
 }
