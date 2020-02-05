@@ -121,7 +121,7 @@ export default class Frontpage extends Vue {
   async mounted(): Promise<void> {
     this.trendingGifsList = await getTrendingGifsList();
     await this.getRating();
-    this.currentGif = this.trendingGifsList[0].images.original.url;
+    this.currentGif = this.trendingGifsList[0].images.original.webp;
   }
 
   async getRating() {
