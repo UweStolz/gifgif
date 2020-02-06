@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <v-footer
     color="red darken-3"
     app
@@ -18,8 +18,10 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import Vue from 'vue';
 
-@Component
-export default class Footer extends Vue {}
+export default Vue.extend({
+  name: 'Footer',
+  functional: true,
+});
 </script>
