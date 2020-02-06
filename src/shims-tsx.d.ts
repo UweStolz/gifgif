@@ -12,7 +12,7 @@ declare global {
     }
   }
   namespace Giphy {
-    interface Response {
+    interface Response extends Array<GIFObject> {
       [elem: number]: GIFObject;
     }
     interface GIFObject {
