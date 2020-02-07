@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 const apiKey = 'IT2EfZQf0HqGmKIlg0Ts9p7akXdKSBl7';
 
 export default async function getTrendingGifsList(): Promise<Giphy.Response> {

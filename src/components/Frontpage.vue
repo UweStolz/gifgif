@@ -66,7 +66,7 @@
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import getTrendingGifsList from '../request';
-import { imageToBase64Image, base64ImageToGif } from '../util/imageHelper';
+import { imageToBase64Image } from '../util/imageHelper';
 
 @Component
 export default class Frontpage extends Vue {
