@@ -4,62 +4,79 @@
     height="90%"
     width="90%"
   >
-    <v-row
-      align="center"
-      justify="center"
+    <v-container
+      fluid
+      fill-height
     >
-      <v-img
-        :src="currentGif || require('../assets/placeholder-loading.gif')"
-        contain
-        max-width="640"
-        max-height="480"
-      />
-    </v-row>
-    <v-row
-      align="center"
-      justify="center"
-    >
-      <v-btn
-        v-if="rating !== 0"
-        icon
-        large
-        @click="removeGif"
+      <v-row
+        justify="center"
       >
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
-      <v-rating
-        v-model="rating"
-        length="5"
-        empty-icon="mdi-heart-outline"
-        full-icon="mdi-heart"
-        half-icon="mdi-heart-half-full"
-        hover
-        size="32"
-        color="red"
-        background-color="red"
-      />
-    </v-row>
-    <v-row
-      align="center"
-      justify="center"
-    >
-      <v-btn
-        icon
-        large
-        :disabled="isFirstItem"
-        @click="getGif('previous')"
+        <v-card
+          flat
+          height="500"
+          width="500"
+        >
+          <v-container
+            fluid
+            fill-height
+          >
+            <v-img
+              :src="currentGif || require('../assets/placeholder-loading.gif')"
+              contain
+              max-height="480"
+              max-width="480"
+            />
+          </v-container>
+        </v-card>
+      </v-row>
+      <v-row
+        align="end"
+        justify="center"
+        no-gutters
       >
-        <v-icon>mdi-arrow-left</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        large
-        :disabled="isLastItem"
-        @click="getGif('next')"
+        <v-btn
+          v-if="rating !== 0"
+          icon
+          large
+          @click="removeGif"
+        >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+        <v-rating
+          v-model="rating"
+          length="5"
+          empty-icon="mdi-heart-outline"
+          full-icon="mdi-heart"
+          half-icon="mdi-heart-half-full"
+          hover
+          size="32"
+          color="red"
+          background-color="red"
+        />
+      </v-row>
+      <v-row
+        align="end"
+        justify="center"
+        no-gutters
       >
-        <v-icon>mdi-arrow-right</v-icon>
-      </v-btn>
-    </v-row>
+        <v-btn
+          icon
+          large
+          :disabled="isFirstItem"
+          @click="getGif('previous')"
+        >
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
+        <v-btn
+          icon
+          large
+          :disabled="isLastItem"
+          @click="getGif('next')"
+        >
+          <v-icon>mdi-arrow-right</v-icon>
+        </v-btn>
+      </v-row>
+    </v-container>
   </v-card>
 </template>
 
@@ -122,6 +139,7 @@ export default class Frontpage extends Vue {
     this.trendingGifsList = await getTrendingGifsList();
     await this.getRating();
     this.currentGif = this.trendingGifsList[0].images.original.webp;
+    this.trendingListSize = this.trendingGifsList.length;
   }
 
   async getRating() {

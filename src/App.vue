@@ -8,14 +8,7 @@
         fluid
         fill-height
       >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-col align-self="center">
-            <Frontpage />
-          </v-col>
-        </v-row>
+        <Frontpage />
       </v-container>
     </v-content>
   </v-app>
