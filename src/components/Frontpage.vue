@@ -117,9 +117,8 @@ export default class Frontpage extends Vue {
 
   setResolutionOfCurrentGif() {
     if (this.trendingGifsList) {
-      const { width } = this.trendingGifsList[this.currentIndex].images.original;
+      const { width, height } = this.trendingGifsList[this.currentIndex].images.original;
       this.widthOfCurrentGif = parseInt(width, 10);
-      const { height } = this.trendingGifsList[this.currentIndex].images.original;
       this.heightOfCurrentGif = parseInt(height, 10);
     }
   }
