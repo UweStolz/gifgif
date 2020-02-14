@@ -11,6 +11,41 @@ declare global {
       [elem: string]: any
     }
   }
+
+  namespace Tenor {
+    interface GIFObject {
+      created: number;
+      hasaudio: boolean;
+      id: string;
+      media: [{ GIFFormat:MediaObject }];
+      tags: string[];
+      title: string;
+      itemurl: string;
+      hascaption: boolean;
+      url: string;
+    }
+    interface MediaObject {
+      preview: string;
+      url: string;
+      dims: number[]
+      size: number;
+    }
+    interface GIFFormat {
+      [key: string]: MediaObject;
+      gif: MediaObject;
+      mediumgif: MediaObject;
+      tinygif: MediaObject;
+      nanogif: MediaObject;
+      mp4: MediaObject;
+      loopedmp4: MediaObject;
+      tinymp4: MediaObject;
+      nanomp4: MediaObject;
+      webm: MediaObject;
+      tinywebm: MediaObject;
+      nanowebm: MediaObject;
+    }
+  }
+
   namespace Giphy {
     interface Response extends Array<GIFObject> {
       [elem: number]: GIFObject;
