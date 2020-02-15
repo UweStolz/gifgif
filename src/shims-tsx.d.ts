@@ -12,16 +12,29 @@ declare global {
     }
   }
 
+  interface MergedGifLists extends Array<MergedGifListObject> {
+    [index: number]: MergedGifListObject;
+  }
+  interface MergedGifListObject {
+    url: string,
+    width: number,
+    height: number;
+  }
+
   namespace Tenor {
+    interface Response extends Array<GIFObject> {
+      [elem: number]: GIFObject;
+    }
     interface GIFObject {
       created: number;
       hasaudio: boolean;
       id: string;
-      media: [{ GIFFormat:MediaObject }];
+      media: GIFFormat[];
       tags: string[];
+      shares: number;
+      composite: any|null;
       title: string;
       itemurl: string;
-      hascaption: boolean;
       url: string;
     }
     interface MediaObject {
@@ -31,7 +44,6 @@ declare global {
       size: number;
     }
     interface GIFFormat {
-      [key: string]: MediaObject;
       gif: MediaObject;
       mediumgif: MediaObject;
       tinygif: MediaObject;
