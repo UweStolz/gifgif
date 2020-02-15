@@ -13,8 +13,8 @@
       >
         <v-card
           flat
-          height="500"
-          width="500"
+          height="620"
+          width="820"
         >
           <v-container
             fluid
@@ -23,8 +23,8 @@
             <v-img
               :src="currentGif || require('../assets/placeholder-loading.gif')"
               contain
-              max-height="480"
-              max-width="480"
+              max-height="600"
+              max-width="800"
             />
           </v-container>
         </v-card>
@@ -149,9 +149,9 @@ export default class Frontpage extends Vue {
     });
     listFromTenor.forEach((item) => {
       const itemObject: MergedGifListObject = {
-        url: item.media[0].webm.url,
-        width: item.media[0].webm.dims[0],
-        height: item.media[0].webm.dims[1],
+        url: item.media[0].gif.url,
+        width: item.media[0].gif.dims[0],
+        height: item.media[0].gif.dims[1],
       };
       mergedLists.push(itemObject);
     });
