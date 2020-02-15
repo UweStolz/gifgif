@@ -10,14 +10,14 @@ export default new Vuex.Store({
   mutations: {
   },
   actions: {
-    async getGifData(context: any, key: string): Promise<number|undefined> {
+    async getGifData(context: any, key: ArrayBuffer): Promise<number|undefined> {
       return idb.getGifData(key);
     },
-    async setGifData(context: any, gifdata: any): Promise<string> {
-      const { rating, base64Image } = gifdata;
-      return idb.setGifdata(rating, base64Image);
+    async setGifData(context: any, gifdata: any): Promise<ArrayBuffer> {
+      const { rating, buffer } = gifdata;
+      return idb.setGifdata(rating, buffer);
     },
-    async removeGifData(context: any, key: string): Promise<void> {
+    async removeGifData(context: any, key: ArrayBuffer): Promise<void> {
       return idb.removeGifData(key);
     },
   },

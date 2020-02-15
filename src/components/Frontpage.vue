@@ -82,18 +82,19 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
-import { getTrendingGifsListFromGiphy, getTrendingGifsListFromTenor } from '../request';
-import imageToBase64Image from '../util/imageHelper';
+import {
+  getTrendingGifsListFromGiphy,
+  getTrendingGifsListFromTenor,
+  getArrayBuffer,
+} from '../request';
 
 @Component
 export default class Frontpage extends Vue {
   @Watch('rating')
   async ratingWatcher(): Promise<void> {
-    if (this.rating !== 0) {
-      const { rating } = this;
-      const currentImageElement = this.createImageElement();
-      const base64Image = await imageToBase64Image(currentImageElement);
-      await this.$store.dispatch('setGifData', { rating, base64Image });
+    if (this.rating !== 0 && this.currentGif) {
+      const { rating, currentImageBuffer } = this;
+      await this.$store.dispatch('setGifData', { rating, buffer: currentImageBuffer });
     }
   }
 
@@ -106,6 +107,8 @@ export default class Frontpage extends Vue {
   rating: number = 0;
 
   currentIndex: number = 0;
+
+  currentImageBuffer: ArrayBuffer|null = null;
 
   trendingListSize: number = -1;
 
@@ -166,18 +169,15 @@ export default class Frontpage extends Vue {
 
   async getRating() {
     if (this.currentGif) {
-      const currentImageElement = this.createImageElement();
-      const base64Image = await imageToBase64Image(currentImageElement);
-      const savedRating: number = await this.$store.dispatch('getGifData', base64Image);
+      this.currentImageBuffer = await getArrayBuffer(this.currentGif);
+      const savedRating: number = await this.$store.dispatch('getGifData', this.currentImageBuffer);
       this.rating = savedRating ? this.rating = savedRating : this.rating = 0;
     }
   }
 
   async removeGif() {
     if (this.currentGif) {
-      const currentImageElement = this.createImageElement();
-      const base64Image = await imageToBase64Image(currentImageElement);
-      await this.$store.dispatch('removeGifData', base64Image);
+      await this.$store.dispatch('removeGifData', this.currentImageBuffer);
       this.rating = 0;
     }
   }
