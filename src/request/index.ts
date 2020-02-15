@@ -9,7 +9,8 @@ export async function getTrendingGifsListFromGiphy(): Promise<Giphy.Response> {
 }
 
 export async function getTrendingGifsListFromTenor(): Promise<any[]> {
-  const response = await fetch(`https://api.tenor.com/v1/trending?key=${tenorApiKey}?media_filter=minimal?limit=50`);
-  const { data } = await response.json();
-  return data;
+  const response = await fetch(`https://api.tenor.com/v1/trending?key=${tenorApiKey}&?media_filter=minimal&?limit=50`);
+  const { results } = await response.json();
+  const gifsList: Tenor.Response = results;
+  return gifsList;
 }
