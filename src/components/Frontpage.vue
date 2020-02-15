@@ -82,7 +82,7 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
-import getTrendingGifsList from '../request';
+import { getTrendingGifsListFromGiphy, getTrendingGifsListFromTenor } from '../request';
 import imageToBase64Image from '../util/imageHelper';
 
 @Component
@@ -109,17 +109,17 @@ export default class Frontpage extends Vue {
 
   trendingListSize: number = -1;
 
-  trendingGifsList: Giphy.Response|null = null;
+  trendingGifsList: MergedGifLists|null = null;
 
   widthOfCurrentGif: number = 0;
 
   heightOfCurrentGif: number = 0;
 
   setResolutionOfCurrentGif() {
-    if (this.trendingGifsList) {
-      const { width, height } = this.trendingGifsList[this.currentIndex].images.original;
-      this.widthOfCurrentGif = parseInt(width, 10);
-      this.heightOfCurrentGif = parseInt(height, 10);
+    if (this.trendingGifsList && this.currentGif) {
+      const { width, height } = this.trendingGifsList[this.currentIndex];
+      this.widthOfCurrentGif = width;
+      this.heightOfCurrentGif = height;
     }
   }
 
@@ -134,11 +134,34 @@ export default class Frontpage extends Vue {
     return currentImageElement;
   }
 
+  mergeGifLists(listFromGiphy: Giphy.Response, listFromTenor: Tenor.Response): void {
+    const mergedLists: MergedGifLists = [];
+    listFromGiphy.forEach((item) => {
+      const itemObject: MergedGifListObject = {
+        url: item.images.original.webp,
+        width: parseInt(item.images.original.width, 10),
+        height: parseInt(item.images.original.height, 10),
+      };
+      mergedLists.push(itemObject);
+    });
+    listFromTenor.forEach((item) => {
+      const itemObject: MergedGifListObject = {
+        url: item.media[0].webm.url,
+        width: item.media[0].webm.dims[0],
+        height: item.media[0].webm.dims[1],
+      };
+      mergedLists.push(itemObject);
+    });
+    this.trendingGifsList = mergedLists;
+  }
+
   async mounted(): Promise<void> {
-    this.trendingGifsList = await getTrendingGifsList();
+    const listFromGiphy: Giphy.Response = await getTrendingGifsListFromGiphy();
+    const listFromTenor: Tenor.Response = await getTrendingGifsListFromTenor();
+    this.mergeGifLists(listFromGiphy, listFromTenor);
     await this.getRating();
-    this.currentGif = this.trendingGifsList[0].images.original.webp;
-    this.trendingListSize = this.trendingGifsList.length;
+    this.currentGif = this.trendingGifsList ? this.trendingGifsList[0].url : null;
+    this.trendingListSize = this.trendingGifsList ? this.trendingGifsList.length : -1;
   }
 
   async getRating() {
@@ -161,7 +184,7 @@ export default class Frontpage extends Vue {
 
   async loadGif(index: number) {
     if (this.trendingGifsList) {
-      this.currentGif = this.trendingGifsList[index].images.original.url;
+      this.currentGif = this.trendingGifsList[index].url;
     }
   }
 
