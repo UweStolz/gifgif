@@ -8,7 +8,7 @@
         fluid
         fill-height
       >
-        <Frontpage />
+        <router-view />
       </v-container>
     </v-content>
   </v-app>
@@ -19,13 +19,11 @@ import { Vue, Component } from 'vue-property-decorator';
 import Toolbar from '@/components/Toolbar.vue';
 import Drawer from '@/components/Drawer.vue';
 import Footer from '@/components/Footer.vue';
-import Frontpage from './components/Frontpage.vue';
 
 @Component({
   components: {
     Toolbar,
     Drawer,
-    Frontpage,
     Footer,
   },
 })
