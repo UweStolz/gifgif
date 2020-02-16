@@ -3,6 +3,7 @@ import Vuetify, {
   VFooter,
   VCol,
   VAppBar,
+  VBtn,
 } from 'vuetify/lib';
 
 Vue.use(Vuetify, {
@@ -10,6 +11,7 @@ Vue.use(Vuetify, {
     VFooter,
     VCol,
     VAppBar,
+    VBtn,
   },
 });
 

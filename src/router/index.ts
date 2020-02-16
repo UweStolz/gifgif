@@ -10,6 +10,11 @@ const routes: RouteConfig[] = [
     name: 'home',
     component: Home,
   },
+  {
+    path: '/favourites',
+    name: 'favourites',
+    component: () => import(/* webpackChunkName: "favourites" */ '../views/Favourites.vue'),
+  },
 ];
 
 const router = new VueRouter({

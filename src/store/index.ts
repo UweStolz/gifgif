@@ -20,6 +20,9 @@ export default new Vuex.Store({
     async removeGifData(context: any, key: ArrayBuffer): Promise<void> {
       return idb.removeGifData(key);
     },
+    async getGifCount(context: any): Promise<number> {
+      return idb.getCountOfGifs();
+    },
   },
   modules: {
   },

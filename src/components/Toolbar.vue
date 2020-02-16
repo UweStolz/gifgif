@@ -6,9 +6,15 @@
     clipped-left
     dark
   >
-    <div class="d-flex align-center">
-      <h1>GIFGIF</h1>
-    </div>
+    <v-btn
+      :to="'/'"
+    >
+      <div
+        class="d-flex align-center"
+      >
+        <h1>GIFGIF</h1>
+      </div>
+    </v-btn>
   </v-app-bar>
 </template>
 
