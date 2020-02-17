@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer
     color="red darken-3"
-    mini-variant-width="7vh"
+    mini-variant-width="8vh"
     mini-variant
     clipped
     nav

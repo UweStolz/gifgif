@@ -49,7 +49,7 @@
           :full-icon="icons.mdiHeart"
           :half-icon="icons.mdiHeartHalfFull"
           hover
-          size="32"
+          size="50"
           color="red"
           background-color="red"
         />
