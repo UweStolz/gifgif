@@ -40,14 +40,14 @@
           large
           @click="removeGif"
         >
-          <v-icon>mdi-close</v-icon>
+          <v-icon>{{ icons.mdiClose }}</v-icon>
         </v-btn>
         <v-rating
           v-model="rating"
           length="5"
-          empty-icon="mdi-heart-outline"
-          full-icon="mdi-heart"
-          half-icon="mdi-heart-half-full"
+          :empty-icon="icons.mdiHeartOutline"
+          :full-icon="icons.mdiHeart"
+          :half-icon="icons.mdiHeartHalfFull"
           hover
           size="32"
           color="red"
@@ -65,7 +65,7 @@
           :disabled="isFirstItem"
           @click="getGif('previous')"
         >
-          <v-icon>mdi-arrow-left</v-icon>
+          <v-icon>{{ icons.mdiArrowLeft }}</v-icon>
         </v-btn>
         <v-btn
           icon
@@ -73,7 +73,7 @@
           :disabled="isLastItem"
           @click="getGif('next')"
         >
-          <v-icon>mdi-arrow-right</v-icon>
+          <v-icon>{{ icons.mdiArrowRight }}</v-icon>
         </v-btn>
       </v-row>
     </v-container>
@@ -82,6 +82,9 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
+import {
+  mdiArrowRight, mdiArrowLeft, mdiClose, mdiHeart, mdiHeartOutline, mdiHeartHalfFull,
+} from '@mdi/js';
 import {
   getTrendingGifsListFromGiphy,
   getTrendingGifsListFromTenor,
@@ -96,6 +99,15 @@ export default class Frontpage extends Vue {
       const { rating, currentImageBuffer } = this;
       await this.$store.dispatch('setGifData', { rating, buffer: currentImageBuffer });
     }
+  }
+
+  icons = {
+    mdiHeartHalfFull,
+    mdiHeartOutline,
+    mdiHeart,
+    mdiClose,
+    mdiArrowRight,
+    mdiArrowLeft,
   }
 
   isFirstItem: boolean = true;

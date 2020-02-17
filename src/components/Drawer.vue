@@ -1,6 +1,7 @@
 <template>
   <v-navigation-drawer
     color="red darken-3"
+    mini-variant-width="7vh"
     mini-variant
     clipped
     nav
@@ -34,12 +35,13 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import { mdiHeart } from '@mdi/js';
 
 @Component
 export default class Drawer extends Vue {
     items = [
       {
-        icon: 'mdi-heart', link: '/favourites',
+        icon: mdiHeart, link: '/favourites',
       },
     ];
 
