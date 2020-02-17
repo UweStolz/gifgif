@@ -32,5 +32,4 @@ export default class App extends Vue {}
 
 <style>
 @import "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css";
-@import "../node_modules/@mdi/font/css/materialdesignicons.min.css";
 </style>
