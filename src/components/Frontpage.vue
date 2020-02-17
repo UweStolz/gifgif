@@ -162,9 +162,9 @@ export default class Frontpage extends Vue {
     const listFromGiphy: Giphy.Response = await getTrendingGifsListFromGiphy();
     const listFromTenor: Tenor.Response = await getTrendingGifsListFromTenor();
     this.mergeGifLists(listFromGiphy, listFromTenor);
-    await this.getRating();
     this.currentGif = this.trendingGifsList ? this.trendingGifsList[0].url : null;
     this.trendingListSize = this.trendingGifsList ? this.trendingGifsList.length : -1;
+    await this.getRating();
   }
 
   async getRating() {
