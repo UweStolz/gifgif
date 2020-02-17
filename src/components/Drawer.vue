@@ -21,6 +21,7 @@
             >
               <v-icon
                 color="white"
+                large
                 v-text="item.icon"
               />
             </v-badge>
