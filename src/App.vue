@@ -8,7 +8,13 @@
         fluid
         fill-height
       >
-        <router-view />
+        <v-card
+          class="mx-auto"
+          height="90%"
+          width="90%"
+        >
+          <router-view />
+        </v-card>
       </v-container>
     </v-content>
   </v-app>

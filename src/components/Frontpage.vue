@@ -1,83 +1,77 @@
 <template>
-  <v-card
-    class="mx-auto"
-    height="90%"
-    width="90%"
+  <v-container
+    fluid
+    fill-height
   >
-    <v-container
-      fluid
-      fill-height
+    <v-row
+      justify="center"
     >
-      <v-row
-        justify="center"
+      <v-card
+        flat
+        height="620"
+        width="820"
       >
-        <v-card
-          flat
-          height="620"
-          width="820"
+        <v-container
+          fluid
+          fill-height
         >
-          <v-container
-            fluid
-            fill-height
+          <v-carousel
+            hide-delimiters
+            show-arrows-on-hover
+            @change="updateCarouselModel"
           >
-            <v-carousel
-              hide-delimiters
-              show-arrows-on-hover
-              @change="updateCarouselModel"
+            <v-carousel-item
+              v-for="(gif, i) in trendingGifsList"
+              :key="i"
             >
-              <v-carousel-item
-                v-for="(gif, i) in trendingGifsList"
-                :key="i"
-              >
-                <v-img
-                  :src="gif.url"
-                  contain
-                  height="100%"
-                  width="100%"
-                />
-              </v-carousel-item>
-              <v-row
-                class="fill-height ma-0"
-                align="center"
-                justify="center"
-              >
-                <v-progress-circular
-                  v-if="!trendingGifsList.length"
-                  indeterminate
-                  color="red"
-                />
-              </v-row>
-            </v-carousel>
-          </v-container>
-        </v-card>
-      </v-row>
-      <v-row
-        align="end"
-        justify="center"
-        no-gutters
+              <v-img
+                :src="gif.url"
+                contain
+                height="100%"
+                width="100%"
+              />
+            </v-carousel-item>
+            <v-row
+              class="fill-height ma-0"
+              align="center"
+              justify="center"
+            >
+              <v-progress-circular
+                v-if="!trendingGifsList.length"
+                indeterminate
+                color="red"
+              />
+            </v-row>
+          </v-carousel>
+        </v-container>
+      </v-card>
+    </v-row>
+    <v-row
+      align="end"
+      justify="center"
+      no-gutters
+    >
+      <v-btn
+        v-if="rating !== 0"
+        icon
+        large
+        @click="removeGif"
       >
-        <v-btn
-          v-if="rating !== 0"
-          icon
-          large
-          @click="removeGif"
-        >
-          <v-icon>{{ icons.mdiClose }}</v-icon>
-        </v-btn>
-        <v-rating
-          v-model="rating"
-          length="5"
-          :empty-icon="icons.mdiHeartOutline"
-          :full-icon="icons.mdiHeart"
-          :half-icon="icons.mdiHeartHalfFull"
-          hover
-          size="50"
-          color="red"
-          background-color="red"
-        />
-      </v-row>
-    </v-container>
-  </v-card>
+        <v-icon>{{ icons.mdiClose }}</v-icon>
+      </v-btn>
+      <v-rating
+        v-model="rating"
+        length="5"
+        :empty-icon="icons.mdiHeartOutline"
+        :full-icon="icons.mdiHeart"
+        :half-icon="icons.mdiHeartHalfFull"
+        hover
+        size="50"
+        color="red"
+        background-color="red"
+      />
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">

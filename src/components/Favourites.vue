@@ -1,18 +1,12 @@
 <template>
-  <v-card
-    class="mx-auto"
-    height="90%"
-    width="90%"
+  <v-container
+    fluid
+    fill-height
   >
-    <v-container
-      fluid
-      fill-height
-    >
-      <v-row
-        justify="center"
-      />
-    </v-container>
-  </v-card>
+    <v-row
+      justify="center"
+    />
+  </v-container>
 </template>
 
 <script lang="ts">
