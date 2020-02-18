@@ -13,7 +13,12 @@
           height="90%"
           width="90%"
         >
-          <router-view />
+          <transition
+            name="fade"
+            mode="out-in"
+          >
+            <router-view />
+          </transition>
         </v-card>
       </v-container>
     </v-content>
@@ -38,4 +43,14 @@ export default class App extends Vue {}
 
 <style>
 @import "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css";
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
+}
 </style>
