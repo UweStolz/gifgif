@@ -21,11 +21,23 @@
             fill-height
           >
             <v-img
-              :src="currentGif || require('../assets/placeholder-loading.gif')"
+              :src="currentGif || ''"
               contain
               max-height="600"
               max-width="800"
-            />
+            >
+              <v-row
+                class="fill-height ma-0"
+                align="center"
+                justify="center"
+              >
+                <v-progress-circular
+                  v-if="currentGif === null"
+                  indeterminate
+                  color="red"
+                />
+              </v-row>
+            </v-img>
           </v-container>
         </v-card>
       </v-row>
@@ -225,3 +237,9 @@ export default class Frontpage extends Vue {
   }
 }
 </script>
+
+<style>
+.v-skeleton-loader__image {
+  height: inherit !important;
+}
+</style>
