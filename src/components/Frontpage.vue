@@ -20,24 +20,34 @@
             fluid
             fill-height
           >
-            <v-img
-              :src="currentGif || ''"
-              contain
-              max-height="600"
-              max-width="800"
+            <v-carousel
+              hide-delimiters
+              show-arrows-on-hover
+              @change="updateCarouselModel"
             >
+              <v-carousel-item
+                v-for="(gif, i) in trendingGifsList"
+                :key="i"
+              >
+                <v-img
+                  :src="gif.url"
+                  contain
+                  height="100%"
+                  width="100%"
+                />
+              </v-carousel-item>
               <v-row
                 class="fill-height ma-0"
                 align="center"
                 justify="center"
               >
                 <v-progress-circular
-                  v-if="currentGif === null"
+                  v-if="!trendingGifsList.length"
                   indeterminate
                   color="red"
                 />
               </v-row>
-            </v-img>
+            </v-carousel>
           </v-container>
         </v-card>
       </v-row>
@@ -66,28 +76,6 @@
           background-color="red"
         />
       </v-row>
-      <v-row
-        align="end"
-        justify="center"
-        no-gutters
-      >
-        <v-btn
-          icon
-          large
-          :disabled="isFirstItem"
-          @click="getGif('previous')"
-        >
-          <v-icon>{{ icons.mdiArrowLeft }}</v-icon>
-        </v-btn>
-        <v-btn
-          icon
-          large
-          :disabled="isLastItem"
-          @click="getGif('next')"
-        >
-          <v-icon>{{ icons.mdiArrowRight }}</v-icon>
-        </v-btn>
-      </v-row>
     </v-container>
   </v-card>
 </template>
@@ -95,7 +83,7 @@
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import {
-  mdiArrowRight, mdiArrowLeft, mdiClose, mdiHeart, mdiHeartOutline, mdiHeartHalfFull,
+  mdiClose, mdiHeart, mdiHeartOutline, mdiHeartHalfFull,
 } from '@mdi/js';
 import {
   getTrendingGifsListFromGiphy,
@@ -107,9 +95,10 @@ import {
 export default class Frontpage extends Vue {
   @Watch('rating')
   async ratingWatcher(): Promise<void> {
-    if (this.rating !== 0 && this.currentGif) {
+    if (this.rating !== 0) {
       const { rating, currentImageBuffer } = this;
       await this.$store.dispatch('setGifData', { rating, buffer: currentImageBuffer });
+      this.$store.commit('setGifCount', this.$store.state.gifCount += 1);
     }
   }
 
@@ -118,46 +107,26 @@ export default class Frontpage extends Vue {
     mdiHeartOutline,
     mdiHeart,
     mdiClose,
-    mdiArrowRight,
-    mdiArrowLeft,
   }
-
-  isFirstItem: boolean = true;
-
-  isLastItem: boolean = false;
-
-  currentGif: string|null = null;
 
   rating: number = 0;
 
-  currentIndex: number = 0;
-
   currentImageBuffer: ArrayBuffer|null = null;
 
-  trendingListSize: number = -1;
+  trendingGifsList: MergedGifLists = [];
 
-  trendingGifsList: MergedGifLists|null = null;
+  carouselModel: number = 0;
 
-  widthOfCurrentGif: number = 0;
-
-  heightOfCurrentGif: number = 0;
-
-  setResolutionOfCurrentGif() {
-    if (this.trendingGifsList && this.currentGif) {
-      const { width, height } = this.trendingGifsList[this.currentIndex];
-      this.widthOfCurrentGif = width;
-      this.heightOfCurrentGif = height;
-    }
+  async updateCarouselModel(payload: number) {
+    this.carouselModel = payload;
+    await this.getRating();
   }
 
   createImageElement(): HTMLImageElement {
-    this.setResolutionOfCurrentGif();
-    const { widthOfCurrentGif, heightOfCurrentGif } = this;
-    const currentImageElement: HTMLImageElement = new Image(widthOfCurrentGif, heightOfCurrentGif);
-    if (this.currentGif) {
-      currentImageElement.setAttribute('crossorigin', 'anonymous');
-      currentImageElement.src = this.currentGif;
-    }
+    const { width, height } = this.trendingGifsList[this.carouselModel];
+    const currentImageElement: HTMLImageElement = new Image(width, height);
+    currentImageElement.setAttribute('crossorigin', 'anonymous');
+    currentImageElement.src = this.trendingGifsList[this.carouselModel].url;
     return currentImageElement;
   }
 
@@ -186,60 +155,20 @@ export default class Frontpage extends Vue {
     const listFromGiphy: Giphy.Response = await getTrendingGifsListFromGiphy();
     const listFromTenor: Tenor.Response = await getTrendingGifsListFromTenor();
     this.mergeGifLists(listFromGiphy, listFromTenor);
-    this.currentGif = this.trendingGifsList ? this.trendingGifsList[0].url : null;
-    this.trendingListSize = this.trendingGifsList ? this.trendingGifsList.length : -1;
     await this.getRating();
   }
 
   async getRating() {
-    if (this.currentGif) {
-      this.currentImageBuffer = await getArrayBuffer(this.currentGif);
-      const savedRating: number = await this.$store.dispatch('getGifData', this.currentImageBuffer);
-      this.rating = savedRating ? this.rating = savedRating : this.rating = 0;
-    }
+    const currentGif = this.trendingGifsList[this.carouselModel].url;
+    this.currentImageBuffer = await getArrayBuffer(currentGif);
+    const savedRating: number = await this.$store.dispatch('getGifData', this.currentImageBuffer);
+    this.rating = savedRating ? this.rating = savedRating : this.rating = 0;
   }
 
   async removeGif() {
-    if (this.currentGif) {
-      await this.$store.dispatch('removeGifData', this.currentImageBuffer);
-      this.rating = 0;
-    }
-  }
-
-  async loadGif(index: number) {
-    if (this.trendingGifsList) {
-      this.currentGif = this.trendingGifsList[index].url;
-    }
-  }
-
-
-  async getGif(direction: string): Promise<void> {
-    if (direction === 'next') {
-      this.currentIndex += 1;
-      await this.loadGif(this.currentIndex);
-      await this.getRating();
-      if (this.currentIndex === this.trendingListSize - 1) {
-        this.isLastItem = true;
-        this.isFirstItem = false;
-      }
-      this.isFirstItem = false;
-    }
-    if (direction === 'previous') {
-      this.currentIndex -= 1;
-      await this.loadGif(this.currentIndex);
-      await this.getRating();
-      if (this.currentIndex === 0) {
-        this.isLastItem = false;
-        this.isFirstItem = true;
-      }
-      this.isLastItem = false;
-    }
+    await this.$store.dispatch('removeGifData', this.currentImageBuffer);
+    this.rating = 0;
+    this.$store.commit('setGifCount', this.$store.state.gifCount -= 1);
   }
 }
 </script>
-
-<style>
-.v-skeleton-loader__image {
-  height: inherit !important;
-}
-</style>

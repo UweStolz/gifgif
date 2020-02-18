@@ -6,8 +6,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    gifCount: -1,
   },
   mutations: {
+    setGifCount(state, payload) {
+      state.gifCount = payload;
+    },
   },
   actions: {
     async getGifData(context: any, key: ArrayBuffer): Promise<number|undefined> {
