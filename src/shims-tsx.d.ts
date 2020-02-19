@@ -17,6 +17,7 @@ declare global {
   }
   interface MergedGifListObject {
     url: string,
+    previewUrl: string;
     width: number,
     height: number;
   }
@@ -188,6 +189,27 @@ declare global {
         url: string
         width: string
         height: string
+      }
+      preview: {
+        height: string;
+        mp4: string;
+        mp4_size: string;
+        width: string;
+      }
+      preview_gif: {
+        height: string;
+        size: string;
+        url: string;
+        width: string;
+      }
+      looping: {
+        mp4: string;
+        mp4_size: string;
+      }
+      w480_still: {
+        url: string;
+        width: string;
+        height: string;
       }
     }
 
