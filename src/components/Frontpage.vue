@@ -92,7 +92,8 @@ export default class Frontpage extends Vue {
     if (this.rating !== 0) {
       const { rating, currentImageBuffer } = this;
       await this.$store.dispatch('setGifData', { rating, buffer: currentImageBuffer });
-      this.$store.commit('setGifCount', this.$store.state.gifCount += 1);
+      const gifCount = await this.$store.dispatch('getGifCount');
+      this.$store.commit('setGifCount', gifCount);
     }
   }
 
