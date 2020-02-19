@@ -84,14 +84,21 @@ import {
   getTrendingGifsListFromTenor,
   getArrayBuffer,
 } from '../request';
+// eslint-disable-next-line no-unused-vars
+import { GifData } from '../database';
 
 @Component
 export default class Frontpage extends Vue {
   @Watch('rating')
   async ratingWatcher(): Promise<void> {
     if (this.rating !== 0) {
+      const preview = await this.getBufferForPreviewGif();
       const { rating, currentImageBuffer } = this;
-      await this.$store.dispatch('setGifData', { rating, buffer: currentImageBuffer });
+      await this.$store.dispatch('setGifData', {
+        rating,
+        buffer: currentImageBuffer,
+        preview,
+      });
       const gifCount = await this.$store.dispatch('getGifCount');
       this.$store.commit('setGifCount', gifCount);
     }
@@ -111,6 +118,12 @@ export default class Frontpage extends Vue {
   trendingGifsList: MergedGifLists = [];
 
   carouselModel: number = 0;
+
+  async getBufferForPreviewGif() {
+    const currentPreviewGif = this.trendingGifsList[this.carouselModel].previewUrl;
+    const previewGifBuffer = await getArrayBuffer(currentPreviewGif);
+    return previewGifBuffer;
+  }
 
   async updateCarouselModel(payload: number) {
     this.carouselModel = payload;
@@ -158,8 +171,8 @@ export default class Frontpage extends Vue {
   async getRating() {
     const currentGif = this.trendingGifsList[this.carouselModel].url;
     this.currentImageBuffer = await getArrayBuffer(currentGif);
-    const savedRating: number = await this.$store.dispatch('getGifData', this.currentImageBuffer);
-    this.rating = savedRating ? this.rating = savedRating : this.rating = 0;
+    const gifData: GifData|undefined = await this.$store.dispatch('getGifData', this.currentImageBuffer);
+    this.rating = gifData?.rating ? this.rating = gifData.rating : this.rating = 0;
   }
 
   async removeGif() {
