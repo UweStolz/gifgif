@@ -130,13 +130,14 @@ export default class Frontpage extends Vue {
     await this.getRating();
   }
 
-  createImageElement(): HTMLImageElement {
-    const { width, height } = this.trendingGifsList[this.carouselModel];
-    const currentImageElement: HTMLImageElement = new Image(width, height);
-    currentImageElement.setAttribute('crossorigin', 'anonymous');
-    currentImageElement.src = this.trendingGifsList[this.carouselModel].url;
-    return currentImageElement;
-  }
+  // UNUSED
+  // createImageElement(): HTMLImageElement {
+  //   const { width, height } = this.trendingGifsList[this.carouselModel];
+  //   const currentImageElement: HTMLImageElement = new Image(width, height);
+  //   currentImageElement.setAttribute('crossorigin', 'anonymous');
+  //   currentImageElement.src = this.trendingGifsList[this.carouselModel].url;
+  //   return currentImageElement;
+  // }
 
   mergeGifLists(listFromGiphy: Giphy.Response, listFromTenor: Tenor.Response): void {
     const mergedLists: MergedGifLists = [];
