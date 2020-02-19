@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import idb from '../database';
+import idb, { GifData } from '../database';
 
 Vue.use(Vuex);
 
@@ -14,18 +14,21 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async getGifData(context: any, key: ArrayBuffer): Promise<number|undefined> {
+    async getGifData(context: any, key: ArrayBuffer): Promise<GifData|undefined> {
       return idb.getGifData(key);
     },
     async setGifData(context: any, gifdata: any): Promise<ArrayBuffer> {
-      const { rating, buffer } = gifdata;
-      return idb.setGifdata(rating, buffer);
+      const { rating, preview, buffer } = gifdata;
+      return idb.setGifdata(rating, preview, buffer);
     },
     async removeGifData(context: any, key: ArrayBuffer): Promise<void> {
       return idb.removeGifData(key);
     },
     async getGifCount(context: any): Promise<number> {
       return idb.getCountOfGifs();
+    },
+    async getRatedGifPreviews(): Promise<GifData[]> {
+      return idb.getRatedGifPreviews();
     },
   },
   modules: {

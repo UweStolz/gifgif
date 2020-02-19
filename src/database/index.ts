@@ -4,12 +4,14 @@ import {
 
 let database: IDBPDatabase<GifGif>;
 
+export type GifData = { rating: number; preview: ArrayBuffer; }
+
 export interface GifGif extends DBSchema {
   gifdata: {
-      key: ArrayBuffer;
-      value: number
-    };
-  }
+    key: ArrayBuffer;
+    value: GifData;
+  };
+}
 
 export default {
   async openDatabase(): Promise<IDBPDatabase<GifGif>> {
@@ -21,14 +23,14 @@ export default {
     return database;
   },
 
-  async getGifData(key: ArrayBuffer): Promise<number|undefined> {
+  async getGifData(key: ArrayBuffer): Promise<GifData|undefined> {
     database = await this.openDatabase();
     return database.get('gifdata', key);
   },
 
-  async setGifdata(value: number, key: ArrayBuffer): Promise<ArrayBuffer> {
+  async setGifdata(rating: number, preview: ArrayBuffer, key: ArrayBuffer): Promise<ArrayBuffer> {
     database = await this.openDatabase();
-    return database.put('gifdata', value, key);
+    return database.put('gifdata', { rating, preview }, key);
   },
 
   async removeGifData(key: ArrayBuffer): Promise<void> {
@@ -39,5 +41,10 @@ export default {
   async getCountOfGifs(): Promise<number> {
     database = await this.openDatabase();
     return database.count('gifdata', undefined);
+  },
+
+  async getRatedGifPreviews(): Promise<GifData[]> {
+    database = await this.openDatabase();
+    return database.getAll('gifdata');
   },
 };
