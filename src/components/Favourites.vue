@@ -24,8 +24,16 @@
             </v-icon>
           </v-row>
         </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <v-expansion-panel-content
+          v-for="z in 3"
+          :key="z"
+        >
+          <v-img
+            :if="data[z]"
+            :src="data[z]"
+            width="100"
+            height="100"
+          />
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -37,9 +45,25 @@ import { Vue, Component } from 'vue-property-decorator';
 import {
   mdiHeart,
 } from '@mdi/js';
+// eslint-disable-next-line no-unused-vars
+import { GifData } from '../database';
+import arrayBufferToImage from '../util/imageHelper';
 
 @Component
 export default class Favourites extends Vue {
 icons = { mdiHeart }
+
+ratedGifData: GifData[]|null = null;
+
+data: string[] = [];
+
+async mounted(): Promise<void> {
+  this.ratedGifData = await this.$store.dispatch('getRatedGifPreviews');
+  // eslint-disable-next-line no-unused-expressions
+  this.ratedGifData?.forEach((value: GifData) => {
+    const imageUrl = arrayBufferToImage(value.preview);
+    this.data.push(imageUrl);
+  });
+}
 }
 </script>
