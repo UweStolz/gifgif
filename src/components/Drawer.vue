@@ -4,7 +4,6 @@
     mini-variant-width="8vh"
     mini-variant
     clipped
-    nav
     app
   >
     <v-list>
