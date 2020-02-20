@@ -7,10 +7,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     gifCount: -1,
+    gifMode: 'trending',
   },
   mutations: {
     setGifCount(state, payload) {
       state.gifCount = payload;
+    },
+    setGifMode(state, payload) {
+      state.gifMode = payload;
     },
   },
   actions: {

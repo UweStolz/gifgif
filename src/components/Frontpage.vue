@@ -17,11 +17,12 @@
         >
           <v-carousel
             hide-delimiters
-            show-arrows-on-hover
+            :show-arrows="this.$store.state.gifMode === 'trending'"
+            :show-arrows-on-hover="this.$store.state.gifMode === 'trending'"
             @change="updateCarouselModel"
           >
             <v-carousel-item
-              v-for="(gif, i) in trendingGifsList"
+              v-for="(gif, i) in gifsList"
               :key="i"
             >
               <v-img
@@ -37,7 +38,7 @@
               justify="center"
             >
               <v-progress-circular
-                v-if="!trendingGifsList.length"
+                v-if="!gifsList.length"
                 indeterminate
                 color="red"
               />
@@ -52,7 +53,23 @@
       no-gutters
     >
       <v-btn
-        v-if="rating !== 0"
+        :style="{visibility: this.$store.state.gifMode === 'random' ? 'visible' : 'hidden'}"
+        icon
+        @click="setRandomGif"
+      >
+        <v-icon>
+          {{ icons.mdiSync }}
+        </v-icon>
+      </v-btn>
+    </v-row>
+    <v-row
+      align="end"
+      justify="center"
+      no-gutters
+    >
+      <v-btn
+
+        :style="{visibility: rating ? 'visible' : 'hidden'}"
         icon
         large
         @click="removeGif"
@@ -77,11 +94,12 @@
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import {
-  mdiClose, mdiHeart, mdiHeartOutline, mdiHeartHalfFull,
+  mdiClose, mdiHeart, mdiHeartOutline, mdiHeartHalfFull, mdiSync,
 } from '@mdi/js';
 import {
   getTrendingGifsListFromGiphy,
   getTrendingGifsListFromTenor,
+  getRandomGifFromGiphy,
   getArrayBuffer,
 } from '../request';
 // eslint-disable-next-line no-unused-vars
@@ -109,18 +127,41 @@ export default class Frontpage extends Vue {
     mdiHeartOutline,
     mdiHeart,
     mdiClose,
+    mdiSync,
   }
 
   rating: number = 0;
 
   currentImageBuffer: ArrayBuffer|null = null;
 
-  trendingGifsList: MergedGifLists = [];
+  gifsList: MergedGifLists = [];
 
   carouselModel: number = 0;
 
+  async setRandomGif() {
+    const randomGifObject: Giphy.GIFObject = await getRandomGifFromGiphy();
+    const itemObject = [
+      {
+        url: randomGifObject.images.original.webp,
+        previewUrl: randomGifObject.images.fixed_width.webp,
+      },
+    ];
+    this.gifsList = itemObject;
+  }
+
+  async getGifLists(mode: string) {
+    if (mode === 'trending') {
+      const listFromGiphy: Giphy.Response = await getTrendingGifsListFromGiphy();
+      const listFromTenor: Tenor.Response = await getTrendingGifsListFromTenor();
+      this.mergeGifLists(listFromGiphy, listFromTenor);
+    } else {
+      await this.setRandomGif();
+    }
+    await this.getRating();
+  }
+
   async getBufferForPreviewGif() {
-    const currentPreviewGif = this.trendingGifsList[this.carouselModel].previewUrl;
+    const currentPreviewGif = this.gifsList[this.carouselModel].previewUrl;
     const previewGifBuffer = await getArrayBuffer(currentPreviewGif);
     return previewGifBuffer;
   }
@@ -146,18 +187,21 @@ export default class Frontpage extends Vue {
       };
       mergedLists.push(itemObject);
     });
-    this.trendingGifsList = mergedLists;
+    this.gifsList = mergedLists;
   }
 
   async mounted(): Promise<void> {
-    const listFromGiphy: Giphy.Response = await getTrendingGifsListFromGiphy();
-    const listFromTenor: Tenor.Response = await getTrendingGifsListFromTenor();
-    this.mergeGifLists(listFromGiphy, listFromTenor);
-    await this.getRating();
+    this.$store.watch(
+      () => this.$store.state.gifMode,
+      async (mode: string) => {
+        await this.getGifLists(mode);
+      },
+    );
+    await this.getGifLists(this.$store.state.gifMode);
   }
 
   async getRating() {
-    const currentGif = this.trendingGifsList[this.carouselModel].url;
+    const currentGif = this.gifsList[this.carouselModel].url;
     this.currentImageBuffer = await getArrayBuffer(currentGif);
     const gifData: GifData|undefined = await this.$store.dispatch('getGifData', this.currentImageBuffer);
     this.rating = gifData?.rating ? this.rating = gifData.rating : this.rating = 0;
