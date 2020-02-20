@@ -7,11 +7,11 @@
           align="start"
         >
           <v-item
-            v-for="(z, index) in contentData.previewUrl[indexValue++].length"
+            v-for="(z, index) in contentData.length"
             :key="z"
           >
             <v-img
-              :src="contentData.previewUrl[indexValue][index]"
+              :src="contentData[index]"
               contain
               max-width="200"
               max-height="200"

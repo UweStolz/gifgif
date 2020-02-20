@@ -24,17 +24,7 @@
             </v-icon>
           </v-row>
         </v-expansion-panel-header>
-        <v-expansion-panel-content
-          v-for="z in 3"
-          :key="z"
-        >
-          <v-img
-            :if="data[z]"
-            :src="data[z]"
-            width="100"
-            height="100"
-          />
-        </v-expansion-panel-content>
+        <PanelContent :content-data="data.previewUrl[x-1]" />
       </v-expansion-panel>
     </v-expansion-panels>
   </div>
@@ -48,22 +38,46 @@ import {
 // eslint-disable-next-line no-unused-vars
 import { GifData } from '../database';
 import arrayBufferToImage from '../util/imageHelper';
+import PanelContent from './PanelContent.vue';
 
-@Component
-export default class Favourites extends Vue {
-icons = { mdiHeart }
-
-ratedGifData: GifData[]|null = null;
-
-data: string[] = [];
-
-async mounted(): Promise<void> {
-  this.ratedGifData = await this.$store.dispatch('getRatedGifPreviews');
-  // eslint-disable-next-line no-unused-expressions
-  this.ratedGifData?.forEach((value: GifData) => {
-    const imageUrl = arrayBufferToImage(value.preview);
-    this.data.push(imageUrl);
-  });
+interface Data {
+  previewUrl: {
+    [key: number]: string[];
+    1: string[];
+    2: string[];
+    3: string[];
+    4: string[];
+    5: string[];
+  }
 }
+
+@Component({
+  components: {
+    PanelContent,
+  },
+})
+export default class Favourites extends Vue {
+  icons = { mdiHeart }
+
+  data: Data = {
+    previewUrl: {
+      1: [],
+      2: [],
+      3: [],
+      4: [],
+      5: [],
+    },
+  };
+
+
+  async mounted(): Promise<void> {
+    const ratedGifData: GifData[] = await this.$store.dispatch('getRatedGifPreviews');
+    ratedGifData.forEach((value: GifData) => {
+      const previewImageUrl: string = arrayBufferToImage(value.preview);
+      if (value.rating > 0 && value.rating < 6) {
+        this.data.previewUrl[value.rating].push(previewImageUrl);
+      }
+    });
+  }
 }
 </script>
