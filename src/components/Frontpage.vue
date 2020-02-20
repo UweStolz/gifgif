@@ -136,8 +136,6 @@ export default class Frontpage extends Vue {
       const itemObject: MergedGifListObject = {
         url: item.images.original.webp,
         previewUrl: item.images.fixed_width.webp,
-        width: parseInt(item.images.original.width, 10),
-        height: parseInt(item.images.original.height, 10),
       };
       mergedLists.push(itemObject);
     });
@@ -145,8 +143,6 @@ export default class Frontpage extends Vue {
       const itemObject: MergedGifListObject = {
         url: item.media[0].gif.url,
         previewUrl: item.media[0].tinygif.url,
-        width: item.media[0].gif.dims[0],
-        height: item.media[0].gif.dims[1],
       };
       mergedLists.push(itemObject);
     });

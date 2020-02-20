@@ -18,8 +18,6 @@ declare global {
   interface MergedGifListObject {
     url: string,
     previewUrl: string;
-    width: number,
-    height: number;
   }
 
   namespace Tenor {
