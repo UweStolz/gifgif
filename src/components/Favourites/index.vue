@@ -36,8 +36,8 @@ import {
   mdiHeart,
 } from '@mdi/js';
 // eslint-disable-next-line no-unused-vars
-import { GifData } from '../database';
-import arrayBufferToImage from '../util/imageHelper';
+import { GifData } from '@/database';
+import arrayBufferToImage from '@/util/imageHelper';
 import PanelContent from './PanelContent.vue';
 
 interface Data {
@@ -69,15 +69,16 @@ export default class Favourites extends Vue {
     },
   };
 
-
   async mounted(): Promise<void> {
     const ratedGifData: GifData[] = await this.$store.dispatch('getRatedGifPreviews');
-    ratedGifData.forEach((value: GifData) => {
-      const previewImageUrl: string = arrayBufferToImage(value.preview);
-      if (value.rating > 0 && value.rating < 6) {
-        this.data.previewUrl[value.rating].push(previewImageUrl);
-      }
-    });
+    if (ratedGifData.length > 0) {
+      ratedGifData.forEach((value: GifData) => {
+        const previewImageUrl: string = arrayBufferToImage(value.preview);
+        if (value.rating > 0 && value.rating < 6) {
+          this.data.previewUrl[value.rating].push(previewImageUrl);
+        }
+      });
+    }
   }
 }
 </script>

@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import FavouritesView from '@/components/Favourites.vue';
+import FavouritesView from '@/components/Favourites/index.vue';
 
  @Component({
    components: {
