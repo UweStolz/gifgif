@@ -55,6 +55,7 @@
       <v-btn
         :style="{visibility: this.$store.state.gifMode === 'random' ? 'visible' : 'hidden'}"
         icon
+        x-large
         @click="setRandomGif"
       >
         <v-icon>
@@ -68,7 +69,6 @@
       no-gutters
     >
       <v-btn
-
         :style="{visibility: rating ? 'visible' : 'hidden'}"
         icon
         large
