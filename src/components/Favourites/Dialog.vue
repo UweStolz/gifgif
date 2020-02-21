@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-model="showDialog"
+    v-model="syncedShowDialog"
     width="500"
   >
     <v-card>
@@ -9,7 +9,7 @@
       <v-card-actions>
         <v-btn
           color="primary"
-          @click="dialog = false"
+          @click="syncedShowDialog = false"
         />
       </v-card-actions>
     </v-card>
@@ -17,12 +17,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import {
+  Vue, Component, PropSync,
+} from 'vue-property-decorator';
 
 @Component
 export default class Dialog extends Vue {
-@Prop({ required: true }) showDialog: boolean = false;
-
-dialog: boolean = this.showDialog;
+@PropSync('showDialog', { type: Boolean, required: true }) syncedShowDialog!: boolean;
 }
 </script>

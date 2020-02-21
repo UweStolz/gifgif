@@ -1,6 +1,8 @@
 <template>
   <v-expansion-panel-content>
-    <Dialog :show-dialog="dialog" />
+    <Dialog
+      :show-dialog.sync="dialog"
+    />
     <v-item-group>
       <v-container>
         <v-row
