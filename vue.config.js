@@ -5,6 +5,7 @@ module.exports = {
 
   pwa: {
     name: 'GIFGIF',
+    themeColor: '#D0021B',
   },
 
   productionSourceMap: false,
