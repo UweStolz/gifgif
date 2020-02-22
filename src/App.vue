@@ -9,6 +9,7 @@
         fill-height
       >
         <v-card
+          id="scrollbar"
           class="mx-auto overflow-y-auto"
           height="90%"
           width="90%"
@@ -53,4 +54,24 @@ export default class App extends Vue {}
 .fade-leave-active {
   opacity: 0
 }
+
+#scrollbar::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+#scrollbar::-webkit-scrollbar
+{
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+#scrollbar::-webkit-scrollbar-thumb
+{
+    background-color: #000000;
+}
+
+
 </style>
