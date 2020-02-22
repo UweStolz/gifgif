@@ -23,15 +23,25 @@
       <v-card-actions>
         <v-btn
           :href="imageBlob"
+          large
           icon
         >
-          <v-icon>{{ icons.mdiDownload }}</v-icon>
+          <v-icon
+            id="downloadIcon"
+          >
+            {{ icons.mdiDownload }}
+          </v-icon>
         </v-btn>
         <v-btn
           icon
+          large
           @click="deleteGifData"
         >
-          <v-icon>{{ icons.mdiTrashCan }}</v-icon>
+          <v-icon
+            id="trashIcon"
+          >
+            {{ icons.mdiTrashCan }}
+          </v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -79,3 +89,12 @@ icons = {
 imageBlob: string = '';
 }
 </script>
+
+<style scoped>
+#trashIcon:hover{
+  color: red;
+}
+#downloadIcon:hover{
+  color:green;
+}
+</style>
