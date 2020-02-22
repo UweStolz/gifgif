@@ -72,6 +72,7 @@ export default class Dialog extends Vue {
 
 @Emit('delete')
 deleteGifData() {
+  this.syncedShowDialog = false;
   return this.syncedFullImageData;
 }
 
