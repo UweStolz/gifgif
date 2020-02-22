@@ -1,5 +1,5 @@
 <template>
-  <v-expansion-panel-content>
+  <v-expansion-panel-content id="pa-exp-con">
     <v-item-group>
       <v-container>
         <v-row
@@ -15,23 +15,14 @@
             v-for="(z, index) in previewImages.length"
             :key="z"
           >
-            <v-hover
-              v-slot:default="{ hover }"
-            >
-              <v-img
-                :src="previewImages[index]"
-                contain
-                max-width="200"
-                max-height="200"
-                @click="openDialog(index)"
-              >
-                <div
-                  v-if="hover"
-                  class="d-flex"
-                  style="height: 100%; background: rgba(244,67,54,0.3);"
-                />
-              </v-img>
-            </v-hover>
+            <v-img
+              id="imageHover"
+              :src="previewImages[index]"
+              contain
+              max-width="250"
+              max-height="200"
+              @click="openDialog(index)"
+            />
           </v-item>
         </v-row>
       </v-container>
@@ -74,3 +65,14 @@ async deleteGif(payload: ArrayBuffer): Promise<void> {
 }
 }
 </script>
+
+<style scoped>
+#pa-exp-con {
+  overflow: hidden;
+}
+#imageHover:hover {
+  transform: scale(1.3);
+  overflow-x: hidden;
+  z-index: 999;
+}
+</style>
