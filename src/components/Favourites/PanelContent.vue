@@ -1,27 +1,28 @@
 <template>
   <v-expansion-panel-content>
-    <Dialog
-      :show-dialog.sync="dialog"
-    />
     <v-item-group>
       <v-container>
         <v-row
           justify="start"
           align="start"
         >
+          <Dialog
+            :show-dialog.sync="dialog"
+            :full-image-data.sync="fullImageBuffer"
+          />
           <v-item
-            v-for="(z, index) in contentData.length"
+            v-for="(z, index) in previewImages.length"
             :key="z"
           >
             <v-hover
               v-slot:default="{ hover }"
             >
               <v-img
-                :src="contentData[index]"
+                :src="previewImages[index]"
                 contain
                 max-width="200"
                 max-height="200"
-                @click="dialog = true"
+                @click="openDialog(index)"
               >
                 <div
                   v-if="hover"
@@ -47,10 +48,19 @@ import Dialog from './Dialog.vue';
   },
 })
 export default class PanelContent extends Vue {
-@Prop({ required: true }) contentData: any
+@Prop({ required: true }) previewImages!: string[];
+
+@Prop({ required: true }) fullImages!: ArrayBuffer[];
+
+fullImageBuffer: null|ArrayBuffer = null;
 
 dialog: boolean = false;
 
 indexValue: number = 0;
+
+openDialog(index: number) {
+  this.dialog = true;
+  this.fullImageBuffer = this.fullImages[index];
+}
 }
 </script>
