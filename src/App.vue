@@ -10,9 +10,11 @@
       >
         <v-card
           id="scrollbar"
+          flat
+          tile
           class="mx-auto overflow-y-auto"
-          height="90%"
-          width="90%"
+          height="100%"
+          width="100%"
         >
           <transition
             name="fade"
