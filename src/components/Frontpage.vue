@@ -17,8 +17,8 @@
         >
           <v-carousel
             hide-delimiters
-            :show-arrows="this.$store.state.gifMode === 'trending'"
-            :show-arrows-on-hover="this.$store.state.gifMode === 'trending'"
+            :show-arrows="gifsList.length > 1"
+            :show-arrows-on-hover="gifsList.length > 1"
             @change="updateCarouselModel"
           >
             <v-carousel-item
@@ -147,6 +147,7 @@ export default class Frontpage extends Vue {
       },
     ];
     this.gifsList = itemObject;
+    await this.updateCarouselModel(0);
   }
 
   async getGifLists(mode: string) {
@@ -154,10 +155,10 @@ export default class Frontpage extends Vue {
       const listFromGiphy: Giphy.Response = await getTrendingGifsListFromGiphy();
       const listFromTenor: Tenor.Response = await getTrendingGifsListFromTenor();
       this.mergeGifLists(listFromGiphy, listFromTenor);
+      await this.getRating();
     } else {
       await this.setRandomGif();
     }
-    await this.getRating();
   }
 
   async getBufferForPreviewGif() {
