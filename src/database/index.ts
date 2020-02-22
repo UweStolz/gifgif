@@ -4,7 +4,15 @@ import {
 
 let database: IDBPDatabase<GifGif>;
 
-export type GifData = { rating: number; preview: ArrayBuffer; }
+export type GifData = {
+  rating: number;
+  preview: ArrayBuffer;
+}
+
+export type GifStore = {
+  values: GifData[];
+  keys: ArrayBuffer[];
+}
 
 export interface GifGif extends DBSchema {
   gifdata: {
@@ -43,8 +51,11 @@ export default {
     return database.count('gifdata', undefined);
   },
 
-  async getRatedGifPreviews(): Promise<GifData[]> {
+  async getAllData(): Promise<GifStore> {
     database = await this.openDatabase();
-    return database.getAll('gifdata');
+    const values: GifData[] = await database.getAll('gifdata');
+    const keys: ArrayBuffer[] = await database.getAllKeys('gifdata');
+    const gifstore: GifStore = { values, keys };
+    return gifstore;
   },
 };

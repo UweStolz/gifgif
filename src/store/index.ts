@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import idb, { GifData } from '../database';
+import idb, { GifData, GifStore } from '../database';
 
 Vue.use(Vuex);
 
@@ -31,8 +31,8 @@ export default new Vuex.Store({
     async getGifCount(context: any): Promise<number> {
       return idb.getCountOfGifs();
     },
-    async getRatedGifPreviews(): Promise<GifData[]> {
-      return idb.getRatedGifPreviews();
+    async getAllData(): Promise<GifStore> {
+      return idb.getAllData();
     },
   },
   modules: {
