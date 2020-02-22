@@ -27,22 +27,19 @@
             >
               <v-img
                 :src="gif.url"
+                :lazy-src="gif.url"
                 contain
                 height="100%"
                 width="100%"
-              />
+              >
+                <template v-slot:placeholder>
+                  <v-progress-linear
+                    indeterminate
+                    color="red"
+                  />
+                </template>
+              </v-img>
             </v-carousel-item>
-            <v-row
-              class="fill-height ma-0"
-              align="center"
-              justify="center"
-            >
-              <v-progress-circular
-                v-if="!gifsList.length"
-                indeterminate
-                color="red"
-              />
-            </v-row>
           </v-carousel>
         </v-container>
       </v-card>
