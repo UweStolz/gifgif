@@ -9,6 +9,7 @@
           <Dialog
             :show-dialog.sync="dialog"
             :full-image-data.sync="fullImageBuffer"
+            @delete="deleteGif"
           />
           <v-item
             v-for="(z, index) in previewImages.length"
@@ -56,11 +57,20 @@ fullImageBuffer: null|ArrayBuffer = null;
 
 dialog: boolean = false;
 
-indexValue: number = 0;
+selectedIndex: number = -1;
 
 openDialog(index: number) {
   this.dialog = true;
   this.fullImageBuffer = this.fullImages[index];
+  this.selectedIndex = index;
+}
+
+async deleteGif(payload: ArrayBuffer): Promise<void> {
+  this.previewImages.splice(this.selectedIndex, 1);
+  this.fullImages.splice(this.selectedIndex, 1);
+  await this.$store.dispatch('removeGifData', payload);
+  this.$store.commit('setGifCount', this.$store.state.gifCount -= 1);
+  this.selectedIndex = -1;
 }
 }
 </script>

@@ -27,6 +27,12 @@
         >
           <v-icon>{{ icons.mdiDownload }}</v-icon>
         </v-btn>
+        <v-btn
+          icon
+          @click="deleteGifData"
+        >
+          <v-icon>{{ icons.mdiTrashCan }}</v-icon>
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -34,11 +40,11 @@
 
 <script lang="ts">
 import {
-  Vue, Component, PropSync, Watch,
+  Vue, Component, PropSync, Watch, Emit,
 } from 'vue-property-decorator';
 import arrayBufferToImage from '@/util/imageHelper';
 import {
-  mdiClose, mdiDownload,
+  mdiClose, mdiDownload, mdiTrashCan,
 } from '@mdi/js';
 
 @Component
@@ -54,13 +60,19 @@ export default class Dialog extends Vue {
 
 @PropSync('fullImageData', { required: true }) syncedFullImageData!: null|ArrayBuffer;
 
-resetProps() {
+@Emit('delete')
+deleteGifData() {
+  return this.syncedFullImageData;
+}
+
+resetProps(): void {
   this.syncedShowDialog = false;
   this.syncedFullImageData = null;
 }
 
 icons = {
   mdiClose,
+  mdiTrashCan,
   mdiDownload,
 }
 
