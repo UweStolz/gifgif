@@ -9,7 +9,7 @@
         fill-height
       >
         <v-card
-          class="mx-auto"
+          class="mx-auto overflow-y-auto"
           height="90%"
           width="90%"
         >
