@@ -8,6 +8,7 @@
     >
       <v-card
         flat
+        tile
         height="620"
         width="820"
       >

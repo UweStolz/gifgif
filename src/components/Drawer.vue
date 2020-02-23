@@ -11,6 +11,7 @@
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
+          link
           :to="item.link"
         >
           <v-list-item-icon>
