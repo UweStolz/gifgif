@@ -18,6 +18,7 @@
             <v-img
               id="imageHover"
               :src="previewImages[index]"
+              :lazy-src="previewImages[index]"
               contain
               max-width="250"
               max-height="200"
