@@ -15,15 +15,17 @@
             v-for="(z, index) in previewImages.length"
             :key="z"
           >
-            <v-img
-              id="imageHover"
-              :src="previewImages[index]"
-              :lazy-src="previewImages[index]"
-              contain
-              max-width="250"
-              max-height="200"
-              @click="openDialog(index)"
-            />
+            <v-lazy min-height="50">
+              <v-img
+                id="imageHover"
+                :src="previewImages[index]"
+                :lazy-src="previewImages[index]"
+                contain
+                max-width="250"
+                max-height="200"
+                @click="openDialog(index)"
+              />
+            </v-lazy>
           </v-item>
         </v-row>
       </v-container>
