@@ -8,6 +8,7 @@
   >
     <v-list>
       <v-list-item-group>
+        <!-- Jumping list item on click is a known, yet unfixed issue -->
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
