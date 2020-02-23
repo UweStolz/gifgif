@@ -1,10 +1,16 @@
 <template>
-  <div>
-    <v-card-title class="display-2 justify-center">
+  <div style="height: 100%;">
+    <v-card-title
+      v-if="!isEmpty"
+      class="display-2 justify-center"
+    >
       Favourites
     </v-card-title>
-
+    <Empty
+      v-if="isEmpty"
+    />
     <v-expansion-panels
+      v-else
       popout
       hover
     >
@@ -42,7 +48,9 @@ import {
 // eslint-disable-next-line no-unused-vars
 import { GifData, GifStore } from '@/database';
 import arrayBufferToImage from '@/util/imageHelper';
+import Empty from './Empty.vue';
 import PanelContent from './PanelContent.vue';
+
 
 interface Data {
   previewUrl: {
@@ -58,10 +66,13 @@ interface Data {
 @Component({
   components: {
     PanelContent,
+    Empty,
   },
 })
 export default class Favourites extends Vue {
   icons = { mdiHeart }
+
+  isEmpty: boolean = false;
 
   data: Data = {
     previewUrl: {
@@ -75,7 +86,8 @@ export default class Favourites extends Vue {
 
   async mounted(): Promise<void> {
     const gifData: GifStore = await this.$store.dispatch('getAllData');
-    if (gifData.values.length > 0) {
+    this.isEmpty = gifData.keys.length === 0;
+    if (!this.isEmpty) {
       gifData.values.forEach((value: GifData, index) => {
         const previewImageUrl: string = arrayBufferToImage(value.preview);
         if (value.rating > 0 && value.rating < 6) {

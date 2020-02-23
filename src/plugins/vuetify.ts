@@ -2,16 +2,16 @@ import Vue from 'vue';
 import Vuetify, {
   VFooter,
   VCol,
-  VAppBar,
-  VBtn,
+  VContainer,
+  VSheet,
 } from 'vuetify/lib';
 
 Vue.use(Vuetify, {
   components: {
     VFooter,
     VCol,
-    VAppBar,
-    VBtn,
+    VContainer,
+    VSheet,
   },
 });
 
