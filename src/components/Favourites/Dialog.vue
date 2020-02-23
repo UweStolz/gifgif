@@ -2,7 +2,7 @@
   <v-dialog
     v-model="syncedShowDialog"
     :full-image-data="syncedFullImageData"
-    width="500"
+    width="600"
     @click:outside="resetProps"
   >
     <v-card>
@@ -17,6 +17,8 @@
       </v-card-title>
       <v-img
         :src="imageBlob"
+        :lazy-src="imageBlob"
+        max-height="700"
         height="100%"
         width="100%"
       />
