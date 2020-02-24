@@ -27,7 +27,15 @@
           multiple
           clearable
         />
-        <v-card-text>{{ searchResults }}</v-card-text>
+        <v-img
+          v-for="(url, i) in (searchResults)"
+          :key="i"
+          :src="searchResults[i].images.fixed_width.webp"
+          :lazy-src="searchResults[i].images.fixed_width.webp"
+          contain
+          height="100px"
+          width="100px"
+        />
       </v-card>
     </v-row>
   </v-container>
