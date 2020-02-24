@@ -15,6 +15,11 @@ const routes: RouteConfig[] = [
     name: 'favourites',
     component: () => import(/* webpackChunkName: "favourites" */ '../views/Favourites.vue'),
   },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import(/* webpackChunkName: "search" */ '../views/Search.vue'),
+  },
 ];
 
 const router = new VueRouter({
