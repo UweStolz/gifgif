@@ -1,16 +1,16 @@
 <template>
   <div style="height: 100%;">
     <v-card-title
-      v-if="!isEmpty"
+      v-if="!isEmpty && evaluatedKey !== 0"
       class="display-2 justify-center"
     >
       Favourites
     </v-card-title>
     <Empty
-      v-if="isEmpty"
+      v-if="isEmpty && evaluatedKey !== 0"
     />
     <v-expansion-panels
-      v-else
+      v-if="!isEmpty && evaluatedKey !== 0"
       popout
       hover
     >
@@ -74,6 +74,8 @@ export default class Favourites extends Vue {
 
   isEmpty: boolean = false;
 
+  evaluatedKey: number = 0;
+
   data: Data = {
     previewUrl: {
       1: { images: [], previews: [] },
@@ -87,6 +89,7 @@ export default class Favourites extends Vue {
   async mounted(): Promise<void> {
     const gifData: GifStore = await this.$store.dispatch('getAllData');
     this.isEmpty = gifData.keys.length === 0;
+    this.evaluatedKey += 1;
     if (!this.isEmpty) {
       gifData.values.forEach((value: GifData, index) => {
         const previewImageUrl: string = arrayBufferToImage(value.preview);
