@@ -16,7 +16,7 @@ declare global {
     [index: number]: MergedGifListObject;
   }
   interface MergedGifListObject {
-    url: string,
+    url: string;
     previewUrl: string;
   }
 
@@ -80,6 +80,7 @@ declare global {
       trending_datetime: string
       images: ImageObject
       meta: MetaObject
+      title: string
     }
 
     interface ImageObject {
