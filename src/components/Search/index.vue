@@ -12,7 +12,7 @@
         tile
       >
         <v-autocomplete
-          :v-model="selectedTerms"
+          v-model="selectedTerms"
           :search-input.sync="searchQuery"
           :loading="isLoading"
           :prepend-icon="icons.mdiImageSearch"
@@ -41,16 +41,25 @@ import { getSearchGifsFromGiphy, getTrendingSearchTermsFromTenor } from '@/reque
 @Component
 export default class Search extends Vue {
   @Watch('searchQuery')
-  async search(query: string) {
-    this.isLoading = true;
-    const response = await getSearchGifsFromGiphy(query);
-    this.searchResults = response;
-    this.isLoading = false;
+  async searchWithQuery(query: string) {
+    await this.getSearchResults(query);
   }
 
-  async mounted() {
-    this.trendingTerms = await getTrendingSearchTermsFromTenor();
+    @Watch('selectedTerms')
+  async searchWithTerms(term: string) {
+    await this.getSearchResults(term);
   }
+
+    async getSearchResults(query: string) {
+      this.isLoading = true;
+      const response = await getSearchGifsFromGiphy(query);
+      this.searchResults = response;
+      this.isLoading = false;
+    }
+
+    async mounted() {
+      this.trendingTerms = await getTrendingSearchTermsFromTenor();
+    }
 
   icons = {
     mdiImageSearch,
