@@ -50,41 +50,45 @@
       justify="center"
       no-gutters
     >
-      <v-btn
-        :style="{visibility: this.$store.state.gifMode === 'random' ? 'visible' : 'hidden'}"
-        icon
-        x-large
-        @click="setRandomGif"
-      >
-        <v-icon>
-          {{ icons.mdiSync }}
-        </v-icon>
-      </v-btn>
+      <v-card-actions>
+        <v-btn
+          :style="{visibility: this.$store.state.gifMode === 'random' ? 'visible' : 'hidden'}"
+          icon
+          x-large
+          @click="setRandomGif"
+        >
+          <v-icon>
+            {{ icons.mdiSync }}
+          </v-icon>
+        </v-btn>
+      </v-card-actions>
     </v-row>
     <v-row
       align="end"
       justify="center"
       no-gutters
     >
-      <v-btn
-        :style="{visibility: rating ? 'visible' : 'hidden'}"
-        icon
-        large
-        @click="removeGif"
-      >
-        <v-icon>{{ icons.mdiClose }}</v-icon>
-      </v-btn>
-      <v-rating
-        v-model="rating"
-        length="5"
-        :empty-icon="icons.mdiHeartOutline"
-        :full-icon="icons.mdiHeart"
-        :half-icon="icons.mdiHeartHalfFull"
-        hover
-        size="50"
-        color="red"
-        background-color="red"
-      />
+      <v-card-actions style="margin-right: 35px;">
+        <v-btn
+          :style="{visibility: rating ? 'visible' : 'hidden'}"
+          icon
+          large
+          @click="removeGif"
+        >
+          <v-icon>{{ icons.mdiClose }}</v-icon>
+        </v-btn>
+        <v-rating
+          v-model="rating"
+          length="5"
+          :empty-icon="icons.mdiHeartOutline"
+          :full-icon="icons.mdiHeart"
+          :half-icon="icons.mdiHeartHalfFull"
+          hover
+          size="50"
+          color="red"
+          background-color="red"
+        />
+      </v-card-actions>
     </v-row>
   </v-container>
 </template>
