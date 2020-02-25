@@ -16,6 +16,7 @@
         >
           <v-list-item-icon>
             <v-badge
+              v-if="item.link === '/favourites'"
               :value="gifCount > 0"
               :content="gifCount"
               color="grey"
@@ -26,6 +27,12 @@
                 v-text="item.icon"
               />
             </v-badge>
+            <v-icon
+              v-else
+              color="white"
+              large
+              v-text="item.icon"
+            />
           </v-list-item-icon>
           <!-- Empty component for jumping list item on click -->
           <v-list-item-content />
