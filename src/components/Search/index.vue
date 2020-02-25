@@ -50,7 +50,9 @@ import { getSearchGifsFromGiphy, getTrendingSearchTermsFromTenor } from '@/reque
 export default class Search extends Vue {
   @Watch('searchQuery')
   async searchWithQuery(query: string) {
-    await this.getSearchResults(query);
+    if (this.searchQuery && this.searchQuery.length > 2) {
+      await this.getSearchResults(query);
+    }
   }
 
     @Watch('selectedTerms')
@@ -77,7 +79,7 @@ export default class Search extends Vue {
 
   searchResults: null|any = null;
 
-  searchQuery: null|string = null;
+  searchQuery: string = '';
 
   isLoading: boolean = false;
 
