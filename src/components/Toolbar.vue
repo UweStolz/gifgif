@@ -17,7 +17,10 @@
     </v-btn>
     <v-divider />
 
-    <v-tooltip bottom>
+    <v-tooltip
+      bottom
+      nudge-bottom="5"
+    >
       <template v-slot:activator="{ on }">
         <v-btn
           :id="mode === 'random' ? 'tb-active-button' : ''"
@@ -33,7 +36,10 @@
       </template>
       <span>Random</span>
     </v-tooltip>
-    <v-tooltip bottom>
+    <v-tooltip
+      bottom
+      nudge-bottom="5"
+    >
       <template v-slot:activator="{ on }">
         <v-btn
           :id="mode === 'trending' ? 'tb-active-button' : ''"
