@@ -54,12 +54,12 @@ import PanelContent from './PanelContent.vue';
 
 interface Data {
   previewUrl: {
-    [key: number]: { images: ArrayBuffer[], previews: string[] };
-    1: { images: ArrayBuffer[], previews: string[] };
-    2: { images: ArrayBuffer[], previews: string[] };
-    3: { images: ArrayBuffer[], previews: string[] };
-    4: { images: ArrayBuffer[], previews: string[] };
-    5: { images: ArrayBuffer[], previews: string[] };
+    [key: number]: { images: ArrayBuffer[]|string[], previews: string[] };
+    1: { images: ArrayBuffer[]|string[], previews: string[] };
+    2: { images: ArrayBuffer[]|string[], previews: string[] };
+    3: { images: ArrayBuffer[]|string[], previews: string[] };
+    4: { images: ArrayBuffer[]|string[], previews: string[] };
+    5: { images: ArrayBuffer[]|string[], previews: string[] };
   }
 }
 
@@ -92,10 +92,13 @@ export default class Favourites extends Vue {
     this.evaluatedKey += 1;
     if (!this.isEmpty) {
       gifData.values.forEach((value: GifData, index) => {
-        const previewImageUrl: string = arrayBufferToImage(value.preview);
         if (value.rating > 0 && value.rating < 6) {
-          this.data.previewUrl[value.rating].previews.push(previewImageUrl);
-          this.data.previewUrl[value.rating].images.push(gifData.keys[index]);
+          let previewImageUrl = value.preview;
+          if (value.preview instanceof ArrayBuffer) {
+            previewImageUrl = arrayBufferToImage(value.preview as ArrayBuffer);
+          }
+          this.data.previewUrl[value.rating].previews.push(previewImageUrl as string);
+          this.data.previewUrl[value.rating].images.push(gifData.keys[index] as any);
         }
       });
     }
