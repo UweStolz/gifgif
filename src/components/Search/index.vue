@@ -7,7 +7,7 @@
       justify="center"
     >
       <v-card
-        width="50%"
+        width="80%"
         flat
         tile
       >
@@ -68,21 +68,21 @@ export default class Search extends Vue {
     }
   }
 
-    @Watch('selectedTerms')
+  @Watch('selectedTerms')
   async searchWithTerms(term: string) {
     await this.getSearchResults(term);
   }
 
-    async getSearchResults(query: string) {
-      this.isLoading = true;
-      const response = await getSearchGifsFromGiphy(query);
-      this.searchResults = response;
-      this.isLoading = false;
-    }
+  async getSearchResults(query: string) {
+    this.isLoading = true;
+    const response = await getSearchGifsFromGiphy(query);
+    this.searchResults = response;
+    this.isLoading = false;
+  }
 
-    async mounted() {
-      this.trendingTerms = await getTrendingSearchTermsFromTenor();
-    }
+  async mounted() {
+    this.trendingTerms = await getTrendingSearchTermsFromTenor();
+  }
 
   icons = {
     mdiImageSearch,
