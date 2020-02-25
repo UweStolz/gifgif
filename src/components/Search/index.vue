@@ -27,15 +27,28 @@
           multiple
           clearable
         />
-        <v-img
-          v-for="(url, i) in (searchResults)"
-          :key="i"
-          :src="searchResults[i].images.fixed_width.webp"
-          :lazy-src="searchResults[i].images.fixed_width.webp"
-          contain
-          height="100px"
-          width="100px"
-        />
+        <v-divider />
+        <v-expand-transition>
+          <v-item-group v-if="selectedTerms || searchQuery">
+            <v-row
+              align="start"
+              justify="start"
+            >
+              <v-item
+                v-for="(url, i) in (searchResults)"
+                :key="i"
+              >
+                <v-img
+                  :src="searchResults[i].images.fixed_width.webp"
+                  :lazy-src="searchResults[i].images.fixed_width.webp"
+                  contain
+                  height="100px"
+                  width="100px"
+                />
+              </v-item>
+            </v-row>
+          </v-item-group>
+        </v-expand-transition>
       </v-card>
     </v-row>
   </v-container>
