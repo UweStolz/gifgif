@@ -26,6 +26,7 @@
           chips
           multiple
           clearable
+          @click:clear="searchResults = null"
         />
         <v-divider />
         <v-expand-transition>
