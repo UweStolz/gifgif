@@ -122,15 +122,15 @@ export default class Frontpage extends Vue {
   @Watch('rating')
   async ratingWatcher(): Promise<void> {
     if (this.rating !== 0) {
-      const preview = await this.getBufferForPreviewGif();
-      const { rating, currentImageBuffer } = this;
+      const {
+        rating, currentImageBuffer, gifsList, carouselModel,
+      } = this;
+
       await this.$store.dispatch('setGifData', {
         rating,
-        buffer: currentImageBuffer,
-        preview,
+        key: this.fullImageMode ? currentImageBuffer : gifsList[carouselModel].url,
+        preview: this.fullImageMode ? await this.getBufferForPreviewGif() : gifsList[carouselModel].url,
       });
-      const gifCount = await this.$store.dispatch('getGifCount');
-      this.$store.commit('setGifCount', gifCount);
     }
   }
 
@@ -149,6 +149,8 @@ export default class Frontpage extends Vue {
   gifsList: MergedGifLists = [];
 
   carouselModel: number = 0;
+
+  fullImageMode: boolean = false;
 
   async setRandomGif() {
     const randomGifObject: Giphy.GIFObject = await getRandomGifFromGiphy();
@@ -210,18 +212,26 @@ export default class Frontpage extends Vue {
         await this.getGifLists(mode);
       },
     );
+    this.fullImageMode = this.$store.state.fullImageMode;
     await this.getGifLists(this.$store.state.gifMode);
   }
 
   async getRating() {
+    let gifData: GifData|undefined;
     const currentGif = this.gifsList[this.carouselModel].url;
-    this.currentImageBuffer = await getArrayBuffer(currentGif);
-    const gifData: GifData|undefined = await this.$store.dispatch('getGifData', this.currentImageBuffer);
+    if (this.fullImageMode) {
+      this.currentImageBuffer = await getArrayBuffer(currentGif);
+      gifData = await this.$store.dispatch('getGifData', this.currentImageBuffer);
+    }
+    gifData = await this.$store.dispatch('getGifData', currentGif);
     this.rating = gifData?.rating ? this.rating = gifData.rating : this.rating = 0;
   }
 
   async removeGif() {
-    await this.$store.dispatch('removeGifData', this.currentImageBuffer);
+    if (this.fullImageMode) {
+      await this.$store.dispatch('removeGifData', this.currentImageBuffer);
+    }
+    await this.$store.dispatch('removeGifData', this.gifsList[this.carouselModel].url);
     this.rating = 0;
     this.$store.commit('setGifCount', this.$store.state.gifCount -= 1);
   }

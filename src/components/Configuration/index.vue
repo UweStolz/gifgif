@@ -64,13 +64,20 @@
                     <v-switch
                       v-model="item.status"
                       color="red darken-3"
-                      @click="item.action"
+                      @change="item.action"
                     />
                   </td>
                 </tr>
               </tbody>
             </template>
           </v-simple-table>
+          <!-- <v-spacer />
+          <v-alert
+            text
+            type="error"
+          >
+            <strong>Danger Zone</strong>
+          </v-alert> -->
         </v-col>
       </v-card>
     </v-row>
@@ -83,17 +90,16 @@ import { mdiCogs } from '@mdi/js';
 
 @Component
 export default class Configuration extends Vue {
-  mounted() {
-    this.configuration.fullImageMode.status = this.$store.state.fullImageMode;
-  }
-
 icons = { mdiCogs }
 
 configuration = {
   fullImageMode: {
     name: 'Save full image',
-    status: false,
-    action: async () => { await this.$store.dispatch('setConfig', { value: this.configuration.fullImageMode.status, key: 'fullImageMode' }); },
+    status: this.$store.state.fullImageMode,
+    action: () => {
+      this.configuration.fullImageMode.status = !this.$store.state.fullImageMode;
+      this.$store.commit('setFullImageMode', this.configuration.fullImageMode.status);
+    },
   },
 }
 }
