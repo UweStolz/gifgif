@@ -37,20 +37,36 @@
               <thead>
                 <tr>
                   <th class="text-left">
-                    Name
+                    Setting
                   </th>
                   <th class="text-left">
-                    Calories
+                    Status
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr
-                  v-for="item in desserts"
-                  :key="item.name"
+                  v-for="(item, property) in configuration"
+                  :key="item[property]"
                 >
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.calories }}</td>
+                  <td>
+                    {{ item.name }}
+                    <v-alert
+                      dense
+                      text
+                      border="left"
+                      type="warning"
+                    >
+                      <strong>Warning!</strong> Very storage intensive
+                    </v-alert>
+                  </td>
+                  <td>
+                    <v-switch
+                      v-model="item.status"
+                      color="red darken-3"
+                      @click="item.action"
+                    />
+                  </td>
                 </tr>
               </tbody>
             </template>
@@ -67,41 +83,18 @@ import { mdiCogs } from '@mdi/js';
 
 @Component
 export default class Configuration extends Vue {
+  mounted() {
+    this.configuration.fullImageMode.status = this.$store.state.fullImageMode;
+  }
+
 icons = { mdiCogs }
 
-desserts = [
-  {
-    name: 'Frozen Yogurt',
-    calories: 159,
+configuration = {
+  fullImageMode: {
+    name: 'Save full image',
+    status: false,
+    action: async () => { await this.$store.dispatch('setConfig', { value: this.configuration.fullImageMode.status, key: 'fullImageMode' }); },
   },
-  {
-    name: 'Ice cream sandwich',
-    calories: 237,
-  },
-  {
-    name: 'Eclair',
-    calories: 262,
-  },
-  {
-    name: 'Cupcake',
-    calories: 305,
-  },
-  {
-    name: 'Gingerbread',
-    calories: 356,
-  },
-  {
-    name: 'Jelly bean',
-    calories: 375,
-  },
-  {
-    name: 'Lollipop',
-    calories: 392,
-  },
-  {
-    name: 'Honeycomb',
-    calories: 408,
-  },
-]
+}
 }
 </script>

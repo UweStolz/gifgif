@@ -19,6 +19,10 @@ export interface GifGif extends DBSchema {
     key: ArrayBuffer;
     value: GifData;
   };
+  configs: {
+    key: string;
+    value: boolean;
+  }
 }
 
 export default {
@@ -26,6 +30,7 @@ export default {
     database = await openDB<GifGif>('gifgif', 1, {
       upgrade(db: IDBPDatabase<GifGif>) {
         db.createObjectStore('gifdata', { autoIncrement: true });
+        db.createObjectStore('configs', { autoIncrement: true });
       },
     });
     return database;
@@ -57,5 +62,15 @@ export default {
     const keys: ArrayBuffer[] = await database.getAllKeys('gifdata');
     const gifstore: GifStore = { values, keys };
     return gifstore;
+  },
+
+  async getConfig(key: string): Promise<boolean|undefined> {
+    database = await this.openDatabase();
+    return database.get('configs', key);
+  },
+
+  async setConfig(value: boolean, key: string): Promise<string> {
+    database = await this.openDatabase();
+    return database.put('configs', value, key);
   },
 };

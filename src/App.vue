@@ -40,7 +40,12 @@ import Footer from '@/components/Footer.vue';
     Footer,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  async mounted(): Promise<void> {
+    const fullImageModeStatus = await this.$store.dispatch('getConfig', 'fullImageMode');
+    this.$store.commit('setFullImageMode', fullImageModeStatus);
+  }
+}
 </script>
 
 <style>
