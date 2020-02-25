@@ -20,6 +20,11 @@ const routes: RouteConfig[] = [
     name: 'search',
     component: () => import(/* webpackChunkName: "search" */ '../views/Search.vue'),
   },
+  {
+    path: '/configuration',
+    name: 'configuration',
+    component: () => import(/* webpackChunkName: "configuration" */ '../views/Configuration.vue'),
+  },
 ];
 
 const router = new VueRouter({

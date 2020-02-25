@@ -55,12 +55,19 @@
       </template>
       <span>Trending</span>
     </v-tooltip>
+    <v-btn
+      style="margin-left: 10px;"
+      icon
+      :to="'/configuration'"
+    >
+      <v-icon>{{ icons.mdiCogs }}</v-icon>
+    </v-btn>
   </v-app-bar>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { mdiShuffle, mdiTrendingUp } from '@mdi/js';
+import { mdiShuffle, mdiTrendingUp, mdiCogs } from '@mdi/js';
 
 @Component
 export default class Toolbar extends Vue {
@@ -72,6 +79,7 @@ export default class Toolbar extends Vue {
   icons = {
     mdiShuffle,
     mdiTrendingUp,
+    mdiCogs,
   }
 
   mode = this.$store.state.gifMode;
