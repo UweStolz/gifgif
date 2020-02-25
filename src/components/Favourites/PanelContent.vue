@@ -8,7 +8,7 @@
         >
           <Dialog
             :show-dialog.sync="dialog"
-            :full-image-data.sync="fullImageBuffer"
+            :full-image-data.sync="fullImage"
             @delete="deleteGif"
           />
           <v-item
@@ -45,9 +45,9 @@ import Dialog from './Dialog.vue';
 export default class PanelContent extends Vue {
 @Prop({ required: true }) previewImages!: string[];
 
-@Prop({ required: true }) fullImages!: ArrayBuffer[];
+@Prop({ required: true }) fullImages!: ArrayBuffer[]|string[];
 
-fullImageBuffer: null|ArrayBuffer = null;
+fullImage: null|ArrayBuffer|string = null;
 
 dialog: boolean = false;
 
@@ -55,7 +55,7 @@ selectedIndex: number = -1;
 
 openDialog(index: number) {
   this.dialog = true;
-  this.fullImageBuffer = this.fullImages[index];
+  this.fullImage = this.fullImages[index];
   this.selectedIndex = index;
 }
 

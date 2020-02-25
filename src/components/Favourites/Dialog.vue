@@ -16,15 +16,15 @@
         </v-btn>
       </v-card-title>
       <v-img
-        :src="imageBlob"
-        :lazy-src="imageBlob"
+        :src="imageData"
+        :lazy-src="imageData"
         max-height="700"
         height="100%"
         width="100%"
       />
       <v-card-actions>
         <v-btn
-          :href="imageBlob"
+          :href="imageData"
           large
           icon
         >
@@ -64,13 +64,15 @@ export default class Dialog extends Vue {
 @Watch('syncedFullImageData')
   convertBufferToImage() {
     if (this.syncedFullImageData) {
-      this.imageBlob = arrayBufferToImage(this.syncedFullImageData);
+      this.imageData = this.$store.state.fullImageMode
+        ? arrayBufferToImage(this.syncedFullImageData as ArrayBuffer)
+        : this.syncedFullImageData as string;
     }
   }
 
 @PropSync('showDialog', { type: Boolean, required: true }) syncedShowDialog!: boolean;
 
-@PropSync('fullImageData', { required: true }) syncedFullImageData!: null|ArrayBuffer;
+@PropSync('fullImageData', { required: true }) syncedFullImageData!: null|ArrayBuffer|string;
 
 @Emit('delete')
 deleteGifData() {
@@ -89,7 +91,7 @@ icons = {
   mdiDownload,
 }
 
-imageBlob: string = '';
+imageData: string = '';
 }
 </script>
 
