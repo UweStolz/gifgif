@@ -14,6 +14,11 @@ export type GifStore = {
   keys: ArrayBuffer[];
 }
 
+export type ConfigStore = {
+  values: (boolean|string|number)[];
+  keys: string[];
+}
+
 export interface GifGif extends DBSchema {
   gifdata: {
     key: ArrayBuffer;
@@ -21,7 +26,7 @@ export interface GifGif extends DBSchema {
   };
   configs: {
     key: string;
-    value: boolean;
+    value: boolean|string|number;
   }
 }
 
@@ -64,12 +69,20 @@ export default {
     return gifstore;
   },
 
-  async getConfig(key: string): Promise<boolean|undefined> {
+  async getAllConfigs(): Promise<ConfigStore> {
+    database = await this.openDatabase();
+    const values: (boolean|string|number)[] = await database.getAll('configs');
+    const keys: string[] = await database.getAllKeys('configs');
+    const configStore: ConfigStore = { values, keys };
+    return configStore;
+  },
+
+  async getConfig(key: string): Promise<string|number|boolean|undefined> {
     database = await this.openDatabase();
     return database.get('configs', key);
   },
 
-  async setConfig(value: boolean, key: string): Promise<string> {
+  async setConfig(value: string|number|boolean, key: string): Promise<string> {
     database = await this.openDatabase();
     return database.put('configs', value, key);
   },
