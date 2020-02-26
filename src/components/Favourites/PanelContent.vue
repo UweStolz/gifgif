@@ -45,7 +45,7 @@ import Dialog from './Dialog.vue';
 export default class PanelContent extends Vue {
 @Prop({ required: true }) previewImages!: string[];
 
-@Prop({ required: true }) fullImages!: ArrayBuffer[]|string[];
+@Prop({ required: true }) fullImages!: (ArrayBuffer|string)[];
 
 fullImage: null|ArrayBuffer|string = null;
 
@@ -59,7 +59,7 @@ openDialog(index: number) {
   this.selectedIndex = index;
 }
 
-async deleteGif(payload: ArrayBuffer): Promise<void> {
+async deleteGif(payload: ArrayBuffer|string): Promise<void> {
   this.previewImages.splice(this.selectedIndex, 1);
   this.fullImages.splice(this.selectedIndex, 1);
   await this.$store.dispatch('removeGifData', payload);

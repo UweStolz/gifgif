@@ -54,12 +54,12 @@ import PanelContent from './PanelContent.vue';
 
 interface Data {
   previewUrl: {
-    [key: number]: { images: ArrayBuffer[]|string[], previews: string[] };
-    1: { images: ArrayBuffer[]|string[], previews: string[] };
-    2: { images: ArrayBuffer[]|string[], previews: string[] };
-    3: { images: ArrayBuffer[]|string[], previews: string[] };
-    4: { images: ArrayBuffer[]|string[], previews: string[] };
-    5: { images: ArrayBuffer[]|string[], previews: string[] };
+    [key: number]: { images: (ArrayBuffer|string)[], previews: string[] };
+    1: { images: (ArrayBuffer|string)[], previews: string[] };
+    2: { images: (ArrayBuffer|string)[], previews: string[] };
+    3: { images: (ArrayBuffer|string)[], previews: string[] };
+    4: { images: (ArrayBuffer|string)[], previews: string[] };
+    5: { images: (ArrayBuffer|string)[], previews: string[] };
   }
 }
 

@@ -64,7 +64,7 @@ export default class Dialog extends Vue {
 @Watch('syncedFullImageData')
   convertBufferToImage() {
     if (this.syncedFullImageData) {
-      this.imageData = this.$store.state.fullImageMode
+      this.imageData = this.syncedFullImageData instanceof ArrayBuffer
         ? arrayBufferToImage(this.syncedFullImageData as ArrayBuffer)
         : this.syncedFullImageData as string;
     }
