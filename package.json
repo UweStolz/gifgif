@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@mdi/js": "^4.9.95",
+    "byte-size": "^6.2.0",
     "core-js": "^3.6.4",
     "idb": "^5.0.1",
     "register-service-worker": "^1.6.2",
