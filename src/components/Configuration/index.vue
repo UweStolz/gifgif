@@ -102,5 +102,15 @@ configuration = {
     },
   },
 }
+
+estimate: null|StorageEstimate = null;
+
+// eslint-disable-next-line class-methods-use-this
+async mounted() {
+  if ('storage' in navigator && 'estimate' in navigator.storage) {
+    this.estimate = await navigator.storage.estimate();
+    console.log(`Using ${this.estimate.usage} out of ${this.estimate.quota} bytes.`);
+  }
+}
 }
 </script>
