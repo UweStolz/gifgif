@@ -131,6 +131,7 @@ export default class Frontpage extends Vue {
         key: this.fullImageMode ? currentImageBuffer : gifsList[carouselModel].url,
         preview: this.fullImageMode ? await this.getBufferForPreviewGif() : gifsList[carouselModel].url,
       });
+      this.$store.commit('setGifCount', this.gifCount + 1);
     }
   }
 
@@ -151,6 +152,8 @@ export default class Frontpage extends Vue {
   carouselModel: number = 0;
 
   fullImageMode: boolean = false;
+
+  gifCount: number = 0;
 
   async setRandomGif() {
     const randomGifObject: Giphy.GIFObject = await getRandomGifFromGiphy();
@@ -213,6 +216,7 @@ export default class Frontpage extends Vue {
       },
     );
     this.fullImageMode = this.$store.state.fullImageMode;
+    this.gifCount = this.$store.state.gifCount;
     await this.getGifLists(this.$store.state.gifMode);
   }
 
@@ -233,7 +237,7 @@ export default class Frontpage extends Vue {
     }
     await this.$store.dispatch('removeGifData', this.gifsList[this.carouselModel].url);
     this.rating = 0;
-    this.$store.commit('setGifCount', this.$store.state.gifCount -= 1);
+    this.$store.commit('setGifCount', this.gifCount -= 1);
   }
 }
 </script>
