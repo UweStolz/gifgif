@@ -34,16 +34,7 @@
             height="100%"
           >
             <template v-slot:default>
-              <thead>
-                <tr>
-                  <th class="text-left">
-                    Setting
-                  </th>
-                  <th class="text-left">
-                    Status
-                  </th>
-                </tr>
-              </thead>
+              <thead />
               <tbody>
                 <tr
                   v-for="(item, property) in configuration"
@@ -57,7 +48,7 @@
                       border="left"
                       type="warning"
                     >
-                      <strong>Warning!</strong> Very storage intensive
+                      <strong>Warning</strong> Very storage intensive
                     </v-alert>
                   </td>
                   <td>
@@ -68,15 +59,28 @@
                     />
                   </td>
                 </tr>
+                <tr>
+                  <td>
+                    Currently estimated storage usage: <strong>{{ estimateUsage }}</strong>
+                  </td>
+                  <td>
+                    <v-btn
+                      color="error"
+                    >
+                      DELETE
+                    </v-btn>
+                  </td>
+                </tr>
               </tbody>
             </template>
           </v-simple-table>
-          <!-- <v-spacer />
-          <v-alert
+          <!-- <v-alert
             text
+            border="left"
             type="error"
           >
             <strong>Danger Zone</strong>
+            <v-spacer />
           </v-alert> -->
         </v-col>
       </v-card>
@@ -87,6 +91,8 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import { mdiCogs } from '@mdi/js';
+// @ts-ignore
+import byteSize from 'byte-size';
 
 @Component
 export default class Configuration extends Vue {
@@ -103,13 +109,12 @@ configuration = {
   },
 }
 
-estimate: null|StorageEstimate = null;
+estimateUsage: null|number = null;
 
-// eslint-disable-next-line class-methods-use-this
 async mounted() {
   if ('storage' in navigator && 'estimate' in navigator.storage) {
-    this.estimate = await navigator.storage.estimate();
-    console.log(`Using ${this.estimate.usage} out of ${this.estimate.quota} bytes.`);
+    const estimate = await navigator.storage.estimate();
+    this.estimateUsage = byteSize(estimate.usage);
   }
 }
 }
