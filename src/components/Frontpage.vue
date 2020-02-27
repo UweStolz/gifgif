@@ -245,7 +245,7 @@ export default class Frontpage extends Vue {
 
   async removeGif() {
     if (this.fullImageMode) {
-      await this.$store.dispatch('removeGifData', this.currentImageBuffer);
+      await this.$store.dispatch('removeGifData', `ggid-${this.gifsList[this.carouselModel].id}`);
     }
     await this.$store.dispatch('removeGifData', `ggid-${this.gifsList[this.carouselModel].id}`);
     this.rating = 0;
