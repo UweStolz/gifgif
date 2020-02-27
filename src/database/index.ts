@@ -6,12 +6,13 @@ let database: IDBPDatabase<GifGif>;
 
 export type GifData = {
   rating: number;
+  image: ArrayBuffer|string;
   preview: ArrayBuffer|string;
 }
 
 export type GifStore = {
   values: GifData[];
-  keys: ArrayBuffer[]|string[];
+  keys: string[];
 }
 
 export type ConfigStore = {
@@ -21,7 +22,7 @@ export type ConfigStore = {
 
 export interface GifGif extends DBSchema {
   gifdata: {
-    key: ArrayBuffer|string;
+    key: string;
     value: GifData;
   };
   configs: {
@@ -41,17 +42,17 @@ export default {
     return database;
   },
 
-  async getGifData(key: ArrayBuffer|string): Promise<GifData|undefined> {
+  async getGifData(key: string): Promise<GifData|undefined> {
     database = await this.openDatabase();
     return database.get('gifdata', key);
   },
 
-  async setGifdata(rating: number, preview: ArrayBuffer|string, key: ArrayBuffer|string): Promise<ArrayBuffer|string> {
+  async setGifdata(rating: number, preview: ArrayBuffer|string, image: ArrayBuffer|string, key: string): Promise<string> {
     database = await this.openDatabase();
-    return database.put('gifdata', { rating, preview }, key);
+    return database.put('gifdata', { rating, preview, image }, key);
   },
 
-  async removeGifData(key: ArrayBuffer|string): Promise<void> {
+  async removeGifData(key: string): Promise<void> {
     database = await this.openDatabase();
     return database.delete('gifdata', key);
   },
@@ -63,13 +64,13 @@ export default {
 
   async getCountOfGifs(): Promise<number> {
     database = await this.openDatabase();
-    return database.count('gifdata', undefined);
+    return database.count('gifdata');
   },
 
   async getAllData(): Promise<GifStore> {
     database = await this.openDatabase();
     const values: GifData[] = await database.getAll('gifdata');
-    const keys = await database.getAllKeys('gifdata') as ArrayBuffer[]|string[];
+    const keys = await database.getAllKeys('gifdata');
     const gifstore: GifStore = { values, keys };
     return gifstore;
   },

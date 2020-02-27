@@ -41,14 +41,16 @@ const store = new Vuex.Store<States>({
     },
   },
   actions: {
-    async getGifData(context: any, key: ArrayBuffer|string): Promise<GifData | undefined> {
+    async getGifData(context: any, key: string): Promise<GifData | undefined> {
       return idb.getGifData(key);
     },
-    async setGifData(context: any, gifdata: any): Promise<ArrayBuffer|string> {
-      const { rating, preview, key } = gifdata;
-      return idb.setGifdata(rating, preview, key);
+    async setGifData(context: any, gifdata: any): Promise<string> {
+      const {
+        rating, preview, image, key,
+      } = gifdata;
+      return idb.setGifdata(rating, preview, image, key);
     },
-    async removeGifData(context: any, key: ArrayBuffer|string): Promise<void> {
+    async removeGifData(context: any, key: string): Promise<void> {
       return idb.removeGifData(key);
     },
     async removeCompleteGifData(): Promise<void> {

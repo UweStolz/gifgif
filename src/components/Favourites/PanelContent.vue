@@ -9,6 +9,7 @@
           <Dialog
             :show-dialog.sync="dialog"
             :full-image-data.sync="fullImage"
+            :image-id.sync="imageId"
             @delete="deleteGif"
           />
           <v-item
@@ -47,6 +48,8 @@ export default class PanelContent extends Vue {
 
 @Prop({ required: true }) fullImages!: (ArrayBuffer|string)[];
 
+@Prop({ required: true }) imageId!: string[];
+
 fullImage: null|ArrayBuffer|string = null;
 
 dialog: boolean = false;
@@ -59,11 +62,11 @@ openDialog(index: number) {
   this.selectedIndex = index;
 }
 
-async deleteGif(payload: ArrayBuffer|string): Promise<void> {
+async deleteGif(payload: string): Promise<void> {
   this.previewImages.splice(this.selectedIndex, 1);
   this.fullImages.splice(this.selectedIndex, 1);
   await this.$store.dispatch('removeGifData', payload);
-  this.$store.commit('setGifCount', this.$store.state.gifCount -= 1);
+  this.$store.commit('setGifCount', this.$store.state.gifCount - 1);
   this.selectedIndex = -1;
 }
 }

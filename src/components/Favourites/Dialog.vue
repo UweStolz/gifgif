@@ -2,6 +2,7 @@
   <v-dialog
     v-model="syncedShowDialog"
     :full-image-data="syncedFullImageData"
+    :image-id="syncedImageId"
     width="600"
     @click:outside="resetProps"
   >
@@ -74,10 +75,12 @@ export default class Dialog extends Vue {
 
 @PropSync('fullImageData', { required: true }) syncedFullImageData!: null|ArrayBuffer|string;
 
+@PropSync('imageId', { required: true }) syncedImageId!: string;
+
 @Emit('delete')
 deleteGifData() {
   this.syncedShowDialog = false;
-  return this.syncedFullImageData;
+  return this.syncedImageId;
 }
 
 resetProps(): void {

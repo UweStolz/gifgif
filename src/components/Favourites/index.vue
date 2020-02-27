@@ -34,6 +34,7 @@
         <PanelContent
           :preview-images="data.previewUrl[x-1].previews"
           :full-images="data.previewUrl[x-1].images"
+          :image-id="data.previewUrl[x-1].id"
         />
       </v-expansion-panel>
     </v-expansion-panels>
@@ -54,12 +55,12 @@ import PanelContent from './PanelContent.vue';
 
 interface Data {
   previewUrl: {
-    [key: number]: { images: (ArrayBuffer|string)[], previews: string[] };
-    1: { images: (ArrayBuffer|string)[], previews: string[] };
-    2: { images: (ArrayBuffer|string)[], previews: string[] };
-    3: { images: (ArrayBuffer|string)[], previews: string[] };
-    4: { images: (ArrayBuffer|string)[], previews: string[] };
-    5: { images: (ArrayBuffer|string)[], previews: string[] };
+    [key: number]: { id: string[], images: (ArrayBuffer|string)[], previews: string[] };
+    1: { id: string[], images: (ArrayBuffer|string)[], previews: string[] };
+    2: { id: string[], images: (ArrayBuffer|string)[], previews: string[] };
+    3: { id: string[], images: (ArrayBuffer|string)[], previews: string[] };
+    4: { id: string[], images: (ArrayBuffer|string)[], previews: string[] };
+    5: { id: string[], images: (ArrayBuffer|string)[], previews: string[] };
   }
 }
 
@@ -78,11 +79,11 @@ export default class Favourites extends Vue {
 
   data: Data = {
     previewUrl: {
-      1: { images: [], previews: [] },
-      2: { images: [], previews: [] },
-      3: { images: [], previews: [] },
-      4: { images: [], previews: [] },
-      5: { images: [], previews: [] },
+      1: { id: [], images: [], previews: [] },
+      2: { id: [], images: [], previews: [] },
+      3: { id: [], images: [], previews: [] },
+      4: { id: [], images: [], previews: [] },
+      5: { id: [], images: [], previews: [] },
     },
   };
 
@@ -98,7 +99,8 @@ export default class Favourites extends Vue {
             previewImageUrl = arrayBufferToImage(value.preview as ArrayBuffer);
           }
           this.data.previewUrl[value.rating].previews.push(previewImageUrl as string);
-          this.data.previewUrl[value.rating].images.push(gifData.keys[index] as any);
+          this.data.previewUrl[value.rating].images.push(gifData.values[index].image as any);
+          this.data.previewUrl[value.rating].id.push(gifData.keys[index]);
         }
       });
     }

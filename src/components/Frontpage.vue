@@ -96,6 +96,7 @@
             size="50"
             color="red"
             background-color="red"
+            @input="updateGifRating"
           />
         </v-card-actions>
       </v-col>
@@ -104,7 +105,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Watch } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator';
 import {
   mdiClose, mdiHeart, mdiHeartOutline, mdiHeartHalfFull, mdiSync,
 } from '@mdi/js';
@@ -119,20 +120,28 @@ import { GifData } from '../database';
 
 @Component
 export default class Frontpage extends Vue {
-  @Watch('rating')
-  async ratingWatcher(): Promise<void> {
-    if (this.rating !== 0) {
-      const {
-        rating, currentImageBuffer, gifsList, carouselModel,
-      } = this;
-
+  async updateGifRating() {
+    const {
+      rating, gifsList, carouselModel,
+    } = this;
+    if (this.fullImageMode) {
+      const { currentImageBuffer } = this;
       await this.$store.dispatch('setGifData', {
         rating,
-        key: this.fullImageMode ? currentImageBuffer : gifsList[carouselModel].url,
-        preview: this.fullImageMode ? await this.getBufferForPreviewGif() : gifsList[carouselModel].url,
+        key: `ggid-${gifsList[carouselModel].id}`,
+        image: currentImageBuffer,
+        preview: await this.getBufferForPreviewGif(),
       });
-      this.$store.commit('setGifCount', this.gifCount + 1);
+    } else {
+      await this.$store.dispatch('setGifData', {
+        rating,
+        key: `ggid-${gifsList[carouselModel].id}`,
+        image: gifsList[carouselModel].url,
+        preview: gifsList[carouselModel].url,
+      });
     }
+    const currentCount = await this.$store.dispatch('getGifCount');
+    if (this.gifCount !== currentCount) { this.$store.commit('setGifCount', currentCount); }
   }
 
   icons = {
@@ -159,6 +168,7 @@ export default class Frontpage extends Vue {
     const randomGifObject: Giphy.GIFObject = await getRandomGifFromGiphy();
     const itemObject = [
       {
+        id: randomGifObject.id,
         url: randomGifObject.images.original.webp,
         previewUrl: randomGifObject.images.fixed_width.webp,
       },
@@ -193,6 +203,7 @@ export default class Frontpage extends Vue {
     const mergedLists: MergedGifLists = [];
     listFromGiphy.forEach((item) => {
       const itemObject: MergedGifListObject = {
+        id: item.id,
         url: item.images.original.webp,
         previewUrl: item.images.fixed_width.webp,
       };
@@ -200,6 +211,7 @@ export default class Frontpage extends Vue {
     });
     listFromTenor.forEach((item) => {
       const itemObject: MergedGifListObject = {
+        id: item.id,
         url: item.media[0].gif.url,
         previewUrl: item.media[0].tinygif.url,
       };
@@ -222,12 +234,12 @@ export default class Frontpage extends Vue {
 
   async getRating() {
     let gifData: GifData|undefined;
-    const currentGif = this.gifsList[this.carouselModel].url;
+    const currentId = this.gifsList[this.carouselModel].id;
     if (this.fullImageMode) {
-      this.currentImageBuffer = await getArrayBuffer(currentGif);
-      gifData = await this.$store.dispatch('getGifData', this.currentImageBuffer);
+      this.currentImageBuffer = await getArrayBuffer(this.gifsList[this.carouselModel].url);
+      gifData = await this.$store.dispatch('getGifData', `ggid-${currentId}`);
     }
-    gifData = await this.$store.dispatch('getGifData', currentGif);
+    gifData = await this.$store.dispatch('getGifData', `ggid-${currentId}`);
     this.rating = gifData?.rating ? this.rating = gifData.rating : this.rating = 0;
   }
 
@@ -235,9 +247,10 @@ export default class Frontpage extends Vue {
     if (this.fullImageMode) {
       await this.$store.dispatch('removeGifData', this.currentImageBuffer);
     }
-    await this.$store.dispatch('removeGifData', this.gifsList[this.carouselModel].url);
+    await this.$store.dispatch('removeGifData', `ggid-${this.gifsList[this.carouselModel].id}`);
     this.rating = 0;
-    this.$store.commit('setGifCount', this.gifCount -= 1);
+    this.gifCount -= 1;
+    this.$store.commit('setGifCount', this.$store.state.gifCount - 1);
   }
 }
 </script>

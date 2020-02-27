@@ -16,6 +16,7 @@ declare global {
     [index: number]: MergedGifListObject;
   }
   interface MergedGifListObject {
+    id: string;
     url: string;
     previewUrl: string;
   }
