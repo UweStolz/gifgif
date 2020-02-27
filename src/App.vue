@@ -29,9 +29,9 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import Toolbar from '@/components/Toolbar.vue';
-import Drawer from '@/components/Drawer.vue';
-import Footer from '@/components/Footer.vue';
+import Toolbar from '@/components/Navigation/Toolbar.vue';
+import Drawer from '@/components/Navigation/Drawer.vue';
+import Footer from '@/components/Navigation/Footer.vue';
 
 @Component({
   components: {
