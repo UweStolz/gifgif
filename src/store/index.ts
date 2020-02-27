@@ -12,7 +12,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store<States>({
   state: {
-    gifCount: -1,
+    gifCount: 0,
     gifMode: 'trending',
     fullImageMode: false,
   },
