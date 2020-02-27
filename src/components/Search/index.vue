@@ -17,6 +17,7 @@
           :loading="isLoading"
           :prepend-icon="icons.mdiImageSearch"
           :items="trendingTerms"
+          color="red darken-3"
           label="GIF search"
           placeholder="Enter or select search tags"
           cache-items
