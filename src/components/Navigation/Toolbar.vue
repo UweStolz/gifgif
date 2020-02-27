@@ -23,12 +23,12 @@
     >
       <template v-slot:activator="{ on }">
         <v-btn
-          :id="mode === 'random' ? 'tb-active-button' : ''"
+          :id="$store.state.gifMode === 'random' ? 'tb-active-button' : ''"
           @click="setGifMode('random')"
           v-on="on"
         >
           <v-icon
-            :id="mode === 'random' ? 'tb-active-icon' : ''"
+            :id="$store.state.gifMode === 'random' ? 'tb-active-icon' : ''"
           >
             {{ icons.mdiShuffle }}
           </v-icon>
@@ -42,12 +42,12 @@
     >
       <template v-slot:activator="{ on }">
         <v-btn
-          :id="mode === 'trending' ? 'tb-active-button' : ''"
+          :id="$store.state.gifMode === 'trending' ? 'tb-active-button' : ''"
           @click="setGifMode('trending')"
           v-on="on"
         >
           <v-icon
-            :id="mode === 'trending' ? 'tb-active-icon' : ''"
+            :id="$store.state.gifMode === 'trending' ? 'tb-active-icon' : ''"
           >
             {{ icons.mdiTrendingUp }}
           </v-icon>
@@ -73,7 +73,6 @@ import { mdiShuffle, mdiTrendingUp, mdiCogs } from '@mdi/js';
 export default class Toolbar extends Vue {
   setGifMode(mode: string) {
     this.$store.commit('setGifMode', mode);
-    this.mode = mode;
   }
 
   icons = {
@@ -81,8 +80,6 @@ export default class Toolbar extends Vue {
     mdiTrendingUp,
     mdiCogs,
   }
-
-  mode = this.$store.state.gifMode;
 }
 </script>
 
