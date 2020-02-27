@@ -204,7 +204,7 @@ export default class Frontpage extends Vue {
     listFromGiphy.forEach((item) => {
       const itemObject: MergedGifListObject = {
         id: item.id,
-        url: item.images.original.webp,
+        url: item.images.original.webp.length ? item.images.original.webp : item.images.original.url,
         previewUrl: item.images.fixed_width.webp,
       };
       mergedLists.push(itemObject);
