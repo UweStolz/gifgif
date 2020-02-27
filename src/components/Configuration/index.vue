@@ -61,27 +61,53 @@
                 </tr>
                 <tr>
                   <td>
-                    Currently estimated storage usage: <strong>{{ estimateUsage }}</strong>
+                    Currently estimated storage usage: <strong>{{ estimatedUsage }}</strong>
                   </td>
                   <td>
-                    <v-btn
-                      color="error"
+                    <v-dialog
+                      v-model="showDialog"
+                      max-width="500"
+                      width="70%"
                     >
-                      DELETE
-                    </v-btn>
+                      <template v-slot:activator="{on}">
+                        <v-btn
+                          color="error"
+                          @click="deleteGifData"
+                          v-on="on"
+                        >
+                          DELETE
+                        </v-btn>
+                      </template>
+                      <v-card>
+                        <v-card-actions>
+                          <v-spacer />
+                          <v-btn
+                            icon
+                            @click="showDialog = false"
+                          >
+                            <v-icon>{{ icons.mdiClose }}</v-icon>
+                          </v-btn>
+                        </v-card-actions>
+                        <v-alert
+                          text
+                          type="error"
+                        >
+                          Do you really want to delete your data?
+                        </v-alert>
+                        <v-card-actions>
+                          <v-spacer />
+                          <v-btn color="error">
+                            DELETE
+                          </v-btn>
+                          <v-spacer />
+                        </v-card-actions>
+                      </v-card>
+                    </v-dialog>
                   </td>
                 </tr>
               </tbody>
             </template>
           </v-simple-table>
-          <!-- <v-alert
-            text
-            border="left"
-            type="error"
-          >
-            <strong>Danger Zone</strong>
-            <v-spacer />
-          </v-alert> -->
         </v-col>
       </v-card>
     </v-row>
@@ -90,13 +116,15 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { mdiCogs } from '@mdi/js';
+import { mdiCogs, mdiClose } from '@mdi/js';
 // @ts-ignore
 import byteSize from 'byte-size';
 
 @Component
 export default class Configuration extends Vue {
-icons = { mdiCogs }
+icons = { mdiCogs, mdiClose }
+
+showDialog: boolean = false;
 
 configuration = {
   fullImageMode: {
@@ -109,13 +137,22 @@ configuration = {
   },
 }
 
-estimateUsage: null|number = null;
+estimatedUsage: null|number = null;
 
 async mounted() {
+  await this.estimateUsage();
+}
+
+async estimateUsage() {
   if ('storage' in navigator && 'estimate' in navigator.storage) {
     const estimate = await navigator.storage.estimate();
-    this.estimateUsage = byteSize(estimate.usage);
+    this.estimatedUsage = byteSize(estimate.usage);
   }
+}
+
+async deleteGifData() {
+  await this.$store.dispatch('removeCompleteGifData');
+  await this.estimateUsage();
 }
 }
 </script>

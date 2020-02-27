@@ -56,6 +56,11 @@ export default {
     return database.delete('gifdata', key);
   },
 
+  async removeCompleteGifData(): Promise<void> {
+    database = await this.openDatabase();
+    return database.clear('gifdata');
+  },
+
   async getCountOfGifs(): Promise<number> {
     database = await this.openDatabase();
     return database.count('gifdata', undefined);
