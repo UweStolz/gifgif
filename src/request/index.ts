@@ -7,8 +7,11 @@ export async function getArrayBuffer(url: string): Promise<ArrayBuffer> {
   return buffer;
 }
 
-export async function getSearchGifsFromGiphy(searchQuery: string): Promise<Giphy.Response> {
-  const response = await fetch(`https://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=${giphyApiKey}`);
+export async function getSearchGifsFromGiphy(searchQuery: string, rating?: string): Promise<Giphy.Response> {
+  const query = rating
+    ? `https://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=${giphyApiKey}&?rating=${rating}`
+    : `https://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=${giphyApiKey}`;
+  const response = await fetch(query);
   const { data } = await response.json();
   const randomGifObject: Giphy.Response = data;
   return randomGifObject;
