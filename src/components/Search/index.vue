@@ -21,6 +21,7 @@
             tile
           >
             <v-overflow-btn
+              v-model="selectedRating"
               clearable
               target="#s-filterCard"
               :items="ratings"
@@ -94,14 +95,20 @@ export default class Search extends Vue {
     }
   }
 
+  @Watch('selectedRating')
+  async searchWithRating() {
+    const q: string = this.selectedTerms ? this.selectedTerms : this.searchQuery;
+    if (q) { await this.getSearchResults(q); }
+  }
+
   @Watch('selectedTerms')
   async searchWithTerms(term: string) {
     await this.getSearchResults(term);
   }
 
-  async getSearchResults(query: string, rating?: string) {
+  async getSearchResults(query: string) {
     this.isLoading = true;
-    const response = await getSearchGifsFromGiphy(query, rating);
+    const response = await getSearchGifsFromGiphy(query, this.selectedRating);
     this.searchResults = response;
     this.isLoading = false;
   }
@@ -114,6 +121,8 @@ export default class Search extends Vue {
     mdiImageSearch,
     mdiFilterVariant,
   }
+
+  selectedRating: string = '';
 
   ratings: string[] = ['G', 'PG', 'PG-13', 'R']
 
