@@ -9,7 +9,7 @@ export async function getArrayBuffer(url: string): Promise<ArrayBuffer> {
 
 export async function getSearchGifsFromGiphy(searchQuery: string, rating?: string): Promise<Giphy.Response> {
   const query = rating
-    ? `https://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=${giphyApiKey}&?rating=${rating}`
+    ? `https://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=${giphyApiKey}&rating=${rating}`
     : `https://api.giphy.com/v1/gifs/search?q=${searchQuery}&api_key=${giphyApiKey}`;
   const response = await fetch(query);
   const { data } = await response.json();
@@ -39,7 +39,7 @@ export async function getTrendingSearchTermsFromTenor() {
 }
 
 export async function getTrendingGifsListFromTenor(): Promise<any[]> {
-  const response = await fetch(`https://api.tenor.com/v1/trending?key=${tenorApiKey}&?media_filter=minimal`);
+  const response = await fetch(`https://api.tenor.com/v1/trending?key=${tenorApiKey}&media_filter=minimal`);
   const { results } = await response.json();
   const gifsList: Tenor.Response = results;
   return gifsList;
