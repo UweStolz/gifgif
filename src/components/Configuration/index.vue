@@ -61,7 +61,7 @@
                 </tr>
                 <tr>
                   <td>
-                    Currently estimated storage usage: <strong>{{ estimatedUsage }}</strong>
+                    Currently saved GIFs: <strong>{{ $store.state.gifCount }}</strong>
                   </td>
                   <td>
                     <v-dialog
@@ -71,8 +71,8 @@
                     >
                       <template v-slot:activator="{on}">
                         <v-btn
+                          :disabled="$store.state.gifCount < 1"
                           color="error"
-                          @click="deleteGifData"
                           v-on="on"
                         >
                           DELETE
@@ -92,11 +92,14 @@
                           text
                           type="error"
                         >
-                          Do you really want to delete your data?
+                          Do you really want to delete your saved GIFs?
                         </v-alert>
                         <v-card-actions>
                           <v-spacer />
-                          <v-btn color="error">
+                          <v-btn
+                            color="error"
+                            @click="deleteGifData"
+                          >
                             DELETE
                           </v-btn>
                           <v-spacer />
@@ -117,8 +120,6 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import { mdiCogs, mdiClose } from '@mdi/js';
-// @ts-ignore
-import byteSize from 'byte-size';
 
 @Component
 export default class Configuration extends Vue {
@@ -137,22 +138,10 @@ configuration = {
   },
 }
 
-estimatedUsage: null|number = null;
-
-async mounted() {
-  await this.estimateUsage();
-}
-
-async estimateUsage() {
-  if ('storage' in navigator && 'estimate' in navigator.storage) {
-    const estimate = await navigator.storage.estimate();
-    this.estimatedUsage = byteSize(estimate.usage);
-  }
-}
-
 async deleteGifData() {
   await this.$store.dispatch('removeCompleteGifData');
-  await this.estimateUsage();
+  this.$store.commit('setGifCount', 0);
+  this.showDialog = false;
 }
 }
 </script>
