@@ -11,6 +11,23 @@
         flat
         tile
       >
+        <v-slide-y-transition
+          mode="out-in"
+        >
+          <v-card
+            v-show="showFilterMenu"
+            id="s-filterCard"
+            flat
+            tile
+          >
+            <v-overflow-btn
+              clearable
+              target="#s-filterCard"
+              :items="ratings"
+              label="Rating"
+            />
+          </v-card>
+        </v-slide-y-transition>
         <v-autocomplete
           v-model="selectedTerms"
           :search-input.sync="searchQuery"
@@ -21,14 +38,21 @@
           label="GIF search"
           placeholder="Enter or select search tags"
           cache-items
-          autofocus
           hide-no-data
           deletable-chips
           chips
           multiple
           clearable
           @click:clear="searchResults = null"
-        />
+        >
+          <template v-slot:append-outer>
+            <v-icon
+              @click="showFilterMenu = !showFilterMenu"
+            >
+              {{ icons.mdiFilterVariant }}
+            </v-icon>
+          </template>
+        </v-autocomplete>
         <v-divider />
         <v-expand-transition>
           <v-item-group v-if="selectedTerms || searchQuery">
@@ -58,7 +82,7 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
-import { mdiImageSearch } from '@mdi/js';
+import { mdiImageSearch, mdiFilterVariant } from '@mdi/js';
 import { getSearchGifsFromGiphy, getTrendingSearchTermsFromTenor } from '@/request';
 
 @Component
@@ -75,9 +99,9 @@ export default class Search extends Vue {
     await this.getSearchResults(term);
   }
 
-  async getSearchResults(query: string) {
+  async getSearchResults(query: string, rating?: string) {
     this.isLoading = true;
-    const response = await getSearchGifsFromGiphy(query);
+    const response = await getSearchGifsFromGiphy(query, rating);
     this.searchResults = response;
     this.isLoading = false;
   }
@@ -88,7 +112,12 @@ export default class Search extends Vue {
 
   icons = {
     mdiImageSearch,
+    mdiFilterVariant,
   }
+
+  ratings: string[] = ['G', 'PG', 'PG-13', 'R']
+
+  showFilterMenu: boolean = false;
 
   trendingTerms: string[] = [];
 
