@@ -2,6 +2,12 @@
   <v-container
     fluid
   >
+    <Dialog
+      :show-dialog.sync="dialog"
+      :full-image-data.sync="fullImage"
+      :preview-image-data.sync="previewImage"
+      :image-id.sync="imageId"
+    />
     <v-row
       align="start"
       justify="center"
@@ -29,7 +35,7 @@
             />
           </v-card>
         </v-slide-y-transition>
-        <v-autocomplete
+        <v-combobox
           v-model="selectedTerms"
           :search-input.sync="searchQuery"
           :loading="isLoading"
@@ -53,10 +59,10 @@
               {{ icons.mdiFilterVariant }}
             </v-icon>
           </template>
-        </v-autocomplete>
+        </v-combobox>
         <v-divider />
         <v-expand-transition>
-          <v-item-group v-if="selectedTerms || searchQuery">
+          <v-item-group v-if="showMenu() === true">
             <v-row
               align="start"
               justify="start"
@@ -66,11 +72,13 @@
                 :key="i"
               >
                 <v-img
+                  id="imageHover"
                   :src="searchResults[i].images.fixed_width.webp"
                   :lazy-src="searchResults[i].images.fixed_width.webp"
                   contain
                   height="100px"
                   width="100px"
+                  @click="openDialog(i)"
                 />
               </v-item>
             </v-row>
@@ -85,12 +93,17 @@
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import { mdiImageSearch, mdiFilterVariant } from '@mdi/js';
 import { getSearchGifsFromGiphy, getTrendingSearchTermsFromTenor } from '@/request';
+import Dialog from '@/components/Search/Dialog.vue';
 
-@Component
+@Component({
+  components: {
+    Dialog,
+  },
+})
 export default class Search extends Vue {
   @Watch('searchQuery')
   async searchWithQuery(query: string) {
-    if (this.searchQuery && this.searchQuery.length > 2) {
+    if (this.searchQuery?.length > 2) {
       await this.getSearchResults(query);
     }
   }
@@ -103,7 +116,17 @@ export default class Search extends Vue {
 
   @Watch('selectedTerms')
   async searchWithTerms(term: string) {
-    await this.getSearchResults(term);
+    if (term.length > 0) {
+      await this.getSearchResults(term);
+    }
+  }
+
+  async mounted() {
+    this.trendingTerms = await getTrendingSearchTermsFromTenor();
+  }
+
+  showMenu(): boolean {
+    return (this.selectedTerms?.length > 0 || this.searchQuery?.length > 0);
   }
 
   async getSearchResults(query: string) {
@@ -113,8 +136,14 @@ export default class Search extends Vue {
     this.isLoading = false;
   }
 
-  async mounted() {
-    this.trendingTerms = await getTrendingSearchTermsFromTenor();
+
+  openDialog(index: number) {
+    this.dialog = true;
+    this.fullImage = this.searchResults[index].images.original.webp
+      ? this.searchResults[index].images.original.webp
+      : this.searchResults[index].images.original.url;
+    this.imageId = this.searchResults[index].id;
+    this.previewImage = this.searchResults[index].images.fixed_width.webp;
   }
 
   icons = {
@@ -122,9 +151,15 @@ export default class Search extends Vue {
     mdiFilterVariant,
   }
 
-  selectedRating: string = '';
+  imageId: string = '';
 
-  ratings: string[] = ['G', 'PG', 'PG-13', 'R']
+  previewImage: string = '';
+
+  fullImage: string = '';
+
+  dialog: boolean = false;
+
+  selectedRating: string = '';
 
   showFilterMenu: boolean = false;
 
@@ -137,5 +172,34 @@ export default class Search extends Vue {
   isLoading: boolean = false;
 
   selectedTerms: null|any = null;
+
+  ratings = [
+    {
+      text: 'G - For all ages and people',
+      value: 'G',
+    },
+    {
+      text: 'PG - May require parental preview for children',
+      value: 'PG',
+    },
+    {
+      text: 'PG-13 - Mild sexual innuendos, mild substance use, mild profanity, or threatening images',
+      value: 'PG-13',
+    },
+    {
+      text: 'R - Not suitable for teens or younger',
+      value: 'R',
+    },
+  ]
 }
 </script>
+
+<style scoped>
+#pa-exp-con {
+  overflow: hidden;
+}
+#imageHover:hover {
+  transform: scale(1.3);
+  z-index: 999;
+}
+</style>
