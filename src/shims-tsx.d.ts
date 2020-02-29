@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import Vue, { VNode } from 'vue';
+import { DBSchema } from 'idb';
 
 declare global {
   namespace JSX {
@@ -11,6 +12,34 @@ declare global {
       [elem: string]: any
     }
   }
+
+  namespace Database {
+    interface GifGif extends DBSchema {
+      gifdata: {
+        key: string;
+        value: GifData;
+      };
+      configs: {
+        key: string;
+        value: boolean|string|number;
+      }
+    }
+
+    type GifData = {
+      rating: number;
+      image: ArrayBuffer|string;
+      preview: ArrayBuffer | string;
+    }
+
+    type GifStore = {
+      values: GifData[];
+      keys: string[];
+    }
+    type ConfigStore = {
+      values: (boolean|string|number)[];
+      keys: string[];
+    }
+}
 
   interface MergedGifLists extends Array<MergedGifListObject> {
     [index: number]: MergedGifListObject;

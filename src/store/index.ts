@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex, { MutationPayload } from 'vuex';
-import idb, { GifData, GifStore } from '../database';
+import idb from '../database';
 
 type States = {
   gifCount: number;
@@ -41,7 +41,7 @@ const store = new Vuex.Store<States>({
     },
   },
   actions: {
-    async getGifData(context: any, key: string): Promise<GifData | undefined> {
+    async getGifData(context: any, key: string): Promise<Database.GifData | undefined> {
       return idb.getGifData(key);
     },
     async setGifData(context: any, gifdata: any): Promise<string> {
@@ -59,7 +59,7 @@ const store = new Vuex.Store<States>({
     async getGifCount(context: any): Promise<number> {
       return idb.getCountOfGifs();
     },
-    async getAllData(): Promise<GifStore> {
+    async getAllData(): Promise<Database.GifStore> {
       return idb.getAllData();
     },
     async getConfig(context: any, key: string): Promise<string|number|boolean|undefined> {
