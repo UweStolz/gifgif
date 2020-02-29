@@ -48,25 +48,31 @@ import { mdiHeart, mdiMagnify } from '@mdi/js';
 
 @Component
 export default class Drawer extends Vue {
-    items = [
-      {
-        icon: mdiHeart, link: '/favourites',
-      },
-      {
-        icon: mdiMagnify, link: '/search',
-      },
-    ];
+  items = [
+    {
+      icon: mdiHeart, link: '/favourites',
+    },
+    {
+      icon: mdiMagnify, link: '/search',
+    },
+  ];
 
-    gifCount: number = 0;
+  gifCount: number = 0;
 
-    async mounted() {
-      this.gifCount = this.$store.state.gifCount;
-      this.$store.watch(
-        () => this.$store.state.gifCount,
-        (value: number) => {
-          this.gifCount = value;
-        },
-      );
-    }
+  async mounted() {
+    this.gifCount = this.$store.state.gifCount;
+    this.$store.watch(
+      () => this.$store.state.gifCount,
+      (value: number) => {
+        this.gifCount = value;
+      },
+    );
+  }
 }
 </script>
+
+<style>
+span.v-badge__badge.grey {
+  left: calc(100% - 15px) !important;
+}
+</style>
