@@ -42,6 +42,8 @@
           :prepend-icon="icons.mdiImageSearch"
           :items="trendingTerms"
           color="red darken-3"
+          persistent-hint
+          hint="A minimum of 3 characters is required"
           label="GIF search"
           placeholder="Enter or select search tags"
           cache-items
@@ -54,7 +56,7 @@
         >
           <template v-slot:append-outer>
             <v-icon
-              @click="showFilterMenu = !showFilterMenu"
+              @click="showFilter"
             >
               {{ icons.mdiFilterVariant }}
             </v-icon>
@@ -116,13 +118,17 @@ export default class Search extends Vue {
 
   @Watch('selectedTerms')
   async searchWithTerms(term: string) {
-    if (term.length > 0) {
+    if (term[0]?.length > 2) {
       await this.getSearchResults(term);
     }
   }
 
   async mounted() {
     this.trendingTerms = await getTrendingSearchTermsFromTenor();
+  }
+
+  showFilter(): void {
+    this.showFilterMenu = !this.showFilterMenu;
   }
 
   showMenu(): boolean {
