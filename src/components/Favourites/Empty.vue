@@ -13,7 +13,7 @@
         width="100%"
         height="100%"
       >
-        Nothing to show here ☹️
+        You have no favourites yet ☹️
       </v-sheet>
     </v-col>
   </v-container>
