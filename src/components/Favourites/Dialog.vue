@@ -25,13 +25,11 @@
       />
       <v-card-actions>
         <v-btn
-          :href="imageData"
           large
           icon
+          @click="saveImage"
         >
-          <v-icon
-            id="downloadIcon"
-          >
+          <v-icon id="downloadIcon">
             {{ icons.mdiDownload }}
           </v-icon>
         </v-btn>
@@ -40,9 +38,7 @@
           large
           @click="deleteGifData"
         >
-          <v-icon
-            id="trashIcon"
-          >
+          <v-icon id="trashIcon">
             {{ icons.mdiTrashCan }}
           </v-icon>
         </v-btn>
@@ -59,10 +55,11 @@ import arrayBufferToImage from '@/util/imageHelper';
 import {
   mdiClose, mdiDownload, mdiTrashCan,
 } from '@mdi/js';
+import { saveAs } from 'file-saver';
 
 @Component
 export default class Dialog extends Vue {
-@Watch('syncedFullImageData')
+  @Watch('syncedFullImageData')
   convertBufferToImage() {
     if (this.syncedFullImageData) {
       this.imageData = this.syncedFullImageData instanceof ArrayBuffer
@@ -71,38 +68,42 @@ export default class Dialog extends Vue {
     }
   }
 
-@PropSync('showDialog', { type: Boolean, required: true }) syncedShowDialog!: boolean;
+  @PropSync('showDialog', { type: Boolean, required: true }) syncedShowDialog!: boolean;
 
-@PropSync('fullImageData', { required: true }) syncedFullImageData!: null|ArrayBuffer|string;
+  @PropSync('fullImageData', { required: true }) syncedFullImageData!: null | ArrayBuffer | string;
 
-@PropSync('imageId', { required: true }) syncedImageId!: string;
+  @PropSync('imageId', { required: true }) syncedImageId!: string;
 
-@Emit('delete')
-deleteGifData() {
-  this.syncedShowDialog = false;
-  return this.syncedImageId;
-}
+  @Emit('delete')
+  deleteGifData() {
+    this.syncedShowDialog = false;
+    return this.syncedImageId;
+  }
 
-resetProps(): void {
-  this.syncedShowDialog = false;
-  this.syncedFullImageData = null;
-}
+  saveImage(): void {
+    saveAs(this.imageData, `ggid-${this.syncedImageId}`);
+  }
 
-icons = {
-  mdiClose,
-  mdiTrashCan,
-  mdiDownload,
-}
+  resetProps(): void {
+    this.syncedShowDialog = false;
+    this.syncedFullImageData = null;
+  }
 
-imageData: string = '';
+  icons = {
+    mdiClose,
+    mdiTrashCan,
+    mdiDownload,
+  }
+
+  imageData: string = '';
 }
 </script>
 
 <style scoped>
-#trashIcon:hover{
+#trashIcon:hover {
   color: red;
 }
-#downloadIcon:hover{
-  color:green;
+#downloadIcon:hover {
+  color: green;
 }
 </style>

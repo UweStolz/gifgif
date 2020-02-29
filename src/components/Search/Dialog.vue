@@ -27,9 +27,9 @@
       />
       <v-card-actions>
         <v-btn
-          :href="syncedFullImageData"
           large
           icon
+          @click="saveImage"
         >
           <v-icon id="downloadIcon">
             {{ icons.mdiDownload }}
@@ -72,6 +72,7 @@ import {
   mdiClose, mdiDownload, mdiHeartOutline, mdiHeart, mdiHeartHalfFull, mdiTrashCan,
 } from '@mdi/js';
 import { getArrayBuffer } from '@/request';
+import { saveAs } from 'file-saver';
 
 @Component
 export default class Dialog extends Vue {
@@ -87,6 +88,10 @@ export default class Dialog extends Vue {
   async getRating() {
     const gifData = await this.$store.dispatch('getGifData', `ggid-${this.syncedImageId}`);
     if (gifData) { this.rating = gifData.rating || 0; }
+  }
+
+  saveImage(): void {
+    saveAs(this.syncedFullImageData, `ggid-${this.syncedImageId}`);
   }
 
   resetProps(): void {
