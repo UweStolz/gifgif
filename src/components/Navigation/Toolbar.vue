@@ -6,12 +6,8 @@
     clipped-left
     dark
   >
-    <v-btn
-      :to="'/'"
-    >
-      <div
-        class="d-flex align-center"
-      >
+    <v-btn :to="'/'">
+      <div class="d-flex align-center">
         <h1>GIFGIF</h1>
       </div>
     </v-btn>
@@ -27,9 +23,7 @@
           @click="setGifMode('random')"
           v-on="on"
         >
-          <v-icon
-            :id="$store.state.gifMode === 'random' ? 'tb-active-icon' : ''"
-          >
+          <v-icon :id="$store.state.gifMode === 'random' ? 'tb-active-icon' : ''">
             {{ icons.mdiShuffle }}
           </v-icon>
         </v-btn>
@@ -46,9 +40,7 @@
           @click="setGifMode('trending')"
           v-on="on"
         >
-          <v-icon
-            :id="$store.state.gifMode === 'trending' ? 'tb-active-icon' : ''"
-          >
+          <v-icon :id="$store.state.gifMode === 'trending' ? 'tb-active-icon' : ''">
             {{ icons.mdiTrendingUp }}
           </v-icon>
         </v-btn>

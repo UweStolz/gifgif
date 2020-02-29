@@ -6,9 +6,7 @@
     >
       Favourites
     </v-card-title>
-    <Empty
-      v-if="isEmpty && evaluatedKey !== 0"
-    />
+    <Empty v-if="isEmpty && evaluatedKey !== 0" />
     <v-expansion-panels
       v-if="!isEmpty && evaluatedKey !== 0"
       popout
@@ -46,8 +44,6 @@ import { Vue, Component } from 'vue-property-decorator';
 import {
   mdiHeart,
 } from '@mdi/js';
-// eslint-disable-next-line no-unused-vars
-import { GifData, GifStore } from '@/database';
 import arrayBufferToImage from '@/util/imageHelper';
 import Empty from './Empty.vue';
 import PanelContent from './PanelContent.vue';
@@ -55,12 +51,12 @@ import PanelContent from './PanelContent.vue';
 
 interface Data {
   previewUrl: {
-    [key: number]: { id: string[], images: (ArrayBuffer|string)[], previews: string[] };
-    1: { id: string[], images: (ArrayBuffer|string)[], previews: string[] };
-    2: { id: string[], images: (ArrayBuffer|string)[], previews: string[] };
-    3: { id: string[], images: (ArrayBuffer|string)[], previews: string[] };
-    4: { id: string[], images: (ArrayBuffer|string)[], previews: string[] };
-    5: { id: string[], images: (ArrayBuffer|string)[], previews: string[] };
+    [key: number]: { id: string[], images: (ArrayBuffer | string)[], previews: string[] };
+    1: { id: string[], images: (ArrayBuffer | string)[], previews: string[] };
+    2: { id: string[], images: (ArrayBuffer | string)[], previews: string[] };
+    3: { id: string[], images: (ArrayBuffer | string)[], previews: string[] };
+    4: { id: string[], images: (ArrayBuffer | string)[], previews: string[] };
+    5: { id: string[], images: (ArrayBuffer | string)[], previews: string[] };
   }
 }
 
@@ -88,11 +84,11 @@ export default class Favourites extends Vue {
   };
 
   async mounted(): Promise<void> {
-    const gifData: GifStore = await this.$store.dispatch('getAllData');
+    const gifData: Database.GifStore = await this.$store.dispatch('getAllData');
     this.isEmpty = gifData.keys.length === 0;
     this.evaluatedKey += 1;
     if (!this.isEmpty) {
-      gifData.values.forEach((value: GifData, index) => {
+      gifData.values.forEach((value: Database.GifData, index) => {
         if (value.rating > 0 && value.rating < 6) {
           let previewImageUrl = value.preview;
           if (value.preview instanceof ArrayBuffer) {

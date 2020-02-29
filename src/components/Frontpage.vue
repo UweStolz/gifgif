@@ -72,12 +72,8 @@
       justify="center"
       no-gutters
     >
-      <v-col
-        cols="auto"
-      >
-        <v-card-actions
-          style="margin-right: 35px;"
-        >
+      <v-col cols="auto">
+        <v-card-actions style="margin-right: 35px;">
           <v-btn
             :style="{visibility: rating ? 'visible' : 'hidden'}"
             icon
@@ -115,8 +111,6 @@ import {
   getRandomGifFromGiphy,
   getArrayBuffer,
 } from '../request';
-// eslint-disable-next-line no-unused-vars
-import { GifData } from '../database';
 
 @Component
 export default class Frontpage extends Vue {
@@ -154,7 +148,7 @@ export default class Frontpage extends Vue {
 
   rating: number = 0;
 
-  currentImageBuffer: ArrayBuffer|null = null;
+  currentImageBuffer: ArrayBuffer | null = null;
 
   gifsList: MergedGifLists = [];
 
@@ -233,7 +227,7 @@ export default class Frontpage extends Vue {
   }
 
   async getRating() {
-    let gifData: GifData|undefined;
+    let gifData: Database.GifData | undefined;
     const currentId = this.gifsList[this.carouselModel].id;
     if (this.fullImageMode) {
       this.currentImageBuffer = await getArrayBuffer(this.gifsList[this.carouselModel].url);
