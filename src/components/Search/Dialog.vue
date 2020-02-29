@@ -4,7 +4,7 @@
     :full-image-data="syncedFullImageData"
     :preview-image-data="syncedpreviewImageData"
     :image-id="syncedImageId"
-    width="600"
+    width="60%"
     @click:outside="resetProps"
   >
     <v-card>
@@ -20,7 +20,8 @@
       <v-img
         :src="syncedFullImageData"
         :lazy-src="syncedFullImageData"
-        max-height="700"
+        max-height="500"
+        contain
         height="100%"
         width="100%"
       />
@@ -65,7 +66,7 @@
 
 <script lang="ts">
 import {
-  Vue, Component, PropSync,
+  Vue, Component, PropSync, Watch,
 } from 'vue-property-decorator';
 import {
   mdiClose, mdiDownload, mdiHeartOutline, mdiHeart, mdiHeartHalfFull, mdiTrashCan,
@@ -80,6 +81,12 @@ export default class Dialog extends Vue {
   @PropSync('previewImageData', { type: String, required: true }) syncedpreviewImageData!: string;
 
   @PropSync('imageId', { type: String, required: true }) syncedImageId!: string;
+
+  @Watch('syncedShowDialog')
+  async getRating() {
+    const gifData = await this.$store.dispatch('getGifData', `ggid-${this.syncedImageId}`);
+    if (gifData) { this.rating = gifData.rating || 0; }
+  }
 
   resetProps(): void {
     this.syncedShowDialog = false;
@@ -98,10 +105,6 @@ export default class Dialog extends Vue {
     if (this.gifCount !== currentCount) { this.$store.commit('setGifCount', currentCount); }
   }
 
-  async getRating() {
-    const gifData = await this.$store.dispatch('getGifData', `ggid-${this.syncedImageId}`);
-    this.rating = gifData.rating ? gifData.rating : 0;
-  }
 
   async removeGif() {
     await this.$store.dispatch('removeGifData', `ggid-${this.syncedImageId}`);
