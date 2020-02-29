@@ -44,31 +44,31 @@ import Dialog from './Dialog.vue';
   },
 })
 export default class PanelContent extends Vue {
-@Prop({ required: true }) previewImages!: string[];
+  @Prop({ required: true }) previewImages!: string[];
 
-@Prop({ required: true }) fullImages!: (ArrayBuffer|string)[];
+  @Prop({ required: true }) fullImages!: (ArrayBuffer | string)[];
 
-@Prop({ required: true }) imageId!: string[];
+  @Prop({ required: true }) imageId!: string[];
 
-fullImage: null|ArrayBuffer|string = null;
+  fullImage: null | ArrayBuffer | string = null;
 
-dialog: boolean = false;
+  dialog: boolean = false;
 
-selectedIndex: number = -1;
+  selectedIndex: number = -1;
 
-openDialog(index: number) {
-  this.dialog = true;
-  this.fullImage = this.fullImages[index];
-  this.selectedIndex = index;
-}
+  openDialog(index: number) {
+    this.dialog = true;
+    this.fullImage = this.fullImages[index];
+    this.selectedIndex = index;
+  }
 
-async deleteGif(payload: string): Promise<void> {
-  this.previewImages.splice(this.selectedIndex, 1);
-  this.fullImages.splice(this.selectedIndex, 1);
-  await this.$store.dispatch('removeGifData', payload[0]);
-  this.$store.commit('setGifCount', this.$store.state.gifCount - 1);
-  this.selectedIndex = -1;
-}
+  async deleteGif(payload: string): Promise<void> {
+    this.previewImages.splice(this.selectedIndex, 1);
+    this.fullImages.splice(this.selectedIndex, 1);
+    await this.$store.dispatch('removeGifData', payload[this.selectedIndex]);
+    this.$store.commit('setGifCount', this.$store.state.gifCount - 1);
+    this.selectedIndex = -1;
+  }
 }
 </script>
 
