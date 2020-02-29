@@ -65,7 +65,7 @@ openDialog(index: number) {
 async deleteGif(payload: string): Promise<void> {
   this.previewImages.splice(this.selectedIndex, 1);
   this.fullImages.splice(this.selectedIndex, 1);
-  await this.$store.dispatch('removeGifData', payload);
+  await this.$store.dispatch('removeGifData', payload[0]);
   this.$store.commit('setGifCount', this.$store.state.gifCount - 1);
   this.selectedIndex = -1;
 }
