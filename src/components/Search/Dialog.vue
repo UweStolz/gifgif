@@ -71,6 +71,7 @@ import {
 import {
   mdiClose, mdiDownload, mdiHeartOutline, mdiHeart, mdiHeartHalfFull, mdiTrashCan,
 } from '@mdi/js';
+import { getArrayBuffer } from '@/request';
 
 @Component
 export default class Dialog extends Vue {
@@ -94,13 +95,28 @@ export default class Dialog extends Vue {
     this.rating = 0;
   }
 
-  async updateGifRating(rating: any) {
-    await this.$store.dispatch('setGifData', {
-      rating,
-      key: `ggid-${this.syncedImageId}`,
-      image: this.syncedFullImageData,
-      preview: this.syncedpreviewImageData,
-    });
+  // eslint-disable-next-line class-methods-use-this
+  async getBufferForGif(imageData: string) {
+    const previewGifBuffer = await getArrayBuffer(imageData);
+    return previewGifBuffer;
+  }
+
+  async updateGifRating(rating: number) {
+    if (this.$store.state.fullImageMode) {
+      await this.$store.dispatch('setGifData', {
+        rating,
+        key: `ggid-${this.syncedImageId}`,
+        image: await this.getBufferForGif(this.syncedFullImageData),
+        preview: await this.getBufferForGif(this.syncedpreviewImageData),
+      });
+    } else {
+      await this.$store.dispatch('setGifData', {
+        rating,
+        key: `ggid-${this.syncedImageId}`,
+        image: this.syncedFullImageData,
+        preview: this.syncedpreviewImageData,
+      });
+    }
     const currentCount = await this.$store.dispatch('getGifCount');
     if (this.gifCount !== currentCount) { this.$store.commit('setGifCount', currentCount); }
   }
