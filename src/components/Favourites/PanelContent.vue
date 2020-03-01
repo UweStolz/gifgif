@@ -46,11 +46,11 @@ import Dialog from './Dialog.vue';
 export default class PanelContent extends Vue {
   @Prop({ required: true }) previewImages!: string[];
 
-  @Prop({ required: true }) fullImages!: (ArrayBuffer | string)[];
+  @Prop({ required: true }) fullImages!: (Blob | string)[];
 
   @Prop({ required: true }) imageId!: string[];
 
-  fullImage: null | ArrayBuffer | string = null;
+  fullImage: null | Blob | string = null;
 
   dialog: boolean = false;
 

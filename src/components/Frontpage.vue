@@ -109,7 +109,7 @@ import {
   getTrendingGifsListFromGiphy,
   getTrendingGifsListFromTenor,
   getRandomGifFromGiphy,
-  getArrayBuffer,
+  getBlob,
 } from '../request';
 
 @Component
@@ -118,13 +118,13 @@ export default class Frontpage extends Vue {
     const {
       rating, gifsList, carouselModel,
     } = this;
-    if (this.fullImageMode) {
-      const { currentImageBuffer } = this;
+    if (this.$store.state.fullImageMode) {
+      const { currentImageBlob } = this;
       await this.$store.dispatch('setGifData', {
         rating,
         key: `ggid-${gifsList[carouselModel].id}`,
-        image: currentImageBuffer,
-        preview: await this.getBufferForPreviewGif(),
+        image: currentImageBlob,
+        preview: await this.getBlobForPreviewGif(),
       });
     } else {
       await this.$store.dispatch('setGifData', {
@@ -148,13 +148,11 @@ export default class Frontpage extends Vue {
 
   rating: number = 0;
 
-  currentImageBuffer: ArrayBuffer | null = null;
+  currentImageBlob: Blob | null = null;
 
   gifsList: MergedGifLists = [];
 
   carouselModel: number = 0;
-
-  fullImageMode: boolean = false;
 
   gifCount: number = 0;
 
@@ -182,10 +180,10 @@ export default class Frontpage extends Vue {
     }
   }
 
-  async getBufferForPreviewGif() {
+  async getBlobForPreviewGif() {
     const currentPreviewGif = this.gifsList[this.carouselModel].previewUrl;
-    const previewGifBuffer = await getArrayBuffer(currentPreviewGif);
-    return previewGifBuffer;
+    const previewGifBlob = await getBlob(currentPreviewGif);
+    return previewGifBlob;
   }
 
   async updateCarouselModel(payload: number) {
@@ -221,7 +219,6 @@ export default class Frontpage extends Vue {
         await this.getGifLists(mode);
       },
     );
-    this.fullImageMode = this.$store.state.fullImageMode;
     this.gifCount = this.$store.state.gifCount;
     await this.getGifLists(this.$store.state.gifMode);
   }
@@ -229,8 +226,8 @@ export default class Frontpage extends Vue {
   async getRating() {
     let gifData: Database.GifData | undefined;
     const currentId = this.gifsList[this.carouselModel].id;
-    if (this.fullImageMode) {
-      this.currentImageBuffer = await getArrayBuffer(this.gifsList[this.carouselModel].url);
+    if (this.$store.state.fullImageMode) {
+      this.currentImageBlob = await getBlob(this.gifsList[this.carouselModel].url);
       gifData = await this.$store.dispatch('getGifData', `ggid-${currentId}`);
     }
     gifData = await this.$store.dispatch('getGifData', `ggid-${currentId}`);
@@ -238,7 +235,7 @@ export default class Frontpage extends Vue {
   }
 
   async removeGif() {
-    if (this.fullImageMode) {
+    if (this.$store.state.fullImageMode) {
       await this.$store.dispatch('removeGifData', `ggid-${this.gifsList[this.carouselModel].id}`);
     }
     await this.$store.dispatch('removeGifData', `ggid-${this.gifsList[this.carouselModel].id}`);

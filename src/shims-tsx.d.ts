@@ -27,8 +27,8 @@ declare global {
 
     type GifData = {
       rating: number;
-      image: ArrayBuffer|string;
-      preview: ArrayBuffer | string;
+      image: Blob|string;
+      preview: Blob | string;
     }
 
     type GifStore = {

@@ -1,10 +1,10 @@
 const giphyApiKey = 'IT2EfZQf0HqGmKIlg0Ts9p7akXdKSBl7';
 const tenorApiKey = 'O4K19202U3YT';
 
-export async function getArrayBuffer(url: string): Promise<ArrayBuffer> {
+export async function getBlob(url: string): Promise<Blob> {
   const response = await fetch(url);
-  const buffer = await response.arrayBuffer();
-  return buffer;
+  const blob = await response.blob();
+  return blob;
 }
 
 export async function getSearchGifsFromGiphy(searchQuery: string, rating?: string): Promise<Giphy.Response> {

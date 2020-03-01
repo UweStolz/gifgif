@@ -51,7 +51,7 @@
 import {
   Vue, Component, PropSync, Watch, Emit,
 } from 'vue-property-decorator';
-import arrayBufferToImage from '@/util/imageHelper';
+import blobToImage from '@/util/imageHelper';
 import {
   mdiClose, mdiDownload, mdiTrashCan,
 } from '@mdi/js';
@@ -62,8 +62,8 @@ export default class Dialog extends Vue {
   @Watch('syncedFullImageData')
   convertBufferToImage() {
     if (this.syncedFullImageData) {
-      this.imageData = this.syncedFullImageData instanceof ArrayBuffer
-        ? arrayBufferToImage(this.syncedFullImageData as ArrayBuffer)
+      this.imageData = this.syncedFullImageData instanceof Blob
+        ? blobToImage(this.syncedFullImageData as Blob)
         : this.syncedFullImageData as string;
     }
   }

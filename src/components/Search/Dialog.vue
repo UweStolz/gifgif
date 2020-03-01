@@ -71,7 +71,7 @@ import {
 import {
   mdiClose, mdiDownload, mdiHeartOutline, mdiHeart, mdiHeartHalfFull, mdiTrashCan,
 } from '@mdi/js';
-import { getArrayBuffer } from '@/request';
+import { getBlob } from '@/request';
 import { saveAs } from 'file-saver';
 
 @Component
@@ -101,9 +101,9 @@ export default class Dialog extends Vue {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  async getBufferForGif(imageData: string) {
-    const previewGifBuffer = await getArrayBuffer(imageData);
-    return previewGifBuffer;
+  async getBlobForGif(imageData: string) {
+    const previewGifBlob = await getBlob(imageData);
+    return previewGifBlob;
   }
 
   async updateGifRating(rating: number) {
@@ -111,8 +111,8 @@ export default class Dialog extends Vue {
       await this.$store.dispatch('setGifData', {
         rating,
         key: `ggid-${this.syncedImageId}`,
-        image: await this.getBufferForGif(this.syncedFullImageData),
-        preview: await this.getBufferForGif(this.syncedpreviewImageData),
+        image: await this.getBlobForGif(this.syncedFullImageData),
+        preview: await this.getBlobForGif(this.syncedpreviewImageData),
       });
     } else {
       await this.$store.dispatch('setGifData', {

@@ -44,19 +44,19 @@ import { Vue, Component } from 'vue-property-decorator';
 import {
   mdiHeart,
 } from '@mdi/js';
-import arrayBufferToImage from '@/util/imageHelper';
+import blobToImage from '@/util/imageHelper';
 import Empty from './Empty.vue';
 import PanelContent from './PanelContent.vue';
 
 
 interface Data {
   previewUrl: {
-    [key: number]: { id: string[], images: (ArrayBuffer | string)[], previews: string[] };
-    1: { id: string[], images: (ArrayBuffer | string)[], previews: string[] };
-    2: { id: string[], images: (ArrayBuffer | string)[], previews: string[] };
-    3: { id: string[], images: (ArrayBuffer | string)[], previews: string[] };
-    4: { id: string[], images: (ArrayBuffer | string)[], previews: string[] };
-    5: { id: string[], images: (ArrayBuffer | string)[], previews: string[] };
+    [key: number]: { id: string[], images: (Blob | string)[], previews: string[] };
+    1: { id: string[], images: (Blob | string)[], previews: string[] };
+    2: { id: string[], images: (Blob | string)[], previews: string[] };
+    3: { id: string[], images: (Blob | string)[], previews: string[] };
+    4: { id: string[], images: (Blob | string)[], previews: string[] };
+    5: { id: string[], images: (Blob | string)[], previews: string[] };
   }
 }
 
@@ -91,8 +91,8 @@ export default class Favourites extends Vue {
       gifData.values.forEach((value: Database.GifData, index) => {
         if (value.rating > 0 && value.rating < 6) {
           let previewImageUrl = value.preview;
-          if (value.preview instanceof ArrayBuffer) {
-            previewImageUrl = arrayBufferToImage(value.preview as ArrayBuffer);
+          if (value.preview instanceof Blob) {
+            previewImageUrl = blobToImage(value.preview as Blob);
           }
           this.data.previewUrl[value.rating].previews.push(previewImageUrl as string);
           this.data.previewUrl[value.rating].images.push(gifData.values[index].image as any);

@@ -8,7 +8,7 @@ export async function getGifData(key: string): Promise <Database.GifData | undef
   return database.get('gifdata', key);
 }
 
-export async function setGifdata(rating: number, preview: ArrayBuffer|string, image: ArrayBuffer|string, key: string): Promise<string> {
+export async function setGifdata(rating: number, preview: Blob|string, image: Blob|string, key: string): Promise<string> {
   database = await openDatabase();
   return database.put('gifdata', { rating, preview, image }, key);
 }

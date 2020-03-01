@@ -1,7 +1,5 @@
 <template>
-  <v-container
-    fluid
-  >
+  <v-container fluid>
     <v-row
       align="start"
       justify="center"
@@ -108,6 +106,42 @@
                     </v-dialog>
                   </td>
                 </tr>
+                <tr>
+                  <td>
+                    Export saved GIFs as ZIP
+                  </td>
+                  <td>
+                    <v-btn
+                      icon
+                      :loading="isLoading"
+                      :disabled="$store.state.gifCount < 1"
+                      @click="generateZip"
+                    >
+                      <v-icon>
+                        {{ icons.mdiFolderZip }}
+                      </v-icon>
+                      <template v-slot:loader>
+                        <v-progress-circular
+                          :value="loaderValue"
+                          size="100"
+                          rotate="360"
+                          color="red"
+                        >
+                          {{ loaderValue }}
+                        </v-progress-circular>
+                      </template>
+                    </v-btn>
+                    <v-btn
+                      icon
+                      :disabled="!finishedZipGeneration"
+                      @click="downloadZip"
+                    >
+                      <v-icon>
+                        {{ icons.mdiPackageDown }}
+                      </v-icon>
+                    </v-btn>
+                  </td>
+                </tr>
               </tbody>
             </template>
           </v-simple-table>
@@ -119,29 +153,73 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { mdiCogs, mdiClose } from '@mdi/js';
+import {
+  mdiCogs, mdiClose, mdiPackageDown, mdiFolderZip,
+} from '@mdi/js';
+import { saveAs } from 'file-saver';
+import JSZip from 'jszip';
+import { getBlob } from '../../request';
 
 @Component
 export default class Configuration extends Vue {
-icons = { mdiCogs, mdiClose }
+  icons = {
+    mdiCogs, mdiClose, mdiPackageDown, mdiFolderZip,
+  }
 
-showDialog: boolean = false;
+  showDialog: boolean = false;
 
-configuration = {
-  fullImageMode: {
-    name: 'Save full image',
-    status: this.$store.state.fullImageMode,
-    action: () => {
-      this.configuration.fullImageMode.status = !this.$store.state.fullImageMode;
-      this.$store.commit('setFullImageMode', this.configuration.fullImageMode.status);
+  isLoading: boolean = false;
+
+  loaderValue: number = 0;
+
+  finishedZipGeneration: boolean = false;
+
+  zipFile: null | Blob = null;
+
+  configuration = {
+    fullImageMode: {
+      name: 'Save full image',
+      status: this.$store.state.fullImageMode,
+      action: () => {
+        this.configuration.fullImageMode.status = !this.$store.state.fullImageMode;
+        this.$store.commit('setFullImageMode', this.configuration.fullImageMode.status);
+      },
     },
-  },
-}
+  }
 
-async deleteGifData() {
-  await this.$store.dispatch('removeCompleteGifData');
-  this.$store.commit('setGifCount', 0);
-  this.showDialog = false;
-}
+  async deleteGifData() {
+    await this.$store.dispatch('removeCompleteGifData');
+    this.$store.commit('setGifCount', 0);
+    this.showDialog = false;
+  }
+
+  async generateZip() {
+    this.isLoading = true;
+    this.finishedZipGeneration = false;
+    const data: Database.GifStore = await this.$store.dispatch('getAllData');
+    const zip = new JSZip();
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const [index, gifData] of data.values.entries()) {
+      const blob = typeof gifData.image === 'string'
+        // eslint-disable-next-line no-await-in-loop
+        ? await getBlob(gifData.image as string)
+        : gifData.image;
+      const fileType = blob?.type.slice((Math.max(0, blob.type.lastIndexOf('/')) || Infinity) + 1);
+      zip.folder(`rating-${gifData.rating}`).file(`gif-${index}.${fileType}`, blob);
+    }
+
+    this.zipFile = await zip.generateAsync({ type: 'blob' }, (meta) => {
+      this.loaderValue = parseInt(meta.percent.toPrecision(2), 10);
+    });
+    this.isLoading = false;
+    this.finishedZipGeneration = true;
+  }
+
+  downloadZip() {
+    if (this.zipFile) {
+      saveAs(this.zipFile, 'gifs.zip');
+    }
+  }
 }
 </script>
