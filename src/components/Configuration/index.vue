@@ -22,7 +22,7 @@
       align="start"
     >
       <v-card
-        width="80%"
+        :width="$vuetify.breakpoint.xsOnly ? '100%' : '80%'"
         flat
         tile
       >
