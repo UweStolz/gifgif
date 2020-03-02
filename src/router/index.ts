@@ -25,6 +25,11 @@ const routes: RouteConfig[] = [
     name: 'configuration',
     component: () => import(/* webpackChunkName: "configuration" */ '../views/Configuration.vue'),
   },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+  },
 ];
 
 const router = new VueRouter({

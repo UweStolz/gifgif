@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <Toolbar />
-    <Drawer />
-    <Footer />
+    <Toolbar v-if="this.$route.path !== '/about'" />
+    <Drawer v-if="this.$route.path !== '/about'" />
+    <Footer v-if="this.$route.path !== '/about'" />
     <v-content>
       <v-container
         fluid
@@ -40,7 +40,7 @@ import Footer from '@/components/Navigation/Footer.vue';
     Footer,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue { }
 </script>
 
 <style>
@@ -53,24 +53,21 @@ export default class App extends Vue {}
 }
 .fade-enter,
 .fade-leave-active {
-  opacity: 0
+  opacity: 0;
 }
 
-html::-webkit-scrollbar-track
-{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    background-color: #F5F5F5;
+html::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
 }
 
-html::-webkit-scrollbar
-{
-    width: 6px;
-    background-color: #F5F5F5;
+html::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
 }
 
-html::-webkit-scrollbar-thumb
-{
-    background-color: #000000;
+html::-webkit-scrollbar-thumb {
+  background-color: #000000;
 }
 </style>
