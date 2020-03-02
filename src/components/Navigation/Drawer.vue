@@ -1,6 +1,8 @@
 <template>
   <v-navigation-drawer
+    v-model="$store.state.isMobile"
     color="red darken-3"
+    mobile-break-point="600px"
     mini-variant-width="8vh"
     mini-variant
     clipped

@@ -6,6 +6,15 @@
     clipped-left
     dark
   >
+    <v-btn
+      v-if="$vuetify.breakpoint.xsOnly"
+      icon
+      @click="toggleDrawer"
+    >
+      <v-icon>
+        {{ icons.mdiMenu }}
+      </v-icon>
+    </v-btn>
     <v-btn :to="'/'">
       <div class="d-flex align-center">
         <h1>GIFGIF</h1>
@@ -59,7 +68,9 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { mdiShuffle, mdiTrendingUp, mdiCogs } from '@mdi/js';
+import {
+  mdiShuffle, mdiTrendingUp, mdiCogs, mdiMenu,
+} from '@mdi/js';
 
 @Component
 export default class Toolbar extends Vue {
@@ -67,10 +78,15 @@ export default class Toolbar extends Vue {
     this.$store.commit('setGifMode', mode);
   }
 
+  toggleDrawer(): void {
+    this.$store.commit('setIsMobile', !this.$store.state.isMobile);
+  }
+
   icons = {
     mdiShuffle,
     mdiTrendingUp,
     mdiCogs,
+    mdiMenu,
   }
 }
 </script>

@@ -5,6 +5,7 @@ import idb from '../database';
 type States = {
   gifCount: number;
   gifMode: string;
+  isMobile: boolean;
   fullImageMode: boolean;
 }
 
@@ -14,6 +15,7 @@ const store = new Vuex.Store<States>({
   state: {
     gifCount: 0,
     gifMode: 'trending',
+    isMobile: false,
     fullImageMode: false,
   },
   mutations: {
@@ -38,6 +40,9 @@ const store = new Vuex.Store<States>({
     },
     setFullImageMode(state, payload) {
       state.fullImageMode = payload;
+    },
+    setIsMobile(state, payload) {
+      state.isMobile = payload;
     },
   },
   actions: {
