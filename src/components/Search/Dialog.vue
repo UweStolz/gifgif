@@ -4,7 +4,7 @@
     :full-image-data="syncedFullImageData"
     :preview-image-data="syncedpreviewImageData"
     :image-id="syncedImageId"
-    width="60%"
+    :width="$vuetify.breakpoint.xsOnly ? '100%' : '60%'"
     @click:outside="resetProps"
   >
     <v-card>
@@ -20,7 +20,7 @@
       <v-img
         :src="syncedFullImageData"
         :lazy-src="syncedFullImageData"
-        max-height="500"
+        :max-height="maxWindowSize"
         contain
         height="100%"
         width="100%"
@@ -54,7 +54,7 @@
           :full-icon="icons.mdiHeart"
           :half-icon="icons.mdiHeartHalfFull"
           hover
-          size="50"
+          x-large
           color="red"
           background-color="red"
           @input="updateGifRating"
@@ -146,6 +146,8 @@ export default class Dialog extends Vue {
   gifCount: number = 0;
 
   rating: number = 0;
+
+  maxWindowSize: number = window.innerHeight / 1.5;
 }
 </script>
 

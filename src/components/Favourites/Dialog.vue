@@ -3,7 +3,7 @@
     v-model="syncedShowDialog"
     :full-image-data="syncedFullImageData"
     :image-id="syncedImageId"
-    width="600"
+    :width="$vuetify.breakpoint.xsOnly ? '100%' : '60%'"
     @click:outside="resetProps"
   >
     <v-card>
@@ -19,7 +19,7 @@
       <v-img
         :src="imageData"
         :lazy-src="imageData"
-        max-height="700"
+        :max-height="maxWindowSize"
         height="100%"
         width="100%"
       />
@@ -96,6 +96,8 @@ export default class Dialog extends Vue {
   }
 
   imageData: string = '';
+
+  maxWindowSize: number = window.innerHeight / 1.5;
 }
 </script>
 

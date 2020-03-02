@@ -1,7 +1,5 @@
 <template>
-  <v-container
-    fluid
-  >
+  <v-container fluid>
     <Dialog
       :show-dialog.sync="dialog"
       :full-image-data.sync="fullImage"
@@ -13,13 +11,11 @@
       justify="center"
     >
       <v-card
-        width="80%"
+        :width="$vuetify.breakpoint.xsOnly ? '100%' : '80%'"
         flat
         tile
       >
-        <v-slide-y-transition
-          mode="out-in"
-        >
+        <v-slide-y-transition mode="out-in">
           <v-card
             v-show="showFilterMenu"
             id="s-filterCard"
@@ -55,9 +51,7 @@
           @click:clear="searchResults = null"
         >
           <template v-slot:append-outer>
-            <v-icon
-              @click="showFilter"
-            >
+            <v-icon @click="showFilter">
               {{ icons.mdiFilterVariant }}
             </v-icon>
           </template>
@@ -171,13 +165,13 @@ export default class Search extends Vue {
 
   trendingTerms: string[] = [];
 
-  searchResults: null|any = null;
+  searchResults: null | any = null;
 
   searchQuery: string = '';
 
   isLoading: boolean = false;
 
-  selectedTerms: null|any = null;
+  selectedTerms: null | any = null;
 
   ratings = [
     {
