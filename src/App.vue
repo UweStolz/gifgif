@@ -4,19 +4,12 @@
     <Drawer v-if="this.$route.path !== '/about'" />
     <Footer v-if="this.$route.path !== '/about'" />
     <v-content>
-      <v-card
-        flat
-        tile
-        height="100%"
-        width="100%"
+      <transition
+        name="fade"
+        mode="out-in"
       >
-        <transition
-          name="fade"
-          mode="out-in"
-        >
-          <router-view />
-        </transition>
-      </v-card>
+        <router-view />
+      </transition>
     </v-content>
   </v-app>
 </template>
