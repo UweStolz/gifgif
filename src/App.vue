@@ -4,25 +4,19 @@
     <Drawer v-if="this.$route.path !== '/about'" />
     <Footer v-if="this.$route.path !== '/about'" />
     <v-content>
-      <v-container
-        fluid
-        fill-height
+      <v-card
+        flat
+        tile
+        height="100%"
+        width="100%"
       >
-        <v-card
-          flat
-          tile
-          class="mx-auto"
-          height="100%"
-          width="100%"
+        <transition
+          name="fade"
+          mode="out-in"
         >
-          <transition
-            name="fade"
-            mode="out-in"
-          >
-            <router-view />
-          </transition>
-        </v-card>
-      </v-container>
+          <router-view />
+        </transition>
+      </v-card>
     </v-content>
   </v-app>
 </template>
