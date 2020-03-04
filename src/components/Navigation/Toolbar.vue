@@ -4,7 +4,7 @@
     color="red darken-3"
     flat
     clipped-left
-    absolute
+    :absolute="$vuetify.breakpoint.xsOnly"
     dark
   >
     <v-app-bar-nav-icon

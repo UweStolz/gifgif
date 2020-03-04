@@ -1,35 +1,34 @@
 <template>
   <v-expansion-panel-content id="pa-exp-con">
     <v-item-group>
-      <v-container>
-        <v-row
-          justify="start"
-          align="start"
+      <v-row
+        justify="start"
+        align="start"
+      >
+        <Dialog
+          :show-dialog.sync="dialog"
+          :full-image-data.sync="fullImage"
+          :image-id.sync="imageId"
+          @delete="deleteGif"
+        />
+        <v-item
+          v-for="(z, index) in previewImages.length"
+          :key="z"
+          class="mx-auto"
         >
-          <Dialog
-            :show-dialog.sync="dialog"
-            :full-image-data.sync="fullImage"
-            :image-id.sync="imageId"
-            @delete="deleteGif"
-          />
-          <v-item
-            v-for="(z, index) in previewImages.length"
-            :key="z"
-          >
-            <v-lazy min-height="50">
-              <v-img
-                id="imageHover"
-                :src="previewImages[index]"
-                :lazy-src="previewImages[index]"
-                contain
-                max-width="250"
-                max-height="200"
-                @click="openDialog(index)"
-              />
-            </v-lazy>
-          </v-item>
-        </v-row>
-      </v-container>
+          <v-lazy min-height="50">
+            <v-img
+              id="imageHover"
+              :src="previewImages[index]"
+              :lazy-src="previewImages[index]"
+
+              max-width="230"
+              max-height="200"
+              @click="openDialog(index)"
+            />
+          </v-lazy>
+        </v-item>
+      </v-row>
     </v-item-group>
   </v-expansion-panel-content>
 </template>

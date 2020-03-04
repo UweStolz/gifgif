@@ -53,16 +53,18 @@
     >
       <v-col cols="auto">
         <v-card-actions>
-          <v-btn
-            :style="{visibility: this.$store.state.gifMode === 'random' ? 'visible' : 'hidden'}"
-            icon
-            x-large
-            @click="setRandomGif"
-          >
-            <v-icon>
-              {{ icons.mdiSync }}
-            </v-icon>
-          </v-btn>
+          <v-scale-transition>
+            <v-btn
+              v-show="this.$store.state.gifMode === 'random'"
+              icon
+              x-large
+              @click="setRandomGif"
+            >
+              <v-icon>
+                {{ icons.mdiSync }}
+              </v-icon>
+            </v-btn>
+          </v-scale-transition>
         </v-card-actions>
       </v-col>
     </v-row>
@@ -75,7 +77,7 @@
       <v-col cols="auto">
         <v-card-actions style="margin-right: 35px;">
           <v-btn
-            :style="{visibility: rating ? 'visible' : 'hidden'}"
+            :style="{visibility: this.$store.state.gifMode === 'random' ? 'visible' : 'hidden'}"
             icon
             large
             @click="removeGif"

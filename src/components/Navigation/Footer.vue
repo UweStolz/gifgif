@@ -2,7 +2,7 @@
   <v-footer
     color="red darken-3"
     app
-    absolute
+    :absolute="$vuetify.breakpoint.xsOnly"
   >
     <v-col
       class="text-center"

@@ -20,6 +20,7 @@
         :src="imageData"
         :lazy-src="imageData"
         :max-height="maxWindowSize"
+        contain
         height="100%"
         width="100%"
       />
