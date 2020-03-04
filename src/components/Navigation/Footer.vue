@@ -2,7 +2,7 @@
   <v-footer
     color="red darken-3"
     app
-    padless
+    fixed
     absolute
   >
     <v-col
