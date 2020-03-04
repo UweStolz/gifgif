@@ -1,21 +1,15 @@
 <template>
   <v-app-bar
     app
-    fixed
     color="red darken-3"
     flat
     clipped-left
     dark
   >
-    <v-btn
+    <v-app-bar-nav-icon
       v-if="$vuetify.breakpoint.xsOnly"
-      icon
       @click="toggleDrawer"
-    >
-      <v-icon>
-        {{ icons.mdiMenu }}
-      </v-icon>
-    </v-btn>
+    />
     <v-btn :to="'/'">
       <div class="d-flex align-center">
         <h1>GIFGIF</h1>
@@ -70,7 +64,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import {
-  mdiShuffle, mdiTrendingUp, mdiCogs, mdiMenu,
+  mdiShuffle, mdiTrendingUp, mdiCogs,
 } from '@mdi/js';
 
 @Component
@@ -87,7 +81,6 @@ export default class Toolbar extends Vue {
     mdiShuffle,
     mdiTrendingUp,
     mdiCogs,
-    mdiMenu,
   }
 }
 </script>
