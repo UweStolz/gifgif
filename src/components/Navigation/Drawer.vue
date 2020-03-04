@@ -7,7 +7,6 @@
     mini-variant
     :permanent="!$vuetify.breakpoint.xsOnly"
     clipped
-    fixed
     app
   >
     <v-list>
