@@ -3,7 +3,6 @@
     color="red darken-3"
     app
     fixed
-    absolute
   >
     <v-col
       class="text-center"
