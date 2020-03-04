@@ -1,11 +1,11 @@
 <template>
   <v-navigation-drawer
-    v-model="$store.state.isMobile"
+    v-model="$store.state.showMobileDrawer"
     color="red darken-3"
     mobile-break-point="600px"
     mini-variant-width="8vh"
     mini-variant
-    :permanent="!$store.state.isMobile"
+    :permanent="!$vuetify.breakpoint.xsOnly"
     clipped
     app
   >

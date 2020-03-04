@@ -79,7 +79,7 @@ export default class Toolbar extends Vue {
   }
 
   toggleDrawer(): void {
-    this.$store.commit('setIsMobile', !this.$store.state.isMobile);
+    this.$store.commit('setShowMobileDrawer', !this.$store.state.showMobileDrawer);
   }
 
   icons = {
