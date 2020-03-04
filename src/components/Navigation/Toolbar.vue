@@ -1,6 +1,7 @@
 <template>
   <v-app-bar
     app
+    absolute
     color="red darken-3"
     flat
     clipped-left

@@ -3,6 +3,7 @@
     color="red darken-3"
     app
     padless
+    absolute
   >
     <v-col
       class="text-center"
