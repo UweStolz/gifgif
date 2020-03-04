@@ -11,7 +11,7 @@
       justify="center"
     >
       <v-card
-        :width="$vuetify.breakpoint.xsOnly ? '100%' : '80%'"
+        :width="$vuetify.breakpoint.xsOnly ? '90%' : '80%'"
         flat
         tile
       >
