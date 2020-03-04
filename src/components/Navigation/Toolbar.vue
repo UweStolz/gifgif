@@ -4,6 +4,7 @@
     color="red darken-3"
     flat
     clipped-left
+    absolute
     dark
   >
     <v-app-bar-nav-icon

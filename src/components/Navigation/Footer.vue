@@ -2,6 +2,7 @@
   <v-footer
     color="red darken-3"
     app
+    absolute
   >
     <v-col
       class="text-center"
