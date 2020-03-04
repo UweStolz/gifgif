@@ -5,6 +5,7 @@
     mobile-break-point="600px"
     mini-variant-width="8vh"
     mini-variant
+    :permanent="!$store.state.isMobile"
     clipped
     app
   >
