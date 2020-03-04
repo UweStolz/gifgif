@@ -1,15 +1,80 @@
 <template>
-  <div>
-    <p>About</p>
-  </div>
+  <v-container fluid>
+    <!-- style="background-color: #C62828;" -->
+    <v-row justify="center">
+      <v-card
+        tile
+        flat
+        :width="$vuetify.breakpoint.xsOnly ? '90%' : '50%'"
+      >
+        <v-card-title class="display-2 justify-center">
+          <router-link
+            style="color: black;"
+            to="/"
+          >
+            GIFGIF
+          </router-link>
+        </v-card-title>
+        <vue-markdown :source="cardText" />
+      </v-card>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+// @ts-ignore
+import VueMarkdown from 'vue-markdown';
+
+const vueLogo = require('@/assets/vue.svg');
+const vuetifyLogo = require('@/assets/vuetify.svg');
+const githubLogo = require('@/assets/github.svg');
+
 // import {} from '@mdi/js';
 
-@Component
+@Component({
+  components: {
+    'vue-markdown': VueMarkdown,
+  },
+})
 export default class About extends Vue {
+  cardText: string = `
+  ---
+  
+  ## Privacy Policy
+  No Personal Data will be Collected!
 
+  ### Browser Storage
+  Application information will be saved in the IndexedDb of your Browser, via the [IndexedDB API.](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
+  This information is **only** available to **you**.
+
+  ## Copyright
+  This project is licensed under the [MIT license](https://github.com/UweStolz/gifgif/blob/master/LICENSE.md)
+
+  ## References
+
+  ### Technologies
+  This project was build with:  
+  <table>
+  <tr>
+  <td><a href="https://vuejs.org/"><img src="${vueLogo}" width="64"></a></td>
+  <td>Vue</td>
+  </tr>
+  <tr>
+  <td><a href="https://vuetifyjs.com/"><img src="${vuetifyLogo}" width="64"></a></td>
+  <td>Vuetify</td>
+  </tr>
+  </table>
+
+  ### APIs
+  [Giphy](https://developers.giphy.com/docs/api/)
+  [Tenor](https://tenor.com/gifapi/documentation)
+
+  ### Repository:
+  <a href="https://github.com/UweStolz/gifgif"><img src="${githubLogo}" width="64"></a> Available under GitHub
+  `;
 }
 </script>
+
+<style scoped>
+</style>
