@@ -42,7 +42,7 @@
           />
         </v-form>
         <Picker
-          v-if="showPicker"
+          v-if="showPicker && !$vuetify.breakpoint.xsOnly"
           :style="{ position: 'absolute', bottom: '-345px', right: '362px' }"
           set="emojione"
           emoji=""
