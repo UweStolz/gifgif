@@ -43,13 +43,6 @@
         </v-form>
         <Picker
           v-if="showPicker && !$vuetify.breakpoint.xsOnly"
-          :style="{ position: 'absolute', bottom: '-345px', right: '362px' }"
-          set="emojione"
-          emoji=""
-          :show-preview="false"
-          :show-skin-tones="false"
-          :sheet-size="32"
-          title="Pick your emoji…"
           @select="addEmoji"
         />
         <v-row
@@ -129,12 +122,11 @@ import {
 } from '@mdi/js';
 import { getTranslateGifFromGiphy, getBlob } from '@/request';
 import { saveAs } from 'file-saver';
-// @ts-ignore
-import { Picker } from 'emoji-mart-vue';
+import VEmojiPicker from 'v-emoji-picker';
 
 @Component({
   components: {
-    Picker,
+    Picker: VEmojiPicker,
   },
 })
 export default class Translate extends Vue {
@@ -169,7 +161,8 @@ export default class Translate extends Vue {
   showPicker: boolean = false;
 
   addEmoji(payload: any) {
-    if (this.inputValue.length < 24) { this.inputValue += `${payload.native}`; }
+    if (this.inputValue.length < 24) { this.inputValue += payload.data; }
+    this.showPicker = false;
   }
 
   openEmojiMart() {
