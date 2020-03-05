@@ -120,7 +120,7 @@ export default class Translate extends Vue {
       const result = await getTranslateGifFromGiphy(this.inputValue, this.weirdnessSlider);
       this.hasError = false;
       this.wasSuccessful = true;
-      this.translatedGif = result.images.original.webp;
+      this.translatedGif = result.images.original.webp || result.images.original.url;
     } catch {
       this.hasError = true;
       this.wasSuccessful = false;
