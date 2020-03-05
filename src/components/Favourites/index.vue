@@ -1,14 +1,14 @@
 <template>
   <div style="height: 100%;">
     <v-card-title
-      v-if="!isEmpty && evaluatedKey !== 0"
+      v-if="!isDataEmpty && evaluatedKey !== 0"
       class="display-2 justify-center"
     >
       Favourites
     </v-card-title>
-    <Empty v-if="isEmpty && evaluatedKey !== 0" />
+    <Empty v-if="isDataEmpty && evaluatedKey !== 0" />
     <v-expansion-panels
-      v-if="!isEmpty && evaluatedKey !== 0"
+      v-if="!isDataEmpty && evaluatedKey !== 0"
       popout
       hover
     >
@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Watch } from 'vue-property-decorator';
 import {
   mdiHeart,
 } from '@mdi/js';
@@ -62,9 +62,18 @@ interface Data {
   },
 })
 export default class Favourites extends Vue {
+  @Watch('data', { deep: true })
+  watchData() {
+    let counter = 0;
+    for (let index = 1; index <= 5; index += 1) {
+      if (this.data.previewUrl[index].id.length === 0) { counter += 1; }
+    }
+    this.isDataEmpty = counter === 5;
+  }
+
   icons = { mdiHeart }
 
-  isEmpty: boolean = false;
+  isDataEmpty: null|boolean = null;
 
   evaluatedKey: number = 0;
 
@@ -80,9 +89,9 @@ export default class Favourites extends Vue {
 
   async mounted(): Promise<void> {
     const gifData: Database.GifStore = await this.$store.dispatch('getAllData');
-    this.isEmpty = gifData.keys.length === 0;
+    this.isDataEmpty = gifData.keys.length === 0;
     this.evaluatedKey += 1;
-    if (!this.isEmpty) {
+    if (!this.isDataEmpty) {
       gifData.values.forEach((value: Database.GifData, index) => {
         if (value.rating > 0 && value.rating < 6) {
           let previewImageUrl = value.preview;
@@ -95,7 +104,6 @@ export default class Favourites extends Vue {
         }
       });
     }
-    console.log(JSON.stringify(this.data, undefined, 2));
   }
 }
 </script>
