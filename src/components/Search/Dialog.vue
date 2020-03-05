@@ -87,7 +87,7 @@ export default class Dialog extends Vue {
   @Watch('syncedShowDialog')
   async getRating() {
     const gifData = await this.$store.dispatch('getGifData', `ggid-${this.syncedImageId}`);
-    if (gifData) { this.rating = gifData.rating || 0; }
+    this.rating = gifData ? this.rating = gifData.rating : 0;
   }
 
   saveImage(): void {
