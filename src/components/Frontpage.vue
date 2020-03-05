@@ -77,7 +77,7 @@
       <v-col cols="auto">
         <v-card-actions style="margin-right: 35px;">
           <v-btn
-            :style="{visibility: this.$store.state.gifMode === 'random' ? 'visible' : 'hidden'}"
+            :style="{visibility: rating ? 'visible' : 'hidden'}"
             icon
             large
             @click="removeGif"
