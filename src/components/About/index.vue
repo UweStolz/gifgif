@@ -1,6 +1,5 @@
 <template>
   <v-container fluid>
-    <!-- style="background-color: #C62828;" -->
     <v-row justify="center">
       <v-card
         tile
@@ -23,14 +22,12 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-// @ts-ignore
+// @ts-ignore - No types available
 import VueMarkdown from 'vue-markdown';
 
 const vueLogo = require('@/assets/vue.svg');
 const vuetifyLogo = require('@/assets/vuetify.svg');
 const githubLogo = require('@/assets/github.svg');
-
-// import {} from '@mdi/js';
 
 @Component({
   components: {
