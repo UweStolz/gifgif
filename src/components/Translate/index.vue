@@ -36,7 +36,7 @@
             color="black"
             clearable
             counter
-            placeholder="Enter a search phrase"
+            placeholder="Enter a search phrase and hit enter"
             @click:prepend-inner="openEmojiMart"
             @click:clear="clearTextField"
           />
@@ -116,7 +116,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Watch } from 'vue-property-decorator';
 import {
   mdiMagnify, mdiTrashCan, mdiDownload, mdiHeartOutline, mdiHeart, mdiHeartHalfFull, mdiEmoticonOutline,
 } from '@mdi/js';
@@ -130,6 +130,14 @@ import VEmojiPicker from 'v-emoji-picker';
   },
 })
 export default class Translate extends Vue {
+@Watch('inputValue')
+  resetState() {
+    if (this.inputValue?.length === 0) {
+      this.hasError = false;
+      this.wasSuccessful = false;
+    }
+  }
+
   icons = {
     mdiMagnify,
     mdiTrashCan,
