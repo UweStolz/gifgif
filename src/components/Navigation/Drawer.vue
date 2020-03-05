@@ -47,7 +47,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { mdiHeart, mdiMagnify } from '@mdi/js';
+import { mdiHeart, mdiMagnify, mdiTranslate } from '@mdi/js';
 
 @Component
 export default class Drawer extends Vue {
@@ -57,6 +57,9 @@ export default class Drawer extends Vue {
     },
     {
       icon: mdiMagnify, link: '/search',
+    },
+    {
+      icon: mdiTranslate, link: '/translate',
     },
   ];
 
