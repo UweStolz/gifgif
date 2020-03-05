@@ -1,8 +1,6 @@
 <template>
   <v-container fluid>
-    <v-row
-      justify="center"
-    >
+    <v-row justify="center">
       <v-col cols="auto">
         <v-avatar
           size="100"
@@ -112,11 +110,12 @@
                   <td>
                     <v-btn
                       icon
+                      large
                       :loading="isLoading"
                       :disabled="$store.state.gifCount < 1"
                       @click="generateZip"
                     >
-                      <v-icon>
+                      <v-icon large>
                         {{ icons.mdiFolderZip }}
                       </v-icon>
                       <template v-slot:loader>
@@ -132,10 +131,11 @@
                     </v-btn>
                     <v-btn
                       icon
+                      large
                       :disabled="!finishedZipGeneration"
                       @click="downloadZip"
                     >
-                      <v-icon>
+                      <v-icon large>
                         {{ icons.mdiPackageDown }}
                       </v-icon>
                     </v-btn>
