@@ -14,8 +14,8 @@
     >
       <v-expansion-panel
         v-for="x in 5"
+        v-show="data.previewUrl[x].previews.length === 0 ? false : true"
         :key="x"
-        :readonly="data.previewUrl[x].previews.length === 0 ? true : false"
       >
         <v-expansion-panel-header>
           <v-row justify="center">
@@ -52,11 +52,6 @@ import PanelContent from './PanelContent.vue';
 interface Data {
   previewUrl: {
     [key: number]: { id: string[], images: (Blob | string)[], previews: string[] };
-    1: { id: string[], images: (Blob | string)[], previews: string[] };
-    2: { id: string[], images: (Blob | string)[], previews: string[] };
-    3: { id: string[], images: (Blob | string)[], previews: string[] };
-    4: { id: string[], images: (Blob | string)[], previews: string[] };
-    5: { id: string[], images: (Blob | string)[], previews: string[] };
   }
 }
 
@@ -100,6 +95,7 @@ export default class Favourites extends Vue {
         }
       });
     }
+    console.log(JSON.stringify(this.data, undefined, 2));
   }
 }
 </script>
