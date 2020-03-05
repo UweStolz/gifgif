@@ -17,6 +17,13 @@ export async function getSearchGifsFromGiphy(searchQuery: string, rating?: strin
   return randomGifObject;
 }
 
+export async function getTranslateGifFromGiphy(query: string, weirdness: number): Promise<Giphy.GIFObject> {
+  const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${giphyApiKey}&s=${query}&weirdness=${weirdness}`);
+  const { data } = await response.json();
+  const randomGifObject: Giphy.GIFObject = data;
+  return randomGifObject;
+}
+
 export async function getRandomGifFromGiphy(): Promise<Giphy.GIFObject> {
   const response = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${giphyApiKey}`);
   const { data } = await response.json();
