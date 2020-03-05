@@ -31,14 +31,27 @@
             :success="wasSuccessful"
             :error-messages="hasError ? 'Oh no, something went wrong!' : ''"
             :prepend-icon="icons.mdiMagnify"
+            :prepend-inner-icon="icons.mdiEmoticonOutline"
             maxlength="25"
             color="black"
             clearable
             counter
             placeholder="Enter a search phrase"
+            @click:prepend-inner="openEmojiMart"
             @click:clear="clearTextField"
           />
         </v-form>
+        <Picker
+          v-if="showPicker"
+          :style="{ position: 'absolute', bottom: '-345px', right: '362px' }"
+          set="emojione"
+          emoji=""
+          :show-preview="false"
+          :show-skin-tones="false"
+          :sheet-size="32"
+          title="Pick your emoji…"
+          @select="addEmoji"
+        />
         <v-row
           align="start"
           justify="center"
@@ -112,12 +125,18 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import {
-  mdiMagnify, mdiTrashCan, mdiDownload, mdiHeartOutline, mdiHeart, mdiHeartHalfFull,
+  mdiMagnify, mdiTrashCan, mdiDownload, mdiHeartOutline, mdiHeart, mdiHeartHalfFull, mdiEmoticonOutline,
 } from '@mdi/js';
 import { getTranslateGifFromGiphy, getBlob } from '@/request';
 import { saveAs } from 'file-saver';
+// @ts-ignore
+import { Picker } from 'emoji-mart-vue';
 
-@Component
+@Component({
+  components: {
+    Picker,
+  },
+})
 export default class Translate extends Vue {
   icons = {
     mdiMagnify,
@@ -126,6 +145,7 @@ export default class Translate extends Vue {
     mdiHeartOutline,
     mdiHeart,
     mdiHeartHalfFull,
+    mdiEmoticonOutline,
   }
 
   rating: number = 0;
@@ -145,6 +165,16 @@ export default class Translate extends Vue {
   isInputValid: boolean = false;
 
   inputValue: string = '';
+
+  showPicker: boolean = false;
+
+  addEmoji(payload: any) {
+    if (this.inputValue.length < 24) { this.inputValue += `${payload.native}`; }
+  }
+
+  openEmojiMart() {
+    this.showPicker = true;
+  }
 
   clearTextField() {
     this.translatedGif = '';
