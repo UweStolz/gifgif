@@ -48,8 +48,8 @@
             :src="translatedGif"
             :lazy-src="translatedGif"
             contain
-            max-height="400"
-            max-width="300"
+            max-height="500"
+            max-width="600"
             height="100%"
             width="100%"
           >
