@@ -62,24 +62,47 @@
           </v-img>
         </v-row>
         <v-card-actions>
-          <v-item-group v-if="translatedGif">
-            <v-btn
-              large
-              icon
-            >
-              <v-icon large>
-                {{ icons.mdiTrashCan }}
-              </v-icon>
-            </v-btn>
-            <v-btn
-              large
-              icon
-            >
-              <v-icon large>
-                {{ icons.mdiDownload }}
-              </v-icon>
-            </v-btn>
-          </v-item-group>
+          <v-row justify="center">
+            <v-item-group v-if="translatedGif">
+              <v-btn
+                :disabled="rating === 0"
+                large
+                icon
+                @click="removeGif"
+              >
+                <v-icon
+                  id="trashIcon"
+                  large
+                >
+                  {{ icons.mdiTrashCan }}
+                </v-icon>
+              </v-btn>
+              <v-btn
+                large
+                icon
+                @click="saveImage"
+              >
+                <v-icon
+                  id="downloadIcon"
+                  large
+                >
+                  {{ icons.mdiDownload }}
+                </v-icon>
+              </v-btn>
+              <v-rating
+                v-model="rating"
+                length="5"
+                :empty-icon="icons.mdiHeartOutline"
+                :full-icon="icons.mdiHeart"
+                :half-icon="icons.mdiHeartHalfFull"
+                hover
+                x-large
+                color="red"
+                background-color="red"
+                @input="updateGifRating"
+              />
+            </v-item-group>
+          </v-row>
         </v-card-actions>
       </v-card>
     </v-row>
@@ -88,14 +111,24 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { mdiMagnify, mdiTrashCan, mdiDownload } from '@mdi/js';
-import { getTranslateGifFromGiphy } from '@/request';
+import {
+  mdiMagnify, mdiTrashCan, mdiDownload, mdiHeartOutline, mdiHeart, mdiHeartHalfFull,
+} from '@mdi/js';
+import { getTranslateGifFromGiphy, getBlob } from '@/request';
+import { saveAs } from 'file-saver';
 
 @Component
 export default class Translate extends Vue {
   icons = {
-    mdiMagnify, mdiTrashCan, mdiDownload,
+    mdiMagnify,
+    mdiTrashCan,
+    mdiDownload,
+    mdiHeartOutline,
+    mdiHeart,
+    mdiHeartHalfFull,
   }
+
+  rating: number = 0;
 
   hasError: boolean = false
 
@@ -105,26 +138,85 @@ export default class Translate extends Vue {
 
   translatedGif: string = '';
 
+  translatedGifPreview: string = '';
+
+  translatedGifId: string = '';
+
   isInputValid: boolean = false;
 
   inputValue: string = '';
 
   clearTextField() {
     this.translatedGif = '';
+    this.translatedGifId = '';
     this.hasError = false;
     this.wasSuccessful = false;
+    this.rating = 0;
+  }
+
+  async getRating() {
+    const gifData = await this.$store.dispatch('getGifData', `ggid-${this.translatedGifId}`);
+    this.rating = gifData ? this.rating = gifData.rating : 0;
   }
 
   async getTranslatedGif() {
     try {
       const result = await getTranslateGifFromGiphy(this.inputValue, this.weirdnessSlider);
+      this.translatedGifId = result.id;
+      this.translatedGifPreview = result.images.fixed_width.webp;
+      this.translatedGif = result.images.original.webp || result.images.original.url;
+      await this.getRating();
       this.hasError = false;
       this.wasSuccessful = true;
-      this.translatedGif = result.images.original.webp || result.images.original.url;
     } catch {
       this.hasError = true;
       this.wasSuccessful = false;
     }
   }
+
+  async removeGif() {
+    this.rating = 0;
+    await this.$store.dispatch('removeGifData', `ggid-${this.translatedGifId}`);
+    this.$store.commit('setGifCount', this.$store.state.gifCount - 1);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  async getBlobForGif(imageData: string) {
+    const previewGifBlob = await getBlob(imageData);
+    return previewGifBlob;
+  }
+
+  async updateGifRating(rating: number) {
+    if (this.$store.state.fullImageMode) {
+      await this.$store.dispatch('setGifData', {
+        rating,
+        key: `ggid-${this.translatedGifId}`,
+        image: await this.getBlobForGif(this.translatedGif),
+        preview: await this.getBlobForGif(this.translatedGifPreview),
+      });
+    } else {
+      await this.$store.dispatch('setGifData', {
+        rating,
+        key: `ggid-${this.translatedGifId}`,
+        image: this.translatedGif,
+        preview: this.translatedGifPreview,
+      });
+    }
+    const currentCount = await this.$store.dispatch('getGifCount');
+    this.$store.commit('setGifCount', currentCount);
+  }
+
+  saveImage(): void {
+    saveAs(this.translatedGif, `ggid-${this.translatedGifId}`);
+  }
 }
 </script>
+
+<style scoped>
+#trashIcon:hover {
+  color: red;
+}
+#downloadIcon:hover {
+  color: green;
+}
+</style>
