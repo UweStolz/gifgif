@@ -24,18 +24,36 @@
               :content="gifCount"
               color="grey"
             >
-              <v-icon
-                color="white"
-                large
-                v-text="item.icon"
-              />
+              <v-tooltip
+                nudge-right="6"
+                right
+              >
+                <template v-slot:activator="{ on }">
+                  <v-icon
+                    color="white"
+                    large
+                    v-on="on"
+                    v-text="item.icon"
+                  />
+                </template>
+                <span>{{ item.tooltip }}</span>
+              </v-tooltip>
             </v-badge>
-            <v-icon
+            <v-tooltip
               v-else
-              color="white"
-              large
-              v-text="item.icon"
-            />
+              nudge-right="6"
+              right
+            >
+              <template v-slot:activator="{ on }">
+                <v-icon
+                  color="white"
+                  large
+                  v-on="on"
+                  v-text="item.icon"
+                />
+              </template>
+              <span>{{ item.tooltip }}</span>
+            </v-tooltip>
           </v-list-item-icon>
           <!-- Empty component for jumping list item on click -->
           <v-list-item-content />
@@ -53,13 +71,13 @@ import { mdiHeart, mdiMagnify, mdiTag } from '@mdi/js';
 export default class Drawer extends Vue {
   items = [
     {
-      icon: mdiHeart, link: '/favourites',
+      icon: mdiHeart, link: '/favourites', tooltip: 'Favourites',
     },
     {
-      icon: mdiTag, link: '/search',
+      icon: mdiTag, link: '/search', tooltip: 'Tag search',
     },
     {
-      icon: mdiMagnify, link: '/translate',
+      icon: mdiMagnify, link: '/translate', tooltip: 'Translate',
     },
   ];
 
