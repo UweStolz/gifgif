@@ -42,7 +42,7 @@ export default class About extends Vue {
   No Personal Data will be Collected!
 
   ### Browser Storage
-  Application information will be saved in the IndexedDb of your Browser, via the [IndexedDB API.](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
+  Application information will be saved in the IndexedDB of your Browser, via the [IndexedDB API.](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
   This information is **only** available to **you**.
 
   ## Copyright
