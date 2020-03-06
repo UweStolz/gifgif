@@ -72,6 +72,3 @@ export default class About extends Vue {
   `;
 }
 </script>
-
-<style scoped>
-</style>
