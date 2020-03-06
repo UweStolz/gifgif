@@ -42,7 +42,7 @@
           />
         </v-form>
         <Picker
-          v-if="showPicker && !$vuetify.breakpoint.xsOnly"
+          v-if="showPicker"
           @select="addEmoji"
         />
         <v-row
