@@ -33,7 +33,7 @@
             color="black"
             clearable
             counter
-            placeholder="Enter a search phrase and hit enter"
+            placeholder="Enter a search phrase"
             @input="getTranslatedGif"
             @click:prepend-inner="openEmojiMart"
             @click:clear="clearTextField"
