@@ -132,8 +132,6 @@ export default class Frontpage extends Vue {
         preview: gifsList[carouselModel].url,
       });
     }
-    const currentCount = await this.$store.dispatch('getGifCount');
-    if (this.gifCount !== currentCount) { this.$store.commit('setGifCount', currentCount); }
   }
 
   icons = {
@@ -152,8 +150,6 @@ export default class Frontpage extends Vue {
   gifsList: BuiltGifLists = [];
 
   carouselModel: number = 0;
-
-  gifCount: number = 0;
 
   async saveImage(): Promise<void> {
     const imageData = this.currentImageBlob ? this.currentImageBlob : await getBlob(this.gifsList[this.carouselModel].url);
@@ -210,7 +206,6 @@ export default class Frontpage extends Vue {
         await this.getGifList();
       },
     );
-    this.gifCount = this.$store.state.gifCount;
     await this.getGifList();
   }
 
@@ -226,8 +221,6 @@ export default class Frontpage extends Vue {
   async removeGif() {
     await this.$store.dispatch('removeGifData', `ggid-${this.gifsList[this.carouselModel].id}`);
     this.rating = 0;
-    this.gifCount -= 1;
-    this.$store.commit('setGifCount', this.$store.state.gifCount - 1);
   }
 }
 </script>

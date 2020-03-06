@@ -63,7 +63,6 @@ export default class PanelContent extends Vue {
 
   async deleteGif(payload: string): Promise<void> {
     await this.$store.dispatch('removeGifData', payload[this.selectedIndex]);
-    this.$store.commit('setGifCount', this.$store.state.gifCount - 1);
     this.previewImages.splice(this.selectedIndex, 1);
     this.fullImages.splice(this.selectedIndex, 1);
     this.imageId.splice(this.selectedIndex, 1);

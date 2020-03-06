@@ -49,13 +49,18 @@ const store = new Vuex.Store<States>({
     async getGifData(context: any, key: string): Promise<Database.GifData | undefined> {
       return idb.getGifData(key);
     },
-    async setGifData(context: any, gifdata: any): Promise<string> {
+    async setGifData(context: any, gifdata: any): Promise<void> {
       const {
         rating, preview, image, key,
       } = gifdata;
-      return idb.setGifdata(rating, preview, image, key);
+      await idb.setGifdata(rating, preview, image, key);
+      const countFromDB = await idb.getCountOfGifs();
+      if (this.state.gifCount < countFromDB) {
+        this.commit('setGifCount', countFromDB);
+      }
     },
     async removeGifData(context: any, key: string): Promise<void> {
+      this.commit('setGifCount', this.state.gifCount - 1);
       return idb.removeGifData(key);
     },
     async removeCompleteGifData(): Promise<void> {

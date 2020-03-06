@@ -118,16 +118,11 @@ export default class Dialog extends Vue {
         preview: this.syncedpreviewImageData,
       });
     }
-    const currentCount = await this.$store.dispatch('getGifCount');
-    if (this.gifCount !== currentCount) { this.$store.commit('setGifCount', currentCount); }
   }
-
 
   async removeGif(): Promise<void> {
     await this.$store.dispatch('removeGifData', `ggid-${this.syncedImageId}`);
     this.rating = 0;
-    this.gifCount -= 1;
-    this.$store.commit('setGifCount', this.$store.state.gifCount - 1);
   }
 
   icons = {
@@ -138,8 +133,6 @@ export default class Dialog extends Vue {
     mdiHeartHalfFull,
     mdiTrashCan,
   }
-
-  gifCount: number = 0;
 
   rating: number = 0;
 

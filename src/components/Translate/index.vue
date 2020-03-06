@@ -205,7 +205,6 @@ export default class Translate extends Vue {
   async removeGif() {
     this.rating = 0;
     await this.$store.dispatch('removeGifData', `ggid-${this.translatedGifId}`);
-    this.$store.commit('setGifCount', this.$store.state.gifCount - 1);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -230,8 +229,6 @@ export default class Translate extends Vue {
         preview: this.translatedGifPreview,
       });
     }
-    const currentCount = await this.$store.dispatch('getGifCount');
-    this.$store.commit('setGifCount', currentCount);
   }
 
   saveImage(): void {
