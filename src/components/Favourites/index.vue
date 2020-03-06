@@ -18,6 +18,13 @@
         :key="x"
       >
         <v-expansion-panel-header>
+          <v-col cols="1">
+            <v-avatar
+              color="grey"
+              size="32"
+              v-text="data.previewUrl[x].previews.length"
+            />
+          </v-col>
           <v-row justify="center">
             <v-icon
               v-for="y in x++"
@@ -73,7 +80,7 @@ export default class Favourites extends Vue {
 
   icons = { mdiHeart }
 
-  isDataEmpty: null|boolean = null;
+  isDataEmpty: null | boolean = null;
 
   evaluatedKey: number = 0;
 
