@@ -20,6 +20,7 @@
         <v-expansion-panel-header>
           <v-col cols="1">
             <v-avatar
+              style="color: white;"
               color="grey"
               size="32"
               v-text="data.previewUrl[x].previews.length"
