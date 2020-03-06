@@ -21,10 +21,7 @@
           thumb-label="always"
           ticks="always"
         />
-        <v-form
-          :value="isInputValid"
-          @submit="getTranslatedGif"
-        >
+        <v-form :value="isInputValid">
           <v-text-field
             v-model="inputValue"
             :error="hasError"
@@ -37,6 +34,7 @@
             clearable
             counter
             placeholder="Enter a search phrase and hit enter"
+            @input="getTranslatedGif"
             @click:prepend-inner="openEmojiMart"
             @click:clear="clearTextField"
           />
@@ -185,17 +183,19 @@ export default class Translate extends Vue {
   }
 
   async getTranslatedGif() {
-    try {
-      const result = await getTranslateGifFromGiphy(this.inputValue, this.weirdnessSlider);
-      this.translatedGifId = result.id;
-      this.translatedGifPreview = result.images.fixed_width.webp;
-      this.translatedGif = result.images.original.webp || result.images.original.url;
-      await this.getRating();
-      this.hasError = false;
-      this.wasSuccessful = true;
-    } catch {
-      this.hasError = true;
-      this.wasSuccessful = false;
+    if (this.inputValue?.length >= 3) {
+      try {
+        const result = await getTranslateGifFromGiphy(this.inputValue, this.weirdnessSlider);
+        this.translatedGifId = result.id;
+        this.translatedGifPreview = result.images.fixed_width.webp;
+        this.translatedGif = result.images.original.webp || result.images.original.url;
+        await this.getRating();
+        this.hasError = false;
+        this.wasSuccessful = true;
+      } catch {
+        this.hasError = true;
+        this.wasSuccessful = false;
+      }
     }
   }
 
