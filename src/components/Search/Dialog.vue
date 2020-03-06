@@ -83,7 +83,7 @@ export default class Dialog extends Vue {
   @PropSync('imageId', { type: String, required: true }) syncedImageId!: string;
 
   @Watch('syncedShowDialog')
-  async getRating() {
+  async getRating(): Promise<void> {
     const gifData = await this.$store.dispatch('getGifData', `ggid-${this.syncedImageId}`);
     this.rating = gifData ? this.rating = gifData.rating : 0;
   }
@@ -98,19 +98,13 @@ export default class Dialog extends Vue {
     this.rating = 0;
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  async getBlobForGif(imageData: string) {
-    const previewGifBlob = await getBlob(imageData);
-    return previewGifBlob;
-  }
-
-  async updateGifRating(rating: number) {
+  async updateGifRating(rating: number): Promise<void> {
     if (this.$store.state.fullImageMode) {
       await this.$store.dispatch('setGifData', {
         rating,
         key: `ggid-${this.syncedImageId}`,
-        image: await this.getBlobForGif(this.syncedFullImageData),
-        preview: await this.getBlobForGif(this.syncedpreviewImageData),
+        image: await getBlob(this.syncedFullImageData),
+        preview: await getBlob(this.syncedpreviewImageData),
       });
     } else {
       await this.$store.dispatch('setGifData', {
@@ -125,7 +119,7 @@ export default class Dialog extends Vue {
   }
 
 
-  async removeGif() {
+  async removeGif(): Promise<void> {
     await this.$store.dispatch('removeGifData', `ggid-${this.syncedImageId}`);
     this.rating = 0;
     this.gifCount -= 1;
