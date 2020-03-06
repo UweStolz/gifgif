@@ -45,30 +45,6 @@
         </v-col>
       </v-card>
     </v-row>
-
-    <v-row
-      align="start"
-      justify="center"
-      no-gutters
-    >
-      <v-col cols="auto">
-        <v-card-actions>
-          <v-scale-transition>
-            <v-btn
-              v-show="this.$store.state.gifMode === 'random'"
-              icon
-              x-large
-              @click="setRandomGif"
-            >
-              <v-icon>
-                {{ icons.mdiSync }}
-              </v-icon>
-            </v-btn>
-          </v-scale-transition>
-        </v-card-actions>
-      </v-col>
-    </v-row>
-
     <v-row
       align="start"
       justify="center"
@@ -76,26 +52,46 @@
     >
       <v-col cols="auto">
         <v-card-actions style="margin-right: 35px;">
-          <v-btn
-            :style="{visibility: rating ? 'visible' : 'hidden'}"
-            icon
-            large
-            @click="removeGif"
-          >
-            <v-icon>{{ icons.mdiClose }}</v-icon>
-          </v-btn>
-          <v-rating
-            v-model="rating"
-            length="5"
-            :empty-icon="icons.mdiHeartOutline"
-            :full-icon="icons.mdiHeart"
-            :half-icon="icons.mdiHeartHalfFull"
-            hover
-            size="50"
-            color="red"
-            background-color="red"
-            @input="updateGifRating"
-          />
+          <v-item-group>
+            <v-rating
+              v-model="rating"
+              length="5"
+              :empty-icon="icons.mdiHeartOutline"
+              :full-icon="icons.mdiHeart"
+              :half-icon="icons.mdiHeartHalfFull"
+              hover
+              x-large
+              color="red"
+              background-color="red"
+              @input="updateGifRating"
+            />
+            <v-btn
+              id="downloadIcon"
+              icon
+              large
+              @click="saveImage"
+            >
+              <v-icon>{{ icons.mdiDownload }}</v-icon>
+            </v-btn>
+            <v-btn
+              id="trashIcon"
+              :disabled="!rating"
+              icon
+              large
+              @click="removeGif"
+            >
+              <v-icon>{{ icons.mdiTrashCan }}</v-icon>
+            </v-btn>
+            <v-btn
+              icon
+              large
+              @click="getGifList"
+            >
+              <v-icon>
+                {{ icons.mdiSync }}
+              </v-icon>
+            </v-btn>
+          </v-item-group>
         </v-card-actions>
       </v-col>
     </v-row>
@@ -105,8 +101,9 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import {
-  mdiClose, mdiHeart, mdiHeartOutline, mdiHeartHalfFull, mdiSync,
+  mdiTrashCan, mdiHeart, mdiHeartOutline, mdiHeartHalfFull, mdiSync, mdiDownload,
 } from '@mdi/js';
+import { saveAs } from 'file-saver';
 import {
   getTrendingGifsListFromGiphy,
   getRandomGifFromGiphy,
@@ -143,8 +140,9 @@ export default class Frontpage extends Vue {
     mdiHeartHalfFull,
     mdiHeartOutline,
     mdiHeart,
-    mdiClose,
+    mdiTrashCan,
     mdiSync,
+    mdiDownload,
   }
 
   rating: number = 0;
@@ -157,27 +155,28 @@ export default class Frontpage extends Vue {
 
   gifCount: number = 0;
 
-  async setRandomGif() {
-    const randomGifObject: Giphy.GIFObject = await getRandomGifFromGiphy();
-    const itemObject = [
-      {
-        id: randomGifObject.id,
-        url: randomGifObject.images.original.webp,
-        previewUrl: randomGifObject.images.fixed_width.webp,
-      },
-    ];
-    this.gifsList = itemObject;
-    await this.updateCarouselModel(0);
+  async saveImage(): Promise<void> {
+    const imageData = this.currentImageBlob ? this.currentImageBlob : await getBlob(this.gifsList[this.carouselModel].url);
+    saveAs(imageData, `ggid-${this.gifsList[this.carouselModel].id}`);
   }
 
-  async getGifLists(mode: string): Promise<void> {
-    if (mode === 'trending') {
+  async getGifList(): Promise<void> {
+    if (this.$store.state.gifMode === 'trending') {
       const listFromGiphy: Giphy.Response = await getTrendingGifsListFromGiphy();
       this.buildGifList(listFromGiphy);
       await this.getRating();
     } else {
-      await this.setRandomGif();
+      const randomGifObject: Giphy.GIFObject = await getRandomGifFromGiphy();
+      const itemObject = [
+        {
+          id: randomGifObject.id,
+          url: randomGifObject.images.original.webp,
+          previewUrl: randomGifObject.images.fixed_width.webp,
+        },
+      ];
+      this.gifsList = itemObject;
     }
+    await this.updateCarouselModel(0);
   }
 
   async getBlobForPreviewGif(): Promise<Blob> {
@@ -207,12 +206,12 @@ export default class Frontpage extends Vue {
   async mounted(): Promise<void> {
     this.$store.watch(
       () => this.$store.state.gifMode,
-      async (mode: string) => {
-        await this.getGifLists(mode);
+      async () => {
+        await this.getGifList();
       },
     );
     this.gifCount = this.$store.state.gifCount;
-    await this.getGifLists(this.$store.state.gifMode);
+    await this.getGifList();
   }
 
   async getRating() {
@@ -232,3 +231,12 @@ export default class Frontpage extends Vue {
   }
 }
 </script>
+
+<style scoped>
+#trashIcon:hover {
+  color: red;
+}
+#downloadIcon:hover {
+  color: green;
+}
+</style>
