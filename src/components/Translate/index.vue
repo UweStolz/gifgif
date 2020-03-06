@@ -31,7 +31,7 @@
             :success="wasSuccessful"
             :error-messages="hasError ? 'Oh no, something went wrong!' : ''"
             :prepend-icon="icons.mdiMagnify"
-            :prepend-inner-icon="icons.mdiEmoticonOutline"
+            :prepend-inner-icon="$vuetify.breakpoint.xsOnly ? '' : icons.mdiEmoticonOutline"
             maxlength="25"
             color="black"
             clearable
@@ -130,7 +130,7 @@ import VEmojiPicker from 'v-emoji-picker';
   },
 })
 export default class Translate extends Vue {
-@Watch('inputValue')
+  @Watch('inputValue')
   resetState() {
     if (this.inputValue?.length === 0) {
       this.hasError = false;
