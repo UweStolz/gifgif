@@ -201,6 +201,6 @@ export default class Search extends Vue {
 #imageHover:hover {
   transform: scale(1.3);
   overflow-x: hidden;
-  z-index: 999;
+  z-index: 9;
 }
 </style>
