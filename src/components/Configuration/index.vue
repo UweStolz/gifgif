@@ -112,7 +112,7 @@
                       icon
                       large
                       :loading="isLoading"
-                      :disabled="$store.state.gifCount < 1"
+                      :disabled="wasZipBuilt || $store.state.gifCount < 1"
                       @click="generateZip"
                     >
                       <v-icon large>
@@ -175,6 +175,8 @@ export default class Configuration extends Vue {
 
   zipFile: null | Blob = null;
 
+  wasZipBuilt: boolean = false;
+
   configuration = {
     fullImageMode: {
       name: 'Save full image',
@@ -213,6 +215,7 @@ export default class Configuration extends Vue {
     });
     this.isLoading = false;
     this.finishedZipGeneration = true;
+    if (this.zipFile) { this.wasZipBuilt = true; }
   }
 
   downloadZip() {
