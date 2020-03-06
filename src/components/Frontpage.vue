@@ -109,7 +109,6 @@ import {
 } from '@mdi/js';
 import {
   getTrendingGifsListFromGiphy,
-  getTrendingGifsListFromTenor,
   getRandomGifFromGiphy,
   getBlob,
 } from '../request';
@@ -152,7 +151,7 @@ export default class Frontpage extends Vue {
 
   currentImageBlob: Blob | null = null;
 
-  gifsList: MergedGifLists = [];
+  gifsList: BuiltGifLists = [];
 
   carouselModel: number = 0;
 
@@ -171,47 +170,38 @@ export default class Frontpage extends Vue {
     await this.updateCarouselModel(0);
   }
 
-  async getGifLists(mode: string) {
+  async getGifLists(mode: string): Promise<void> {
     if (mode === 'trending') {
       const listFromGiphy: Giphy.Response = await getTrendingGifsListFromGiphy();
-      const listFromTenor: Tenor.Response = await getTrendingGifsListFromTenor();
-      this.mergeGifLists(listFromGiphy, listFromTenor);
+      this.buildGifList(listFromGiphy);
       await this.getRating();
     } else {
       await this.setRandomGif();
     }
   }
 
-  async getBlobForPreviewGif() {
+  async getBlobForPreviewGif(): Promise<Blob> {
     const currentPreviewGif = this.gifsList[this.carouselModel].previewUrl;
     const previewGifBlob = await getBlob(currentPreviewGif);
     return previewGifBlob;
   }
 
-  async updateCarouselModel(payload: number) {
+  async updateCarouselModel(payload: number): Promise<void> {
     this.carouselModel = payload;
     await this.getRating();
   }
 
-  mergeGifLists(listFromGiphy: Giphy.Response, listFromTenor: Tenor.Response): void {
-    const mergedLists: MergedGifLists = [];
+  buildGifList(listFromGiphy: Giphy.Response): void {
+    const builtGifList: BuiltGifLists = [];
     listFromGiphy.forEach((item) => {
-      const itemObject: MergedGifListObject = {
+      const itemObject: BuiltGifListObject = {
         id: item.id,
         url: item.images.original.webp.length ? item.images.original.webp : item.images.original.url,
         previewUrl: item.images.fixed_width.webp,
       };
-      mergedLists.push(itemObject);
+      builtGifList.push(itemObject);
     });
-    listFromTenor.forEach((item) => {
-      const itemObject: MergedGifListObject = {
-        id: item.id,
-        url: item.media[0].gif.url,
-        previewUrl: item.media[0].tinygif.url,
-      };
-      mergedLists.push(itemObject);
-    });
-    this.gifsList = mergedLists;
+    this.gifsList = builtGifList;
   }
 
   async mounted(): Promise<void> {
@@ -230,7 +220,7 @@ export default class Frontpage extends Vue {
     if (this.$store.state.fullImageMode) {
       this.currentImageBlob = await getBlob(this.gifsList[this.carouselModel].url);
     }
-    const gifData = await this.$store.dispatch('getGifData', `ggid-${currentId}`);
+    const gifData: Database.GifData | undefined = await this.$store.dispatch('getGifData', `ggid-${currentId}`);
     this.rating = gifData?.rating ? this.rating = gifData.rating : this.rating = 0;
   }
 

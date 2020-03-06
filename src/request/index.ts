@@ -44,10 +44,3 @@ export async function getTrendingSearchTermsFromTenor() {
   const gifsList: string[] = results;
   return gifsList;
 }
-
-export async function getTrendingGifsListFromTenor(): Promise<any[]> {
-  const response = await fetch(`https://api.tenor.com/v1/trending?key=${tenorApiKey}&media_filter=minimal`);
-  const { results } = await response.json();
-  const gifsList: Tenor.Response = results;
-  return gifsList;
-}

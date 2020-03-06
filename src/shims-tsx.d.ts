@@ -41,10 +41,10 @@ declare global {
     }
 }
 
-  interface MergedGifLists extends Array<MergedGifListObject> {
-    [index: number]: MergedGifListObject;
+  interface BuiltGifLists extends Array<BuiltGifListObject> {
+    [index: number]: BuiltGifListObject;
   }
-  interface MergedGifListObject {
+  interface BuiltGifListObject {
     id: string;
     url: string;
     previewUrl: string;
