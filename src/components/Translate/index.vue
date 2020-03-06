@@ -161,8 +161,8 @@ export default class Translate extends Vue {
   showPicker: boolean = false;
 
   async addEmoji(payload: any) {
-    if (this.inputValue.length < 24) {
-      this.inputValue += payload.data;
+    if (this.inputValue?.length < 24 || !this.inputValue) {
+      this.inputValue = this.inputValue ? this.inputValue += payload.data : this.inputValue = payload.data;
       await this.getTranslatedGif(true);
     }
     this.showPicker = false;
