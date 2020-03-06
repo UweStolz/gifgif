@@ -222,3 +222,9 @@ export default class Configuration extends Vue {
   }
 }
 </script>
+
+<style>
+.v-data-table table {
+  overflow: hidden;
+}
+</style>
