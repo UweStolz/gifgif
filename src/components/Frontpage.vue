@@ -226,20 +226,15 @@ export default class Frontpage extends Vue {
   }
 
   async getRating() {
-    let gifData: Database.GifData | undefined;
     const currentId = this.gifsList[this.carouselModel].id;
     if (this.$store.state.fullImageMode) {
       this.currentImageBlob = await getBlob(this.gifsList[this.carouselModel].url);
-      gifData = await this.$store.dispatch('getGifData', `ggid-${currentId}`);
     }
-    gifData = await this.$store.dispatch('getGifData', `ggid-${currentId}`);
+    const gifData = await this.$store.dispatch('getGifData', `ggid-${currentId}`);
     this.rating = gifData?.rating ? this.rating = gifData.rating : this.rating = 0;
   }
 
   async removeGif() {
-    if (this.$store.state.fullImageMode) {
-      await this.$store.dispatch('removeGifData', `ggid-${this.gifsList[this.carouselModel].id}`);
-    }
     await this.$store.dispatch('removeGifData', `ggid-${this.gifsList[this.carouselModel].id}`);
     this.rating = 0;
     this.gifCount -= 1;
