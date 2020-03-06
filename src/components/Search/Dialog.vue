@@ -35,10 +35,8 @@
             {{ icons.mdiDownload }}
           </v-icon>
         </v-btn>
-        <v-spacer />
-
         <v-btn
-          v-if="rating !== 0"
+          :disabled="rating === 0"
           large
           icon
           @click="removeGif"

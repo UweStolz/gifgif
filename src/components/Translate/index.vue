@@ -70,31 +70,6 @@
         <v-card-actions>
           <v-row justify="center">
             <v-item-group v-if="translatedGif">
-              <v-btn
-                :disabled="rating === 0"
-                large
-                icon
-                @click="removeGif"
-              >
-                <v-icon
-                  id="trashIcon"
-                  large
-                >
-                  {{ icons.mdiTrashCan }}
-                </v-icon>
-              </v-btn>
-              <v-btn
-                large
-                icon
-                @click="saveImage"
-              >
-                <v-icon
-                  id="downloadIcon"
-                  large
-                >
-                  {{ icons.mdiDownload }}
-                </v-icon>
-              </v-btn>
               <v-rating
                 v-model="rating"
                 length="5"
@@ -107,6 +82,25 @@
                 background-color="red"
                 @input="updateGifRating"
               />
+              <v-btn
+                :disabled="rating === 0"
+                large
+                icon
+                @click="removeGif"
+              >
+                <v-icon id="trashIcon">
+                  {{ icons.mdiTrashCan }}
+                </v-icon>
+              </v-btn>
+              <v-btn
+                large
+                icon
+                @click="saveImage"
+              >
+                <v-icon id="downloadIcon">
+                  {{ icons.mdiDownload }}
+                </v-icon>
+              </v-btn>
             </v-item-group>
           </v-row>
         </v-card-actions>
