@@ -160,13 +160,16 @@ export default class Translate extends Vue {
 
   showPicker: boolean = false;
 
-  addEmoji(payload: any) {
-    if (this.inputValue.length < 24) { this.inputValue += payload.data; }
+  async addEmoji(payload: any) {
+    if (this.inputValue.length < 24) {
+      this.inputValue += payload.data;
+      await this.getTranslatedGif(true);
+    }
     this.showPicker = false;
   }
 
   openEmojiMart() {
-    this.showPicker = true;
+    this.showPicker = !this.showPicker;
   }
 
   clearTextField() {
@@ -182,8 +185,8 @@ export default class Translate extends Vue {
     this.rating = gifData ? this.rating = gifData.rating : 0;
   }
 
-  async getTranslatedGif() {
-    if (this.inputValue?.length >= 3) {
+  async getTranslatedGif(fromEmojiPicker?: boolean) {
+    if (this.inputValue?.length >= 3 || fromEmojiPicker) {
       try {
         const result = await getTranslateGifFromGiphy(this.inputValue, this.weirdnessSlider);
         this.translatedGifId = result.id;
