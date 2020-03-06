@@ -169,7 +169,7 @@ export default class Configuration extends Vue {
 
   isLoading: boolean = false;
 
-  loaderValue: number = 0;
+  loaderValue: string = '0';
 
   finishedZipGeneration: boolean = false;
 
@@ -190,7 +190,6 @@ export default class Configuration extends Vue {
 
   async deleteGifData() {
     await this.$store.dispatch('removeCompleteGifData');
-    this.$store.commit('setGifCount', 0);
     this.showDialog = false;
   }
 
@@ -211,7 +210,7 @@ export default class Configuration extends Vue {
     }
 
     this.zipFile = await zip.generateAsync({ type: 'blob' }, (meta) => {
-      this.loaderValue = parseInt(meta.percent.toPrecision(2), 10);
+      this.loaderValue = meta.percent.toPrecision(2);
     });
     this.isLoading = false;
     this.finishedZipGeneration = true;

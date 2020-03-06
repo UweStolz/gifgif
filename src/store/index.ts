@@ -59,6 +59,7 @@ const store = new Vuex.Store<States>({
       return idb.removeGifData(key);
     },
     async removeCompleteGifData(): Promise<void> {
+      this.commit('setGifCount', 0);
       return idb.removeCompleteGifData();
     },
     async getGifCount(context: any): Promise<number> {
