@@ -7,7 +7,7 @@
     :width="$vuetify.breakpoint.xsOnly ? '100%' : '60%'"
     @click:outside="resetProps"
   >
-    <v-card>
+    <v-card style="overflow: hidden;">
       <v-card-title>
         <v-spacer />
         <v-btn
@@ -26,37 +26,41 @@
         width="100%"
       />
       <v-card-actions>
-        <v-btn
-          large
-          icon
-          @click="saveImage"
-        >
-          <v-icon id="downloadIcon">
-            {{ icons.mdiDownload }}
-          </v-icon>
-        </v-btn>
-        <v-btn
-          :disabled="rating === 0"
-          large
-          icon
-          @click="removeGif"
-        >
-          <v-icon>
-            {{ icons.mdiTrashCan }}
-          </v-icon>
-        </v-btn>
-        <v-rating
-          v-model="rating"
-          length="5"
-          :empty-icon="icons.mdiHeartOutline"
-          :full-icon="icons.mdiHeart"
-          :half-icon="icons.mdiHeartHalfFull"
-          hover
-          x-large
-          color="red"
-          background-color="red"
-          @input="updateGifRating"
-        />
+        <v-row justify="center">
+          <v-item-group>
+            <v-rating
+              v-model="rating"
+              length="5"
+              :empty-icon="icons.mdiHeartOutline"
+              :full-icon="icons.mdiHeart"
+              :half-icon="icons.mdiHeartHalfFull"
+              hover
+              x-large
+              color="red"
+              background-color="red"
+              @input="updateGifRating"
+            />
+            <v-btn
+              large
+              icon
+              @click="saveImage"
+            >
+              <v-icon id="downloadIcon">
+                {{ icons.mdiDownload }}
+              </v-icon>
+            </v-btn>
+            <v-btn
+              :disabled="rating === 0"
+              large
+              icon
+              @click="removeGif"
+            >
+              <v-icon>
+                {{ icons.mdiTrashCan }}
+              </v-icon>
+            </v-btn>
+          </v-item-group>
+        </v-row>
       </v-card-actions>
     </v-card>
   </v-dialog>
