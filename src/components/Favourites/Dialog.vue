@@ -24,44 +24,31 @@
         height="100%"
         width="100%"
       />
-      <v-card-actions>
-        <v-btn
-          large
-          icon
-          @click="saveImage"
-        >
-          <v-icon id="downloadIcon">
-            {{ icons.mdiDownload }}
-          </v-icon>
-        </v-btn>
-        <v-btn
-          icon
-          large
-          @click="deleteGifData"
-        >
-          <v-icon id="trashIcon">
-            {{ icons.mdiTrashCan }}
-          </v-icon>
-        </v-btn>
-      </v-card-actions>
+      <card-actions
+        :image-id.sync="syncedImageId"
+        :image-data.sync="syncedFullImageData"
+        @delete="(payload) => $emit('delete', payload)"
+      />
     </v-card>
   </v-dialog>
 </template>
 
 <script lang="ts">
 import {
-  Vue, Component, PropSync, Watch, Emit,
+  Vue, Component, PropSync, Watch,
 } from 'vue-property-decorator';
 import blobToImage from '@/util/imageHelper';
-import {
-  mdiClose, mdiDownload, mdiTrashCan,
-} from '@mdi/js';
-import { saveAs } from 'file-saver';
+import { mdiClose } from '@mdi/js';
+import CardActions from '@/components/shared/CardActions.vue';
 
-@Component
+@Component({
+  components: {
+    CardActions,
+  },
+})
 export default class Dialog extends Vue {
   @Watch('syncedFullImageData')
-  convertBufferToImage() {
+  convertBlobToImage() {
     if (this.syncedFullImageData) {
       this.imageData = this.syncedFullImageData instanceof Blob
         ? blobToImage(this.syncedFullImageData as Blob)
@@ -71,42 +58,19 @@ export default class Dialog extends Vue {
 
   @PropSync('showDialog', { type: Boolean, required: true }) syncedShowDialog!: boolean;
 
-  @PropSync('fullImageData', { required: true }) syncedFullImageData!: null | ArrayBuffer | string;
+  @PropSync('fullImageData', { required: true }) syncedFullImageData!: null | Blob | string;
 
   @PropSync('imageId', { required: true }) syncedImageId!: string;
-
-  @Emit('delete')
-  deleteGifData() {
-    this.syncedShowDialog = false;
-    return this.syncedImageId;
-  }
-
-  saveImage(): void {
-    saveAs(this.imageData, `ggid-${this.syncedImageId}`);
-  }
 
   resetProps(): void {
     this.syncedShowDialog = false;
     this.syncedFullImageData = null;
   }
 
-  icons = {
-    mdiClose,
-    mdiTrashCan,
-    mdiDownload,
-  }
+  icons = { mdiClose }
 
   imageData: string = '';
 
   maxWindowSize: number = window.innerHeight / 1.5;
 }
 </script>
-
-<style scoped>
-#trashIcon:hover {
-  color: red;
-}
-#downloadIcon:hover {
-  color: green;
-}
-</style>

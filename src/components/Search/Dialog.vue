@@ -25,58 +25,28 @@
         height="100%"
         width="100%"
       />
-      <v-card-actions>
-        <v-row justify="center">
-          <v-item-group>
-            <v-rating
-              v-model="rating"
-              length="5"
-              :empty-icon="icons.mdiHeartOutline"
-              :full-icon="icons.mdiHeart"
-              :half-icon="icons.mdiHeartHalfFull"
-              hover
-              x-large
-              color="red"
-              background-color="red"
-              @input="updateGifRating"
-            />
-            <v-btn
-              large
-              icon
-              @click="saveImage"
-            >
-              <v-icon id="downloadIcon">
-                {{ icons.mdiDownload }}
-              </v-icon>
-            </v-btn>
-            <v-btn
-              :disabled="rating === 0"
-              large
-              icon
-              @click="removeGif"
-            >
-              <v-icon>
-                {{ icons.mdiTrashCan }}
-              </v-icon>
-            </v-btn>
-          </v-item-group>
-        </v-row>
-      </v-card-actions>
+      <card-actions
+        :show-rating="true"
+        :image-id="syncedImageId"
+        :image-data="syncedFullImageData"
+        :preview-image-data="syncedpreviewImageData"
+      />
     </v-card>
   </v-dialog>
 </template>
 
 <script lang="ts">
 import {
-  Vue, Component, PropSync, Watch,
+  Vue, Component, PropSync,
 } from 'vue-property-decorator';
-import {
-  mdiClose, mdiDownload, mdiHeartOutline, mdiHeart, mdiHeartHalfFull, mdiTrashCan,
-} from '@mdi/js';
-import { getBlob } from '@/request';
-import { saveAs } from 'file-saver';
+import { mdiClose } from '@mdi/js';
+import CardActions from '@/components/shared/CardActions.vue';
 
-@Component
+@Component({
+  components: {
+    CardActions,
+  },
+})
 export default class Dialog extends Vue {
   @PropSync('showDialog', { type: Boolean, required: true }) syncedShowDialog!: boolean;
 
@@ -86,65 +56,13 @@ export default class Dialog extends Vue {
 
   @PropSync('imageId', { type: String, required: true }) syncedImageId!: string;
 
-  @Watch('syncedShowDialog')
-  async getRating(): Promise<void> {
-    const gifData = await this.$store.dispatch('getGifData', `ggid-${this.syncedImageId}`);
-    this.rating = gifData ? this.rating = gifData.rating : 0;
-  }
-
-  saveImage(): void {
-    saveAs(this.syncedFullImageData, `ggid-${this.syncedImageId}`);
-  }
-
   resetProps(): void {
     this.syncedShowDialog = false;
     this.syncedFullImageData = '';
-    this.rating = 0;
   }
 
-  async updateGifRating(rating: number): Promise<void> {
-    if (this.$store.state.fullImageMode) {
-      await this.$store.dispatch('setGifData', {
-        rating,
-        key: `ggid-${this.syncedImageId}`,
-        image: await getBlob(this.syncedFullImageData),
-        preview: await getBlob(this.syncedpreviewImageData),
-      });
-    } else {
-      await this.$store.dispatch('setGifData', {
-        rating,
-        key: `ggid-${this.syncedImageId}`,
-        image: this.syncedFullImageData,
-        preview: this.syncedpreviewImageData,
-      });
-    }
-  }
-
-  async removeGif(): Promise<void> {
-    await this.$store.dispatch('removeGifData', `ggid-${this.syncedImageId}`);
-    this.rating = 0;
-  }
-
-  icons = {
-    mdiClose,
-    mdiDownload,
-    mdiHeartOutline,
-    mdiHeart,
-    mdiHeartHalfFull,
-    mdiTrashCan,
-  }
-
-  rating: number = 0;
+  icons = { mdiClose }
 
   maxWindowSize: number = window.innerHeight / 1.5;
 }
 </script>
-
-<style scoped>
-#trashIcon:hover {
-  color: red;
-}
-#downloadIcon:hover {
-  color: green;
-}
-</style>

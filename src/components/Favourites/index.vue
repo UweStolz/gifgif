@@ -40,7 +40,7 @@
         <PanelContent
           :preview-images="data.previewUrl[x-1].previews"
           :full-images="data.previewUrl[x-1].images"
-          :image-id="data.previewUrl[x-1].id"
+          :image-ids="data.previewUrl[x-1].id"
         />
       </v-expansion-panel>
     </v-expansion-panels>

@@ -16,6 +16,7 @@
       >
         <v-col cols="auto">
           <v-carousel
+            v-model="carouselModel"
             height="55vh"
             hide-delimiters
             :show-arrows="gifsList.length > 1"
@@ -51,48 +52,15 @@
       no-gutters
     >
       <v-col cols="auto">
-        <v-card-actions style="margin-right: 35px;">
-          <v-item-group>
-            <v-rating
-              v-model="rating"
-              length="5"
-              :empty-icon="icons.mdiHeartOutline"
-              :full-icon="icons.mdiHeart"
-              :half-icon="icons.mdiHeartHalfFull"
-              hover
-              x-large
-              color="red"
-              background-color="red"
-              @input="updateGifRating"
-            />
-            <v-btn
-              id="downloadIcon"
-              icon
-              large
-              @click="saveImage"
-            >
-              <v-icon>{{ icons.mdiDownload }}</v-icon>
-            </v-btn>
-            <v-btn
-              id="trashIcon"
-              :disabled="!rating"
-              icon
-              large
-              @click="removeGif"
-            >
-              <v-icon>{{ icons.mdiTrashCan }}</v-icon>
-            </v-btn>
-            <v-btn
-              icon
-              large
-              @click="getGifList"
-            >
-              <v-icon>
-                {{ icons.mdiSync }}
-              </v-icon>
-            </v-btn>
-          </v-item-group>
-        </v-card-actions>
+        <card-actions
+          :rating.sync="rating"
+          :show-rating="true"
+          :is-frontpage="true"
+          :sync-function="getGifList"
+          :image-id.sync="currentId"
+          :image-data.sync="imageData"
+          :preview-image-data.sync="previewData"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -100,67 +68,25 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import {
-  mdiTrashCan, mdiHeart, mdiHeartOutline, mdiHeartHalfFull, mdiSync, mdiDownload,
-} from '@mdi/js';
-import { saveAs } from 'file-saver';
+import CardActions from '@/components/shared/CardActions.vue';
 import {
   getTrendingGifsListFromGiphy,
   getRandomGifFromGiphy,
   getBlob,
 } from '../request';
 
-@Component
+@Component({
+  components: {
+    CardActions,
+  },
+})
+
 export default class Frontpage extends Vue {
-  async updateGifRating() {
-    const {
-      rating, gifsList, carouselModel,
-    } = this;
-    if (this.$store.state.fullImageMode) {
-      const { currentImageBlob } = this;
-      await this.$store.dispatch('setGifData', {
-        rating,
-        key: `ggid-${gifsList[carouselModel].id}`,
-        image: currentImageBlob,
-        preview: await this.getBlobForPreviewGif(),
-      });
-    } else {
-      await this.$store.dispatch('setGifData', {
-        rating,
-        key: `ggid-${gifsList[carouselModel].id}`,
-        image: gifsList[carouselModel].url,
-        preview: gifsList[carouselModel].url,
-      });
-    }
-  }
-
-  icons = {
-    mdiHeartHalfFull,
-    mdiHeartOutline,
-    mdiHeart,
-    mdiTrashCan,
-    mdiSync,
-    mdiDownload,
-  }
-
-  rating: number = 0;
-
-  currentImageBlob: Blob | null = null;
-
-  gifsList: BuiltGifLists = [];
-
-  carouselModel: number = 0;
-
-  async saveImage(): Promise<void> {
-    const imageData = this.currentImageBlob ? this.currentImageBlob : await getBlob(this.gifsList[this.carouselModel].url);
-    saveAs(imageData, `ggid-${this.gifsList[this.carouselModel].id}`);
-  }
-
   async getGifList(): Promise<void> {
     if (this.$store.state.gifMode === 'trending') {
       const listFromGiphy: Giphy.Response = await getTrendingGifsListFromGiphy();
       this.buildGifList(listFromGiphy);
-      await this.getRating();
+      await this.updateCarouselModel();
     } else {
       const randomGifObject: Giphy.GIFObject = await getRandomGifFromGiphy();
       const itemObject = [
@@ -171,18 +97,36 @@ export default class Frontpage extends Vue {
         },
       ];
       this.gifsList = itemObject;
+      await this.updateCarouselModel();
     }
-    await this.updateCarouselModel(0);
   }
 
-  async getBlobForPreviewGif(): Promise<Blob> {
-    const currentPreviewGif = this.gifsList[this.carouselModel].previewUrl;
-    const previewGifBlob = await getBlob(currentPreviewGif);
-    return previewGifBlob;
+  imageKey: number = 0
+
+  rating: number = 0;
+
+  imageData: Blob|string = '';
+
+  previewData: Blob|string = '';
+
+  gifsList: BuiltGifLists = [];
+
+  carouselModel: number = 0;
+
+  currentId: string = '';
+
+  async mounted(): Promise<void> {
+    this.$store.watch(
+      () => this.$store.state.gifMode,
+      async () => {
+        await this.getGifList();
+      },
+    );
+    await this.getGifList();
   }
 
-  async updateCarouselModel(payload: number): Promise<void> {
-    this.carouselModel = payload;
+  async updateCarouselModel(index: number = 0): Promise<void> {
+    this.carouselModel = index;
     await this.getRating();
   }
 
@@ -199,37 +143,17 @@ export default class Frontpage extends Vue {
     this.gifsList = builtGifList;
   }
 
-  async mounted(): Promise<void> {
-    this.$store.watch(
-      () => this.$store.state.gifMode,
-      async () => {
-        await this.getGifList();
-      },
-    );
-    await this.getGifList();
-  }
-
   async getRating() {
-    const currentId = this.gifsList[this.carouselModel].id;
+    this.currentId = this.gifsList[this.carouselModel].id;
     if (this.$store.state.fullImageMode) {
-      this.currentImageBlob = await getBlob(this.gifsList[this.carouselModel].url);
+      this.imageData = await getBlob(this.gifsList[this.carouselModel].url);
+      this.previewData = await getBlob(this.gifsList[this.carouselModel].previewUrl);
+    } else {
+      this.imageData = this.gifsList[this.carouselModel].url;
+      this.previewData = this.gifsList[this.carouselModel].previewUrl;
     }
-    const gifData: Database.GifData | undefined = await this.$store.dispatch('getGifData', `ggid-${currentId}`);
+    const gifData: Database.GifData | undefined = await this.$store.dispatch('getGifData', `ggid-${this.currentId}`);
     this.rating = gifData?.rating ? this.rating = gifData.rating : this.rating = 0;
-  }
-
-  async removeGif() {
-    await this.$store.dispatch('removeGifData', `ggid-${this.gifsList[this.carouselModel].id}`);
-    this.rating = 0;
   }
 }
 </script>
-
-<style scoped>
-#trashIcon:hover {
-  color: red;
-}
-#downloadIcon:hover {
-  color: green;
-}
-</style>

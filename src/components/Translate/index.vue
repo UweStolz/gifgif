@@ -34,7 +34,7 @@
             clearable
             counter
             placeholder="Enter a search phrase"
-            @input="getTranslatedGif"
+            @input="getTranslatedGif(false)"
             @click:prepend-inner="openEmojiMart"
             @click:clear="clearTextField"
           />
@@ -65,43 +65,14 @@
             </template>
           </v-img>
         </v-row>
-        <v-card-actions>
-          <v-row justify="center">
-            <v-item-group v-if="translatedGif">
-              <v-rating
-                v-model="rating"
-                length="5"
-                :empty-icon="icons.mdiHeartOutline"
-                :full-icon="icons.mdiHeart"
-                :half-icon="icons.mdiHeartHalfFull"
-                hover
-                x-large
-                color="red"
-                background-color="red"
-                @input="updateGifRating"
-              />
-              <v-btn
-                :disabled="rating === 0"
-                large
-                icon
-                @click="removeGif"
-              >
-                <v-icon id="trashIcon">
-                  {{ icons.mdiTrashCan }}
-                </v-icon>
-              </v-btn>
-              <v-btn
-                large
-                icon
-                @click="saveImage"
-              >
-                <v-icon id="downloadIcon">
-                  {{ icons.mdiDownload }}
-                </v-icon>
-              </v-btn>
-            </v-item-group>
-          </v-row>
-        </v-card-actions>
+        <card-actions
+          v-if="translatedGif"
+          :rating.sync="rating"
+          :show-rating="true"
+          :image-id.sync="translatedGifId"
+          :image-data.sync="translatedGif"
+          :preview-image-data.sync="translatedGifPreview"
+        />
       </v-card>
     </v-row>
   </v-container>
@@ -110,15 +81,16 @@
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import {
-  mdiMagnify, mdiTrashCan, mdiDownload, mdiHeartOutline, mdiHeart, mdiHeartHalfFull, mdiEmoticonOutline,
+  mdiMagnify, mdiEmoticonOutline,
 } from '@mdi/js';
-import { getTranslateGifFromGiphy, getBlob } from '@/request';
-import { saveAs } from 'file-saver';
+import { getTranslateGifFromGiphy } from '@/request';
 import VEmojiPicker from 'v-emoji-picker';
+import CardActions from '@/components/shared/CardActions.vue';
 
 @Component({
   components: {
     Picker: VEmojiPicker,
+    CardActions,
   },
 })
 export default class Translate extends Vue {
@@ -132,11 +104,6 @@ export default class Translate extends Vue {
 
   icons = {
     mdiMagnify,
-    mdiTrashCan,
-    mdiDownload,
-    mdiHeartOutline,
-    mdiHeart,
-    mdiHeartHalfFull,
     mdiEmoticonOutline,
   }
 
@@ -186,7 +153,7 @@ export default class Translate extends Vue {
   }
 
   async getTranslatedGif(fromEmojiPicker?: boolean) {
-    if (this.inputValue?.length >= 3 || fromEmojiPicker) {
+    if (this.inputValue?.length > 2 || fromEmojiPicker) {
       try {
         const result = await getTranslateGifFromGiphy(this.inputValue, this.weirdnessSlider);
         this.translatedGifId = result.id;
@@ -200,39 +167,6 @@ export default class Translate extends Vue {
         this.wasSuccessful = false;
       }
     }
-  }
-
-  async removeGif() {
-    this.rating = 0;
-    await this.$store.dispatch('removeGifData', `ggid-${this.translatedGifId}`);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  async getBlobForGif(imageData: string) {
-    const previewGifBlob = await getBlob(imageData);
-    return previewGifBlob;
-  }
-
-  async updateGifRating(rating: number) {
-    if (this.$store.state.fullImageMode) {
-      await this.$store.dispatch('setGifData', {
-        rating,
-        key: `ggid-${this.translatedGifId}`,
-        image: await this.getBlobForGif(this.translatedGif),
-        preview: await this.getBlobForGif(this.translatedGifPreview),
-      });
-    } else {
-      await this.$store.dispatch('setGifData', {
-        rating,
-        key: `ggid-${this.translatedGifId}`,
-        image: this.translatedGif,
-        preview: this.translatedGifPreview,
-      });
-    }
-  }
-
-  saveImage(): void {
-    saveAs(this.translatedGif, `ggid-${this.translatedGifId}`);
   }
 }
 </script>

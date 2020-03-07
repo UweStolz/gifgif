@@ -8,7 +8,7 @@
         <Dialog
           :show-dialog.sync="dialog"
           :full-image-data.sync="fullImage"
-          :image-id.sync="imageId"
+          :image-id.sync="imageIds[selectedIndex]"
           @delete="deleteGif"
         />
         <v-item
@@ -47,7 +47,7 @@ export default class PanelContent extends Vue {
 
   @Prop({ required: true }) fullImages!: (Blob | string)[];
 
-  @Prop({ required: true }) imageId!: string[];
+  @Prop({ required: true }) imageIds!: string[];
 
   fullImage: null | Blob | string = null;
 
@@ -65,7 +65,7 @@ export default class PanelContent extends Vue {
     await this.$store.dispatch('removeGifData', payload[this.selectedIndex]);
     this.previewImages.splice(this.selectedIndex, 1);
     this.fullImages.splice(this.selectedIndex, 1);
-    this.imageId.splice(this.selectedIndex, 1);
+    this.imageIds.splice(this.selectedIndex, 1);
     this.selectedIndex = -1;
   }
 }

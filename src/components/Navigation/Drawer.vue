@@ -25,7 +25,7 @@
               color="grey"
             >
               <v-tooltip
-                nudge-right="6"
+                nudge-right="16"
                 right
               >
                 <template v-slot:activator="{ on }">
@@ -41,7 +41,7 @@
             </v-badge>
             <v-tooltip
               v-else
-              nudge-right="6"
+              nudge-right="16"
               right
             >
               <template v-slot:activator="{ on }">
