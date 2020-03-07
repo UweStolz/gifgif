@@ -23,7 +23,8 @@ const store = new Vuex.Store<States>({
       const configs = await idb.getAllConfigs();
       if (configs) {
         const initialStateFromDB: any = {};
-        for (let index = 0; index < configs.keys.length; index += 1) {
+        const arrLength = configs.keys.length;
+        for (let index = 0; index < arrLength; index += 1) {
           initialStateFromDB[configs.keys[index]] = configs.values[index];
         }
         this.replaceState(
