@@ -57,11 +57,10 @@
             height="100%"
             width="100%"
           >
-            <template v-slot:placeholder>
-              <v-progress-linear
-                indeterminate
-                color="red"
-              />
+            <template
+              v-slot:placeholder
+            >
+              <linear-progress />
             </template>
           </v-img>
         </v-row>
@@ -86,11 +85,13 @@ import {
 import { getTranslateGifFromGiphy } from '@/request';
 import VEmojiPicker from 'v-emoji-picker';
 import CardActions from '@/components/shared/CardActions.vue';
+import LinearProgress from '@/components/shared/LinearProgress.vue';
 
 @Component({
   components: {
     Picker: VEmojiPicker,
     CardActions,
+    LinearProgress,
   },
 })
 export default class Translate extends Vue {
@@ -170,12 +171,3 @@ export default class Translate extends Vue {
   }
 }
 </script>
-
-<style scoped>
-#trashIcon:hover {
-  color: red;
-}
-#downloadIcon:hover {
-  color: green;
-}
-</style>

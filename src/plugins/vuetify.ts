@@ -4,6 +4,7 @@ import Vuetify, {
   VCol,
   VContainer,
   VSheet,
+  VProgressLinear,
 } from 'vuetify/lib';
 
 Vue.use(Vuetify, {
@@ -12,6 +13,7 @@ Vue.use(Vuetify, {
     VCol,
     VContainer,
     VSheet,
+    VProgressLinear,
   },
 });
 

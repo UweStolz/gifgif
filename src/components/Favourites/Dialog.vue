@@ -23,7 +23,13 @@
         contain
         height="100%"
         width="100%"
-      />
+      >
+        <template
+          v-slot:placeholder
+        >
+          <linear-progress />
+        </template>
+      </v-img>
       <card-actions
         :image-id.sync="syncedImageId"
         :image-data.sync="syncedFullImageData"
@@ -40,10 +46,12 @@ import {
 import blobToImage from '@/util/imageHelper';
 import { mdiClose } from '@mdi/js';
 import CardActions from '@/components/shared/CardActions.vue';
+import LinearProgress from '@/components/shared/LinearProgress.vue';
 
 @Component({
   components: {
     CardActions,
+    LinearProgress,
   },
 })
 export default class Dialog extends Vue {

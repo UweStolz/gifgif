@@ -34,11 +34,10 @@
                 height="100%"
                 width="100%"
               >
-                <template v-slot:placeholder>
-                  <v-progress-linear
-                    indeterminate
-                    color="red"
-                  />
+                <template
+                  v-slot:placeholder
+                >
+                  <linear-progress />
                 </template>
               </v-img>
             </v-carousel-item>
@@ -69,6 +68,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import CardActions from '@/components/shared/CardActions.vue';
+import LinearProgress from '@/components/shared/LinearProgress.vue';
 import {
   getTrendingGifsListFromGiphy,
   getRandomGifFromGiphy,
@@ -78,6 +78,7 @@ import {
 @Component({
   components: {
     CardActions,
+    LinearProgress,
   },
 })
 

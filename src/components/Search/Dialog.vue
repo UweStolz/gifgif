@@ -24,7 +24,13 @@
         contain
         height="100%"
         width="100%"
-      />
+      >
+        <template
+          v-slot:placeholder
+        >
+          <linear-progress />
+        </template>
+      </v-img>
       <card-actions
         :show-rating="true"
         :image-id="syncedImageId"
@@ -41,10 +47,12 @@ import {
 } from 'vue-property-decorator';
 import { mdiClose } from '@mdi/js';
 import CardActions from '@/components/shared/CardActions.vue';
+import LinearProgress from '@/components/shared/LinearProgress.vue';
 
 @Component({
   components: {
     CardActions,
+    LinearProgress,
   },
 })
 export default class Dialog extends Vue {
