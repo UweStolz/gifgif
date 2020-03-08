@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import routes from '@/router/routes';
+import store from './vuexHelper';
 
 Vue.use(Vuetify);
 const localVue = createLocalVue();
@@ -16,6 +17,7 @@ export default function shallow(component: VueClass<Vue>, ...args: (ThisTypedSha
     localVue,
     vuetify,
     router,
+    store,
   };
   Object.assign(options, ...args);
   return shallowMount(component, options);
