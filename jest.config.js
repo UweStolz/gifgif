@@ -1,5 +1,9 @@
 module.exports = {
+  clearMocks: true,
+  resetMocks: true,
+  restoreMocks: true,
   preset: '@vue/cli-plugin-unit-jest/presets/typescript-and-babel',
+  setupFiles: ['<rootDir>/tests/helper.ts'],
   snapshotSerializers: [
     'jest-serializer-vue',
   ],
@@ -16,4 +20,5 @@ module.exports = {
     'ts',
     'vue',
   ],
+  testURL: 'http://localhost/',
 };
