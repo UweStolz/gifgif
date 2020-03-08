@@ -1,13 +1,7 @@
 import Vue from 'vue';
 import Vuex, { MutationPayload } from 'vuex';
 import idb from '../database';
-
-type States = {
-  gifCount: number;
-  gifMode: string;
-  showMobileDrawer: boolean;
-  fullImageMode: boolean;
-}
+import { States } from './states';
 
 Vue.use(Vuex);
 
