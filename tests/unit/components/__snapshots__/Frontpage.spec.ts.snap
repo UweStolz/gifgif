@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Frontpage.vue renders properly 1`] = `
+<v-container-stub tag="div" fluid="true" fill-height="">
+  <v-row-stub tag="div" nogutters="true" align="start" justify="center">
+    <v-card-stub loaderheight="4" tag="div" height="70%" width="80%" tile="true" flat="true">
+      <v-col-stub cols="auto" tag="div">
+        <v-carousel-stub value="0" activeclass="v-window-item--active" mandatory="true" continuous="true" nexticon="$next" previcon="$prev" delimitericon="$delimiter" height="55vh" hidedelimiters="true" interval="6000"></v-carousel-stub>
+      </v-col-stub>
+    </v-card-stub>
+  </v-row-stub>
+  <v-row-stub tag="div" nogutters="true" align="start" justify="center">
+    <v-col-stub cols="auto" tag="div">
+      <card-actions-stub previewimagedata="" imagedata="" imageid="" rating="0" showrating="true" isfrontpage="true" syncfunction="function () { [native code] }"></card-actions-stub>
+    </v-col-stub>
+  </v-row-stub>
+</v-container-stub>
+`;

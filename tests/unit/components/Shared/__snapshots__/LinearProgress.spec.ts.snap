@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinearProgress.vue renders properly 1`] = `
+<div role="progressbar" aria-valuemin="0" aria-valuemax="100" class="v-progress-linear theme--light" style="height: 4px;">
+  <div class="v-progress-linear__background red" style="opacity: 0.3; left: 0%; width: 100%;"></div>
+  <div class="v-progress-linear__buffer"></div>
+  <div class="v-progress-linear__indeterminate v-progress-linear__indeterminate--active">
+    <div class="v-progress-linear__indeterminate long red"></div>
+    <div class="v-progress-linear__indeterminate short red"></div>
+  </div>
+</div>
+`;

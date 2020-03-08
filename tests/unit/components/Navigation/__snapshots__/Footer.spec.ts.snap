@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer.vue renders properly 1`] = `
+<v-footer-stub color="red darken-3" height="auto" tag="div" tile="true" app="true">
+  <v-col-stub cols="12" tag="div" class="text-center">
+    <div style="color: white;">
+      2020 -
+      <v-btn-stub color="white" tag="button" tile="true" activeclass="" to="/about" text="true" type="button">
+        About
+      </v-btn-stub>
+      - <strong>GIFGIF</strong></div>
+  </v-col-stub>
+</v-footer-stub>
+`;

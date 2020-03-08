@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snackbar.vue renders properly 1`] = `
+<v-snackbar-stub color="info" top="true" timeout="3000">
+  Whoops something went wrong
+  <!---->
+</v-snackbar-stub>
+`;

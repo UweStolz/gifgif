@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About.vue renders properly 1`] = `
+<v-container-stub tag="div" fluid="true">
+  <v-row-stub tag="div" justify="center">
+    <v-card-stub loaderheight="4" tag="div" width="50%" tile="true" flat="true">
+      <v-card-title-stub class="display-2 justify-center">
+        <router-link-stub to="/" style="color: black;">
+          GIFGIF
+        </router-link-stub>
+      </v-card-title-stub>
+      <vue-markdown-stub watches="source,show,toc" source="
+  ---
+  
+  ## Privacy Policy
+  No Personal Data will be Collected!
+
+  ### Browser Storage
+  Application information will be saved in the IndexedDB of your Browser, via the [IndexedDB API.](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
+  This information is **only** available to **you**.
+
+  ## Copyright
+  This project is licensed under the [MIT license](https://github.com/UweStolz/gifgif/blob/master/LICENSE.md)
+
+  ## References
+
+  ### Technologies
+  This project was build with:  
+  <table>
+  <tr>
+  <td><a href=&quot;https://vuejs.org/&quot;><img src=&quot;&quot; width=&quot;64&quot;></a></td>
+  <td>Vue</td>
+  </tr>
+  <tr>
+  <td><a href=&quot;https://vuetifyjs.com/&quot;><img src=&quot;&quot; width=&quot;64&quot;></a></td>
+  <td>Vuetify</td>
+  </tr>
+  </table>
+
+  ### APIs
+  [Giphy](https://developers.giphy.com/docs/api/)
+  [Tenor](https://tenor.com/gifapi/documentation)
+
+  ### Repository:
+  <a href=&quot;https://github.com/UweStolz/gifgif&quot;><img src=&quot;&quot; width=&quot;64&quot;></a> Available under GitHub
+  " show="true" highlight="true" html="true" xhtmlout="true" breaks="true" linkify="true" emoji="true" typographer="true" langprefix="language-" quotes="“”‘’" tableclass="table" tasklists="true" tocclass="table-of-contents" tocfirstlevel="2" tocanchorlink="true" tocanchorclass="toc-anchor" tocanchorlinksymbol="#" tocanchorlinkspace="true" tocanchorlinkclass="toc-anchor-link" anchorattributes="[object Object]" prerender="function _default(sourceData) {
+	        return sourceData;
+	      }" postrender="function _default(htmlData) {
+	        return htmlData;
+	      }"></vue-markdown-stub>
+    </v-card-stub>
+  </v-row-stub>
+</v-container-stub>
+`;

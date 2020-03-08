@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardActions.vue renders properly 1`] = `
+<v-card-actions-stub>
+  <v-row-stub tag="div" justify="center">
+    <v-item-group-stub activeclass="v-item--active">
+      <!---->
+      <v-btn-stub tag="button" activeclass="" large="true" icon="true" type="button">
+        <v-icon-stub id="downloadIcon">
+          M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z
+        </v-icon-stub>
+      </v-btn-stub>
+      <v-btn-stub tag="button" activeclass="" large="true" icon="true" type="button">
+        <v-icon-stub id="trashIcon">
+          M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z
+        </v-icon-stub>
+      </v-btn-stub>
+      <!---->
+    </v-item-group-stub>
+  </v-row-stub>
+</v-card-actions-stub>
+`;
