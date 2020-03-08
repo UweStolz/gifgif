@@ -5,7 +5,10 @@ import VueRouter from 'vue-router';
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import routes from '@/router/routes';
+import { enableFetchMocks } from 'jest-fetch-mock';
 import store from './vuexHelper';
+
+enableFetchMocks();
 
 Vue.use(Vuetify);
 const localVue = createLocalVue();
