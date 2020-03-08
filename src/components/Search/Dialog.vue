@@ -32,10 +32,12 @@
         </template>
       </v-img>
       <card-actions
+        :rating.sync="rating"
         :show-rating="true"
         :image-id="syncedImageId"
         :image-data="syncedFullImageData"
         :preview-image-data="syncedpreviewImageData"
+        @delete="resetProps"
       />
     </v-card>
   </v-dialog>
@@ -43,7 +45,7 @@
 
 <script lang="ts">
 import {
-  Vue, Component, PropSync,
+  Vue, Component, PropSync, Watch,
 } from 'vue-property-decorator';
 import { mdiClose } from '@mdi/js';
 import CardActions from '@/components/shared/CardActions.vue';
@@ -64,10 +66,21 @@ export default class Dialog extends Vue {
 
   @PropSync('imageId', { type: String, required: true }) syncedImageId!: string;
 
+  @Watch('syncedShowDialog')
+  async getRating() {
+    if (this.syncedShowDialog) {
+      const gifData = await this.$store.dispatch('getGifData', `ggid-${this.syncedImageId}`);
+      this.rating = gifData ? this.rating = gifData.rating : 0;
+    }
+  }
+
   resetProps(): void {
     this.syncedShowDialog = false;
     this.syncedFullImageData = '';
+    this.rating = 0;
   }
+
+  rating: number = 0;
 
   icons = { mdiClose }
 
