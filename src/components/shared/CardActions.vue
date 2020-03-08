@@ -65,7 +65,7 @@ export default class CardActions extends Vue {
 
 @PropSync('imageData', { required: true }) syncImageData!: Blob|string;
 
-@PropSync('imageId', { type: String }) syncImageId!: string;
+@PropSync('imageId', { required: true }) syncImageId!: string;
 
 @PropSync('rating', { default: -1, type: Number }) syncRrating!: number;
 
@@ -80,9 +80,11 @@ deleteGifData() {
   return this.propImageId;
 }
 
-@Watch('syncImageId')
+@Watch('syncImageId', { immediate: true })
 setId() {
-  this.propImageId = this.syncImageId.startsWith('ggid') ? this.syncImageId : `ggid-${this.syncImageId}`;
+  if (this.syncImageId) {
+    this.propImageId = this.syncImageId.startsWith('ggid') ? this.syncImageId : `ggid-${this.syncImageId}`;
+  }
 }
 
 @Watch('syncImageData')
