@@ -33,7 +33,7 @@
       <card-actions
         :image-id.sync="syncedImageId"
         :image-data.sync="syncedFullImageData"
-        @delete="(payload) => $emit('delete', payload)"
+        @delete="deleteHandler"
       />
     </v-card>
   </v-dialog>
@@ -69,6 +69,11 @@ export default class Dialog extends Vue {
   @PropSync('fullImageData', { required: true }) syncedFullImageData!: null | Blob | string;
 
   @PropSync('imageId', { required: true }) syncedImageId!: string;
+
+  deleteHandler(payload: string): void {
+    this.$emit('delete', payload);
+    this.resetProps();
+  }
 
   resetProps(): void {
     this.syncedShowDialog = false;
