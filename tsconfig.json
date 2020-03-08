@@ -1,7 +1,4 @@
 {
-  "typeAcquisition": {
-    "enable": true
-},
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
