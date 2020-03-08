@@ -12,10 +12,11 @@ const vuetify = new Vuetify();
 const router = new VueRouter({ routes });
 
 export default function shallow(component: VueClass<Vue>, ...args: (ThisTypedShallowMountOptions<Vue> | undefined)[]) {
-  return shallowMount(component, {
+  const options: ThisTypedShallowMountOptions<Vue> | undefined = {
     localVue,
     vuetify,
     router,
-    ...args,
-  });
+  };
+  Object.assign(options, ...args);
+  return shallowMount(component, options);
 }
