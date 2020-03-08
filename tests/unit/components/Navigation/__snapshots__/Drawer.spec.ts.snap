@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Drawer.vue renders properly 1`] = `
+<v-navigation-drawer-stub app="true" color="red darken-3" clipped="true" height="100vh" minivariant="true" minivariantwidth="9vh" mobilebreakpoint="600px" permanent="true" src="" tag="nav" width="256">
+  <v-list-stub tag="div" tile="true">
+    <v-list-item-group-stub activeclass="v-item--active">
+      <v-list-item-stub activeclass="" link="true" to="/favourites" tag="div">
+        <v-list-item-icon-stub>
+          <v-badge-stub color="grey" transition="scale-rotate-transition" content="0" label="$vuetify.badge">
+            <v-tooltip-stub opendelay="0" closedelay="0" contentclass="" fixed="true" right="true" openonhover="true" maxwidth="auto" nudgebottom="0" nudgeleft="0" nudgeright="16" nudgetop="0" nudgewidth="0" tag="span"> <span>Favourites</span></v-tooltip-stub>
+          </v-badge-stub>
+        </v-list-item-icon-stub>
+        <v-list-item-content-stub></v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-list-item-stub activeclass="" link="true" to="/search" tag="div">
+        <v-list-item-icon-stub>
+          <v-tooltip-stub opendelay="0" closedelay="0" contentclass="" fixed="true" right="true" openonhover="true" maxwidth="auto" nudgebottom="0" nudgeleft="0" nudgeright="16" nudgetop="0" nudgewidth="0" tag="span"> <span>Tag search</span></v-tooltip-stub>
+        </v-list-item-icon-stub>
+        <v-list-item-content-stub></v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-list-item-stub activeclass="" link="true" to="/translate" tag="div">
+        <v-list-item-icon-stub>
+          <v-tooltip-stub opendelay="0" closedelay="0" contentclass="" fixed="true" right="true" openonhover="true" maxwidth="auto" nudgebottom="0" nudgeleft="0" nudgeright="16" nudgetop="0" nudgewidth="0" tag="span"> <span>Translate</span></v-tooltip-stub>
+        </v-list-item-icon-stub>
+        <v-list-item-content-stub></v-list-item-content-stub>
+      </v-list-item-stub>
+    </v-list-item-group-stub>
+  </v-list-stub>
+</v-navigation-drawer-stub>
+`;

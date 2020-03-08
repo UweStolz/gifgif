@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PanelContent.vue renders properly 1`] = `
+<v-expansion-panel-content-stub id="pa-exp-con">
+  <v-item-group-stub activeclass="v-item--active">
+    <v-row-stub tag="div" align="start" justify="start">
+      <dialog-stub></dialog-stub>
+      <v-item-stub class="mx-auto">
+        <v-lazy-stub minheight="50" options="[object Object]" tag="div" transition="fade-transition">
+          <v-img-stub maxheight="200" maxwidth="230" lazysrc="previewImage1" options="[object Object]" position="center center" src="previewImage1" transition="fade-transition" id="imageHover"></v-img-stub>
+        </v-lazy-stub>
+      </v-item-stub>
+      <v-item-stub class="mx-auto">
+        <v-lazy-stub minheight="50" options="[object Object]" tag="div" transition="fade-transition">
+          <v-img-stub maxheight="200" maxwidth="230" lazysrc="previewImage2" options="[object Object]" position="center center" src="previewImage2" transition="fade-transition" id="imageHover"></v-img-stub>
+        </v-lazy-stub>
+      </v-item-stub>
+    </v-row-stub>
+  </v-item-group-stub>
+</v-expansion-panel-content-stub>
+`;

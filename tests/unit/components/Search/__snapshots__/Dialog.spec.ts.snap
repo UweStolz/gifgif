@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dialog.vue renders properly 1`] = `
-<v-dialog-stub opendelay="0" closedelay="0" contentclass="" maxwidth="none" origin="center center" retainfocus="true" transition="dialog-transition" width="60%">
+<v-dialog-stub opendelay="0" closedelay="0" contentclass="" maxwidth="none" origin="center center" retainfocus="true" transition="dialog-transition" width="60%" full-image-data="http://someFullImage.webp" preview-image-data="http://somePreviewImage.webp" image-id="ggid-123321">
   <v-card-stub loaderheight="4" tag="div" style="overflow: hidden;">
     <v-card-title-stub>
       <v-spacer-stub></v-spacer-stub>
@@ -9,8 +9,8 @@ exports[`Dialog.vue renders properly 1`] = `
         <v-icon-stub>M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z</v-icon-stub>
       </v-btn-stub>
     </v-card-title-stub>
-    <v-img-stub height="100%" maxheight="512" width="100%" contain="true" options="[object Object]" position="center center" src="" transition="fade-transition"></v-img-stub>
-    <card-actions-stub rating="-1" showrating="true"></card-actions-stub>
+    <v-img-stub height="100%" maxheight="512" width="100%" contain="true" lazysrc="http://someFullImage.webp" options="[object Object]" position="center center" src="http://someFullImage.webp" transition="fade-transition"></v-img-stub>
+    <card-actions-stub previewimagedata="http://somePreviewImage.webp" imagedata="http://someFullImage.webp" imageid="ggid-123321" rating="0" showrating="true"></card-actions-stub>
   </v-card-stub>
 </v-dialog-stub>
 `;

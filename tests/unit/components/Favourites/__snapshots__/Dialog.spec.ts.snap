@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dialog.vue renders properly 1`] = `
-<v-dialog-stub opendelay="0" closedelay="0" contentclass="" maxwidth="none" origin="center center" retainfocus="true" transition="dialog-transition" width="60%">
+<v-dialog-stub opendelay="0" closedelay="0" contentclass="" maxwidth="none" origin="center center" retainfocus="true" transition="dialog-transition" width="60%" full-image-data="http://someFullImage.webp" image-id="ggid-123321" previewimagedata="http://somePreviewImage.webp">
   <v-card-stub loaderheight="4" tag="div">
     <v-card-title-stub>
       <v-spacer-stub></v-spacer-stub>
@@ -10,7 +10,7 @@ exports[`Dialog.vue renders properly 1`] = `
       </v-btn-stub>
     </v-card-title-stub>
     <v-img-stub height="100%" maxheight="512" width="100%" contain="true" lazysrc="" options="[object Object]" position="center center" src="" transition="fade-transition"></v-img-stub>
-    <card-actions-stub rating="-1"></card-actions-stub>
+    <card-actions-stub imagedata="http://someFullImage.webp" imageid="ggid-123321" rating="-1"></card-actions-stub>
   </v-card-stub>
 </v-dialog-stub>
 `;
