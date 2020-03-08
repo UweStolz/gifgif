@@ -1,14 +1,14 @@
 <template>
   <div style="height: 100%;">
     <v-card-title
-      v-if="!isDataEmpty && evaluatedKey !== 0"
+      v-if="isDataAvailable && evaluatedKey !== 0"
       class="display-2 justify-center"
     >
       Favourites
     </v-card-title>
-    <Empty v-if="isDataEmpty && evaluatedKey !== 0" />
+    <Empty v-if="!isDataAvailable && evaluatedKey !== 0" />
     <v-expansion-panels
-      v-if="!isDataEmpty && evaluatedKey !== 0"
+      v-if="isDataAvailable && evaluatedKey !== 0"
       popout
       hover
     >
@@ -76,12 +76,12 @@ export default class Favourites extends Vue {
     for (let index = 1; index <= 5; index += 1) {
       if (this.data.previewUrl[index].id.length === 0) { counter += 1; }
     }
-    this.isDataEmpty = counter === 5;
+    this.isDataAvailable = !(counter === 5);
   }
 
   icons = { mdiHeart }
 
-  isDataEmpty: null | boolean = null;
+  isDataAvailable: null | boolean = null;
 
   evaluatedKey: number = 0;
 
@@ -97,9 +97,9 @@ export default class Favourites extends Vue {
 
   async mounted(): Promise<void> {
     const gifData: Database.GifStore = await this.$store.dispatch('getAllData');
-    this.isDataEmpty = gifData.keys.length === 0;
+    this.isDataAvailable = gifData ? gifData.keys.length !== 0 : false;
     this.evaluatedKey += 1;
-    if (!this.isDataEmpty) {
+    if (this.isDataAvailable) {
       gifData.values.forEach((value: Database.GifData, index) => {
         if (value.rating > 0 && value.rating < 6) {
           let previewImageUrl = value.preview;
