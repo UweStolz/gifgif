@@ -9,7 +9,6 @@ module.exports = {
     '<rootDir>/tests/',
     '<rootDir>/src/assets/',
   ],
-  setupFilesAfterEnv: ['<rootDir>/tests/setupFile'],
   preset: '@vue/cli-plugin-unit-jest/presets/typescript-and-babel',
   snapshotSerializers: [
     'jest-serializer-vue',

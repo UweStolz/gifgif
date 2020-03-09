@@ -6,7 +6,10 @@ import Vue from 'vue';
 import Vuetify from 'vuetify';
 import routes from '@/router/routes';
 import fetchMock, { enableFetchMocks } from 'jest-fetch-mock';
+import vueTestUtilMatchers from 'jest-matcher-vue-test-utils';
 import store from './vuexHelper';
+
+expect.extend({ ...vueTestUtilMatchers });
 
 jest.mock('idb');
 enableFetchMocks();
