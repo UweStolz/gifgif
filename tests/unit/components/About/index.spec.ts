@@ -3,9 +3,7 @@ import shallow from '../../../helper';
 
 describe('About.vue', () => {
   it('renders properly', () => {
-    const wrapper = shallow(About, {
-      stubs: ['router-link'],
-    });
+    const wrapper = shallow(About);
     expect(wrapper.element).toMatchSnapshot();
   });
 });
