@@ -1,10 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Empty.vue renders properly 1`] = `
-<div class="container container--fluid fill-height">
-  <div class="text-center col col-12">
-    <div class="display-2 v-sheet v-sheet--tile theme--light" style="height: 100%; width: 100%;">
+<div
+  class="container container--fluid fill-height"
+>
+  <div
+    class="text-center col col-12"
+  >
+    <div
+      class="display-2 v-sheet v-sheet--tile theme--light"
+      style="height: 100%; width: 100%;"
+    >
+      
       You have no favourites yet ☹️
+    
     </div>
   </div>
 </div>

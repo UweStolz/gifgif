@@ -4,6 +4,6 @@ import shallow from '../../../helper';
 describe('Snackbar.vue', () => {
   it('renders properly', () => {
     const wrapper = shallow(Snackbar);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.element).toMatchSnapshot();
   });
 });

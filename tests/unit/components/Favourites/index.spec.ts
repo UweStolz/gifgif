@@ -4,6 +4,6 @@ import shallow from '../../../helper';
 describe('Favourites', () => {
   it('renders properly', () => {
     const wrapper = shallow(Favourites);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.element).toMatchSnapshot();
   });
 });

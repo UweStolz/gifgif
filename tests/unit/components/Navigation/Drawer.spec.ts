@@ -4,6 +4,6 @@ import shallow from '../../../helper';
 describe('Drawer.vue', () => {
   it('renders properly', () => {
     const wrapper = shallow(Drawer);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.element).toMatchSnapshot();
   });
 });

@@ -10,6 +10,6 @@ describe('PanelContent.vue', () => {
         fullImages: ['fullImage1', 'fullImage2'],
       },
     });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.element).toMatchSnapshot();
   });
 });

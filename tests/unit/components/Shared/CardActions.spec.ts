@@ -9,6 +9,6 @@ describe('CardActions.vue', () => {
         imageId: 'ggid-1',
       },
     });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.element).toMatchSnapshot();
   });
 });

@@ -21,6 +21,6 @@ describe('Frontpage.vue', () => {
     fetchMock.resetMocks();
     fetchMock.mockResponse(JSON.stringify(mockResponse));
     const wrapper = shallow(Frontpage);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.element).toMatchSnapshot();
   });
 });

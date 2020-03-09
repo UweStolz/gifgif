@@ -6,6 +6,6 @@ describe('About.vue', () => {
     const wrapper = shallow(About, {
       stubs: ['router-link'],
     });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.element).toMatchSnapshot();
   });
 });

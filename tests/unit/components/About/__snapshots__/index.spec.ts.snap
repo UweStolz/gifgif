@@ -1,15 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`About.vue renders properly 1`] = `
-<v-container-stub tag="div" fluid="true">
-  <v-row-stub tag="div" justify="center">
-    <v-card-stub loaderheight="4" tag="div" width="50%" tile="true" flat="true">
-      <v-card-title-stub class="display-2 justify-center">
-        <router-link-stub to="/" style="color: black;">
+<v-container-stub
+  fluid="true"
+  tag="div"
+>
+  <v-row-stub
+    justify="center"
+    tag="div"
+  >
+    <v-card-stub
+      flat="true"
+      loaderheight="4"
+      tag="div"
+      tile="true"
+      width="50%"
+    >
+      <v-card-title-stub
+        class="display-2 justify-center"
+      >
+        <router-link-stub
+          style="color: black;"
+          to="/"
+        >
+          
           GIFGIF
+        
         </router-link-stub>
       </v-card-title-stub>
-      <vue-markdown-stub watches="source,show,toc" source="
+       
+      <vue-markdown-stub
+        anchorattributes="[object Object]"
+        breaks="true"
+        emoji="true"
+        highlight="true"
+        html="true"
+        langprefix="language-"
+        linkify="true"
+        postrender="function _default(htmlData) {
+	        return htmlData;
+	      }"
+        prerender="function _default(sourceData) {
+	        return sourceData;
+	      }"
+        quotes="“”‘’"
+        show="true"
+        source="
   ---
   
   ## Privacy Policy
@@ -28,11 +64,11 @@ exports[`About.vue renders properly 1`] = `
   This project was build with:  
   <table>
   <tr>
-  <td><a href=&quot;https://vuejs.org/&quot;><img src=&quot;&quot; width=&quot;64&quot;></a></td>
+  <td><a href=\\"https://vuejs.org/\\"><img src=\\"\\" width=\\"64\\"></a></td>
   <td>Vue</td>
   </tr>
   <tr>
-  <td><a href=&quot;https://vuetifyjs.com/&quot;><img src=&quot;&quot; width=&quot;64&quot;></a></td>
+  <td><a href=\\"https://vuetifyjs.com/\\"><img src=\\"\\" width=\\"64\\"></a></td>
   <td>Vuetify</td>
   </tr>
   </table>
@@ -42,12 +78,21 @@ exports[`About.vue renders properly 1`] = `
   [Tenor](https://tenor.com/gifapi/documentation)
 
   ### Repository:
-  <a href=&quot;https://github.com/UweStolz/gifgif&quot;><img src=&quot;&quot; width=&quot;64&quot;></a> Available under GitHub
-  " show="true" highlight="true" html="true" xhtmlout="true" breaks="true" linkify="true" emoji="true" typographer="true" langprefix="language-" quotes="“”‘’" tableclass="table" tasklists="true" tocclass="table-of-contents" tocfirstlevel="2" tocanchorlink="true" tocanchorclass="toc-anchor" tocanchorlinksymbol="#" tocanchorlinkspace="true" tocanchorlinkclass="toc-anchor-link" anchorattributes="[object Object]" prerender="function _default(sourceData) {
-	        return sourceData;
-	      }" postrender="function _default(htmlData) {
-	        return htmlData;
-	      }"></vue-markdown-stub>
+  <a href=\\"https://github.com/UweStolz/gifgif\\"><img src=\\"\\" width=\\"64\\"></a> Available under GitHub
+  "
+        tableclass="table"
+        tasklists="true"
+        tocanchorclass="toc-anchor"
+        tocanchorlink="true"
+        tocanchorlinkclass="toc-anchor-link"
+        tocanchorlinkspace="true"
+        tocanchorlinksymbol="#"
+        tocclass="table-of-contents"
+        tocfirstlevel="2"
+        typographer="true"
+        watches="source,show,toc"
+        xhtmlout="true"
+      />
     </v-card-stub>
   </v-row-stub>
 </v-container-stub>

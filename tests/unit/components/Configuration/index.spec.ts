@@ -4,6 +4,6 @@ import shallow from '../../../helper';
 describe('Configuration.vue', () => {
   it('renders properly', () => {
     const wrapper = shallow(Configuration);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.element).toMatchSnapshot();
   });
 });

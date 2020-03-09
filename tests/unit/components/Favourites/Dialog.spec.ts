@@ -11,6 +11,6 @@ describe('Dialog.vue', () => {
         imageId: 'ggid-123321',
       },
     });
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.element).toMatchSnapshot();
   });
 });

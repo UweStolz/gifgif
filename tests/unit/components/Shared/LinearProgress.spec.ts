@@ -4,6 +4,6 @@ import shallow from '../../../helper';
 describe('LinearProgress.vue', () => {
   it('renders properly', () => {
     const wrapper = shallow(LinearProgress);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.element).toMatchSnapshot();
   });
 });

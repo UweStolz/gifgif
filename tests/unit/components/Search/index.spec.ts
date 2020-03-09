@@ -10,6 +10,6 @@ describe('Search.vue', () => {
     fetchMock.resetMocks();
     fetchMock.mockResponse(JSON.stringify(mockResponse));
     const wrapper = shallow(Search);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.element).toMatchSnapshot();
   });
 });
