@@ -2,6 +2,8 @@ module.exports = {
   clearMocks: true,
   resetMocks: true,
   restoreMocks: true,
+  verbose: true,
+  collectCoverage: true,
   preset: '@vue/cli-plugin-unit-jest/presets/typescript-and-babel',
   snapshotSerializers: [
     'jest-serializer-vue',
