@@ -24,11 +24,11 @@
     >
       <template v-slot:activator="{ on }">
         <v-btn
-          :id="$store.state.gifMode === 'random' ? 'tb-active-button' : ''"
+          :id="$store.state.gifMode === 'random' ? 'tb-active-button' : 'tb-inactive-button'"
           @click="setGifMode('random')"
           v-on="on"
         >
-          <v-icon :id="$store.state.gifMode === 'random' ? 'tb-active-icon' : ''">
+          <v-icon :id="$store.state.gifMode === 'random' ? 'tb-active-icon' : 'tb-inactive-icon'">
             {{ icons.mdiShuffle }}
           </v-icon>
         </v-btn>
@@ -41,11 +41,11 @@
     >
       <template v-slot:activator="{ on }">
         <v-btn
-          :id="$store.state.gifMode === 'trending' ? 'tb-active-button' : ''"
+          :id="$store.state.gifMode === 'trending' ? 'tb-active-button' : 'tb-inactive-button'"
           @click="setGifMode('trending')"
           v-on="on"
         >
-          <v-icon :id="$store.state.gifMode === 'trending' ? 'tb-active-icon' : ''">
+          <v-icon :id="$store.state.gifMode === 'trending' ? 'tb-active-icon' : 'tb-inactive-icon'">
             {{ icons.mdiTrendingUp }}
           </v-icon>
         </v-btn>
