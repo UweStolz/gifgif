@@ -4,6 +4,11 @@ module.exports = {
   restoreMocks: true,
   verbose: true,
   collectCoverage: true,
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    '<rootDir>/tests/',
+    '<rootDir>/src/assets/',
+  ],
   preset: '@vue/cli-plugin-unit-jest/presets/typescript-and-babel',
   snapshotSerializers: [
     'jest-serializer-vue',
