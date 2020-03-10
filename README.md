@@ -1,3 +1,4 @@
+[![Coverage](https://github.com/UweStolz/gifgif/coverage/badge-statements.svg)](https://github.com/UweStolz/gifgif/coverage/badge-statements.svg)
 # GIFGIF
 
 ---

@@ -4,6 +4,11 @@ module.exports = {
   restoreMocks: true,
   verbose: true,
   collectCoverage: true,
+  coverageReporters: [
+    'json-summary',
+    'text',
+    'lcov',
+  ],
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '<rootDir>/tests/',
