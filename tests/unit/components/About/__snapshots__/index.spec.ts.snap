@@ -19,14 +19,13 @@ exports[`About.vue renders properly 1`] = `
       <v-card-title-stub
         class="display-2 justify-center"
       >
-        <router-link
+        <a
           style="color: black;"
-          to="/"
         >
           
           GIFGIF
         
-        </router-link>
+        </a>
       </v-card-title-stub>
        
       <vue-markdown-stub
