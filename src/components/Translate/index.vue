@@ -41,6 +41,7 @@
         </v-form>
         <Picker
           v-if="showPicker"
+          v-click-outside="onClickOutside"
           @select="addEmoji"
         />
         <v-row
@@ -84,10 +85,17 @@ import {
 } from '@mdi/js';
 import { getTranslateGifFromGiphy } from '@/request';
 import VEmojiPicker from 'v-emoji-picker';
+// @ts-ignore - No types available
+import vClickOutside from 'v-click-outside';
+
 import CardActions from '@/components/shared/CardActions.vue';
 import LinearProgress from '@/components/shared/LinearProgress.vue';
 
 @Component({
+  directives: {
+    clickOutside: vClickOutside.directive,
+
+  },
   components: {
     Picker: VEmojiPicker,
     CardActions,
@@ -127,6 +135,10 @@ export default class Translate extends Vue {
   inputValue: string = '';
 
   showPicker: boolean = false;
+
+  onClickOutside(): void {
+    this.showPicker = false;
+  }
 
   async addEmoji(payload: any) {
     if (this.inputValue?.length < 24 || !this.inputValue) {
