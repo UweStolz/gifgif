@@ -13,6 +13,10 @@ A little PWA for GIFS and fun
  Vuetify  
  and Love ❤️
 
+## Tested with 🃏
+
+Jest
+
 ## License 📜
 
 [MIT](LICENSE.md)
