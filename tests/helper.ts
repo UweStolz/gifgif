@@ -29,6 +29,9 @@ export default function shallow(component: VueClass<Vue>, ...args: (ThisTypedSha
     vuetify,
     router,
     store,
+    stubs: {
+      RouterLink: RouterLinkStub,
+    },
   };
   Object.assign(options, ...args);
   return shallowMount(component, options);
