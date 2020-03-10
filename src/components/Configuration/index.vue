@@ -98,6 +98,7 @@
                         <v-card-actions>
                           <v-spacer />
                           <v-btn
+                            id="c-modal-del-btn"
                             color="error"
                             @click="deleteGifData"
                           >
