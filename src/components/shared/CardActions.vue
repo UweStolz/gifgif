@@ -20,7 +20,10 @@
           icon
           @click="saveImage"
         >
-          <v-icon id="downloadIcon">
+          <v-icon
+            id="downloadIcon"
+            :large="$vuetify.breakpoint.xlOnly"
+          >
             {{ icons.mdiDownload }}
           </v-icon>
         </v-btn>
@@ -30,7 +33,10 @@
           icon
           @click="removeGif"
         >
-          <v-icon id="trashIcon">
+          <v-icon
+            id="trashIcon"
+            :large="$vuetify.breakpoint.xlOnly"
+          >
             {{ icons.mdiTrashCan }}
           </v-icon>
         </v-btn>
@@ -40,7 +46,7 @@
           icon
           @click="syncFunction"
         >
-          <v-icon>
+          <v-icon :large="$vuetify.breakpoint.xlOnly">
             {{ icons.mdiSync }}
           </v-icon>
         </v-btn>
