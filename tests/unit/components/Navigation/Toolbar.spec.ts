@@ -18,4 +18,21 @@ describe('Toolbar.vue', () => {
     await Vue.nextTick();
     expect(gifModeState).toBe('random');
   });
+
+  it('Toggles display menu icon on mobiles', async () => {
+    Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 200 });
+    Object.defineProperty(window, 'innerHeight', { writable: true, configurable: true, value: 400 });
+    const wrapper = shallow(Toolbar, {
+      mocks: {
+        $vuetify: {
+          breakpoint: { xsOnly: true },
+        },
+      },
+      attachToDocument: true,
+    });
+    const navBarIcon = wrapper.find('v-app-bar-nav-icon-stub');
+    expect(navBarIcon.exists()).toBe(true);
+    expect(wrapper.element).toMatchSnapshot();
+    wrapper.destroy();
+  });
 });
