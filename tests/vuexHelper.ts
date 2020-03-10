@@ -1,6 +1,7 @@
 import Vuex, { MutationTree, ActionTree } from 'vuex';
 import Vue from 'vue';
 import { States } from '@/store/states';
+import { vuexPlugin } from 'jest-matcher-vue-test-utils';
 
 Vue.use(Vuex);
 
@@ -33,6 +34,7 @@ const store = new Vuex.Store<States>({
   state,
   mutations,
   actions,
+  plugins: [vuexPlugin()],
 });
 
 export default store;

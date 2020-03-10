@@ -51,4 +51,4 @@ export function deepMount(component: VueClass<Vue>, ...args: (ThisTypedMountOpti
   return mount(component, options);
 }
 
-export { fetchMock, Vue };
+export { fetchMock, Vue, store };
