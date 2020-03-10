@@ -84,22 +84,24 @@ import {
 
 export default class Frontpage extends Vue {
   async getGifList(): Promise<void> {
+    let yieldedError = false;
     if (this.$store.state.gifMode === 'trending') {
       const listFromGiphy: Giphy.Response = await getTrendingGifsListFromGiphy();
-      this.buildGifList(listFromGiphy);
-      await this.updateCarouselModel();
+      if (listFromGiphy.length) { this.buildGifList(listFromGiphy); } else { yieldedError = true; }
     } else {
       const randomGifObject: Giphy.GIFObject = await getRandomGifFromGiphy();
-      const itemObject = [
-        {
-          id: randomGifObject.id,
-          url: randomGifObject.images.original.webp,
-          previewUrl: randomGifObject.images.fixed_width.webp,
-        },
-      ];
-      this.gifsList = itemObject;
-      await this.updateCarouselModel();
+      if (randomGifObject.id) {
+        const itemObject = [
+          {
+            id: randomGifObject.id,
+            url: randomGifObject.images.original.webp,
+            previewUrl: randomGifObject.images.fixed_width.webp,
+          },
+        ];
+        this.gifsList = itemObject;
+      } else { yieldedError = true; }
     }
+    if (!yieldedError) { await this.updateCarouselModel(); }
   }
 
   imageKey: number = 0
