@@ -111,6 +111,11 @@ export default class Translate extends Vue {
     }
   }
 
+    @Watch('weirdnessSlider')
+  async getGif(): Promise<void> {
+    await this.getTranslatedGif();
+  }
+
   icons = {
     mdiMagnify,
     mdiEmoticonOutline,
