@@ -13,6 +13,8 @@ module.exports = {
     '/node_modules/',
     '<rootDir>/tests/',
     '<rootDir>/src/assets/',
+    '<rootDir>/src/views/',
+    '<rootDir>/src/router/',
   ],
   preset: '@vue/cli-plugin-unit-jest/presets/typescript-and-babel',
   snapshotSerializers: [
