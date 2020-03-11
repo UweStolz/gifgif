@@ -6,6 +6,12 @@ exports[`Frontpage.vue renders properly 1`] = `
   fluid="true"
   tag="div"
 >
+  <snackbar-stub
+    color="info"
+    message="gifgif was updated, please reload :)"
+    timeout="3000"
+  />
+   
   <v-row-stub
     align="start"
     justify="center"

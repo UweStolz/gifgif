@@ -3,6 +3,10 @@
     fluid
     fill-height
   >
+    <Snackbar
+      :visibility.sync="showSnackbar"
+      :message="snackbarMessage"
+    />
     <v-row
       align="start"
       justify="center"
@@ -68,6 +72,7 @@
 import { Vue, Component } from 'vue-property-decorator';
 import CardActions from '@/components/shared/CardActions.vue';
 import LinearProgress from '@/components/shared/LinearProgress.vue';
+import Snackbar from '@/components/shared/Snackbar.vue';
 import {
   getTrendingGifsListFromGiphy,
   getRandomGifFromGiphy,
@@ -77,6 +82,7 @@ import {
   components: {
     CardActions,
     LinearProgress,
+    Snackbar,
   },
 })
 
@@ -102,6 +108,10 @@ export default class Frontpage extends Vue {
     if (!yieldedError) { await this.updateCarouselModel(); }
   }
 
+  showSnackbar: boolean = false;
+
+  snackbarMessage: string = 'gifgif was updated, please reload :)';
+
   imageKey: number = 0
 
   rating: number = 0;
@@ -121,6 +131,12 @@ export default class Frontpage extends Vue {
       () => this.$store.state.gifMode,
       async () => {
         await this.getGifList();
+      },
+    );
+    this.$store.watch(
+      () => this.$store.state.pwaUpdated,
+      () => {
+        this.showSnackbar = true;
       },
     );
     await this.getGifList();

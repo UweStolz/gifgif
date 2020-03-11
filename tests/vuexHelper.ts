@@ -1,4 +1,4 @@
-import Vuex, { MutationTree, ActionTree } from 'vuex';
+import Vuex from 'vuex';
 import Vue from 'vue';
 import { States } from '@/store/states';
 import { vuexPlugin } from 'jest-matcher-vue-test-utils';
@@ -10,6 +10,7 @@ const state: States = {
   gifMode: 'trending',
   showMobileDrawer: false,
   fullImageMode: false,
+  pwaUpdated: false,
 };
 
 const mutations = {
