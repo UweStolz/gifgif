@@ -1,7 +1,8 @@
 import Configuration from '@/components/Configuration/index.vue';
-import shallow, { deepMount, Vue, store } from '../../../helper';
-// import { saveAs } from 'file-saver';
-// import JSZip from 'jszip';
+import fileSaver from 'file-saver';
+import shallow, {
+  deepMount, Vue, store, actions,
+} from '../../../helper';
 
 describe('Configuration.vue', () => {
   it('renders properly', () => {
@@ -49,5 +50,28 @@ describe('Configuration.vue', () => {
     await Vue.nextTick();
     expect(wrapper).toHaveDispatched('removeCompleteGifData');
     expect(wrapper.vm.$data.showDialog).toBe(false);
+  });
+
+  it.skip('Generate Zip', async () => {
+    const mockData = {
+      values: [
+        { image: new Blob(undefined, { type: 'image/webp' }), rating: 1 },
+        { image: new Blob(undefined, { type: 'image/webp' }), rating: 2 },
+        { image: new Blob(undefined, { type: 'image/gif' }), rating: 3 },
+      ],
+    };
+
+    const wrapper = deepMount(Configuration);
+    store.state.gifCount = 3;
+    actions.getAllData.mockImplementationOnce(async () => mockData);
+    const createZipButton = wrapper.get('#c-create-zip-btn');
+    createZipButton.trigger('click');
+    await Vue.nextTick();
+    expect(wrapper).toHaveDispatched('getAllData');
+  });
+
+  it.skip('Downloads the created Zip', () => {
+    // const saveAsMock = jest.spyOn(fileSaver, 'saveAs').mockImplementationOnce(() => {});
+    // expect(saveAsMock).toHaveBeenCalled();
   });
 });
