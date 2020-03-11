@@ -22,4 +22,4 @@ yarn-error.log*
 
 # Jest coverage
 coverage/*
-!coverage/badge-statements.svg
+!coverage/badge-*.svg
