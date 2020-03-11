@@ -1,24 +1,22 @@
-# gifgif
+[![Coverage](https://github.com/UweStolz/gifgif/coverage/badge-statements.svg)](https://github.com/UweStolz/gifgif/coverage/badge-statements.svg)
+# GIFGIF
 
-## Project setup
-```
-yarn install
-```
+---
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## What is GIFGIF?
 
-### Compiles and minifies for production
-```
-yarn build
-```
+A little PWA for GIFS and fun
 
-### Lints and fixes files
-```
-yarn lint
-```
+## Built with ⚙️
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ Vue  
+ Vuetify  
+ and Love ❤️
+
+## Tested with 🃏
+
+Jest
+
+## License 📜
+
+[MIT](LICENSE.md)

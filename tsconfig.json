@@ -12,7 +12,9 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "vuetify",
+      "jest"
     ],
     "paths": {
       "@/*": [
@@ -34,6 +36,7 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }

@@ -3,11 +3,16 @@ import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import vuetify from './plugins/vuetify';
+import store from './store';
 
 Vue.config.productionTip = false;
 
 new Vue({
   router,
   vuetify,
-  render: h => h(App),
+  store,
+  async beforeCreate() {
+    return this.$store.commit('initializeStore');
+  },
+  render: (h) => h(App),
 }).$mount('#app');

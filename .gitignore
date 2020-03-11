@@ -19,3 +19,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Jest coverage
+coverage/*
+!coverage/badge-statements.svg
