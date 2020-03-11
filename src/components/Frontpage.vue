@@ -71,7 +71,6 @@ import LinearProgress from '@/components/shared/LinearProgress.vue';
 import {
   getTrendingGifsListFromGiphy,
   getRandomGifFromGiphy,
-  getBlob,
 } from '../request';
 
 @Component({
@@ -146,17 +145,12 @@ export default class Frontpage extends Vue {
   }
 
   async setGifData() {
-    if (this.$store.state.fullImageMode) {
-      this.imageData = await getBlob(this.gifsList[this.carouselModel].url);
-      this.previewData = await getBlob(this.gifsList[this.carouselModel].previewUrl);
-    } else {
-      this.imageData = this.gifsList[this.carouselModel].url;
-      this.previewData = this.gifsList[this.carouselModel].previewUrl;
-    }
+    this.currentId = this.gifsList[this.carouselModel].id;
+    this.imageData = this.gifsList[this.carouselModel].url;
+    this.previewData = this.gifsList[this.carouselModel].previewUrl;
   }
 
   async getRating() {
-    this.currentId = this.gifsList[this.carouselModel].id;
     await this.setGifData();
     const gifData: Database.GifData | undefined = await this.$store.dispatch('getGifData', `ggid-${this.currentId}`);
     this.rating = gifData?.rating ? this.rating = gifData.rating : this.rating = 0;
