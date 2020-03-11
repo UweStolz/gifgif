@@ -1,4 +1,7 @@
-[![Coverage](https://github.com/UweStolz/gifgif/coverage/badge-statements.svg)](https://github.com/UweStolz/gifgif/coverage/badge-statements.svg)
+[![Coverage:Branches](https://github.com/UweStolz/gifgif/blob/master/coverage/badge-branches.svg)](https://github.com/UweStolz/gifgif/blob/master/coverage/badge-statements.svg)
+[![Coverage:Functions](https://github.com/UweStolz/gifgif/blob/master/coverage/badge-functions.svg)](https://github.com/UweStolz/gifgif/blob/master/coverage/badge-statements.svg)
+[![Coverage:Lines](https://github.com/UweStolz/gifgif/blob/master/coverage/badge-lines.svg)](https://github.com/UweStolz/gifgif/blob/master/coverage/badge-statements.svg)
+[![Coverage:Statements](https://github.com/UweStolz/gifgif/blob/master/coverage/badge-statements.svg)](https://github.com/UweStolz/gifgif/blob/master/coverage/badge-statements.svg)
 # GIFGIF
 
 ---
