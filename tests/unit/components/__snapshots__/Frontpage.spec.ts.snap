@@ -14,11 +14,11 @@ exports[`Frontpage.vue renders properly 1`] = `
   >
     <v-card-stub
       flat="true"
-      height="70%"
+      height="100%"
       loaderheight="4"
       tag="div"
       tile="true"
-      width="80%"
+      width="100%"
     >
       <v-col-stub
         cols="auto"
@@ -28,7 +28,7 @@ exports[`Frontpage.vue renders properly 1`] = `
           activeclass="v-window-item--active"
           continuous="true"
           delimitericon="$delimiter"
-          height="55vh"
+          height="500"
           hidedelimiters="true"
           interval="6000"
           mandatory="true"

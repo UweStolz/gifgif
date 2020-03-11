@@ -11,13 +11,12 @@
       <v-card
         flat
         tile
-        height="70%"
-        width="80%"
+        height="100%"
+        width="100%"
       >
         <v-col cols="auto">
           <v-carousel
             v-model="carouselModel"
-            height="55vh"
             hide-delimiters
             :show-arrows="gifsList.length > 1"
             :show-arrows-on-hover="gifsList.length > 1"
