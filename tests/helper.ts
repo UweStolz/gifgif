@@ -7,7 +7,7 @@ import Vuetify from 'vuetify';
 import routes from '@/router/routes';
 import fetchMock, { enableFetchMocks } from 'jest-fetch-mock';
 import vueTestUtilMatchers from 'jest-matcher-vue-test-utils';
-import store from './vuexHelper';
+import store, { actions, mutations } from './vuexHelper';
 
 expect.extend({ ...vueTestUtilMatchers });
 
@@ -51,4 +51,10 @@ export function deepMount(component: VueClass<Vue>, ...args: (ThisTypedMountOpti
   return mount(component, options);
 }
 
-export { fetchMock, Vue, store };
+export {
+  fetchMock,
+  Vue,
+  store,
+  actions,
+  mutations,
+};
