@@ -21,24 +21,22 @@
           thumb-label="always"
           ticks="always"
         />
-        <v-form :value="isInputValid">
-          <v-text-field
-            v-model="inputValue"
-            :error="hasError"
-            :success="wasSuccessful"
-            :error-messages="hasError ? 'Oh no, something went wrong!' : ''"
-            :prepend-icon="icons.mdiMagnify"
-            :prepend-inner-icon="$vuetify.breakpoint.xsOnly ? '' : icons.mdiEmoticonOutline"
-            maxlength="25"
-            color="black"
-            clearable
-            counter
-            placeholder="Enter a search phrase"
-            @input="getTranslatedGif(false)"
-            @click:prepend-inner="openEmojiMart"
-            @click:clear="clearTextField"
-          />
-        </v-form>
+        <v-text-field
+          v-model="inputValue"
+          :error="hasError"
+          :success="wasSuccessful"
+          :error-messages="hasError ? 'Oh no, something went wrong!' : ''"
+          :prepend-icon="icons.mdiMagnify"
+          :prepend-inner-icon="$vuetify.breakpoint.xsOnly ? '' : emoticonToShow"
+          maxlength="25"
+          color="black"
+          clearable
+          counter
+          placeholder="Enter a search phrase"
+          @input="getTranslatedGif(false)"
+          @click:prepend-inner="openEmojiMart"
+          @click:clear="clearTextField"
+        />
         <Picker
           v-if="showPicker"
           v-click-outside="onClickOutside"
@@ -58,9 +56,7 @@
             height="100%"
             width="100%"
           >
-            <template
-              v-slot:placeholder
-            >
+            <template v-slot:placeholder>
               <linear-progress />
             </template>
           </v-img>
@@ -81,7 +77,7 @@
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import {
-  mdiMagnify, mdiEmoticonOutline,
+  mdiMagnify, mdiEmoticonOutline, mdiEmoticonFrownOutline, mdiEmoticonExcitedOutline,
 } from '@mdi/js';
 import { getTranslateGifFromGiphy } from '@/request';
 import VEmojiPicker from 'v-emoji-picker';
@@ -108,10 +104,11 @@ export default class Translate extends Vue {
     if (this.inputValue?.length === 0) {
       this.hasError = false;
       this.wasSuccessful = false;
+      this.emoticonToShow = this.icons.mdiEmoticonOutline;
     }
   }
 
-    @Watch('weirdnessSlider')
+  @Watch('weirdnessSlider')
   async getGif(): Promise<void> {
     await this.getTranslatedGif();
   }
@@ -119,6 +116,8 @@ export default class Translate extends Vue {
   icons = {
     mdiMagnify,
     mdiEmoticonOutline,
+    mdiEmoticonFrownOutline,
+    mdiEmoticonExcitedOutline,
   }
 
   rating: number = 0;
@@ -135,11 +134,11 @@ export default class Translate extends Vue {
 
   translatedGifId: string = '';
 
-  isInputValid: boolean = false;
-
   inputValue: string = '';
 
   showPicker: boolean = false;
+
+  emoticonToShow: string = mdiEmoticonOutline;
 
   onClickOutside(): void {
     this.showPicker = false;
@@ -154,6 +153,7 @@ export default class Translate extends Vue {
   }
 
   openEmojiMart() {
+    this.clearTextField();
     this.showPicker = !this.showPicker;
   }
 
@@ -163,6 +163,7 @@ export default class Translate extends Vue {
     this.hasError = false;
     this.wasSuccessful = false;
     this.rating = 0;
+    this.emoticonToShow = this.icons.mdiEmoticonOutline;
   }
 
   async getRating() {
@@ -180,7 +181,9 @@ export default class Translate extends Vue {
         await this.getRating();
         this.hasError = false;
         this.wasSuccessful = true;
+        this.emoticonToShow = this.icons.mdiEmoticonExcitedOutline;
       } catch {
+        this.emoticonToShow = this.icons.mdiEmoticonFrownOutline;
         this.hasError = true;
         this.wasSuccessful = false;
       }
