@@ -46,6 +46,7 @@ exports[`Dialog.vue renders properly 1`] = `
     />
      
     <card-actions-stub
+      id="fa-card-actions"
       imagedata="http://someFullImage.webp"
       imageid="ggid-123321"
       rating="-1"
