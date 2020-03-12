@@ -1,8 +1,12 @@
 import JSZip, { JSZipGeneratorOptions } from 'jszip';
 
-const zip = new JSZip();
+let zip: JSZip;
 
 export default {
+  createInstance() {
+    zip = new JSZip();
+  },
+
   addFileToZip(folderName: string, fileName: string, file: Blob): void {
     zip.folder(folderName).file(fileName, file);
   },

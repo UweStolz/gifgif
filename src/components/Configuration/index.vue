@@ -217,7 +217,7 @@ export default class Configuration extends Vue {
       this.isLoading = true;
       this.finishedZipGeneration = false;
       const data: Database.GifStore = await this.$store.dispatch('getAllData');
-
+      zip.createInstance();
       // eslint-disable-next-line no-restricted-syntax
       for (const [index, gifData] of data.values.entries()) {
         const blob = typeof gifData.image === 'string'
