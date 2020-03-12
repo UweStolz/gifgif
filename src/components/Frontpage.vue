@@ -111,7 +111,7 @@ export default class Frontpage extends Vue {
 
   snackbarIcon = mdiInformationOutline;
 
-  showSnackbar: boolean = false;
+  showSnackbar: boolean = this.$store.state.pwaUpdated;
 
   snackbarMessage: string = 'gifgif was updated, please reload :)';
 
@@ -136,12 +136,12 @@ export default class Frontpage extends Vue {
         await this.getGifList();
       },
     );
-    this.$store.watch(
-      () => this.$store.state.pwaUpdated,
-      () => {
-        this.showSnackbar = true;
-      },
-    );
+    if (this.$store.state.pwaUpdated) {
+      setTimeout(() => {
+        this.$store.commit('setPwaUpdate', false);
+        this.showSnackbar = false;
+      }, 5000);
+    }
     await this.getGifList();
   }
 

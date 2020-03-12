@@ -28,10 +28,9 @@ const store = new Vuex.Store<States>({
       }
     },
 
-    pwaUpdate(state, payload) {
+    setPwaUpdate(state, payload) {
       state.pwaUpdated = payload;
     },
-
     setGifCount(state, payload) {
       state.gifCount = payload;
     },
