@@ -6,6 +6,7 @@
     <Snackbar
       :visibility.sync="showSnackbar"
       :message="snackbarMessage"
+      :icon="snackbarIcon"
     />
     <v-row
       align="start"
@@ -72,6 +73,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import CardActions from '@/components/shared/CardActions.vue';
 import LinearProgress from '@/components/shared/LinearProgress.vue';
 import Snackbar from '@/components/shared/Snackbar.vue';
+import { mdiInformationOutline } from '@mdi/js';
 import {
   getTrendingGifsListFromGiphy,
   getRandomGifFromGiphy,
@@ -106,6 +108,8 @@ export default class Frontpage extends Vue {
     }
     if (!yieldedError) { await this.updateCarouselModel(); }
   }
+
+  snackbarIcon = mdiInformationOutline;
 
   showSnackbar: boolean = false;
 
