@@ -6,6 +6,10 @@ module.exports = {
   pwa: {
     name: 'GIFGIF',
     themeColor: '#D0021B',
+    workboxOptions: {
+      skipWaiting: true,
+      clientsClaim: true,
+    },
   },
 
   productionSourceMap: false,

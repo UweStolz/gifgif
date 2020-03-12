@@ -31,6 +31,7 @@
         </template>
       </v-img>
       <card-actions
+        id="fa-card-actions"
         :image-id.sync="syncedImageId"
         :image-data.sync="syncedFullImageData"
         @delete="deleteHandler"

@@ -1,4 +1,4 @@
-import Vuex, { MutationTree, ActionTree } from 'vuex';
+import Vuex from 'vuex';
 import Vue from 'vue';
 import { States } from '@/store/states';
 import { vuexPlugin } from 'jest-matcher-vue-test-utils';
@@ -12,7 +12,7 @@ const state: States = {
   fullImageMode: false,
 };
 
-const mutations: MutationTree<States> = {
+const mutations = {
   initializeStore: jest.fn(),
   setGifCount: jest.fn(),
   setGifMode: jest.fn(),
@@ -20,7 +20,7 @@ const mutations: MutationTree<States> = {
   setShowMobileDrawer: jest.fn(),
 };
 
-const actions: ActionTree<States, States> = {
+const actions = {
   getGifData: jest.fn(),
   setGifData: jest.fn(),
   removeGifData: jest.fn(),
@@ -38,3 +38,5 @@ const store = new Vuex.Store<States>({
 });
 
 export default store;
+
+export { mutations, actions };

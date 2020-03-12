@@ -25,7 +25,9 @@
               color="grey"
             >
               <v-tooltip
+                :open-on-hover="$vuetify.breakpoint.xsOnly ? false : true"
                 nudge-right="16"
+                open-delay="500"
                 right
               >
                 <template v-slot:activator="{ on }">
@@ -41,6 +43,8 @@
             </v-badge>
             <v-tooltip
               v-else
+              :open-on-hover="$vuetify.breakpoint.xsOnly ? false : true"
+              open-delay="500"
               nudge-right="16"
               right
             >

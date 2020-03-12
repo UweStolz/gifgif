@@ -5,6 +5,12 @@
     :color="color"
     top
   >
+    <v-icon
+      v-if="icon"
+      color="white"
+    >
+      {{ icon }}
+    </v-icon>
     {{ message }}
     <v-btn
       v-if="showCloseButton"
@@ -14,7 +20,8 @@
       @click="syncVisibility = false"
     >
       <v-icon>
-        {{ icons.mdiClose }}<v-icon />
+        {{ icons.mdiClose }}
+        <v-icon />
       </v-icon>
     </v-btn>
   </v-snackbar>
@@ -28,16 +35,18 @@ import { mdiClose } from '@mdi/js';
 
 @Component
 export default class Snackbar extends Vue {
-@PropSync('visibility', { default: false }) syncVisibility!: boolean
+  @PropSync('visibility', { default: false }) syncVisibility!: boolean
 
-@Prop({ default: 'info' }) color!: string
+  @Prop({ default: 'info' }) color!: string
 
-@Prop({ default: false }) showCloseButton!: boolean;
+  @Prop({ default: false }) showCloseButton!: boolean;
 
-@Prop({ default: 'Whoops something went wrong' }) message!: string
+  @Prop({ default: 'Whoops something went wrong' }) message!: string
 
-@Prop({ default: 3000 }) timeout: number = 3000;
+  @Prop({ default: 3000 }) timeout: number = 3000;
 
-icons = { mdiClose }
+  @Prop({ default: null }) icon!: string | null;
+
+  icons = { mdiClose }
 }
 </script>

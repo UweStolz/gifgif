@@ -11,16 +11,16 @@
       <v-card
         flat
         tile
-        height="70%"
-        width="80%"
+        height="100%"
+        width="100%"
       >
         <v-col cols="auto">
           <v-carousel
             v-model="carouselModel"
-            height="55vh"
             hide-delimiters
-            :show-arrows="gifsList.length > 1"
-            :show-arrows-on-hover="gifsList.length > 1"
+            :height="$vuetify.breakpoint.xsOnly ? '55vh' : '30vmax'"
+            :show-arrows="!$vuetify.breakpoint.xsOnly && gifsList.length > 1"
+            :show-arrows-on-hover="!$vuetify.breakpoint.xsOnly && gifsList.length > 1"
             @change="updateCarouselModel"
           >
             <v-carousel-item
@@ -34,9 +34,7 @@
                 height="100%"
                 width="100%"
               >
-                <template
-                  v-slot:placeholder
-                >
+                <template v-slot:placeholder>
                   <linear-progress />
                 </template>
               </v-img>
@@ -69,16 +67,17 @@
 import { Vue, Component } from 'vue-property-decorator';
 import CardActions from '@/components/shared/CardActions.vue';
 import LinearProgress from '@/components/shared/LinearProgress.vue';
+import Snackbar from '@/components/shared/Snackbar.vue';
 import {
   getTrendingGifsListFromGiphy,
   getRandomGifFromGiphy,
-  getBlob,
 } from '../request';
 
 @Component({
   components: {
     CardActions,
     LinearProgress,
+    Snackbar,
   },
 })
 
@@ -108,9 +107,9 @@ export default class Frontpage extends Vue {
 
   rating: number = 0;
 
-  imageData: Blob|string = '';
+  imageData: Blob | string = '';
 
-  previewData: Blob|string = '';
+  previewData: Blob | string = '';
 
   gifsList: BuiltGifLists = [];
 
@@ -126,10 +125,20 @@ export default class Frontpage extends Vue {
       },
     );
     await this.getGifList();
+    window.addEventListener('keydown', (e) => {
+      if (e.keyCode === 37) { this.updateCarouselModel(this.carouselModel - 1); }
+      if (e.keyCode === 39) { this.updateCarouselModel(this.carouselModel + 1); }
+    });
   }
 
   async updateCarouselModel(index: number = 0): Promise<void> {
-    this.carouselModel = index;
+    if (index > this.gifsList.length - 1) {
+      this.carouselModel = 0;
+    } else if (index === -1) {
+      this.carouselModel = this.gifsList.length - 1;
+    } else {
+      this.carouselModel = index;
+    }
     await this.getRating();
   }
 
@@ -147,17 +156,12 @@ export default class Frontpage extends Vue {
   }
 
   async setGifData() {
-    if (this.$store.state.fullImageMode) {
-      this.imageData = await getBlob(this.gifsList[this.carouselModel].url);
-      this.previewData = await getBlob(this.gifsList[this.carouselModel].previewUrl);
-    } else {
-      this.imageData = this.gifsList[this.carouselModel].url;
-      this.previewData = this.gifsList[this.carouselModel].previewUrl;
-    }
+    this.currentId = this.gifsList[this.carouselModel].id;
+    this.imageData = this.gifsList[this.carouselModel].url;
+    this.previewData = this.gifsList[this.carouselModel].previewUrl;
   }
 
   async getRating() {
-    this.currentId = this.gifsList[this.carouselModel].id;
     await this.setGifData();
     const gifData: Database.GifData | undefined = await this.$store.dispatch('getGifData', `ggid-${this.currentId}`);
     this.rating = gifData?.rating ? this.rating = gifData.rating : this.rating = 0;
