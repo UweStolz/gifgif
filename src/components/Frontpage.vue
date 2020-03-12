@@ -68,7 +68,6 @@ import { Vue, Component } from 'vue-property-decorator';
 import CardActions from '@/components/shared/CardActions.vue';
 import LinearProgress from '@/components/shared/LinearProgress.vue';
 import Snackbar from '@/components/shared/Snackbar.vue';
-import { mdiInformationOutline } from '@mdi/js';
 import {
   getTrendingGifsListFromGiphy,
   getRandomGifFromGiphy,
