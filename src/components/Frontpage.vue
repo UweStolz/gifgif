@@ -18,7 +18,7 @@
           <v-carousel
             v-model="carouselModel"
             hide-delimiters
-            height="30vmax"
+            :height="$vuetify.breakpoint.xsOnly ? '55vh' : '30vmax'"
             :show-arrows="!$vuetify.breakpoint.xsOnly && gifsList.length > 1"
             :show-arrows-on-hover="!$vuetify.breakpoint.xsOnly && gifsList.length > 1"
             @change="updateCarouselModel"
