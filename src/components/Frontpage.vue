@@ -3,11 +3,6 @@
     fluid
     fill-height
   >
-    <Snackbar
-      :visibility.sync="showSnackbar"
-      :message="snackbarMessage"
-      :icon="snackbarIcon"
-    />
     <v-row
       align="start"
       justify="center"
@@ -109,12 +104,6 @@ export default class Frontpage extends Vue {
     if (!yieldedError) { await this.updateCarouselModel(); }
   }
 
-  snackbarIcon = mdiInformationOutline;
-
-  showSnackbar: boolean = this.$store.state.pwaUpdated;
-
-  snackbarMessage: string = 'gifgif was updated, please reload :)';
-
   imageKey: number = 0
 
   rating: number = 0;
@@ -136,12 +125,6 @@ export default class Frontpage extends Vue {
         await this.getGifList();
       },
     );
-    if (this.$store.state.pwaUpdated) {
-      setTimeout(() => {
-        this.$store.commit('setPwaUpdate', false);
-        this.showSnackbar = false;
-      }, 5000);
-    }
     await this.getGifList();
   }
 

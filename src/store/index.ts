@@ -11,7 +11,6 @@ const store = new Vuex.Store<States>({
     gifMode: 'trending',
     showMobileDrawer: false,
     fullImageMode: false,
-    pwaUpdated: false,
   },
   mutations: {
     async initializeStore(state) {
@@ -28,9 +27,6 @@ const store = new Vuex.Store<States>({
       }
     },
 
-    setPwaUpdate(state, payload) {
-      state.pwaUpdated = payload;
-    },
     setGifCount(state, payload) {
       state.gifCount = payload;
     },

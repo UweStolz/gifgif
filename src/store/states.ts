@@ -3,5 +3,4 @@ export type States = {
     gifMode: string;
     showMobileDrawer: boolean;
     fullImageMode: boolean;
-    pwaUpdated: boolean;
   }
