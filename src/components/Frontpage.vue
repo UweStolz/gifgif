@@ -125,10 +125,20 @@ export default class Frontpage extends Vue {
       },
     );
     await this.getGifList();
+    window.addEventListener('keydown', (e) => {
+      if (e.keyCode === 37) { this.updateCarouselModel(this.carouselModel - 1); }
+      if (e.keyCode === 39) { this.updateCarouselModel(this.carouselModel + 1); }
+    });
   }
 
   async updateCarouselModel(index: number = 0): Promise<void> {
-    this.carouselModel = index;
+    if (index > this.gifsList.length - 1) {
+      this.carouselModel = 0;
+    } else if (index === -1) {
+      this.carouselModel = this.gifsList.length - 1;
+    } else {
+      this.carouselModel = index;
+    }
     await this.getRating();
   }
 
