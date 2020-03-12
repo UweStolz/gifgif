@@ -1,8 +1,7 @@
 import Configuration from '@/components/Configuration/index.vue';
-import fileSaver from 'file-saver';
 import zip from '@/components/Configuration/zip';
 import shallow, {
-  deepMount, Vue, store, actions, fetchMock,
+  deepMount, store, actions, fetchMock,
 } from '../../../helper';
 
 describe('Configuration.vue', () => {
@@ -20,7 +19,7 @@ describe('Configuration.vue', () => {
       fullImageModeState = mutation.payload;
     });
     selectionControl.trigger('click');
-    await Vue.nextTick();
+    await wrapper.vm.$nextTick();
     expect(fullImageModeState).toBe(true);
   });
 
@@ -30,10 +29,10 @@ describe('Configuration.vue', () => {
     console.warn = jest.fn();
     const wrapper = deepMount(Configuration);
     store.state.gifCount = 3;
-    await Vue.nextTick();
+    await wrapper.vm.$nextTick();
     const deletionButton = wrapper.get({ name: 'v-btn' });
     deletionButton.trigger('click');
-    await Vue.nextTick();
+    await wrapper.vm.$nextTick();
     const dialog = wrapper.findAll({ name: 'v-alert' });
     expect(wrapper.vm.$data.showDialog).toBe(true);
     expect(dialog.wrappers[1].text()).toBe('Do you really want to delete your saved GIFs?');
@@ -42,21 +41,21 @@ describe('Configuration.vue', () => {
   it('Delete all saved Gifs', async () => {
     const wrapper = deepMount(Configuration);
     store.state.gifCount = 3;
-    await Vue.nextTick();
+    await wrapper.vm.$nextTick();
     const deletionButton = wrapper.get({ name: 'v-btn' });
     deletionButton.trigger('click');
-    await Vue.nextTick();
+    await wrapper.vm.$nextTick();
     const buttonInModal = wrapper.find('#c-modal-del-btn');
     buttonInModal.trigger('click');
-    await Vue.nextTick();
+    await wrapper.vm.$nextTick();
     expect(wrapper).toHaveDispatched('removeCompleteGifData');
     expect(wrapper.vm.$data.showDialog).toBe(false);
   });
 
-  it.skip('Generate Zip with Blob data', async () => {
+  it('Generate Zip with Blob data', async () => {
     jest.spyOn(zip, 'createInstance').mockImplementationOnce(() => {});
-    jest.spyOn(zip, 'addFileToZip').mockImplementationOnce(() => {});
-    jest.spyOn(zip, 'generateZip').mockImplementationOnce(async () => new Blob());
+    jest.spyOn(zip, 'addFileToZip').mockImplementation(() => {});
+    jest.spyOn(zip, 'generateZip').mockResolvedValueOnce(new Blob());
     const mockData = {
       values: [
         { image: new Blob(undefined, { type: 'image/webp' }), rating: 1 },
@@ -66,22 +65,19 @@ describe('Configuration.vue', () => {
     };
     store.state.gifCount = 3;
     const wrapper = deepMount(Configuration);
-    actions.getAllData.mockImplementationOnce(async () => mockData);
+    actions.getAllData.mockResolvedValue(mockData);
     const createZipButton = wrapper.get('#c-create-zip-btn');
     createZipButton.trigger('click');
-    await Vue.nextTick();
-    await Vue.nextTick();
+    await new Promise((resolve) => setTimeout(resolve));
     expect(wrapper).toHaveDispatched('getAllData');
     expect(wrapper.vm.$data.snackbarColor).toBe('success');
   });
 
-  it.skip('Generate Zip with String data', async () => {
+  it('Generate Zip with String data', async () => {
     fetchMock.resetMocks();
-    fetchMock.doMock();
-    jest.useFakeTimers();
     jest.spyOn(zip, 'createInstance').mockImplementationOnce(() => {});
-    jest.spyOn(zip, 'addFileToZip').mockImplementationOnce(() => {});
-    jest.spyOn(zip, 'generateZip').mockImplementationOnce(async () => new Blob());
+    jest.spyOn(zip, 'addFileToZip').mockImplementation(() => {});
+    jest.spyOn(zip, 'generateZip').mockResolvedValue(new Blob());
     fetchMock.mockResponse(async () => 'someData.webp');
     const mockData = {
       values: [
@@ -89,35 +85,43 @@ describe('Configuration.vue', () => {
         { image: 'http://someImage2.gif', rating: 2 },
       ],
     };
-    store.state.gifCount = 3;
+    store.state.gifCount = 2;
     const wrapper = deepMount(Configuration);
-    actions.getAllData.mockImplementationOnce(async () => mockData);
+    actions.getAllData.mockResolvedValueOnce(mockData);
     const createZipButton = wrapper.get('#c-create-zip-btn');
     createZipButton.trigger('click');
-    await Vue.nextTick();
-    await Vue.nextTick();
+    await new Promise((resolve) => setTimeout(resolve));
     expect(wrapper).toHaveDispatched('getAllData');
     expect(wrapper.vm.$data.snackbarColor).toBe('success');
-    jest.useRealTimers();
   });
 
   it('Catches error while generating zip', async () => {
-    jest.spyOn(zip, 'createInstance').mockImplementationOnce(() => {});
-    jest.spyOn(zip, 'addFileToZip').mockImplementationOnce(() => {});
-    jest.spyOn(zip, 'generateZip').mockImplementationOnce(async () => {});
+    jest.spyOn(zip, 'createInstance').mockImplementationOnce(() => { throw Error(); });
     store.state.gifCount = 3;
     const wrapper = deepMount(Configuration);
-    actions.getAllData.mockImplementationOnce(async () => {});
+    actions.getAllData.mockResolvedValueOnce({});
     const createZipButton = wrapper.get('#c-create-zip-btn');
     createZipButton.trigger('click');
-    await Vue.nextTick();
-    await Vue.nextTick();
+    await new Promise((resolve) => setTimeout(resolve));
     expect(wrapper).toHaveDispatched('getAllData');
     expect(wrapper.vm.$data.snackbarColor).toBe('error');
   });
 
-  it.skip('Downloads the created Zip', () => {
-    // const saveAsMock = jest.spyOn(fileSaver, 'saveAs').mockImplementationOnce(() => {});
-    // expect(saveAsMock).toHaveBeenCalled();
+  it('Downloads the created Zip', async () => {
+    store.state.gifCount = 2;
+    const mockDownloadZip = jest.fn();
+    const wrapper = deepMount(Configuration, {
+      methods: {
+        downloadZip: mockDownloadZip,
+      },
+      data: () => ({
+        finishedZipGeneration: true,
+        zipFile: new Blob(),
+      }),
+    });
+    const downloadZipButton = wrapper.get('#c-download-zip-btn');
+    downloadZipButton.trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(mockDownloadZip).toHaveBeenCalled();
   });
 });

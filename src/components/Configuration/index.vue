@@ -138,6 +138,7 @@
                       </template>
                     </v-btn>
                     <v-btn
+                      id="c-download-zip-btn"
                       icon
                       large
                       :disabled="!finishedZipGeneration"
