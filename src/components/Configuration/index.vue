@@ -116,6 +116,7 @@
                   </td>
                   <td>
                     <v-btn
+                      id="c-create-zip-btn"
                       icon
                       large
                       :loading="isLoading"
@@ -230,7 +231,6 @@ export default class Configuration extends Vue {
       this.zipFile = await zip.generateZip({ type: 'blob' }, (meta: any) => {
         this.loaderValue = meta.percent.toPrecision(2);
       });
-      this.isLoading = false;
       this.finishedZipGeneration = true;
       this.wasZipBuilt = true;
       this.snackbarMessage = 'ZIP successfully generated';
@@ -240,8 +240,9 @@ export default class Configuration extends Vue {
       this.snackbarMessage = 'There was an error during the ZIP generation!';
       this.snackbarColor = 'error';
       this.showSnackbar = true;
-      this.isLoading = false;
       this.wasZipBuilt = false;
+    } finally {
+      this.isLoading = false;
     }
   }
 
