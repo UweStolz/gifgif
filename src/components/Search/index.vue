@@ -32,7 +32,7 @@
           </v-card>
         </v-slide-y-transition>
         <v-combobox
-          v-model="selectedTerms"
+          v-model="selectedTerm"
           :search-input.sync="searchQuery"
           :loading="isLoading"
           :prepend-icon="icons.mdiImageSearch"
@@ -41,12 +41,11 @@
           persistent-hint
           hint="A minimum of 3 characters is required"
           label="GIF search"
-          placeholder="Enter or select search tags"
+          placeholder="Enter or select a search tag"
           cache-items
           hide-no-data
           deletable-chips
           chips
-          multiple
           clearable
           @click:clear="searchResults = null"
         >
@@ -106,13 +105,13 @@ export default class Search extends Vue {
 
   @Watch('selectedRating')
   async searchWithRating() {
-    const q: string = this.selectedTerms ? this.selectedTerms : this.searchQuery;
+    const q: string = this.selectedTerm ? this.selectedTerm : this.searchQuery;
     if (q) { await this.getSearchResults(q); }
   }
 
-  @Watch('selectedTerms')
-  async searchWithTerms(term: string) {
-    if (term[0]?.length > 2) {
+  @Watch('selectedTerm')
+  async searchWithTerm(term: string) {
+    if (term) {
       await this.getSearchResults(term);
     }
   }
@@ -126,7 +125,7 @@ export default class Search extends Vue {
   }
 
   showMenu(): boolean {
-    return (this.selectedTerms?.length > 0 || this.searchQuery?.length > 0);
+    return (this.selectedTerm?.length > 0 || this.searchQuery?.length > 0);
   }
 
   async getSearchResults(query: string) {
@@ -171,7 +170,7 @@ export default class Search extends Vue {
 
   isLoading: boolean = false;
 
-  selectedTerms: null | any = null;
+  selectedTerm: null | any = null;
 
   ratings = [
     {
