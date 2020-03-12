@@ -2,7 +2,7 @@ import Configuration from '@/components/Configuration/index.vue';
 import fileSaver from 'file-saver';
 import zip from '@/components/Configuration/zip';
 import shallow, {
-  deepMount, Vue, store, actions,
+  deepMount, Vue, store, actions, fetchMock,
 } from '../../../helper';
 
 describe('Configuration.vue', () => {
@@ -53,7 +53,8 @@ describe('Configuration.vue', () => {
     expect(wrapper.vm.$data.showDialog).toBe(false);
   });
 
-  it('Generate Zip', async () => {
+  it.skip('Generate Zip with Blob data', async () => {
+    jest.spyOn(zip, 'createInstance').mockImplementationOnce(() => {});
     jest.spyOn(zip, 'addFileToZip').mockImplementationOnce(() => {});
     jest.spyOn(zip, 'generateZip').mockImplementationOnce(async () => new Blob());
     const mockData = {
@@ -74,7 +75,34 @@ describe('Configuration.vue', () => {
     expect(wrapper.vm.$data.snackbarColor).toBe('success');
   });
 
+  it.skip('Generate Zip with String data', async () => {
+    fetchMock.resetMocks();
+    fetchMock.doMock();
+    jest.useFakeTimers();
+    jest.spyOn(zip, 'createInstance').mockImplementationOnce(() => {});
+    jest.spyOn(zip, 'addFileToZip').mockImplementationOnce(() => {});
+    jest.spyOn(zip, 'generateZip').mockImplementationOnce(async () => new Blob());
+    fetchMock.mockResponse(async () => 'someData.webp');
+    const mockData = {
+      values: [
+        { image: 'http://someImage.webp', rating: 1 },
+        { image: 'http://someImage2.gif', rating: 2 },
+      ],
+    };
+    store.state.gifCount = 3;
+    const wrapper = deepMount(Configuration);
+    actions.getAllData.mockImplementationOnce(async () => mockData);
+    const createZipButton = wrapper.get('#c-create-zip-btn');
+    createZipButton.trigger('click');
+    await Vue.nextTick();
+    await Vue.nextTick();
+    expect(wrapper).toHaveDispatched('getAllData');
+    expect(wrapper.vm.$data.snackbarColor).toBe('success');
+    jest.useRealTimers();
+  });
+
   it('Catches error while generating zip', async () => {
+    jest.spyOn(zip, 'createInstance').mockImplementationOnce(() => {});
     jest.spyOn(zip, 'addFileToZip').mockImplementationOnce(() => {});
     jest.spyOn(zip, 'generateZip').mockImplementationOnce(async () => {});
     store.state.gifCount = 3;
