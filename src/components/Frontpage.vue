@@ -22,8 +22,9 @@
           <v-carousel
             v-model="carouselModel"
             hide-delimiters
-            :show-arrows="gifsList.length > 1"
-            :show-arrows-on-hover="gifsList.length > 1"
+            height="35vmax"
+            :show-arrows="!$vuetify.breakpoint.xsOnly || gifsList.length > 1"
+            :show-arrows-on-hover="!$vuetify.breakpoint.xsOnly || gifsList.length > 1"
             @change="updateCarouselModel"
           >
             <v-carousel-item
@@ -37,9 +38,7 @@
                 height="100%"
                 width="100%"
               >
-                <template
-                  v-slot:placeholder
-                >
+                <template v-slot:placeholder>
                   <linear-progress />
                 </template>
               </v-img>
@@ -116,9 +115,9 @@ export default class Frontpage extends Vue {
 
   rating: number = 0;
 
-  imageData: Blob|string = '';
+  imageData: Blob | string = '';
 
-  previewData: Blob|string = '';
+  previewData: Blob | string = '';
 
   gifsList: BuiltGifLists = [];
 

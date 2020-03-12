@@ -34,12 +34,14 @@ exports[`Frontpage.vue renders properly 1`] = `
           activeclass="v-window-item--active"
           continuous="true"
           delimitericon="$delimiter"
-          height="500"
+          height="35vmax"
           hidedelimiters="true"
           interval="6000"
           mandatory="true"
           nexticon="$next"
           previcon="$prev"
+          showarrows="true"
+          showarrowsonhover="true"
           value="0"
         />
       </v-col-stub>
