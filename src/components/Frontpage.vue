@@ -24,8 +24,8 @@
             v-model="carouselModel"
             hide-delimiters
             height="30vmax"
-            :show-arrows="!$vuetify.breakpoint.xsOnly || gifsList.length > 1"
-            :show-arrows-on-hover="!$vuetify.breakpoint.xsOnly || gifsList.length > 1"
+            :show-arrows="!$vuetify.breakpoint.xsOnly && gifsList.length > 1"
+            :show-arrows-on-hover="!$vuetify.breakpoint.xsOnly && gifsList.length > 1"
             @change="updateCarouselModel"
           >
             <v-carousel-item
