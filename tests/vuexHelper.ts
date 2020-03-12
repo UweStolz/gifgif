@@ -10,7 +10,6 @@ const state: States = {
   gifMode: 'trending',
   showMobileDrawer: false,
   fullImageMode: false,
-  pwaUpdated: false,
 };
 
 const mutations = {
