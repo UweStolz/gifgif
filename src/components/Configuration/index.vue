@@ -163,9 +163,9 @@ import {
   mdiCogs, mdiClose, mdiPackageDown, mdiFolderZip,
 } from '@mdi/js';
 import { saveAs } from 'file-saver';
-import JSZip from 'jszip';
 import Snackbar from '@/components/shared/Snackbar.vue';
 import { getBlob } from '../../request';
+import zip from './zip';
 
 @Component({
   components: {
@@ -216,24 +216,23 @@ export default class Configuration extends Vue {
       this.isLoading = true;
       this.finishedZipGeneration = false;
       const data: Database.GifStore = await this.$store.dispatch('getAllData');
-      const zip = new JSZip();
 
       // eslint-disable-next-line no-restricted-syntax
       for (const [index, gifData] of data.values.entries()) {
         const blob = typeof gifData.image === 'string'
-        // eslint-disable-next-line no-await-in-loop
+          // eslint-disable-next-line no-await-in-loop
           ? await getBlob(gifData.image as string)
           : gifData.image;
         const fileType = blob?.type.slice((Math.max(0, blob.type.lastIndexOf('/')) || Infinity) + 1);
-        zip.folder(`rating-${gifData.rating}`).file(`gif-${index}.${fileType}`, blob);
+        zip.addFileToZip(`rating-${gifData.rating}`, `gif-${index}.${fileType}`, blob);
       }
 
-      this.zipFile = await zip.generateAsync({ type: 'blob' }, (meta) => {
+      this.zipFile = await zip.generateZip({ type: 'blob' }, (meta: any) => {
         this.loaderValue = meta.percent.toPrecision(2);
       });
       this.isLoading = false;
       this.finishedZipGeneration = true;
-      if (this.zipFile) { this.wasZipBuilt = true; }
+      this.wasZipBuilt = true;
       this.snackbarMessage = 'ZIP successfully generated';
       this.snackbarColor = 'success';
       this.showSnackbar = true;
@@ -241,6 +240,8 @@ export default class Configuration extends Vue {
       this.snackbarMessage = 'There was an error during the ZIP generation!';
       this.snackbarColor = 'error';
       this.showSnackbar = true;
+      this.isLoading = false;
+      this.wasZipBuilt = false;
     }
   }
 
