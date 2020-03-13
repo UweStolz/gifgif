@@ -1,5 +1,5 @@
 import Toolbar from '@/components/Navigation/Toolbar.vue';
-import shallow, { Vue, deepMount } from '../../../helper';
+import shallow, { Vue, deepMount, mutations } from '../../../helper';
 
 describe('Toolbar.vue', () => {
   it('renders properly', () => {
@@ -19,7 +19,7 @@ describe('Toolbar.vue', () => {
     expect(gifModeState).toBe('random');
   });
 
-  it('Toggles display menu icon on mobiles', async () => {
+  it('Display menu icon on mobiles', async () => {
     Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 200 });
     Object.defineProperty(window, 'innerHeight', { writable: true, configurable: true, value: 400 });
     const wrapper = shallow(Toolbar, {
@@ -33,6 +33,25 @@ describe('Toolbar.vue', () => {
     const navBarIcon = wrapper.find('v-app-bar-nav-icon-stub');
     expect(navBarIcon.exists()).toBe(true);
     expect(wrapper.element).toMatchSnapshot();
+    wrapper.destroy();
+  });
+
+  it('Toggle menu on mobiles', async () => {
+    const mockMutation = mutations.setShowMobileDrawer;
+    Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 200 });
+    Object.defineProperty(window, 'innerHeight', { writable: true, configurable: true, value: 400 });
+    const wrapper = deepMount(Toolbar, {
+      mocks: {
+        $vuetify: {
+          breakpoint: { xsOnly: true },
+        },
+      },
+      attachToDocument: true,
+    });
+    const navBarIcon = wrapper.find('#t-mob-nav-icon');
+    navBarIcon.vm.$emit('click');
+    await Vue.nextTick();
+    expect(mockMutation).toHaveBeenCalled();
     wrapper.destroy();
   });
 });

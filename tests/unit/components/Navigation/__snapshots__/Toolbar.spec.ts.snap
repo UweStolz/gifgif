@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toolbar.vue Toggles display menu icon on mobiles 1`] = `
+exports[`Toolbar.vue Display menu icon on mobiles 1`] = `
 <v-app-bar-stub
   absolute="true"
   app="true"
@@ -14,7 +14,9 @@ exports[`Toolbar.vue Toggles display menu icon on mobiles 1`] = `
   tile="true"
   value="true"
 >
-  <v-app-bar-nav-icon-stub />
+  <v-app-bar-nav-icon-stub
+    id="t-mob-nav-icon"
+  />
    
   <v-btn-stub
     activeclass=""

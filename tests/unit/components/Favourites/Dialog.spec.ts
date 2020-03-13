@@ -16,7 +16,7 @@ describe('Dialog.vue', () => {
     expect(wrapper.element).toMatchSnapshot();
   });
 
-  it('Input images get converted in watch', async () => {
+  it('Input image gets converted in watch', async () => {
     const mockImageData = 'someImageData';
     jest.spyOn(blobToImage, 'default').mockImplementation(() => mockImageData);
     const wrapper = shallow(Dialog, {
@@ -30,6 +30,35 @@ describe('Dialog.vue', () => {
     wrapper.setProps({ fullImageData: new Blob(undefined, { type: 'image/webp' }) });
     await wrapper.vm.$nextTick();
     expect(wrapper.vm.$data.imageData).toBe(mockImageData);
+  });
+
+  it('Input image doesnt get converted in watch', async () => {
+    const mockImageData = 'http://imageData.webp';
+    const wrapper = shallow(Dialog, {
+      propsData: {
+        showDialog: true,
+        fullImageData: 'http://someFullImage.webp',
+        previewImageData: 'http://somePreviewImage.webp',
+        imageId: 'ggid-123321',
+      },
+    });
+    wrapper.setProps({ fullImageData: mockImageData });
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.$data.imageData).toBe(mockImageData);
+  });
+
+  it('Watch does nothing if no data is present', async () => {
+    const wrapper = shallow(Dialog, {
+      propsData: {
+        showDialog: true,
+        fullImageData: 'http://someFullImage.webp',
+        previewImageData: 'http://somePreviewImage.webp',
+        imageId: 'ggid-123321',
+      },
+    });
+    wrapper.setProps({ fullImageData: null });
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.$data.imageData).toBe('');
   });
 
   it('Event gets re-emitted', async () => {
