@@ -21,7 +21,6 @@
               id="imageHover"
               :src="previewImages[index]"
               :lazy-src="previewImages[index]"
-
               max-width="230"
               max-height="200"
               @click="openDialog(index)"
