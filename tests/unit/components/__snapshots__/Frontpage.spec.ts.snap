@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Frontpage.vue renders properly 1`] = `
+exports[`Frontpage renders properly 1`] = `
 <v-container-stub
   fill-height=""
   fluid="true"

@@ -39,6 +39,7 @@
         />
         <Picker
           v-if="showPicker"
+          id="t-emoji-picker"
           v-click-outside="onClickOutside"
           @select="addEmoji"
         />

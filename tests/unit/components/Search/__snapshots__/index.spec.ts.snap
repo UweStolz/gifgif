@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Search.vue renders properly 1`] = `
+exports[`Search renders properly 1`] = `
 <v-container-stub
   fluid="true"
   tag="div"

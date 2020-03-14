@@ -18,7 +18,7 @@ A little PWA for GIFS and fun
 
 ## Tested with 🃏
 
-Jest
+[Jest](https://jestjs.io/)
 
 ## License 📜
 

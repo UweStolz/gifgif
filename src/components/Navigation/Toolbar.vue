@@ -9,6 +9,7 @@
   >
     <v-app-bar-nav-icon
       v-if="$vuetify.breakpoint.xsOnly"
+      id="t-mob-nav-icon"
       @click="toggleDrawer"
     />
     <v-btn :to="'/'">
