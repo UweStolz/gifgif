@@ -164,9 +164,9 @@ import { Vue, Component } from 'vue-property-decorator';
 import {
   mdiCogs, mdiClose, mdiPackageDown, mdiFolderZip,
 } from '@mdi/js';
-import { saveAs } from 'file-saver';
 import Snackbar from '@/components/shared/Snackbar.vue';
 import { getBlob } from '../../request';
+import saveAs from './saveAs';
 import zip from './zip';
 
 @Component({
