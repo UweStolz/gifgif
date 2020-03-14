@@ -608,7 +608,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
           <div
             class="v-responsive v-image imageHover"
             id="s-img-n0"
-            style="height: 100px; width: 100px;"
+            style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
           >
             <div
               class="v-image__image v-image__image--preload v-image__image--contain"
@@ -621,7 +621,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
           <div
             class="v-responsive v-image imageHover"
             id="s-img-n1"
-            style="height: 100px; width: 100px;"
+            style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
           >
             <div
               class="v-image__image v-image__image--preload v-image__image--contain"
@@ -1246,7 +1246,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
           <div
             class="v-responsive v-image imageHover"
             id="s-img-n0"
-            style="height: 100px; width: 100px;"
+            style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
           >
             <div
               class="v-image__image v-image__image--preload v-image__image--contain"
@@ -1259,7 +1259,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
           <div
             class="v-responsive v-image imageHover"
             id="s-img-n1"
-            style="height: 100px; width: 100px;"
+            style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
           >
             <div
               class="v-image__image v-image__image--preload v-image__image--contain"

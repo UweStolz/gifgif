@@ -75,8 +75,10 @@
                   :src="searchResults[i].images.fixed_width.webp"
                   :lazy-src="searchResults[i].images.fixed_width.webp"
                   contain
-                  height="100px"
-                  width="100px"
+                  max-height="128px"
+                  max-width="128px"
+                  height="100%"
+                  width="100%"
                   @click="openDialog(i)"
                 />
               </v-item>
