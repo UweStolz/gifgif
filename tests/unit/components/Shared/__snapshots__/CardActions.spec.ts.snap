@@ -14,6 +14,7 @@ exports[`CardActions.vue renders properly 1`] = `
       <v-btn-stub
         activeclass=""
         icon="true"
+        id="s-ca-download-btn"
         large="true"
         tag="button"
         type="button"
@@ -30,6 +31,7 @@ exports[`CardActions.vue renders properly 1`] = `
       <v-btn-stub
         activeclass=""
         icon="true"
+        id="s-ca-remove-btn"
         large="true"
         tag="button"
         type="button"

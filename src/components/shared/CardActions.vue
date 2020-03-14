@@ -4,6 +4,7 @@
       <v-item-group>
         <v-rating
           v-if="showRating"
+          id="s-ca-rating"
           v-model="syncRrating"
           length="5"
           :empty-icon="icons.mdiHeartOutline"
@@ -16,6 +17,7 @@
           @input="updateGifRating"
         />
         <v-btn
+          id="s-ca-download-btn"
           large
           icon
           @click="saveImage"
@@ -28,6 +30,7 @@
           </v-icon>
         </v-btn>
         <v-btn
+          id="s-ca-remove-btn"
           :disabled="syncRrating === 0"
           large
           icon
@@ -119,7 +122,7 @@ export default class CardActions extends Vue {
 
   propPreviewImageData = this.syncPreviewImageData;
 
-  async saveImage(): Promise<void> {
+  saveImage(): void {
     saveAs(this.propImageData, this.propImageId);
   }
 

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Translate.vue renders properly 1`] = `
+exports[`Translate renders properly 1`] = `
 <v-container-stub
   fluid="true"
   tag="div"

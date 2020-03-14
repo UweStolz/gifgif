@@ -1,5 +1,7 @@
 import {
-  createLocalVue, shallowMount, mount, VueClass, ThisTypedShallowMountOptions, ThisTypedMountOptions, RouterLinkStub,
+  createLocalVue, shallowMount, mount,
+  VueClass, ThisTypedShallowMountOptions, ThisTypedMountOptions,
+  RouterLinkStub,
 } from '@vue/test-utils';
 import VueRouter from 'vue-router';
 import Vue from 'vue';

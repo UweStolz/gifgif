@@ -1,5 +1,5 @@
 import Dialog from '@/components/Search/Dialog.vue';
-import shallow, { deepMount, actions } from '../../../helper';
+import shallow, { actions } from '../../../helper';
 
 describe('Dialog.vue', () => {
   it('renders properly', () => {
