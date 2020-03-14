@@ -50,7 +50,10 @@
           @click:clear="searchResults = null"
         >
           <template v-slot:append-outer>
-            <v-icon @click="showFilter">
+            <v-icon
+              id="s-filter-icn"
+              @click="showFilter"
+            >
               {{ icons.mdiFilterVariant }}
             </v-icon>
           </template>
@@ -67,7 +70,8 @@
                 :key="i"
               >
                 <v-img
-                  id="imageHover"
+                  :id="`s-img-n${i}`"
+                  class="imageHover"
                   :src="searchResults[i].images.fixed_width.webp"
                   :lazy-src="searchResults[i].images.fixed_width.webp"
                   contain
@@ -197,7 +201,7 @@ export default class Search extends Vue {
 #pa-exp-con {
   overflow: hidden;
 }
-#imageHover:hover {
+.imageHover:hover {
   transform: scale(1.3);
   overflow-x: hidden;
   z-index: 9;

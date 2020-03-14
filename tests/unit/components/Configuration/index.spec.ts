@@ -1,5 +1,6 @@
 import Configuration from '@/components/Configuration/index.vue';
 import zip from '@/components/Configuration/zip';
+import * as saveAs from '@/components/Configuration/saveAs';
 import shallow, {
   deepMount, store, actions, fetchMock,
 } from '../../../helper';
@@ -109,11 +110,8 @@ describe('Configuration.vue', () => {
 
   it('Downloads the created Zip', async () => {
     store.state.gifCount = 2;
-    const mockDownloadZip = jest.fn();
+    const mockDownloadZip = jest.spyOn(saveAs, 'default').mockImplementationOnce(() => {});
     const wrapper = deepMount(Configuration, {
-      methods: {
-        downloadZip: mockDownloadZip,
-      },
       data: () => ({
         finishedZipGeneration: true,
         zipFile: new Blob(),
@@ -123,5 +121,20 @@ describe('Configuration.vue', () => {
     downloadZipButton.trigger('click');
     await wrapper.vm.$nextTick();
     expect(mockDownloadZip).toHaveBeenCalled();
+  });
+
+  it('Does not download the Zip if there is none', async () => {
+    store.state.gifCount = 2;
+    const mockDownloadZip = jest.spyOn(saveAs, 'default').mockImplementationOnce(() => {});
+    const wrapper = deepMount(Configuration, {
+      data: () => ({
+        finishedZipGeneration: true,
+        zipFile: null,
+      }),
+    });
+    const downloadZipButton = wrapper.get('#c-download-zip-btn');
+    downloadZipButton.trigger('click');
+    await wrapper.vm.$nextTick();
+    expect(mockDownloadZip).not.toHaveBeenCalled();
   });
 });
