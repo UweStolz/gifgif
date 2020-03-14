@@ -8,12 +8,12 @@
 
 ## What is GIFGIF?
 
-A little PWA for GIFS and fun
+A little PWA for GIFs and fun
 
 ## Built with ⚙️
 
- Vue  
- Vuetify  
+ [Vue](https://vuejs.org/)  
+ [Vuetify](https://vuetifyjs.com/en/)  
  and Love ❤️
 
 ## Tested with 🃏
