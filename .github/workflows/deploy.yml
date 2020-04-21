@@ -19,8 +19,8 @@ jobs:
       run: yarn build
     - name: Deploy to branch for GH-Page
       run: |
-        git config user.email "github-action@users.noreply.github.com" 
-        git config user.name "GitHub Action"
+        git config --global user.email "github-action@users.noreply.github.com" 
+        git config --global user.name "GitHub Action"
         cd dist
         git init
         git add -A
