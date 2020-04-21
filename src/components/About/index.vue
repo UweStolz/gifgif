@@ -22,11 +22,15 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore - No types available
 import VueMarkdown from 'vue-markdown';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const vueLogo = require('@/assets/vue.svg');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const vuetifyLogo = require('@/assets/vuetify.svg');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const githubLogo = require('@/assets/github.svg');
 
 @Component({
@@ -35,7 +39,7 @@ const githubLogo = require('@/assets/github.svg');
   },
 })
 export default class About extends Vue {
-  cardText: string = `
+  cardText = `
   ---
   
   ## Privacy Policy
