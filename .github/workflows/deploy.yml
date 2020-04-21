@@ -19,6 +19,8 @@ jobs:
       run: yarn build
     - name: Deploy to branch for GH-Page
       run: |
+        git config user.email ${{ secrets.GIT_MAIL }}
+        git config user.name ${{ secrets.GIT_USER }}
         cd dist
         git init
         git add -A
