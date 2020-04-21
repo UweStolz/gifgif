@@ -19,8 +19,8 @@ jobs:
       run: yarn build
     - name: Deploy to branch for GH-Page
       run: |
-        git config user.email ${{ secrets.GIT_MAIL }}
-        git config user.name ${{ secrets.GIT_USER }}
+        git config user.email "$MAIL" 
+        git config user.name "$USER
         cd dist
         git init
         git add -A
@@ -28,3 +28,5 @@ jobs:
         git push -f git@github.com:UweStolz/gifgif.git master:gh-pages
       env:
         CI: true
+        MAIL: ${{ secrets.GIT_MAIL }}
+        USER: ${{ secrets.GIT_USER }}
