@@ -85,7 +85,7 @@ export default class Frontpage extends Vue {
     let yieldedError = false;
     if (this.$store.state.gifMode === 'trending') {
       const listFromGiphy: Giphy.Response = await getTrendingGifsListFromGiphy();
-      if (listFromGiphy.length) {
+      if (listFromGiphy && listFromGiphy.length > 0) {
         this.buildGifList(listFromGiphy);
       } else {
         yieldedError = true;
