@@ -82,6 +82,7 @@ import {
 } from '@mdi/js';
 import { getTranslateGifFromGiphy } from '@/request';
 import VEmojiPicker from 'v-emoji-picker';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore - No types available
 import vClickOutside from 'v-click-outside';
 
@@ -121,23 +122,23 @@ export default class Translate extends Vue {
     mdiEmoticonExcitedOutline,
   }
 
-  rating: number = 0;
+  rating = 0;
 
-  hasError: boolean = false
+  hasError = false
 
-  wasSuccessful: boolean = false
+  wasSuccessful = false
 
-  weirdnessSlider: number = 5;
+  weirdnessSlider = 5;
 
-  translatedGif: string = '';
+  translatedGif = '';
 
-  translatedGifPreview: string = '';
+  translatedGifPreview = '';
 
-  translatedGifId: string = '';
+  translatedGifId = '';
 
-  inputValue: string = '';
+  inputValue = '';
 
-  showPicker: boolean = false;
+  showPicker = false;
 
   emoticonToShow: string = mdiEmoticonOutline;
 

@@ -80,13 +80,16 @@ import {
     Snackbar,
   },
 })
-
 export default class Frontpage extends Vue {
   async getGifList(): Promise<void> {
     let yieldedError = false;
     if (this.$store.state.gifMode === 'trending') {
       const listFromGiphy: Giphy.Response = await getTrendingGifsListFromGiphy();
-      if (listFromGiphy.length) { this.buildGifList(listFromGiphy); } else { yieldedError = true; }
+      if (listFromGiphy.length) {
+        this.buildGifList(listFromGiphy);
+      } else {
+        yieldedError = true;
+      }
     } else {
       const randomGifObject: Giphy.GIFObject = await getRandomGifFromGiphy();
       if (randomGifObject.id) {
@@ -98,14 +101,18 @@ export default class Frontpage extends Vue {
           },
         ];
         this.gifsList = itemObject;
-      } else { yieldedError = true; }
+      } else {
+        yieldedError = true;
+      }
     }
-    if (!yieldedError) { await this.updateCarouselModel(); }
+    if (!yieldedError) {
+      await this.updateCarouselModel();
+    }
   }
 
-  imageKey: number = 0
+  imageKey = 0;
 
-  rating: number = 0;
+  rating = 0;
 
   imageData: Blob | string = '';
 
@@ -113,9 +120,9 @@ export default class Frontpage extends Vue {
 
   gifsList: BuiltGifLists = [];
 
-  carouselModel: number = 0;
+  carouselModel = 0;
 
-  currentId: string = '';
+  currentId = '';
 
   async mounted(): Promise<void> {
     this.$store.watch(
@@ -126,12 +133,16 @@ export default class Frontpage extends Vue {
     );
     await this.getGifList();
     window.addEventListener('keydown', (e) => {
-      if (e.keyCode === 37) { this.updateCarouselModel(this.carouselModel - 1); }
-      if (e.keyCode === 39) { this.updateCarouselModel(this.carouselModel + 1); }
+      if (e.keyCode === 37) {
+        this.updateCarouselModel(this.carouselModel - 1);
+      }
+      if (e.keyCode === 39) {
+        this.updateCarouselModel(this.carouselModel + 1);
+      }
     });
   }
 
-  async updateCarouselModel(index: number = 0): Promise<void> {
+  async updateCarouselModel(index = 0): Promise<void> {
     if (index > this.gifsList.length - 1) {
       this.carouselModel = 0;
     } else if (index === -1) {
@@ -147,7 +158,9 @@ export default class Frontpage extends Vue {
     listFromGiphy.forEach((item) => {
       const itemObject: BuiltGifListObject = {
         id: item.id,
-        url: item.images.original.webp.length ? item.images.original.webp : item.images.original.url,
+        url: item.images.original.webp.length
+          ? item.images.original.webp
+          : item.images.original.url,
         previewUrl: item.images.fixed_width.webp,
       };
       builtGifList.push(itemObject);
@@ -163,8 +176,13 @@ export default class Frontpage extends Vue {
 
   async getRating() {
     await this.setGifData();
-    const gifData: Database.GifData | undefined = await this.$store.dispatch('getGifData', `ggid-${this.currentId}`);
-    this.rating = gifData?.rating ? this.rating = gifData.rating : this.rating = 0;
+    const gifData: Database.GifData | undefined = await this.$store.dispatch(
+      'getGifData',
+      `ggid-${this.currentId}`,
+    );
+    this.rating = gifData?.rating
+      ? (this.rating = gifData.rating)
+      : (this.rating = 0);
   }
 }
 </script>

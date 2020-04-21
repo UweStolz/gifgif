@@ -156,25 +156,25 @@ export default class Search extends Vue {
     mdiFilterVariant,
   }
 
-  imageId: string = '';
+  imageId = '';
 
-  previewImage: string = '';
+  previewImage = '';
 
-  fullImage: string = '';
+  fullImage = '';
 
-  dialog: boolean = false;
+  dialog = false;
 
-  selectedRating: string = '';
+  selectedRating = '';
 
-  showFilterMenu: boolean = false;
+  showFilterMenu = false;
 
   trendingTerms: string[] = [];
 
   searchResults: null | any = null;
 
-  searchQuery: string = '';
+  searchQuery = '';
 
-  isLoading: boolean = false;
+  isLoading = false;
 
   selectedTerm: null | any = null;
 

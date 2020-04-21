@@ -1,5 +1,5 @@
 import Frontpage from '@/components/Frontpage.vue';
-import shallow, { deepMount, store, fetchMock } from '../../helper';
+import shallow, { store, fetchMock } from '../../helper';
 
 describe('Frontpage', () => {
   it('renders properly', async () => {

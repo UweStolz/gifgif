@@ -116,7 +116,7 @@ export default class CardActions extends Vue {
     mdiSync,
   }
 
-  propImageId: string = '';
+  propImageId = '';
 
   propImageData = this.syncImageData;
 

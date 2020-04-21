@@ -50,9 +50,9 @@ export default class PanelContent extends Vue {
 
   fullImage: null | Blob | string = null;
 
-  dialog: boolean = false;
+  dialog = false;
 
-  selectedIndex: number = -1;
+  selectedIndex = -1;
 
   openDialog(index: number) {
     this.dialog = true;

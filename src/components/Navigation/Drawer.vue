@@ -85,7 +85,7 @@ export default class Drawer extends Vue {
     },
   ];
 
-  gifCount: number = 0;
+  gifCount = 0;
 
   async mounted() {
     this.gifCount = this.$store.state.gifCount;

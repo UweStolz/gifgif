@@ -10,7 +10,7 @@ describe('Toolbar.vue', () => {
   it('changes the state of gifMode', async () => {
     const wrapper = deepMount(Toolbar);
     const button = wrapper.get('#tb-inactive-button');
-    let gifModeState: string = '';
+    let gifModeState = '';
     wrapper.vm.$store.subscribe((mutation, state) => {
       gifModeState = mutation.payload;
     });

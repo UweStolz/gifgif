@@ -27,11 +27,11 @@ import Footer from '@/components/Navigation/Footer.vue';
     Footer,
   },
 })
-export default class App extends Vue { }
+export default class App extends Vue {}
 </script>
 
 <style>
-@import "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css";
+@import '../node_modules/roboto-fontface/css/roboto/roboto-fontface.css';
 .fade-enter-active,
 .fade-leave-active {
   transition-duration: 0.3s;

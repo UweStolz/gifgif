@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Configuration from '@/components/Configuration/index.vue';
 import zip from '@/components/Configuration/zip';
 import * as saveAs from '@/components/Configuration/saveAs';
@@ -15,7 +16,7 @@ describe('Configuration.vue', () => {
     const wrapper = deepMount(Configuration);
     const vSwitch = wrapper.find({ name: 'v-switch' });
     const selectionControl = vSwitch.get('.v-input--selection-controls__ripple');
-    let fullImageModeState: boolean = false;
+    let fullImageModeState = false;
     wrapper.vm.$store.subscribe((mutation) => {
       fullImageModeState = mutation.payload;
     });

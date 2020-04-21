@@ -83,7 +83,7 @@ export default class Dialog extends Vue {
 
   icons = { mdiClose }
 
-  imageData: string = '';
+  imageData = '';
 
   maxWindowSize: number = window.innerHeight / 1.5;
 }

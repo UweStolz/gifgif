@@ -179,23 +179,23 @@ export default class Configuration extends Vue {
     mdiCogs, mdiClose, mdiPackageDown, mdiFolderZip,
   }
 
-  showSnackbar: boolean = false;
+  showSnackbar = false;
 
-  snackbarMessage: string = '';
+  snackbarMessage = '';
 
-  snackbarColor: string = 'info';
+  snackbarColor = 'info';
 
-  showDialog: boolean = false;
+  showDialog = false;
 
-  isLoading: boolean = false;
+  isLoading = false;
 
-  loaderValue: string = '0';
+  loaderValue = '0';
 
-  finishedZipGeneration: boolean = false;
+  finishedZipGeneration = false;
 
   zipFile: null | Blob = null;
 
-  wasZipBuilt: boolean = false;
+  wasZipBuilt = false;
 
   configuration = {
     fullImageMode: {

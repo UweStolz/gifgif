@@ -43,7 +43,7 @@ export default class Snackbar extends Vue {
 
   @Prop({ default: 'Whoops something went wrong' }) message!: string
 
-  @Prop({ default: 3000 }) timeout: number = 3000;
+  @Prop({ default: 3000 }) timeout = 3000;
 
   @Prop({ default: null }) icon!: string | null;
 

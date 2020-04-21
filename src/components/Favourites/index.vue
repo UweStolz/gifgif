@@ -59,8 +59,8 @@ import PanelContent from './PanelContent.vue';
 
 interface Data {
   previewUrl: {
-    [key: number]: { id: string[], images: (Blob | string)[], previews: string[] };
-  }
+    [key: number]: { id: string[]; images: (Blob | string)[]; previews: string[] };
+  };
 }
 
 @Component({
@@ -83,7 +83,7 @@ export default class Favourites extends Vue {
 
   isDataAvailable: null | boolean = null;
 
-  evaluatedKey: number = 0;
+  evaluatedKey = 0;
 
   data: Data = {
     previewUrl: {

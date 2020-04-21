@@ -80,7 +80,7 @@ export default class Dialog extends Vue {
     this.rating = 0;
   }
 
-  rating: number = 0;
+  rating = 0;
 
   icons = { mdiClose }
 
