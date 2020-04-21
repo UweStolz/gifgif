@@ -20,7 +20,7 @@ jobs:
     - name: Deploy to branch for GH-Page
       run: |
         git config user.email "$MAIL" 
-        git config user.name "$USER
+        git config user.name "$USER"
         cd dist
         git init
         git add -A
