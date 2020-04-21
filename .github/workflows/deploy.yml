@@ -9,7 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+      with:
+        persist-credentials: false
+    - name: Use Node.js
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
@@ -17,15 +19,13 @@ jobs:
       run: yarn install
     - name: Generate production build
       run: yarn build
+    - name: Install SSH Client
+      uses: webfactory/ssh-agent@v0.2.0
+      with:
+        ssh-private-key: ${{ secrets.PAGE_DEPLOY_KEY }}
     - name: Deploy to branch for GH-Page
-      run: |
-        git config --global user.email "github-action@users.noreply.github.com" 
-        git config --global user.name "GitHub Action"
-        cd dist
-        git init
-        git add -A
-        git commit -m 'deploy'
-        git push -f git@github.com:UweStolz/gifgif.git master:gh-pages
-      env:
-        CI: true
-
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        SSH: true
+        BRANCH: gh-pages
+        FOLDER: dist
