@@ -302,7 +302,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
             <div
               aria-expanded="false"
               aria-haspopup="listbox"
-              aria-owns="list-123"
+              aria-owns="list-111"
               class="v-input__slot"
               role="combobox"
             >
@@ -311,7 +311,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
               >
                 <label
                   class="v-label theme--light"
-                  for="input-123"
+                  for="input-111"
                 >
                   Rating
                 </label>
@@ -319,7 +319,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                   class="v-select__selections"
                 >
                   <input
-                    id="input-123"
+                    id="input-111"
                     readonly="readonly"
                     target="#s-filterCard"
                     type="text"
@@ -383,6 +383,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
               </div>
               <div
                 class="v-menu"
+                offsety="true"
               >
                 <!---->
               </div>
@@ -436,7 +437,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
           <div
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-owns="list-129"
+            aria-owns="list-117"
             class="v-input__slot"
             role="combobox"
           >
@@ -445,7 +446,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
             >
               <label
                 class="v-label v-label--active theme--light"
-                for="input-129"
+                for="input-117"
                 style="left: 0px; position: absolute;"
               >
                 GIF search
@@ -483,7 +484,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                 </span>
                 <input
                   autocomplete="off"
-                  id="input-129"
+                  id="input-117"
                   placeholder="Enter or select a search tag"
                   type="text"
                 />
@@ -546,6 +547,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
             </div>
             <div
               class="v-menu"
+              offsety="true"
             >
               <!---->
             </div>
@@ -940,7 +942,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
             <div
               aria-expanded="false"
               aria-haspopup="listbox"
-              aria-owns="list-204"
+              aria-owns="list-169"
               class="v-input__slot"
               role="combobox"
             >
@@ -949,7 +951,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
               >
                 <label
                   class="v-label theme--light"
-                  for="input-204"
+                  for="input-169"
                 >
                   Rating
                 </label>
@@ -957,7 +959,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                   class="v-select__selections"
                 >
                   <input
-                    id="input-204"
+                    id="input-169"
                     readonly="readonly"
                     target="#s-filterCard"
                     type="text"
@@ -1021,6 +1023,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
               </div>
               <div
                 class="v-menu"
+                offsety="true"
               >
                 <!---->
               </div>
@@ -1074,7 +1077,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
           <div
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-owns="list-210"
+            aria-owns="list-175"
             class="v-input__slot"
             role="combobox"
           >
@@ -1083,7 +1086,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
             >
               <label
                 class="v-label v-label--active theme--light"
-                for="input-210"
+                for="input-175"
                 style="left: 0px; position: absolute;"
               >
                 GIF search
@@ -1121,7 +1124,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                 </span>
                 <input
                   autocomplete="off"
-                  id="input-210"
+                  id="input-175"
                   placeholder="Enter or select a search tag"
                   type="text"
                 />
@@ -1184,6 +1187,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
             </div>
             <div
               class="v-menu"
+              offsety="true"
             >
               <!---->
             </div>
@@ -1555,6 +1559,7 @@ exports[`Search renders properly with enabled filter 1`] = `
               </div>
               <div
                 class="v-menu"
+                offsety="true"
               >
                 <!---->
               </div>
@@ -1690,6 +1695,7 @@ exports[`Search renders properly with enabled filter 1`] = `
             </div>
             <div
               class="v-menu"
+              offsety="true"
             >
               <!---->
             </div>
