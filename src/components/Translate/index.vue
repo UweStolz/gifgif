@@ -33,7 +33,7 @@
           clearable
           counter
           placeholder="Enter a search phrase"
-          @input="getTranslatedGif(false)"
+          @input="getTranslatedGif"
           @click:prepend-inner="openEmojiMart"
           @click:clear="clearTextField"
         />
@@ -103,10 +103,12 @@ import LinearProgress from '@/components/shared/LinearProgress.vue';
 export default class Translate extends Vue {
   @Watch('inputValue')
   resetState() {
-    if (this.inputValue?.length === 0) {
+    const shouldResetInputField = this.inputValue?.length === 0;
+    if (shouldResetInputField) {
       this.hasError = false;
       this.wasSuccessful = false;
       this.emoticonToShow = this.icons.mdiEmoticonOutline;
+      this.inputIsEmoji = false;
     }
   }
 
@@ -138,7 +140,9 @@ export default class Translate extends Vue {
 
   inputValue = '';
 
-  showPicker = false;
+  showPicker = false
+
+  inputIsEmoji = false;
 
   emoticonToShow: string = mdiEmoticonOutline;
 
@@ -149,7 +153,8 @@ export default class Translate extends Vue {
   async addEmoji(payload: any) {
     if (this.inputValue?.length < 24 || !this.inputValue) {
       this.inputValue = this.inputValue ? this.inputValue += payload.data : this.inputValue = payload.data;
-      await this.getTranslatedGif(true);
+      this.inputIsEmoji = true;
+      await this.getTranslatedGif();
     }
     this.showPicker = false;
   }
@@ -166,6 +171,7 @@ export default class Translate extends Vue {
     this.wasSuccessful = false;
     this.rating = 0;
     this.emoticonToShow = this.icons.mdiEmoticonOutline;
+    this.inputIsEmoji = false;
   }
 
   async getRating() {
@@ -173,8 +179,9 @@ export default class Translate extends Vue {
     this.rating = gifData ? this.rating = gifData.rating : 0;
   }
 
-  async getTranslatedGif(fromEmojiPicker?: boolean) {
-    if (this.inputValue?.length > 2 || fromEmojiPicker) {
+  async getTranslatedGif() {
+    const inputLengthIsSufficient = this.inputValue?.length > 2;
+    if (inputLengthIsSufficient || (this.inputIsEmoji && this.inputValue?.length > 0)) {
       try {
         const result = await getTranslateGifFromGiphy(this.inputValue, this.weirdnessSlider);
         this.translatedGifId = result.id;
