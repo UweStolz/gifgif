@@ -1,31 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a59f242fbae9bd784270",
-    "url": "/gifgif/css/app.8bf42b2f.css"
+    "revision": "82704b9904f8c5bd7374",
+    "url": "/gifgif/css/app.4bc71c0a.css"
   },
   {
-    "revision": "1862eccce5c6faa12095",
-    "url": "/gifgif/css/chunk-vendors.e7395df4.css"
+    "revision": "d634820093411153aeb8",
+    "url": "/gifgif/css/chunk-vendors.51067cd7.css"
   },
   {
-    "revision": "50f17281a5af178d0262",
-    "url": "/gifgif/css/configuration.a1e6e8de.css"
+    "revision": "a3b00d9374d227cff204",
+    "url": "/gifgif/css/configuration.26e2a9aa.css"
   },
   {
-    "revision": "3c56748ed438f5a6cc51",
-    "url": "/gifgif/css/favourites.e2d40d06.css"
+    "revision": "7e380a65bcce49974c22",
+    "url": "/gifgif/css/favourites.66da1468.css"
   },
   {
-    "revision": "4f5586a2f0f8ed2d89ee",
-    "url": "/gifgif/css/search.0c5dd165.css"
+    "revision": "3dcd01acf3cd2a56e57a",
+    "url": "/gifgif/css/search.e5460bf3.css"
   },
   {
-    "revision": "abc4a9dfd94fc5508984",
-    "url": "/gifgif/css/search~translate.0f1332c1.css"
+    "revision": "ede476910a2aaf105b41",
+    "url": "/gifgif/css/search~translate.5637eb5f.css"
   },
   {
-    "revision": "7630cb2b67f4923df515",
-    "url": "/gifgif/css/translate.4016a085.css"
+    "revision": "5617456540713ea1b390",
+    "url": "/gifgif/css/translate.5913a668.css"
   },
   {
     "revision": "313a65630d341645c13e4f2a0364381d",
@@ -136,44 +136,44 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gifgif/img/vuetify.668cf772.svg"
   },
   {
-    "revision": "10fbc6ebac3195aa34b29cf436665e41",
+    "revision": "1ce82af643c291c9d75821516fc57f8a",
     "url": "/gifgif/index.html"
   },
   {
-    "revision": "9f1bd473bc5d67a63ac0",
-    "url": "/gifgif/js/about.3f45fa3a.js"
+    "revision": "75e1f1882b50be296ddb",
+    "url": "/gifgif/js/about.0bd71550.js"
   },
   {
-    "revision": "d55ae4cccb7284bb2060",
-    "url": "/gifgif/js/about~configuration.133d0017.js"
+    "revision": "acffd1fb0f2080783f11",
+    "url": "/gifgif/js/about~configuration.39274d40.js"
   },
   {
-    "revision": "a59f242fbae9bd784270",
-    "url": "/gifgif/js/app.20e6b11c.js"
+    "revision": "82704b9904f8c5bd7374",
+    "url": "/gifgif/js/app.88db5de7.js"
   },
   {
-    "revision": "1862eccce5c6faa12095",
-    "url": "/gifgif/js/chunk-vendors.bc714f87.js"
+    "revision": "d634820093411153aeb8",
+    "url": "/gifgif/js/chunk-vendors.93b33ecd.js"
   },
   {
-    "revision": "50f17281a5af178d0262",
-    "url": "/gifgif/js/configuration.916badf1.js"
+    "revision": "a3b00d9374d227cff204",
+    "url": "/gifgif/js/configuration.7eb622ab.js"
   },
   {
-    "revision": "3c56748ed438f5a6cc51",
-    "url": "/gifgif/js/favourites.964ac9fb.js"
+    "revision": "7e380a65bcce49974c22",
+    "url": "/gifgif/js/favourites.2e0640a1.js"
   },
   {
-    "revision": "4f5586a2f0f8ed2d89ee",
-    "url": "/gifgif/js/search.6d86be6e.js"
+    "revision": "3dcd01acf3cd2a56e57a",
+    "url": "/gifgif/js/search.823b1b06.js"
   },
   {
-    "revision": "abc4a9dfd94fc5508984",
-    "url": "/gifgif/js/search~translate.1de679e1.js"
+    "revision": "ede476910a2aaf105b41",
+    "url": "/gifgif/js/search~translate.3f6277e2.js"
   },
   {
-    "revision": "7630cb2b67f4923df515",
-    "url": "/gifgif/js/translate.99eeae1c.js"
+    "revision": "5617456540713ea1b390",
+    "url": "/gifgif/js/translate.c1c38941.js"
   },
   {
     "revision": "1668f1d2499c8176b5f0c8abb4a5e5d0",
