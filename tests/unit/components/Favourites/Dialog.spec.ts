@@ -73,7 +73,7 @@ describe('Dialog.vue', () => {
         imageId: 'ggid-123321',
       },
     });
-    const cardActions = wrapper.find(CardActions);
+    const cardActions = wrapper.findComponent(CardActions);
     cardActions.vm.$emit('delete', { payload: 'gg-someId123' });
     await wrapper.vm.$nextTick();
     expect(wrapper).toHaveEmitted('delete');

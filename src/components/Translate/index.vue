@@ -140,7 +140,7 @@ export default class Translate extends Vue {
 
   inputValue = '';
 
-  showPicker = false
+  showPicker = false;
 
   inputIsEmoji = false;
 

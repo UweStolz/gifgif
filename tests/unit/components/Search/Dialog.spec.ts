@@ -63,6 +63,7 @@ describe('Dialog.vue', () => {
   it('Resets data and closes the dialog if clicked outside of it', async () => {
     const mockResetProp = jest.fn();
     const wrapper = shallow(Dialog, {
+      // Overwriting methods will be deprecated in the future
       methods: {
         resetProps: mockResetProp,
       },
@@ -75,7 +76,7 @@ describe('Dialog.vue', () => {
     });
     wrapper.setProps({ showDialog: true });
     await wrapper.vm.$nextTick();
-    const dialog = wrapper.find({ name: 'v-dialog' });
+    const dialog = wrapper.findComponent({ name: 'v-dialog' });
     dialog.vm.$emit('click:outside');
     await wrapper.vm.$nextTick();
     expect(mockResetProp).toHaveBeenCalled();

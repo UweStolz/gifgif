@@ -14,8 +14,7 @@ describe('Toolbar.vue', () => {
     wrapper.vm.$store.subscribe((mutation, state) => {
       gifModeState = mutation.payload;
     });
-    button.trigger('click');
-    await Vue.nextTick();
+    await button.trigger('click');
     expect(gifModeState).toBe('random');
   });
 
@@ -28,9 +27,8 @@ describe('Toolbar.vue', () => {
           breakpoint: { xsOnly: true },
         },
       },
-      attachToDocument: true,
     });
-    const navBarIcon = wrapper.find('v-app-bar-nav-icon-stub');
+    const navBarIcon = wrapper.get('v-app-bar-nav-icon-stub');
     expect(navBarIcon.exists()).toBe(true);
     expect(wrapper.element).toMatchSnapshot();
     wrapper.destroy();
@@ -46,9 +44,8 @@ describe('Toolbar.vue', () => {
           breakpoint: { xsOnly: true },
         },
       },
-      attachToDocument: true,
     });
-    const navBarIcon = wrapper.find('#t-mob-nav-icon');
+    const navBarIcon = wrapper.get('#t-mob-nav-icon');
     navBarIcon.vm.$emit('click');
     await Vue.nextTick();
     expect(mockMutation).toHaveBeenCalled();

@@ -45,6 +45,7 @@ describe('CardActions.vue', () => {
   it('Saves the given GIF', async () => {
     const saveImageMock = jest.fn();
     const wrapper = shallow(CardActions, {
+      // Overwriting methods will be deprecated in the future
       methods: {
         saveImage: saveImageMock,
       },
