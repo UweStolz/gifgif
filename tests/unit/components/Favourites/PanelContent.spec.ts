@@ -25,7 +25,7 @@ describe('PanelContent.vue', () => {
         fullImages: ['fullImage1', 'fullImage2'],
       },
     });
-    const dialog = wrapper.find(Dialog);
+    const dialog = wrapper.findComponent(Dialog);
     dialog.vm.$emit('delete', { payload: 'gg-someId123' });
     await wrapper.vm.$nextTick();
     expect(wrapper).toHaveDispatched('removeGifData');
@@ -41,6 +41,7 @@ describe('PanelContent.vue', () => {
         fullImages: ['fullImage1', 'fullImage2'],
       },
     });
+    // Will be deprecated in the future
     const images = wrapper.findAll('#imageHover');
     expect(images.wrappers.length).toBe(2);
     images.wrappers[1].vm.$emit('click');

@@ -134,8 +134,7 @@ describe('Search', () => {
     wrapper.vm.$data.searchResults = mockResponse.data;
     await wrapper.vm.$nextTick();
     const img = wrapper.get('#s-img-n1');
-    img.trigger('click');
-    await wrapper.vm.$nextTick();
+    await img.trigger('click');
     expect(wrapper.element).toMatchSnapshot();
   });
 
@@ -178,8 +177,7 @@ describe('Search', () => {
     wrapper.vm.$data.searchResults = mockResponse.data;
     await wrapper.vm.$nextTick();
     const img = wrapper.get('#s-img-n0');
-    img.trigger('click');
-    await wrapper.vm.$nextTick();
+    await img.trigger('click');
     expect(wrapper.element).toMatchSnapshot();
   });
 });

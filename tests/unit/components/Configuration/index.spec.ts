@@ -14,14 +14,13 @@ describe('Configuration.vue', () => {
 
   it('changes the state of fullImageMode', async () => {
     const wrapper = deepMount(Configuration);
-    const vSwitch = wrapper.find({ name: 'v-switch' });
+    const vSwitch = wrapper.get({ name: 'v-switch' });
     const selectionControl = vSwitch.get('.v-input--selection-controls__ripple');
     let fullImageModeState = false;
     wrapper.vm.$store.subscribe((mutation) => {
       fullImageModeState = mutation.payload;
     });
-    selectionControl.trigger('click');
-    await wrapper.vm.$nextTick();
+    await selectionControl.trigger('click');
     expect(fullImageModeState).toBe(true);
   });
 
@@ -33,9 +32,8 @@ describe('Configuration.vue', () => {
     store.state.gifCount = 3;
     await wrapper.vm.$nextTick();
     const deletionButton = wrapper.get({ name: 'v-btn' });
-    deletionButton.trigger('click');
-    await wrapper.vm.$nextTick();
-    const dialog = wrapper.findAll({ name: 'v-alert' });
+    await deletionButton.trigger('click');
+    const dialog = wrapper.findAllComponents({ name: 'v-alert' });
     expect(wrapper.vm.$data.showDialog).toBe(true);
     expect(dialog.wrappers[1].text()).toBe('Do you really want to delete your saved GIFs?');
   });
@@ -45,11 +43,9 @@ describe('Configuration.vue', () => {
     store.state.gifCount = 3;
     await wrapper.vm.$nextTick();
     const deletionButton = wrapper.get({ name: 'v-btn' });
-    deletionButton.trigger('click');
-    await wrapper.vm.$nextTick();
-    const buttonInModal = wrapper.find('#c-modal-del-btn');
-    buttonInModal.trigger('click');
-    await wrapper.vm.$nextTick();
+    await deletionButton.trigger('click');
+    const buttonInModal = wrapper.get('#c-modal-del-btn');
+    await buttonInModal.trigger('click');
     expect(wrapper).toHaveDispatched('removeCompleteGifData');
     expect(wrapper.vm.$data.showDialog).toBe(false);
   });
@@ -69,7 +65,7 @@ describe('Configuration.vue', () => {
     const wrapper = deepMount(Configuration);
     actions.getAllData.mockResolvedValue(mockData);
     const createZipButton = wrapper.get('#c-create-zip-btn');
-    createZipButton.trigger('click');
+    await createZipButton.trigger('click');
     await new Promise((resolve) => setTimeout(resolve));
     expect(wrapper).toHaveDispatched('getAllData');
     expect(wrapper.vm.$data.snackbarColor).toBe('success');
@@ -91,7 +87,7 @@ describe('Configuration.vue', () => {
     const wrapper = deepMount(Configuration);
     actions.getAllData.mockResolvedValueOnce(mockData);
     const createZipButton = wrapper.get('#c-create-zip-btn');
-    createZipButton.trigger('click');
+    await createZipButton.trigger('click');
     await new Promise((resolve) => setTimeout(resolve));
     expect(wrapper).toHaveDispatched('getAllData');
     expect(wrapper.vm.$data.snackbarColor).toBe('success');
@@ -103,7 +99,7 @@ describe('Configuration.vue', () => {
     const wrapper = deepMount(Configuration);
     actions.getAllData.mockResolvedValueOnce({});
     const createZipButton = wrapper.get('#c-create-zip-btn');
-    createZipButton.trigger('click');
+    await createZipButton.trigger('click');
     await new Promise((resolve) => setTimeout(resolve));
     expect(wrapper).toHaveDispatched('getAllData');
     expect(wrapper.vm.$data.snackbarColor).toBe('error');
@@ -119,7 +115,7 @@ describe('Configuration.vue', () => {
       }),
     });
     const downloadZipButton = wrapper.get('#c-download-zip-btn');
-    downloadZipButton.trigger('click');
+    await downloadZipButton.trigger('click');
     await wrapper.vm.$nextTick();
     expect(mockDownloadZip).toHaveBeenCalled();
   });
@@ -134,8 +130,7 @@ describe('Configuration.vue', () => {
       }),
     });
     const downloadZipButton = wrapper.get('#c-download-zip-btn');
-    downloadZipButton.trigger('click');
-    await wrapper.vm.$nextTick();
+    await downloadZipButton.trigger('click');
     expect(mockDownloadZip).not.toHaveBeenCalled();
   });
 });

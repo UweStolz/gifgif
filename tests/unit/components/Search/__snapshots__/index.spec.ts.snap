@@ -17,267 +17,282 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
       style="z-index: 202;"
       tabindex="0"
     >
-      <div
-        class="v-dialog v-dialog--active dialog-transition-enter dialog-transition-enter-active"
-        style="transform-origin: center center; width: 60%;"
+      <transition-stub
+        appear="true"
+        name="dialog-transition"
       >
         <div
-          class="v-card v-sheet theme--light"
-          style="overflow: hidden;"
+          class="v-dialog v-dialog--active"
+          style="transform-origin: center center; width: 60%;"
         >
           <div
-            class="v-card__title"
+            class="v-card v-sheet theme--light"
+            style="overflow: hidden;"
           >
             <div
-              class="spacer"
-            />
-             
-            <button
-              class="v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--default"
-              type="button"
+              class="v-card__title"
             >
-              <span
-                class="v-btn__content"
+              <div
+                class="spacer"
+              />
+               
+              <button
+                class="v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--default"
+                type="button"
               >
                 <span
-                  aria-hidden="true"
-                  class="v-icon notranslate v-icon--svg theme--light"
+                  class="v-btn__content"
                 >
-                  <svg
+                  <span
                     aria-hidden="true"
-                    height="24"
-                    role="img"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="v-icon notranslate v-icon--svg theme--light"
                   >
-                    <path
-                      d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-                    />
-                  </svg>
+                    <svg
+                      aria-hidden="true"
+                      height="24"
+                      role="img"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+                      />
+                    </svg>
+                  </span>
                 </span>
-              </span>
-            </button>
-          </div>
-           
-          <div
-            class="v-responsive v-image"
-            style="height: 100%; max-height: 512px; width: 100%;"
-          >
-            <div
-              class="v-image__image v-image__image--preload v-image__image--contain"
-              style="background-image: url(http://image2.gif); background-position: center center;"
-            />
-            <div
-              class="v-image__placeholder fade-transition-enter fade-transition-enter-active"
-            >
-              <div
-                aria-valuemax="100"
-                aria-valuemin="0"
-                class="v-progress-linear theme--light"
-                role="progressbar"
-                style="height: 4px;"
-              >
-                <div
-                  class="v-progress-linear__background red"
-                  style="opacity: 0.3; left: 0%; width: 100%;"
-                />
-                <div
-                  class="v-progress-linear__buffer"
-                />
-                <div
-                  class="v-progress-linear__indeterminate v-progress-linear__indeterminate--active"
-                >
-                  <div
-                    class="v-progress-linear__indeterminate long red"
-                  />
-                  <div
-                    class="v-progress-linear__indeterminate short red"
-                  />
-                </div>
-              </div>
+              </button>
             </div>
+             
             <div
-              class="v-responsive__content"
-            />
-          </div>
-           
-          <div
-            class="v-card__actions"
-            style="overflow-x: hidden;"
-          >
-            <div
-              class="row justify-center"
+              class="v-responsive v-image"
+              style="height: 100%; max-height: 512px; width: 100%;"
             >
-              <div
-                class="v-item-group theme--light"
+              <transition-stub
+                mode="in-out"
+                name="fade-transition"
               >
                 <div
-                  class="v-rating"
-                  id="s-ca-rating"
+                  class="v-image__image v-image__image--preload v-image__image--contain"
+                  style="background-image: url(http://image2.gif); background-position: center center;"
+                />
+              </transition-stub>
+              <transition-stub
+                appear="true"
+                name="fade-transition"
+              >
+                <div
+                  class="v-image__placeholder"
                 >
-                  <button
-                    class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
-                    style="font-size: 40px; height: 40px; width: 40px;"
-                    tabindex="-1"
-                    type="button"
+                  <div
+                    aria-valuemax="100"
+                    aria-valuemin="0"
+                    class="v-progress-linear theme--light"
+                    role="progressbar"
+                    style="height: 4px;"
                   >
-                    <svg
-                      aria-hidden="true"
-                      height="40px"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="40px"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <div
+                      class="v-progress-linear__background red"
+                      style="opacity: 0.3; left: 0%; width: 100%;"
+                    />
+                    <div
+                      class="v-progress-linear__buffer"
+                    />
+                    <div
+                      class="v-progress-linear__indeterminate v-progress-linear__indeterminate--active"
                     >
-                      <path
-                        d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
+                      <div
+                        class="v-progress-linear__indeterminate long red"
                       />
-                    </svg>
-                  </button>
-                  <button
-                    class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
-                    style="font-size: 40px; height: 40px; width: 40px;"
-                    tabindex="-1"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      height="40px"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="40px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
+                      <div
+                        class="v-progress-linear__indeterminate short red"
                       />
-                    </svg>
-                  </button>
-                  <button
-                    class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
-                    style="font-size: 40px; height: 40px; width: 40px;"
-                    tabindex="-1"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      height="40px"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="40px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
-                    style="font-size: 40px; height: 40px; width: 40px;"
-                    tabindex="-1"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      height="40px"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="40px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
-                    style="font-size: 40px; height: 40px; width: 40px;"
-                    tabindex="-1"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      height="40px"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="40px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
-                      />
-                    </svg>
-                  </button>
+                    </div>
+                  </div>
                 </div>
-                 
-                <button
-                  class="v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--large"
-                  id="s-ca-download-btn"
-                  type="button"
+              </transition-stub>
+              <div
+                class="v-responsive__content"
+              />
+            </div>
+             
+            <div
+              class="v-card__actions"
+              style="overflow-x: hidden;"
+            >
+              <div
+                class="row justify-center"
+              >
+                <div
+                  class="v-item-group theme--light"
                 >
-                  <span
-                    class="v-btn__content"
+                  <div
+                    class="v-rating"
+                    id="s-ca-rating"
                   >
-                    <span
-                      aria-hidden="true"
-                      class="v-icon notranslate v-icon--svg theme--light"
-                      id="downloadIcon"
+                    <button
+                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      style="font-size: 40px; height: 40px; width: 40px;"
+                      tabindex="-1"
+                      type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="24"
+                        height="40px"
                         role="img"
                         viewBox="0 0 24 24"
-                        width="24"
+                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"
+                          d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
                         />
                       </svg>
-                    </span>
-                  </span>
-                </button>
-                 
-                <button
-                  class="v-btn v-btn--disabled v-btn--flat v-btn--icon v-btn--round theme--light v-size--large"
-                  disabled="disabled"
-                  id="s-ca-remove-btn"
-                  type="button"
-                >
-                  <span
-                    class="v-btn__content"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="v-icon notranslate v-icon--svg theme--light"
-                      id="trashIcon"
+                    </button>
+                    <button
+                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      style="font-size: 40px; height: 40px; width: 40px;"
+                      tabindex="-1"
+                      type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="24"
+                        height="40px"
                         role="img"
                         viewBox="0 0 24 24"
-                        width="24"
+                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"
+                          d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
                         />
                       </svg>
+                    </button>
+                    <button
+                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      style="font-size: 40px; height: 40px; width: 40px;"
+                      tabindex="-1"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        height="40px"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        width="40px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      style="font-size: 40px; height: 40px; width: 40px;"
+                      tabindex="-1"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        height="40px"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        width="40px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      style="font-size: 40px; height: 40px; width: 40px;"
+                      tabindex="-1"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        height="40px"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        width="40px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                   
+                  <button
+                    class="v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--large"
+                    id="s-ca-download-btn"
+                    type="button"
+                  >
+                    <span
+                      class="v-btn__content"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="v-icon notranslate v-icon--svg theme--light"
+                        id="downloadIcon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          height="24"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"
+                          />
+                        </svg>
+                      </span>
                     </span>
-                  </span>
-                </button>
-                 
-                <!---->
+                  </button>
+                   
+                  <button
+                    class="v-btn v-btn--disabled v-btn--flat v-btn--icon v-btn--round theme--light v-size--large"
+                    disabled="disabled"
+                    id="s-ca-remove-btn"
+                    type="button"
+                  >
+                    <span
+                      class="v-btn__content"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="v-icon notranslate v-icon--svg theme--light"
+                        id="trashIcon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          height="24"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                   
+                  <!---->
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </transition-stub>
     </div>
   </div>
    
@@ -288,119 +303,127 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
       class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
       style="width: 80%;"
     >
-      <div
-        class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
-        id="s-filterCard"
-        style="display: none;"
+      <transition-stub
+        mode="out-in"
+        name="slide-y-transition"
       >
         <div
-          class="v-input theme--light v-text-field v-text-field--single-line v-select v-autocomplete v-overflow-btn"
+          class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
+          id="s-filterCard"
+          style="display: none;"
         >
           <div
-            class="v-input__control"
+            class="v-input theme--light v-text-field v-text-field--single-line v-select v-autocomplete v-overflow-btn"
           >
             <div
-              aria-expanded="false"
-              aria-haspopup="listbox"
-              aria-owns="list-123"
-              class="v-input__slot"
-              role="combobox"
+              class="v-input__control"
             >
               <div
-                class="v-select__slot"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-owns="list-111"
+                class="v-input__slot"
+                role="combobox"
               >
-                <label
-                  class="v-label theme--light"
-                  for="input-123"
-                >
-                  Rating
-                </label>
                 <div
-                  class="v-select__selections"
+                  class="v-select__slot"
                 >
+                  <label
+                    class="v-label theme--light"
+                    for="input-111"
+                  >
+                    Rating
+                  </label>
+                  <div
+                    class="v-select__selections"
+                  >
+                    <input
+                      id="input-111"
+                      readonly="readonly"
+                      target="#s-filterCard"
+                      type="text"
+                    />
+                  </div>
+                  <div
+                    class="v-input__append-inner"
+                  >
+                    <div
+                      class="v-input__icon v-input__icon--clear"
+                    >
+                      <button
+                        aria-label="clear icon"
+                        class="v-icon notranslate v-icon--disabled v-icon--link v-icon--svg theme--light"
+                        disabled="disabled"
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          height="24"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="v-input__append-inner"
+                  >
+                    <div
+                      class="v-input__icon v-input__icon--append"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="v-icon notranslate v-icon--svg theme--light"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          height="24"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7,10L12,15L17,10H7Z"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
                   <input
-                    id="input-123"
-                    readonly="readonly"
-                    target="#s-filterCard"
-                    type="text"
+                    type="hidden"
                   />
                 </div>
                 <div
-                  class="v-input__append-inner"
+                  class="v-menu"
+                  offsety="true"
                 >
-                  <div
-                    class="v-input__icon v-input__icon--clear"
-                  >
-                    <button
-                      aria-label="clear icon"
-                      class="v-icon notranslate v-icon--disabled v-icon--link v-icon--svg theme--light"
-                      disabled="disabled"
-                      type="button"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        height="24"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
+                  <!---->
                 </div>
-                <div
-                  class="v-input__append-inner"
-                >
-                  <div
-                    class="v-input__icon v-input__icon--append"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="v-icon notranslate v-icon--svg theme--light"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        height="24"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M7,10L12,15L17,10H7Z"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-                <input
-                  type="hidden"
-                />
               </div>
               <div
-                class="v-menu"
-              >
-                <!---->
-              </div>
-            </div>
-            <div
-              class="v-text-field__details"
-            >
-              <div
-                class="v-messages theme--light"
+                class="v-text-field__details"
               >
                 <div
-                  class="v-messages__wrapper"
-                />
+                  class="v-messages theme--light"
+                >
+                  <transition-group-stub
+                    class="v-messages__wrapper"
+                    name="message-transition"
+                    tag="div"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </transition-stub>
        
       <div
         class="v-input v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--placeholder v-select v-select--chips v-autocomplete"
@@ -436,7 +459,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
           <div
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-owns="list-129"
+            aria-owns="list-117"
             class="v-input__slot"
             role="combobox"
           >
@@ -445,7 +468,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
             >
               <label
                 class="v-label v-label--active theme--light"
-                for="input-129"
+                for="input-117"
                 style="left: 0px; position: absolute;"
               >
                 GIF search
@@ -483,7 +506,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                 </span>
                 <input
                   autocomplete="off"
-                  id="input-129"
+                  id="input-117"
                   placeholder="Enter or select a search tag"
                   type="text"
                 />
@@ -546,6 +569,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
             </div>
             <div
               class="v-menu"
+              offsety="true"
             >
               <!---->
             </div>
@@ -556,15 +580,17 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
             <div
               class="v-messages theme--light"
             >
-              <div
+              <transition-group-stub
                 class="v-messages__wrapper"
+                name="message-transition"
+                tag="div"
               >
                 <div
                   class="v-messages__message"
                 >
                   A minimum of 3 characters is required
                 </div>
-              </div>
+              </transition-group-stub>
             </div>
           </div>
         </div>
@@ -598,41 +624,54 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
         role="separator"
       />
        
-      <div
-        class="v-item-group theme--light expand-transition-enter expand-transition-enter-active"
-        style="overflow: hidden; height: 0px;"
+      <transition-stub
+        name="expand-transition"
       >
         <div
-          class="row align-start justify-start"
+          class="v-item-group theme--light"
         >
           <div
-            class="v-responsive v-image imageHover"
-            id="s-img-n0"
-            style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
+            class="row align-start justify-start"
           >
             <div
-              class="v-image__image v-image__image--preload v-image__image--contain"
-              style="background-image: url(http://preview1.webp); background-position: center center;"
-            />
+              class="v-responsive v-image imageHover"
+              id="s-img-n0"
+              style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
+            >
+              <transition-stub
+                mode="in-out"
+                name="fade-transition"
+              >
+                <div
+                  class="v-image__image v-image__image--preload v-image__image--contain"
+                  style="background-image: url(http://preview1.webp); background-position: center center;"
+                />
+              </transition-stub>
+              <div
+                class="v-responsive__content"
+              />
+            </div>
             <div
-              class="v-responsive__content"
-            />
-          </div>
-          <div
-            class="v-responsive v-image imageHover"
-            id="s-img-n1"
-            style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
-          >
-            <div
-              class="v-image__image v-image__image--preload v-image__image--contain"
-              style="background-image: url(http://preview2.webp); background-position: center center;"
-            />
-            <div
-              class="v-responsive__content"
-            />
+              class="v-responsive v-image imageHover"
+              id="s-img-n1"
+              style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
+            >
+              <transition-stub
+                mode="in-out"
+                name="fade-transition"
+              >
+                <div
+                  class="v-image__image v-image__image--preload v-image__image--contain"
+                  style="background-image: url(http://preview2.webp); background-position: center center;"
+                />
+              </transition-stub>
+              <div
+                class="v-responsive__content"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </transition-stub>
     </div>
   </div>
 </div>
@@ -655,267 +694,282 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
       style="z-index: 202;"
       tabindex="0"
     >
-      <div
-        class="v-dialog v-dialog--active dialog-transition-enter dialog-transition-enter-active"
-        style="transform-origin: center center; width: 60%;"
+      <transition-stub
+        appear="true"
+        name="dialog-transition"
       >
         <div
-          class="v-card v-sheet theme--light"
-          style="overflow: hidden;"
+          class="v-dialog v-dialog--active"
+          style="transform-origin: center center; width: 60%;"
         >
           <div
-            class="v-card__title"
+            class="v-card v-sheet theme--light"
+            style="overflow: hidden;"
           >
             <div
-              class="spacer"
-            />
-             
-            <button
-              class="v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--default"
-              type="button"
+              class="v-card__title"
             >
-              <span
-                class="v-btn__content"
+              <div
+                class="spacer"
+              />
+               
+              <button
+                class="v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--default"
+                type="button"
               >
                 <span
-                  aria-hidden="true"
-                  class="v-icon notranslate v-icon--svg theme--light"
+                  class="v-btn__content"
                 >
-                  <svg
+                  <span
                     aria-hidden="true"
-                    height="24"
-                    role="img"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
+                    class="v-icon notranslate v-icon--svg theme--light"
                   >
-                    <path
-                      d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-                    />
-                  </svg>
+                    <svg
+                      aria-hidden="true"
+                      height="24"
+                      role="img"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+                      />
+                    </svg>
+                  </span>
                 </span>
-              </span>
-            </button>
-          </div>
-           
-          <div
-            class="v-responsive v-image"
-            style="height: 100%; max-height: 512px; width: 100%;"
-          >
-            <div
-              class="v-image__image v-image__image--preload v-image__image--contain"
-              style="background-image: url(http://image1.webp); background-position: center center;"
-            />
-            <div
-              class="v-image__placeholder fade-transition-enter fade-transition-enter-active"
-            >
-              <div
-                aria-valuemax="100"
-                aria-valuemin="0"
-                class="v-progress-linear theme--light"
-                role="progressbar"
-                style="height: 4px;"
-              >
-                <div
-                  class="v-progress-linear__background red"
-                  style="opacity: 0.3; left: 0%; width: 100%;"
-                />
-                <div
-                  class="v-progress-linear__buffer"
-                />
-                <div
-                  class="v-progress-linear__indeterminate v-progress-linear__indeterminate--active"
-                >
-                  <div
-                    class="v-progress-linear__indeterminate long red"
-                  />
-                  <div
-                    class="v-progress-linear__indeterminate short red"
-                  />
-                </div>
-              </div>
+              </button>
             </div>
+             
             <div
-              class="v-responsive__content"
-            />
-          </div>
-           
-          <div
-            class="v-card__actions"
-            style="overflow-x: hidden;"
-          >
-            <div
-              class="row justify-center"
+              class="v-responsive v-image"
+              style="height: 100%; max-height: 512px; width: 100%;"
             >
-              <div
-                class="v-item-group theme--light"
+              <transition-stub
+                mode="in-out"
+                name="fade-transition"
               >
                 <div
-                  class="v-rating"
-                  id="s-ca-rating"
+                  class="v-image__image v-image__image--preload v-image__image--contain"
+                  style="background-image: url(http://image1.webp); background-position: center center;"
+                />
+              </transition-stub>
+              <transition-stub
+                appear="true"
+                name="fade-transition"
+              >
+                <div
+                  class="v-image__placeholder"
                 >
-                  <button
-                    class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
-                    style="font-size: 40px; height: 40px; width: 40px;"
-                    tabindex="-1"
-                    type="button"
+                  <div
+                    aria-valuemax="100"
+                    aria-valuemin="0"
+                    class="v-progress-linear theme--light"
+                    role="progressbar"
+                    style="height: 4px;"
                   >
-                    <svg
-                      aria-hidden="true"
-                      height="40px"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="40px"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <div
+                      class="v-progress-linear__background red"
+                      style="opacity: 0.3; left: 0%; width: 100%;"
+                    />
+                    <div
+                      class="v-progress-linear__buffer"
+                    />
+                    <div
+                      class="v-progress-linear__indeterminate v-progress-linear__indeterminate--active"
                     >
-                      <path
-                        d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
+                      <div
+                        class="v-progress-linear__indeterminate long red"
                       />
-                    </svg>
-                  </button>
-                  <button
-                    class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
-                    style="font-size: 40px; height: 40px; width: 40px;"
-                    tabindex="-1"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      height="40px"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="40px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
+                      <div
+                        class="v-progress-linear__indeterminate short red"
                       />
-                    </svg>
-                  </button>
-                  <button
-                    class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
-                    style="font-size: 40px; height: 40px; width: 40px;"
-                    tabindex="-1"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      height="40px"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="40px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
-                    style="font-size: 40px; height: 40px; width: 40px;"
-                    tabindex="-1"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      height="40px"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="40px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
-                    style="font-size: 40px; height: 40px; width: 40px;"
-                    tabindex="-1"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      height="40px"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="40px"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
-                      />
-                    </svg>
-                  </button>
+                    </div>
+                  </div>
                 </div>
-                 
-                <button
-                  class="v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--large"
-                  id="s-ca-download-btn"
-                  type="button"
+              </transition-stub>
+              <div
+                class="v-responsive__content"
+              />
+            </div>
+             
+            <div
+              class="v-card__actions"
+              style="overflow-x: hidden;"
+            >
+              <div
+                class="row justify-center"
+              >
+                <div
+                  class="v-item-group theme--light"
                 >
-                  <span
-                    class="v-btn__content"
+                  <div
+                    class="v-rating"
+                    id="s-ca-rating"
                   >
-                    <span
-                      aria-hidden="true"
-                      class="v-icon notranslate v-icon--svg theme--light"
-                      id="downloadIcon"
+                    <button
+                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      style="font-size: 40px; height: 40px; width: 40px;"
+                      tabindex="-1"
+                      type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="24"
+                        height="40px"
                         role="img"
                         viewBox="0 0 24 24"
-                        width="24"
+                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"
+                          d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
                         />
                       </svg>
-                    </span>
-                  </span>
-                </button>
-                 
-                <button
-                  class="v-btn v-btn--disabled v-btn--flat v-btn--icon v-btn--round theme--light v-size--large"
-                  disabled="disabled"
-                  id="s-ca-remove-btn"
-                  type="button"
-                >
-                  <span
-                    class="v-btn__content"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="v-icon notranslate v-icon--svg theme--light"
-                      id="trashIcon"
+                    </button>
+                    <button
+                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      style="font-size: 40px; height: 40px; width: 40px;"
+                      tabindex="-1"
+                      type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="24"
+                        height="40px"
                         role="img"
                         viewBox="0 0 24 24"
-                        width="24"
+                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"
+                          d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
                         />
                       </svg>
+                    </button>
+                    <button
+                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      style="font-size: 40px; height: 40px; width: 40px;"
+                      tabindex="-1"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        height="40px"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        width="40px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      style="font-size: 40px; height: 40px; width: 40px;"
+                      tabindex="-1"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        height="40px"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        width="40px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      style="font-size: 40px; height: 40px; width: 40px;"
+                      tabindex="-1"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        height="40px"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        width="40px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                   
+                  <button
+                    class="v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--large"
+                    id="s-ca-download-btn"
+                    type="button"
+                  >
+                    <span
+                      class="v-btn__content"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="v-icon notranslate v-icon--svg theme--light"
+                        id="downloadIcon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          height="24"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"
+                          />
+                        </svg>
+                      </span>
                     </span>
-                  </span>
-                </button>
-                 
-                <!---->
+                  </button>
+                   
+                  <button
+                    class="v-btn v-btn--disabled v-btn--flat v-btn--icon v-btn--round theme--light v-size--large"
+                    disabled="disabled"
+                    id="s-ca-remove-btn"
+                    type="button"
+                  >
+                    <span
+                      class="v-btn__content"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="v-icon notranslate v-icon--svg theme--light"
+                        id="trashIcon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          height="24"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                  </button>
+                   
+                  <!---->
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </transition-stub>
     </div>
   </div>
    
@@ -926,119 +980,127 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
       class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
       style="width: 80%;"
     >
-      <div
-        class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
-        id="s-filterCard"
-        style="display: none;"
+      <transition-stub
+        mode="out-in"
+        name="slide-y-transition"
       >
         <div
-          class="v-input theme--light v-text-field v-text-field--single-line v-select v-autocomplete v-overflow-btn"
+          class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
+          id="s-filterCard"
+          style="display: none;"
         >
           <div
-            class="v-input__control"
+            class="v-input theme--light v-text-field v-text-field--single-line v-select v-autocomplete v-overflow-btn"
           >
             <div
-              aria-expanded="false"
-              aria-haspopup="listbox"
-              aria-owns="list-204"
-              class="v-input__slot"
-              role="combobox"
+              class="v-input__control"
             >
               <div
-                class="v-select__slot"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-owns="list-169"
+                class="v-input__slot"
+                role="combobox"
               >
-                <label
-                  class="v-label theme--light"
-                  for="input-204"
-                >
-                  Rating
-                </label>
                 <div
-                  class="v-select__selections"
+                  class="v-select__slot"
                 >
+                  <label
+                    class="v-label theme--light"
+                    for="input-169"
+                  >
+                    Rating
+                  </label>
+                  <div
+                    class="v-select__selections"
+                  >
+                    <input
+                      id="input-169"
+                      readonly="readonly"
+                      target="#s-filterCard"
+                      type="text"
+                    />
+                  </div>
+                  <div
+                    class="v-input__append-inner"
+                  >
+                    <div
+                      class="v-input__icon v-input__icon--clear"
+                    >
+                      <button
+                        aria-label="clear icon"
+                        class="v-icon notranslate v-icon--disabled v-icon--link v-icon--svg theme--light"
+                        disabled="disabled"
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          height="24"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="v-input__append-inner"
+                  >
+                    <div
+                      class="v-input__icon v-input__icon--append"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="v-icon notranslate v-icon--svg theme--light"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          height="24"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7,10L12,15L17,10H7Z"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
                   <input
-                    id="input-204"
-                    readonly="readonly"
-                    target="#s-filterCard"
-                    type="text"
+                    type="hidden"
                   />
                 </div>
                 <div
-                  class="v-input__append-inner"
+                  class="v-menu"
+                  offsety="true"
                 >
-                  <div
-                    class="v-input__icon v-input__icon--clear"
-                  >
-                    <button
-                      aria-label="clear icon"
-                      class="v-icon notranslate v-icon--disabled v-icon--link v-icon--svg theme--light"
-                      disabled="disabled"
-                      type="button"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        height="24"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
+                  <!---->
                 </div>
-                <div
-                  class="v-input__append-inner"
-                >
-                  <div
-                    class="v-input__icon v-input__icon--append"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="v-icon notranslate v-icon--svg theme--light"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        height="24"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M7,10L12,15L17,10H7Z"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-                <input
-                  type="hidden"
-                />
               </div>
               <div
-                class="v-menu"
-              >
-                <!---->
-              </div>
-            </div>
-            <div
-              class="v-text-field__details"
-            >
-              <div
-                class="v-messages theme--light"
+                class="v-text-field__details"
               >
                 <div
-                  class="v-messages__wrapper"
-                />
+                  class="v-messages theme--light"
+                >
+                  <transition-group-stub
+                    class="v-messages__wrapper"
+                    name="message-transition"
+                    tag="div"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </transition-stub>
        
       <div
         class="v-input v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--placeholder v-select v-select--chips v-autocomplete"
@@ -1074,7 +1136,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
           <div
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-owns="list-210"
+            aria-owns="list-175"
             class="v-input__slot"
             role="combobox"
           >
@@ -1083,7 +1145,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
             >
               <label
                 class="v-label v-label--active theme--light"
-                for="input-210"
+                for="input-175"
                 style="left: 0px; position: absolute;"
               >
                 GIF search
@@ -1121,7 +1183,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                 </span>
                 <input
                   autocomplete="off"
-                  id="input-210"
+                  id="input-175"
                   placeholder="Enter or select a search tag"
                   type="text"
                 />
@@ -1184,6 +1246,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
             </div>
             <div
               class="v-menu"
+              offsety="true"
             >
               <!---->
             </div>
@@ -1194,15 +1257,17 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
             <div
               class="v-messages theme--light"
             >
-              <div
+              <transition-group-stub
                 class="v-messages__wrapper"
+                name="message-transition"
+                tag="div"
               >
                 <div
                   class="v-messages__message"
                 >
                   A minimum of 3 characters is required
                 </div>
-              </div>
+              </transition-group-stub>
             </div>
           </div>
         </div>
@@ -1236,41 +1301,54 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
         role="separator"
       />
        
-      <div
-        class="v-item-group theme--light expand-transition-enter expand-transition-enter-active"
-        style="overflow: hidden; height: 0px;"
+      <transition-stub
+        name="expand-transition"
       >
         <div
-          class="row align-start justify-start"
+          class="v-item-group theme--light"
         >
           <div
-            class="v-responsive v-image imageHover"
-            id="s-img-n0"
-            style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
+            class="row align-start justify-start"
           >
             <div
-              class="v-image__image v-image__image--preload v-image__image--contain"
-              style="background-image: url(http://preview1.webp); background-position: center center;"
-            />
+              class="v-responsive v-image imageHover"
+              id="s-img-n0"
+              style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
+            >
+              <transition-stub
+                mode="in-out"
+                name="fade-transition"
+              >
+                <div
+                  class="v-image__image v-image__image--preload v-image__image--contain"
+                  style="background-image: url(http://preview1.webp); background-position: center center;"
+                />
+              </transition-stub>
+              <div
+                class="v-responsive__content"
+              />
+            </div>
             <div
-              class="v-responsive__content"
-            />
-          </div>
-          <div
-            class="v-responsive v-image imageHover"
-            id="s-img-n1"
-            style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
-          >
-            <div
-              class="v-image__image v-image__image--preload v-image__image--contain"
-              style="background-image: url(http://preview2.webp); background-position: center center;"
-            />
-            <div
-              class="v-responsive__content"
-            />
+              class="v-responsive v-image imageHover"
+              id="s-img-n1"
+              style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
+            >
+              <transition-stub
+                mode="in-out"
+                name="fade-transition"
+              >
+                <div
+                  class="v-image__image v-image__image--preload v-image__image--contain"
+                  style="background-image: url(http://preview2.webp); background-position: center center;"
+                />
+              </transition-stub>
+              <div
+                class="v-responsive__content"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </transition-stub>
     </div>
   </div>
 </div>
@@ -1460,119 +1538,127 @@ exports[`Search renders properly with enabled filter 1`] = `
       class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
       style="width: 80%;"
     >
-      <div
-        class="v-card v-card--flat v-sheet v-sheet--tile theme--light slide-y-transition-enter slide-y-transition-enter-active"
-        id="s-filterCard"
-        style="transform-origin: top center 0; webkit-transform-origin: top center 0;"
+      <transition-stub
+        mode="out-in"
+        name="slide-y-transition"
       >
         <div
-          class="v-input theme--light v-text-field v-text-field--single-line v-select v-autocomplete v-overflow-btn"
+          class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
+          id="s-filterCard"
+          style=""
         >
           <div
-            class="v-input__control"
+            class="v-input theme--light v-text-field v-text-field--single-line v-select v-autocomplete v-overflow-btn"
           >
             <div
-              aria-expanded="false"
-              aria-haspopup="listbox"
-              aria-owns="list-19"
-              class="v-input__slot"
-              role="combobox"
+              class="v-input__control"
             >
               <div
-                class="v-select__slot"
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-owns="list-19"
+                class="v-input__slot"
+                role="combobox"
               >
-                <label
-                  class="v-label theme--light"
-                  for="input-19"
-                >
-                  Rating
-                </label>
                 <div
-                  class="v-select__selections"
+                  class="v-select__slot"
                 >
+                  <label
+                    class="v-label theme--light"
+                    for="input-19"
+                  >
+                    Rating
+                  </label>
+                  <div
+                    class="v-select__selections"
+                  >
+                    <input
+                      id="input-19"
+                      readonly="readonly"
+                      target="#s-filterCard"
+                      type="text"
+                    />
+                  </div>
+                  <div
+                    class="v-input__append-inner"
+                  >
+                    <div
+                      class="v-input__icon v-input__icon--clear"
+                    >
+                      <button
+                        aria-label="clear icon"
+                        class="v-icon notranslate v-icon--disabled v-icon--link v-icon--svg theme--light"
+                        disabled="disabled"
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          height="24"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="v-input__append-inner"
+                  >
+                    <div
+                      class="v-input__icon v-input__icon--append"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="v-icon notranslate v-icon--svg theme--light"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          height="24"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7,10L12,15L17,10H7Z"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
                   <input
-                    id="input-19"
-                    readonly="readonly"
-                    target="#s-filterCard"
-                    type="text"
+                    type="hidden"
                   />
                 </div>
                 <div
-                  class="v-input__append-inner"
+                  class="v-menu"
+                  offsety="true"
                 >
-                  <div
-                    class="v-input__icon v-input__icon--clear"
-                  >
-                    <button
-                      aria-label="clear icon"
-                      class="v-icon notranslate v-icon--disabled v-icon--link v-icon--svg theme--light"
-                      disabled="disabled"
-                      type="button"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        height="24"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
+                  <!---->
                 </div>
-                <div
-                  class="v-input__append-inner"
-                >
-                  <div
-                    class="v-input__icon v-input__icon--append"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="v-icon notranslate v-icon--svg theme--light"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        height="24"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M7,10L12,15L17,10H7Z"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-                <input
-                  type="hidden"
-                />
               </div>
               <div
-                class="v-menu"
-              >
-                <!---->
-              </div>
-            </div>
-            <div
-              class="v-text-field__details"
-            >
-              <div
-                class="v-messages theme--light"
+                class="v-text-field__details"
               >
                 <div
-                  class="v-messages__wrapper"
-                />
+                  class="v-messages theme--light"
+                >
+                  <transition-group-stub
+                    class="v-messages__wrapper"
+                    name="message-transition"
+                    tag="div"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </transition-stub>
        
       <div
         class="v-input theme--light v-text-field v-text-field--placeholder v-select v-select--chips v-autocomplete"
@@ -1690,6 +1776,7 @@ exports[`Search renders properly with enabled filter 1`] = `
             </div>
             <div
               class="v-menu"
+              offsety="true"
             >
               <!---->
             </div>
@@ -1700,15 +1787,17 @@ exports[`Search renders properly with enabled filter 1`] = `
             <div
               class="v-messages theme--light"
             >
-              <div
+              <transition-group-stub
                 class="v-messages__wrapper"
+                name="message-transition"
+                tag="div"
               >
                 <div
                   class="v-messages__message"
                 >
                   A minimum of 3 characters is required
                 </div>
-              </div>
+              </transition-group-stub>
             </div>
           </div>
         </div>
@@ -1742,7 +1831,11 @@ exports[`Search renders properly with enabled filter 1`] = `
         role="separator"
       />
        
-      <!---->
+      <transition-stub
+        name="expand-transition"
+      >
+        <!---->
+      </transition-stub>
     </div>
   </div>
 </div>

@@ -27,11 +27,10 @@ describe('Translate', () => {
     fetchMock.resetMocks();
     const mockedFetch = fetchMock.mockResponse(JSON.stringify(mockResponse));
     const wrapper = shallow(Translate);
-    const textField = wrapper.find({ name: 'v-text-field' });
+    const textField = wrapper.findComponent({ name: 'v-text-field' });
     textField.vm.$emit('input', 'testInput');
     await wrapper.vm.$nextTick();
-    wrapper.setData({ weirdnessSlider: 1 });
-    await wrapper.vm.$nextTick();
+    await wrapper.setData({ weirdnessSlider: 1 });
     await new Promise((resolve) => setTimeout(resolve));
     expect(mockedFetch).toHaveBeenCalledTimes(2);
     expect(wrapper).toHaveDispatched('getGifData');
@@ -59,11 +58,12 @@ describe('Translate', () => {
     fetchMock.mockResponse(JSON.stringify(mockResponse));
     const mockClearTextField = jest.fn();
     const wrapper = shallow(Translate, {
+      // Overwriting methods will be deprecated in the future
       methods: {
         clearTextField: mockClearTextField,
       },
     });
-    const textField = wrapper.find({ name: 'v-text-field' });
+    const textField = wrapper.findComponent({ name: 'v-text-field' });
     textField.vm.$emit('input', 'testInput');
     await wrapper.vm.$nextTick();
     textField.vm.$emit('click:clear');
@@ -90,7 +90,7 @@ describe('Translate', () => {
     fetchMock.resetMocks();
     const mockedFetch = fetchMock.mockResponse(JSON.stringify(mockResponse));
     const wrapper = shallow(Translate);
-    const textField = wrapper.find({ name: 'v-text-field' });
+    const textField = wrapper.findComponent({ name: 'v-text-field' });
     textField.vm.$emit('input', 'testInput');
     await wrapper.vm.$nextTick();
     await new Promise((resolve) => setTimeout(resolve));
@@ -123,11 +123,11 @@ describe('Translate', () => {
         Picker: VEmojiPicker,
       },
     });
-    const textField = wrapper.find({ name: 'v-text-field' });
+    const textField = wrapper.findComponent({ name: 'v-text-field' });
     textField.vm.$emit('click:prepend-inner');
     await wrapper.vm.$nextTick();
-    const picker = wrapper.find(VEmojiPicker);
-    picker.vm.$emit('select', ':-)');
+    const picker = wrapper.get(VEmojiPicker);
+    picker.vm.$emit('select', { data: ':-)' });
     await wrapper.vm.$nextTick();
     await new Promise((resolve) => setTimeout(resolve));
     expect(mockedFetch).toHaveBeenCalled();
@@ -158,13 +158,13 @@ describe('Translate', () => {
         Picker: VEmojiPicker,
       },
     });
-    const textField = wrapper.find({ name: 'v-text-field' });
+    const textField = wrapper.findComponent({ name: 'v-text-field' });
     textField.vm.$emit('input', '1234567891012131415161718');
     await wrapper.vm.$nextTick();
     textField.vm.$emit('click:prepend-inner');
     await wrapper.vm.$nextTick();
-    const picker = wrapper.find(VEmojiPicker);
-    picker.vm.$emit('select', ':-(');
+    const picker = wrapper.findComponent(VEmojiPicker);
+    picker.vm.$emit('select', { data: ':-(' });
     await wrapper.vm.$nextTick();
     await new Promise((resolve) => setTimeout(resolve));
     expect(mockedFetch).toHaveBeenCalledTimes(1);
@@ -196,7 +196,7 @@ describe('Translate', () => {
     wrapper.vm.$watch('inputValue', (n) => {
       watchedValue = n;
     });
-    const textField = wrapper.find({ name: 'v-text-field' });
+    const textField = wrapper.findComponent({ name: 'v-text-field' });
     textField.vm.$emit('input', 'testInput');
     await wrapper.vm.$nextTick();
     textField.vm.$emit('input', '');
@@ -225,7 +225,7 @@ describe('Translate', () => {
     fetchMock.resetMocks();
     const mockedFetch = fetchMock.mockResponse(JSON.stringify(mockResponse));
     const wrapper = shallow(Translate);
-    const textField = wrapper.find({ name: 'v-text-field' });
+    const textField = wrapper.findComponent({ name: 'v-text-field' });
     textField.vm.$emit('input', 'testInput');
     await wrapper.vm.$nextTick();
     await new Promise((resolve) => setTimeout(resolve));
@@ -238,7 +238,7 @@ describe('Translate', () => {
 
   it('Catches error while getting translated GIF on input', async () => {
     const wrapper = shallow(Translate);
-    const textField = wrapper.find({ name: 'v-text-field' });
+    const textField = wrapper.findComponent({ name: 'v-text-field' });
     textField.vm.$emit('input', 'testInput');
     await wrapper.vm.$nextTick();
     await new Promise((resolve) => setTimeout(resolve));
@@ -249,7 +249,7 @@ describe('Translate', () => {
 
   it('Do not get translated gif if input is < 3', async () => {
     const wrapper = shallow(Translate);
-    const textField = wrapper.find({ name: 'v-text-field' });
+    const textField = wrapper.findComponent({ name: 'v-text-field' });
     textField.vm.$emit('input', 'ab');
     await wrapper.vm.$nextTick();
     await new Promise((resolve) => setTimeout(resolve));
