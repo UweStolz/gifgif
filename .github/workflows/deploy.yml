@@ -18,7 +18,7 @@ jobs:
     - name: Generate production build
       run: yarn build
     - name: Install SSH Client
-      uses: webfactory/ssh-agent@v0.2.0
+      uses: webfactory/ssh-agent@v0.3.0
       with:
         ssh-private-key: ${{ secrets.DEPLOY_KEY }}
     - name: Deploy to branch for GH-Page
