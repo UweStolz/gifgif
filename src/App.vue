@@ -3,14 +3,14 @@
     <Toolbar v-if="this.$route.path !== '/about'" />
     <Drawer v-if="this.$route.path !== '/about'" />
     <Footer v-if="this.$route.path !== '/about'" />
-    <v-content>
+    <v-main>
       <transition
         name="fade"
         mode="out-in"
       >
         <router-view />
       </transition>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

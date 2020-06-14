@@ -3,6 +3,7 @@
     :value="syncVisibility"
     :timeout="timeout"
     :color="color"
+    app
     top
   >
     <v-icon

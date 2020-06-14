@@ -82,18 +82,10 @@ import {
 } from '@mdi/js';
 import { getTranslateGifFromGiphy } from '@/request';
 import VEmojiPicker from 'v-emoji-picker';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore - No types available
-import vClickOutside from 'v-click-outside';
-
 import CardActions from '@/components/shared/CardActions.vue';
 import LinearProgress from '@/components/shared/LinearProgress.vue';
 
 @Component({
-  directives: {
-    clickOutside: vClickOutside.directive,
-
-  },
   components: {
     Picker: VEmojiPicker,
     CardActions,

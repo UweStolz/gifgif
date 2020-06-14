@@ -141,7 +141,6 @@ export default class Search extends Vue {
     this.isLoading = false;
   }
 
-
   openDialog(index: number) {
     this.dialog = true;
     this.fullImage = this.searchResults[index].images.original.webp

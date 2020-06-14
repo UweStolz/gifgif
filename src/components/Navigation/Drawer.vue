@@ -2,7 +2,7 @@
   <v-navigation-drawer
     v-model="$store.state.showMobileDrawer"
     color="red darken-3"
-    mobile-break-point="600px"
+    mobile-breapoint="600px"
     mini-variant-width="9vh"
     mini-variant
     :permanent="!$vuetify.breakpoint.xsOnly"

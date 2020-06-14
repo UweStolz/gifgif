@@ -56,7 +56,6 @@ import blobToImage from '@/util/imageHelper';
 import Empty from './Empty.vue';
 import PanelContent from './PanelContent.vue';
 
-
 interface Data {
   previewUrl: {
     [key: number]: { id: string[]; images: (Blob | string)[]; previews: string[] };
