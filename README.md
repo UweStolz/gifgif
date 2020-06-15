@@ -14,7 +14,6 @@ A little PWA for GIFs and fun
 
  [Vue](https://vuejs.org/)  
  [Vuetify](https://vuetifyjs.com/en/)  
- and Love ❤️
 
 ## Tested with 🃏
 
