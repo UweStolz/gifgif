@@ -8,7 +8,10 @@ export default {
   },
 
   addFileToZip(folderName: string, fileName: string, file: Blob): void {
-    zip.folder(folderName).file(fileName, file);
+    const jszip = zip.folder(folderName);
+    if (jszip) {
+      jszip.file(fileName, file);
+    }
   },
 
   async generateZip(options: JSZipGeneratorOptions, onUpdate?: any | undefined): Promise<any> {
