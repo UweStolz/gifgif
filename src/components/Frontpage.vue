@@ -158,7 +158,7 @@ export default class Frontpage extends Vue {
     listFromGiphy.forEach((item) => {
       const itemObject: BuiltGifListObject = {
         id: item.id,
-        url: item.images.original.webp.length
+        url: item.images.original.webp
           ? item.images.original.webp
           : item.images.original.url,
         previewUrl: item.images.fixed_width.webp,
