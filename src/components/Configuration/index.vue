@@ -208,12 +208,12 @@ export default class Configuration extends Vue {
     },
   }
 
-  async deleteGifData() {
+  async deleteGifData(): Promise<void> {
     await this.$store.dispatch('removeCompleteGifData');
     this.showDialog = false;
   }
 
-  async generateZip() {
+  async generateZip(): Promise<void> {
     try {
       this.isLoading = true;
       this.finishedZipGeneration = false;
@@ -247,7 +247,7 @@ export default class Configuration extends Vue {
     }
   }
 
-  downloadZip() {
+  downloadZip(): void {
     if (this.zipFile) {
       saveAs(this.zipFile, 'gifs.zip');
     }

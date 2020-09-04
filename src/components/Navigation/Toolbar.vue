@@ -71,7 +71,7 @@ import {
 
 @Component
 export default class Toolbar extends Vue {
-  setGifMode(mode: string) {
+  setGifMode(mode: string): void {
     this.$store.commit('setGifMode', mode);
   }
 

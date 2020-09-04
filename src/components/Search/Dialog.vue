@@ -25,9 +25,7 @@
         height="100%"
         width="100%"
       >
-        <template
-          v-slot:placeholder
-        >
+        <template v-slot:placeholder>
           <linear-progress />
         </template>
       </v-img>
@@ -67,7 +65,7 @@ export default class Dialog extends Vue {
   @PropSync('imageId', { type: String, required: true }) syncedImageId!: string;
 
   @Watch('syncedShowDialog')
-  async getRating() {
+  async getRating(): Promise<void> {
     if (this.syncedShowDialog) {
       const gifData = await this.$store.dispatch('getGifData', `ggid-${this.syncedImageId}`);
       this.rating = gifData ? this.rating = gifData.rating : 0;
