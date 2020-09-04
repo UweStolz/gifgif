@@ -18,8 +18,14 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'max-len': [0, { code: 200, ignoreStrings: true }],
-    "camelcase": "off",
-    "@typescript-eslint/camelcase": ["error", { "properties": "never" }]
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        "selector": "variable",
+        "format": ["camelCase"]
+      }
+    ],
+    '@typescript-eslint/ban-ts-comment': 'off'
   },
 
   parserOptions: {

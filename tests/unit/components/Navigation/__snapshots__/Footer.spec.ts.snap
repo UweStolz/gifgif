@@ -5,8 +5,7 @@ exports[`Footer.vue renders properly 1`] = `
   app="true"
   color="red darken-3"
   height="auto"
-  tag="div"
-  tile="true"
+  tag="footer"
 >
   <v-col-stub
     class="text-center"

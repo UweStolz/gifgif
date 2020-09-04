@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable camelcase */
 import Vue, { VNode } from 'vue';
 import { DBSchema } from 'idb';
@@ -14,6 +15,12 @@ declare global {
   }
 
   namespace Database {
+    type GifData = {
+      rating: number;
+      image: Blob|string;
+      preview: Blob | string;
+    }
+
     interface GifGif extends DBSchema {
       gifdata: {
         key: string;
@@ -25,12 +32,6 @@ declare global {
       };
     }
 
-    type GifData = {
-      rating: number;
-      image: Blob|string;
-      preview: Blob | string;
-    }
-
     type GifStore = {
       values: GifData[];
       keys: string[];
@@ -40,19 +41,40 @@ declare global {
       keys: string[];
     }
 }
+interface BuiltGifListObject {
+  id: string;
+  url: string;
+  previewUrl: string;
+}
 
   interface BuiltGifLists extends Array<BuiltGifListObject> {
     [index: number]: BuiltGifListObject;
-  }
-  interface BuiltGifListObject {
-    id: string;
-    url: string;
-    previewUrl: string;
   }
 
   namespace Tenor {
     interface Response extends Array<GIFObject> {
       [elem: number]: GIFObject;
+    }
+
+        interface MediaObject {
+      preview: string;
+      url: string;
+      dims: number[];
+      size: number;
+    }
+
+        interface GIFFormat {
+      gif: MediaObject;
+      mediumgif: MediaObject;
+      tinygif: MediaObject;
+      nanogif: MediaObject;
+      mp4: MediaObject;
+      loopedmp4: MediaObject;
+      tinymp4: MediaObject;
+      nanomp4: MediaObject;
+      webm: MediaObject;
+      tinywebm: MediaObject;
+      nanowebm: MediaObject;
     }
     interface GIFObject {
       created: number;
@@ -66,51 +88,12 @@ declare global {
       itemurl: string;
       url: string;
     }
-    interface MediaObject {
-      preview: string;
-      url: string;
-      dims: number[];
-      size: number;
-    }
-    interface GIFFormat {
-      gif: MediaObject;
-      mediumgif: MediaObject;
-      tinygif: MediaObject;
-      nanogif: MediaObject;
-      mp4: MediaObject;
-      loopedmp4: MediaObject;
-      tinymp4: MediaObject;
-      nanomp4: MediaObject;
-      webm: MediaObject;
-      tinywebm: MediaObject;
-      nanowebm: MediaObject;
-    }
+
   }
 
   namespace Giphy {
     interface Response extends Array<GIFObject> {
       [elem: number]: GIFObject;
-    }
-    interface GIFObject {
-      type: string;
-      id: string;
-      slug: string;
-      url: string;
-      bitly_gif_url: string;
-      bitly_url: string;
-      embed_url: string;
-      username: string;
-      source: string;
-      rating: string;
-      caption: string;
-      content_url: string;
-      source_tld: string;
-      source_post_url: string;
-      import_datetime: string;
-      trending_datetime: string;
-      images: ImageObject;
-      meta: MetaObject;
-      title: string;
     }
 
     interface ImageObject {
@@ -242,10 +225,32 @@ declare global {
       };
     }
 
-    interface MetaObject {
+        interface MetaObject {
       msg: string;
       status: number;
       response_id: string;
+    }
+
+        interface GIFObject {
+      type: string;
+      id: string;
+      slug: string;
+      url: string;
+      bitly_gif_url: string;
+      bitly_url: string;
+      embed_url: string;
+      username: string;
+      source: string;
+      rating: string;
+      caption: string;
+      content_url: string;
+      source_tld: string;
+      source_post_url: string;
+      import_datetime: string;
+      trending_datetime: string;
+      images: ImageObject;
+      meta: MetaObject;
+      title: string;
     }
 
     interface PaginationObject {

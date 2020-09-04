@@ -168,13 +168,13 @@ export default class Frontpage extends Vue {
     this.gifsList = builtGifList;
   }
 
-  async setGifData() {
+  async setGifData(): Promise<void> {
     this.currentId = this.gifsList[this.carouselModel].id;
     this.imageData = this.gifsList[this.carouselModel].url;
     this.previewData = this.gifsList[this.carouselModel].previewUrl;
   }
 
-  async getRating() {
+  async getRating(): Promise<void> {
     await this.setGifData();
     const gifData: Database.GifData | undefined = await this.$store.dispatch(
       'getGifData',
