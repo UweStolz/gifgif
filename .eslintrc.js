@@ -21,11 +21,11 @@ module.exports = {
     '@typescript-eslint/naming-convention': [
       'error',
       {
-        "selector": "variable",
-        "format": ["camelCase"]
-      }
+        selector: 'variable',
+        format: ['camelCase'],
+      },
     ],
-    '@typescript-eslint/ban-ts-comment': 'off'
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
 
   parserOptions: {
@@ -36,11 +36,11 @@ module.exports = {
     {
       files: [
         '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)'
+        '**/tests/unit/**/*.spec.{j,t}s?(x)',
       ],
       env: {
         jest: true,
-      }
-    }
-  ]
+      },
+    },
+  ],
 };
