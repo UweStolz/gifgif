@@ -3,7 +3,7 @@ import JSZip, { JSZipGeneratorOptions } from 'jszip';
 let zip: JSZip;
 
 export default {
-  createInstance() {
+  createInstance(): void {
     zip = new JSZip();
   },
 

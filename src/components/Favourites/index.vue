@@ -70,7 +70,7 @@ interface Data {
 })
 export default class Favourites extends Vue {
   @Watch('data', { deep: true })
-  watchData() {
+  watchData(): void {
     let counter = 0;
     for (let index = 1; index <= 5; index += 1) {
       if (this.data.previewUrl[index].id.length === 0) { counter += 1; }
