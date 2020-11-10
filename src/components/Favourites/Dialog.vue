@@ -24,9 +24,7 @@
         height="100%"
         width="100%"
       >
-        <template
-          v-slot:placeholder
-        >
+        <template v-slot:placeholder>
           <linear-progress />
         </template>
       </v-img>
@@ -57,7 +55,7 @@ import LinearProgress from '@/components/shared/LinearProgress.vue';
 })
 export default class Dialog extends Vue {
   @Watch('syncedFullImageData')
-  convertBlobToImage() {
+  convertBlobToImage(): void {
     if (this.syncedFullImageData) {
       this.imageData = this.syncedFullImageData instanceof Blob
         ? blobToImage(this.syncedFullImageData as Blob)

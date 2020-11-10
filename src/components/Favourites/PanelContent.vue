@@ -54,7 +54,7 @@ export default class PanelContent extends Vue {
 
   selectedIndex = -1;
 
-  openDialog(index: number) {
+  openDialog(index: number): void {
     this.dialog = true;
     this.fullImage = this.fullImages[index];
     this.selectedIndex = index;

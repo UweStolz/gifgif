@@ -28,7 +28,7 @@ const store = new Vuex.Store<States>({
     },
 
     setGifCount(state, payload) {
-      state.gifCount = payload;
+      state.gifCount = payload < 0 ? 0 : payload;
     },
     setGifMode(state, payload) {
       state.gifMode = payload;

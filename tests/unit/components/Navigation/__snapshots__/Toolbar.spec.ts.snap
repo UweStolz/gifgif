@@ -11,7 +11,6 @@ exports[`Toolbar.vue Display menu icon on mobiles 1`] = `
   flat="true"
   src=""
   tag="header"
-  tile="true"
   value="true"
 >
   <v-app-bar-nav-icon-stub
@@ -102,7 +101,6 @@ exports[`Toolbar.vue renders properly 1`] = `
   flat="true"
   src=""
   tag="header"
-  tile="true"
   value="true"
 >
   <!---->

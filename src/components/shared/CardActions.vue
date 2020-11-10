@@ -82,27 +82,28 @@ export default class CardActions extends Vue {
 
   @Prop({ default: false, type: Boolean }) isFrontpage!: boolean;
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   @Prop({ type: Function }) syncFunction!: Function;
 
   @Emit('delete')
-  deleteGifData() {
+  deleteGifData(): string {
     return this.propImageId;
   }
 
   @Watch('syncImageId', { immediate: true })
-  setId() {
+  setId(): void {
     if (this.syncImageId) {
       this.propImageId = this.syncImageId.startsWith('ggid') ? this.syncImageId : `ggid-${this.syncImageId}`;
     }
   }
 
   @Watch('syncImageData', { immediate: true })
-  setImageData() {
+  setImageData(): void {
     this.propImageData = this.syncImageData;
   }
 
   @Watch('syncPreviewImageData', { immediate: true })
-  setPreviewImageData() {
+  setPreviewImageData(): void {
     this.propPreviewImageData = this.syncPreviewImageData;
   }
 
