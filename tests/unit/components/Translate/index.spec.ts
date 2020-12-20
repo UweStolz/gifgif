@@ -1,5 +1,5 @@
 import Translate from '@/components/Translate/index.vue';
-import VEmojiPicker from 'v-emoji-picker';
+import { VEmojiPicker } from 'v-emoji-picker';
 import shallow, { actions } from '../../../helper';
 
 describe('Translate', () => {

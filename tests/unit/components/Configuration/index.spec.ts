@@ -31,8 +31,9 @@ describe('Configuration.vue', () => {
     const wrapper = deepMount(Configuration);
     store.state.gifCount = 3;
     await wrapper.vm.$nextTick();
-    const deletionButton = wrapper.get({ name: 'v-btn' });
+    const deletionButton = wrapper.get('#open-gif-del-modal');
     await deletionButton.trigger('click');
+    await wrapper.vm.$nextTick();
     const dialog = wrapper.findAllComponents({ name: 'v-alert' });
     expect(wrapper.vm.$data.showDialog).toBe(true);
     expect(dialog.wrappers[1].text()).toBe('Do you really want to delete your saved GIFs?');
@@ -42,10 +43,12 @@ describe('Configuration.vue', () => {
     const wrapper = deepMount(Configuration);
     store.state.gifCount = 3;
     await wrapper.vm.$nextTick();
-    const deletionButton = wrapper.get({ name: 'v-btn' });
+    const deletionButton = wrapper.get('#open-gif-del-modal');
     await deletionButton.trigger('click');
+    await wrapper.vm.$nextTick();
     const buttonInModal = wrapper.get('#c-modal-del-btn');
     await buttonInModal.trigger('click');
+    await wrapper.vm.$nextTick();
     expect(wrapper).toHaveDispatched('removeCompleteGifData');
     expect(wrapper.vm.$data.showDialog).toBe(false);
   });

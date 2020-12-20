@@ -2,6 +2,7 @@
   <v-footer
     color="red darken-3"
     app
+    tile
     :absolute="$vuetify.breakpoint.xsOnly"
   >
     <v-col

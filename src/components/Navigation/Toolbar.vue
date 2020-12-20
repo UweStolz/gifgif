@@ -3,6 +3,7 @@
     app
     color="red darken-3"
     flat
+    tile
     clipped-left
     :absolute="$vuetify.breakpoint.xsOnly"
     dark

@@ -81,7 +81,7 @@ import {
   mdiMagnify, mdiEmoticonOutline, mdiEmoticonFrownOutline, mdiEmoticonExcitedOutline,
 } from '@mdi/js';
 import { getTranslateGifFromGiphy } from '@/request';
-import VEmojiPicker from 'v-emoji-picker';
+import { VEmojiPicker } from 'v-emoji-picker';
 import CardActions from '@/components/shared/CardActions.vue';
 import LinearProgress from '@/components/shared/LinearProgress.vue';
 

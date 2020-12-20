@@ -45,14 +45,13 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                 >
                   <span
                     aria-hidden="true"
-                    class="v-icon notranslate v-icon--svg theme--light"
+                    class="v-icon notranslate theme--light"
                   >
                     <svg
                       aria-hidden="true"
-                      height="24"
+                      class="v-icon__svg"
                       role="img"
                       viewBox="0 0 24 24"
-                      width="24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
@@ -65,7 +64,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
             </div>
              
             <div
-              class="v-responsive v-image"
+              class="v-image v-responsive theme--light"
               style="height: 100%; max-height: 512px; width: 100%;"
             >
               <transition-stub
@@ -131,17 +130,18 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                     id="s-ca-rating"
                   >
                     <button
-                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      aria-label="Rating 1 of 5"
+                      class="v-icon notranslate v-icon--link theme--light red--text"
                       style="font-size: 40px; height: 40px; width: 40px;"
                       tabindex="-1"
                       type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="40px"
+                        class="v-icon__svg"
                         role="img"
+                        style="font-size: 40px; height: 40px; width: 40px;"
                         viewBox="0 0 24 24"
-                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
@@ -150,17 +150,18 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                       </svg>
                     </button>
                     <button
-                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      aria-label="Rating 2 of 5"
+                      class="v-icon notranslate v-icon--link theme--light red--text"
                       style="font-size: 40px; height: 40px; width: 40px;"
                       tabindex="-1"
                       type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="40px"
+                        class="v-icon__svg"
                         role="img"
+                        style="font-size: 40px; height: 40px; width: 40px;"
                         viewBox="0 0 24 24"
-                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
@@ -169,17 +170,18 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                       </svg>
                     </button>
                     <button
-                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      aria-label="Rating 3 of 5"
+                      class="v-icon notranslate v-icon--link theme--light red--text"
                       style="font-size: 40px; height: 40px; width: 40px;"
                       tabindex="-1"
                       type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="40px"
+                        class="v-icon__svg"
                         role="img"
+                        style="font-size: 40px; height: 40px; width: 40px;"
                         viewBox="0 0 24 24"
-                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
@@ -188,17 +190,18 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                       </svg>
                     </button>
                     <button
-                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      aria-label="Rating 4 of 5"
+                      class="v-icon notranslate v-icon--link theme--light red--text"
                       style="font-size: 40px; height: 40px; width: 40px;"
                       tabindex="-1"
                       type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="40px"
+                        class="v-icon__svg"
                         role="img"
+                        style="font-size: 40px; height: 40px; width: 40px;"
                         viewBox="0 0 24 24"
-                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
@@ -207,17 +210,18 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                       </svg>
                     </button>
                     <button
-                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      aria-label="Rating 5 of 5"
+                      class="v-icon notranslate v-icon--link theme--light red--text"
                       style="font-size: 40px; height: 40px; width: 40px;"
                       tabindex="-1"
                       type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="40px"
+                        class="v-icon__svg"
                         role="img"
+                        style="font-size: 40px; height: 40px; width: 40px;"
                         viewBox="0 0 24 24"
-                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
@@ -237,15 +241,14 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                     >
                       <span
                         aria-hidden="true"
-                        class="v-icon notranslate v-icon--svg theme--light"
+                        class="v-icon notranslate theme--light"
                         id="downloadIcon"
                       >
                         <svg
                           aria-hidden="true"
-                          height="24"
+                          class="v-icon__svg"
                           role="img"
                           viewBox="0 0 24 24"
-                          width="24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
@@ -267,15 +270,14 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                     >
                       <span
                         aria-hidden="true"
-                        class="v-icon notranslate v-icon--svg theme--light"
+                        class="v-icon notranslate theme--light"
                         id="trashIcon"
                       >
                         <svg
                           aria-hidden="true"
-                          height="24"
+                          class="v-icon__svg"
                           role="img"
                           viewBox="0 0 24 24"
-                          width="24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
@@ -300,7 +302,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
     class="row align-start justify-center"
   >
     <div
-      class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
+      class="v-card v-card--flat v-sheet theme--light rounded-0"
       style="width: 80%;"
     >
       <transition-stub
@@ -308,7 +310,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
         name="slide-y-transition"
       >
         <div
-          class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
+          class="v-card v-card--flat v-sheet theme--light rounded-0"
           id="s-filterCard"
           style="display: none;"
         >
@@ -321,7 +323,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
               <div
                 aria-expanded="false"
                 aria-haspopup="listbox"
-                aria-owns="list-111"
+                aria-owns="list-101"
                 class="v-input__slot"
                 role="combobox"
               >
@@ -330,7 +332,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                 >
                   <label
                     class="v-label theme--light"
-                    for="input-111"
+                    for="input-101"
                   >
                     Rating
                   </label>
@@ -338,7 +340,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                     class="v-select__selections"
                   >
                     <input
-                      id="input-111"
+                      id="input-101"
                       readonly="readonly"
                       target="#s-filterCard"
                       type="text"
@@ -352,16 +354,15 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                     >
                       <button
                         aria-label="clear icon"
-                        class="v-icon notranslate v-icon--disabled v-icon--link v-icon--svg theme--light"
+                        class="v-icon notranslate v-icon--disabled v-icon--link theme--light"
                         disabled="disabled"
                         type="button"
                       >
                         <svg
                           aria-hidden="true"
-                          height="24"
+                          class="v-icon__svg"
                           role="img"
                           viewBox="0 0 24 24"
-                          width="24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
@@ -379,14 +380,13 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                     >
                       <span
                         aria-hidden="true"
-                        class="v-icon notranslate v-icon--svg theme--light"
+                        class="v-icon notranslate theme--light"
                       >
                         <svg
                           aria-hidden="true"
-                          height="24"
+                          class="v-icon__svg"
                           role="img"
                           viewBox="0 0 24 24"
-                          width="24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
@@ -402,7 +402,6 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                 </div>
                 <div
                   class="v-menu"
-                  offsety="true"
                 >
                   <!---->
                 </div>
@@ -436,14 +435,13 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
           >
             <span
               aria-hidden="true"
-              class="v-icon notranslate v-icon--svg theme--light"
+              class="v-icon notranslate theme--light"
             >
               <svg
                 aria-hidden="true"
-                height="24"
+                class="v-icon__svg"
                 role="img"
                 viewBox="0 0 24 24"
-                width="24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -459,7 +457,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
           <div
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-owns="list-117"
+            aria-owns="list-107"
             class="v-input__slot"
             role="combobox"
           >
@@ -468,7 +466,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
             >
               <label
                 class="v-label v-label--active theme--light"
-                for="input-117"
+                for="input-107"
                 style="left: 0px; position: absolute;"
               >
                 GIF search
@@ -485,16 +483,16 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                   >
                     test
                     <button
-                      class="v-icon notranslate v-chip__close v-icon--link v-icon--right v-icon--svg theme--light"
+                      class="v-icon notranslate v-chip__close v-icon--link v-icon--right theme--light"
                       style="font-size: 18px; height: 18px; width: 18px;"
                       type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="18px"
+                        class="v-icon__svg"
                         role="img"
+                        style="font-size: 18px; height: 18px; width: 18px;"
                         viewBox="0 0 24 24"
-                        width="18px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
@@ -506,7 +504,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                 </span>
                 <input
                   autocomplete="off"
-                  id="input-117"
+                  id="input-107"
                   placeholder="Enter or select a search tag"
                   type="text"
                 />
@@ -519,15 +517,14 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                 >
                   <button
                     aria-label="clear icon"
-                    class="v-icon notranslate v-icon--link v-icon--svg theme--light"
+                    class="v-icon notranslate v-icon--link theme--light"
                     type="button"
                   >
                     <svg
                       aria-hidden="true"
-                      height="24"
+                      class="v-icon__svg"
                       role="img"
                       viewBox="0 0 24 24"
-                      width="24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
@@ -545,14 +542,13 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
                 >
                   <span
                     aria-hidden="true"
-                    class="v-icon notranslate v-icon--svg theme--light"
+                    class="v-icon notranslate theme--light"
                   >
                     <svg
                       aria-hidden="true"
-                      height="24"
+                      class="v-icon__svg"
                       role="img"
                       viewBox="0 0 24 24"
-                      width="24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
@@ -569,7 +565,6 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
             </div>
             <div
               class="v-menu"
-              offsety="true"
             >
               <!---->
             </div>
@@ -598,16 +593,15 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
           class="v-input__append-outer"
         >
           <button
-            class="v-icon notranslate v-icon--link v-icon--svg theme--light"
+            class="v-icon notranslate v-icon--link theme--light"
             id="s-filter-icn"
             type="button"
           >
             <svg
               aria-hidden="true"
-              height="24"
+              class="v-icon__svg"
               role="img"
               viewBox="0 0 24 24"
-              width="24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -634,7 +628,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
             class="row align-start justify-start"
           >
             <div
-              class="v-responsive v-image imageHover"
+              class="v-image v-responsive imageHover theme--light"
               id="s-img-n0"
               style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
             >
@@ -652,7 +646,7 @@ exports[`Search Show dialog with fullImage (fallback) if preview is clicked 1`] 
               />
             </div>
             <div
-              class="v-responsive v-image imageHover"
+              class="v-image v-responsive imageHover theme--light"
               id="s-img-n1"
               style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
             >
@@ -722,14 +716,13 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                 >
                   <span
                     aria-hidden="true"
-                    class="v-icon notranslate v-icon--svg theme--light"
+                    class="v-icon notranslate theme--light"
                   >
                     <svg
                       aria-hidden="true"
-                      height="24"
+                      class="v-icon__svg"
                       role="img"
                       viewBox="0 0 24 24"
-                      width="24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
@@ -742,7 +735,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
             </div>
              
             <div
-              class="v-responsive v-image"
+              class="v-image v-responsive theme--light"
               style="height: 100%; max-height: 512px; width: 100%;"
             >
               <transition-stub
@@ -808,17 +801,18 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                     id="s-ca-rating"
                   >
                     <button
-                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      aria-label="Rating 1 of 5"
+                      class="v-icon notranslate v-icon--link theme--light red--text"
                       style="font-size: 40px; height: 40px; width: 40px;"
                       tabindex="-1"
                       type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="40px"
+                        class="v-icon__svg"
                         role="img"
+                        style="font-size: 40px; height: 40px; width: 40px;"
                         viewBox="0 0 24 24"
-                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
@@ -827,17 +821,18 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                       </svg>
                     </button>
                     <button
-                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      aria-label="Rating 2 of 5"
+                      class="v-icon notranslate v-icon--link theme--light red--text"
                       style="font-size: 40px; height: 40px; width: 40px;"
                       tabindex="-1"
                       type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="40px"
+                        class="v-icon__svg"
                         role="img"
+                        style="font-size: 40px; height: 40px; width: 40px;"
                         viewBox="0 0 24 24"
-                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
@@ -846,17 +841,18 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                       </svg>
                     </button>
                     <button
-                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      aria-label="Rating 3 of 5"
+                      class="v-icon notranslate v-icon--link theme--light red--text"
                       style="font-size: 40px; height: 40px; width: 40px;"
                       tabindex="-1"
                       type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="40px"
+                        class="v-icon__svg"
                         role="img"
+                        style="font-size: 40px; height: 40px; width: 40px;"
                         viewBox="0 0 24 24"
-                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
@@ -865,17 +861,18 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                       </svg>
                     </button>
                     <button
-                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      aria-label="Rating 4 of 5"
+                      class="v-icon notranslate v-icon--link theme--light red--text"
                       style="font-size: 40px; height: 40px; width: 40px;"
                       tabindex="-1"
                       type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="40px"
+                        class="v-icon__svg"
                         role="img"
+                        style="font-size: 40px; height: 40px; width: 40px;"
                         viewBox="0 0 24 24"
-                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
@@ -884,17 +881,18 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                       </svg>
                     </button>
                     <button
-                      class="v-icon notranslate v-icon--link v-icon--svg theme--light red--text"
+                      aria-label="Rating 5 of 5"
+                      class="v-icon notranslate v-icon--link theme--light red--text"
                       style="font-size: 40px; height: 40px; width: 40px;"
                       tabindex="-1"
                       type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="40px"
+                        class="v-icon__svg"
                         role="img"
+                        style="font-size: 40px; height: 40px; width: 40px;"
                         viewBox="0 0 24 24"
-                        width="40px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
@@ -914,15 +912,14 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                     >
                       <span
                         aria-hidden="true"
-                        class="v-icon notranslate v-icon--svg theme--light"
+                        class="v-icon notranslate theme--light"
                         id="downloadIcon"
                       >
                         <svg
                           aria-hidden="true"
-                          height="24"
+                          class="v-icon__svg"
                           role="img"
                           viewBox="0 0 24 24"
-                          width="24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
@@ -944,15 +941,14 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                     >
                       <span
                         aria-hidden="true"
-                        class="v-icon notranslate v-icon--svg theme--light"
+                        class="v-icon notranslate theme--light"
                         id="trashIcon"
                       >
                         <svg
                           aria-hidden="true"
-                          height="24"
+                          class="v-icon__svg"
                           role="img"
                           viewBox="0 0 24 24"
-                          width="24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
@@ -977,7 +973,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
     class="row align-start justify-center"
   >
     <div
-      class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
+      class="v-card v-card--flat v-sheet theme--light rounded-0"
       style="width: 80%;"
     >
       <transition-stub
@@ -985,7 +981,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
         name="slide-y-transition"
       >
         <div
-          class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
+          class="v-card v-card--flat v-sheet theme--light rounded-0"
           id="s-filterCard"
           style="display: none;"
         >
@@ -998,7 +994,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
               <div
                 aria-expanded="false"
                 aria-haspopup="listbox"
-                aria-owns="list-169"
+                aria-owns="list-158"
                 class="v-input__slot"
                 role="combobox"
               >
@@ -1007,7 +1003,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                 >
                   <label
                     class="v-label theme--light"
-                    for="input-169"
+                    for="input-158"
                   >
                     Rating
                   </label>
@@ -1015,7 +1011,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                     class="v-select__selections"
                   >
                     <input
-                      id="input-169"
+                      id="input-158"
                       readonly="readonly"
                       target="#s-filterCard"
                       type="text"
@@ -1029,16 +1025,15 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                     >
                       <button
                         aria-label="clear icon"
-                        class="v-icon notranslate v-icon--disabled v-icon--link v-icon--svg theme--light"
+                        class="v-icon notranslate v-icon--disabled v-icon--link theme--light"
                         disabled="disabled"
                         type="button"
                       >
                         <svg
                           aria-hidden="true"
-                          height="24"
+                          class="v-icon__svg"
                           role="img"
                           viewBox="0 0 24 24"
-                          width="24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
@@ -1056,14 +1051,13 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                     >
                       <span
                         aria-hidden="true"
-                        class="v-icon notranslate v-icon--svg theme--light"
+                        class="v-icon notranslate theme--light"
                       >
                         <svg
                           aria-hidden="true"
-                          height="24"
+                          class="v-icon__svg"
                           role="img"
                           viewBox="0 0 24 24"
-                          width="24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
@@ -1079,7 +1073,6 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                 </div>
                 <div
                   class="v-menu"
-                  offsety="true"
                 >
                   <!---->
                 </div>
@@ -1113,14 +1106,13 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
           >
             <span
               aria-hidden="true"
-              class="v-icon notranslate v-icon--svg theme--light"
+              class="v-icon notranslate theme--light"
             >
               <svg
                 aria-hidden="true"
-                height="24"
+                class="v-icon__svg"
                 role="img"
                 viewBox="0 0 24 24"
-                width="24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1136,7 +1128,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
           <div
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-owns="list-175"
+            aria-owns="list-164"
             class="v-input__slot"
             role="combobox"
           >
@@ -1145,7 +1137,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
             >
               <label
                 class="v-label v-label--active theme--light"
-                for="input-175"
+                for="input-164"
                 style="left: 0px; position: absolute;"
               >
                 GIF search
@@ -1162,16 +1154,16 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                   >
                     test
                     <button
-                      class="v-icon notranslate v-chip__close v-icon--link v-icon--right v-icon--svg theme--light"
+                      class="v-icon notranslate v-chip__close v-icon--link v-icon--right theme--light"
                       style="font-size: 18px; height: 18px; width: 18px;"
                       type="button"
                     >
                       <svg
                         aria-hidden="true"
-                        height="18px"
+                        class="v-icon__svg"
                         role="img"
+                        style="font-size: 18px; height: 18px; width: 18px;"
                         viewBox="0 0 24 24"
-                        width="18px"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
@@ -1183,7 +1175,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                 </span>
                 <input
                   autocomplete="off"
-                  id="input-175"
+                  id="input-164"
                   placeholder="Enter or select a search tag"
                   type="text"
                 />
@@ -1196,15 +1188,14 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                 >
                   <button
                     aria-label="clear icon"
-                    class="v-icon notranslate v-icon--link v-icon--svg theme--light"
+                    class="v-icon notranslate v-icon--link theme--light"
                     type="button"
                   >
                     <svg
                       aria-hidden="true"
-                      height="24"
+                      class="v-icon__svg"
                       role="img"
                       viewBox="0 0 24 24"
-                      width="24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
@@ -1222,14 +1213,13 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
                 >
                   <span
                     aria-hidden="true"
-                    class="v-icon notranslate v-icon--svg theme--light"
+                    class="v-icon notranslate theme--light"
                   >
                     <svg
                       aria-hidden="true"
-                      height="24"
+                      class="v-icon__svg"
                       role="img"
                       viewBox="0 0 24 24"
-                      width="24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
@@ -1246,7 +1236,6 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
             </div>
             <div
               class="v-menu"
-              offsety="true"
             >
               <!---->
             </div>
@@ -1275,16 +1264,15 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
           class="v-input__append-outer"
         >
           <button
-            class="v-icon notranslate v-icon--link v-icon--svg theme--light"
+            class="v-icon notranslate v-icon--link theme--light"
             id="s-filter-icn"
             type="button"
           >
             <svg
               aria-hidden="true"
-              height="24"
+              class="v-icon__svg"
               role="img"
               viewBox="0 0 24 24"
-              width="24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -1311,7 +1299,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
             class="row align-start justify-start"
           >
             <div
-              class="v-responsive v-image imageHover"
+              class="v-image v-responsive imageHover theme--light"
               id="s-img-n0"
               style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
             >
@@ -1329,7 +1317,7 @@ exports[`Search Show dialog with fullImage if preview is clicked 1`] = `
               />
             </div>
             <div
-              class="v-responsive v-image imageHover"
+              class="v-image v-responsive imageHover theme--light"
               id="s-img-n1"
               style="height: 100%; max-height: 128px; max-width: 128px; width: 100%;"
             >
@@ -1418,9 +1406,9 @@ exports[`Search renders properly 1`] = `
             valuecomparator="function deepEqual(a, b) {
   if (a === b) return true;
 
-  if (a instanceof Date && b instanceof Date) {
-    // If the values are Date, they were convert to timestamp with getTime and compare it
-    if (a.getTime() !== b.getTime()) return false;
+  if (a instanceof Date && b instanceof Date && a.getTime() !== b.getTime()) {
+    // If the values are Date, compare them as timestamps
+    return false;
   }
 
   if (a !== Object(a) || b !== Object(b)) {
@@ -1482,9 +1470,9 @@ exports[`Search renders properly 1`] = `
         valuecomparator="function deepEqual(a, b) {
   if (a === b) return true;
 
-  if (a instanceof Date && b instanceof Date) {
-    // If the values are Date, they were convert to timestamp with getTime and compare it
-    if (a.getTime() !== b.getTime()) return false;
+  if (a instanceof Date && b instanceof Date && a.getTime() !== b.getTime()) {
+    // If the values are Date, compare them as timestamps
+    return false;
   }
 
   if (a !== Object(a) || b !== Object(b)) {
@@ -1535,7 +1523,7 @@ exports[`Search renders properly with enabled filter 1`] = `
     class="row align-start justify-center"
   >
     <div
-      class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
+      class="v-card v-card--flat v-sheet theme--light rounded-0"
       style="width: 80%;"
     >
       <transition-stub
@@ -1543,7 +1531,7 @@ exports[`Search renders properly with enabled filter 1`] = `
         name="slide-y-transition"
       >
         <div
-          class="v-card v-card--flat v-sheet v-sheet--tile theme--light"
+          class="v-card v-card--flat v-sheet theme--light rounded-0"
           id="s-filterCard"
           style=""
         >
@@ -1556,7 +1544,7 @@ exports[`Search renders properly with enabled filter 1`] = `
               <div
                 aria-expanded="false"
                 aria-haspopup="listbox"
-                aria-owns="list-19"
+                aria-owns="list-17"
                 class="v-input__slot"
                 role="combobox"
               >
@@ -1565,7 +1553,7 @@ exports[`Search renders properly with enabled filter 1`] = `
                 >
                   <label
                     class="v-label theme--light"
-                    for="input-19"
+                    for="input-17"
                   >
                     Rating
                   </label>
@@ -1573,7 +1561,7 @@ exports[`Search renders properly with enabled filter 1`] = `
                     class="v-select__selections"
                   >
                     <input
-                      id="input-19"
+                      id="input-17"
                       readonly="readonly"
                       target="#s-filterCard"
                       type="text"
@@ -1587,16 +1575,15 @@ exports[`Search renders properly with enabled filter 1`] = `
                     >
                       <button
                         aria-label="clear icon"
-                        class="v-icon notranslate v-icon--disabled v-icon--link v-icon--svg theme--light"
+                        class="v-icon notranslate v-icon--disabled v-icon--link theme--light"
                         disabled="disabled"
                         type="button"
                       >
                         <svg
                           aria-hidden="true"
-                          height="24"
+                          class="v-icon__svg"
                           role="img"
                           viewBox="0 0 24 24"
-                          width="24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
@@ -1614,14 +1601,13 @@ exports[`Search renders properly with enabled filter 1`] = `
                     >
                       <span
                         aria-hidden="true"
-                        class="v-icon notranslate v-icon--svg theme--light"
+                        class="v-icon notranslate theme--light"
                       >
                         <svg
                           aria-hidden="true"
-                          height="24"
+                          class="v-icon__svg"
                           role="img"
                           viewBox="0 0 24 24"
-                          width="24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
@@ -1637,7 +1623,6 @@ exports[`Search renders properly with enabled filter 1`] = `
                 </div>
                 <div
                   class="v-menu"
-                  offsety="true"
                 >
                   <!---->
                 </div>
@@ -1671,14 +1656,13 @@ exports[`Search renders properly with enabled filter 1`] = `
           >
             <span
               aria-hidden="true"
-              class="v-icon notranslate v-icon--svg theme--light"
+              class="v-icon notranslate theme--light"
             >
               <svg
                 aria-hidden="true"
-                height="24"
+                class="v-icon__svg"
                 role="img"
                 viewBox="0 0 24 24"
-                width="24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1694,7 +1678,7 @@ exports[`Search renders properly with enabled filter 1`] = `
           <div
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-owns="list-25"
+            aria-owns="list-23"
             class="v-input__slot"
             role="combobox"
           >
@@ -1703,7 +1687,7 @@ exports[`Search renders properly with enabled filter 1`] = `
             >
               <label
                 class="v-label v-label--active theme--light"
-                for="input-25"
+                for="input-23"
                 style="left: 0px; position: absolute;"
               >
                 GIF search
@@ -1713,7 +1697,7 @@ exports[`Search renders properly with enabled filter 1`] = `
               >
                 <input
                   autocomplete="off"
-                  id="input-25"
+                  id="input-23"
                   placeholder="Enter or select a search tag"
                   type="text"
                 />
@@ -1726,16 +1710,15 @@ exports[`Search renders properly with enabled filter 1`] = `
                 >
                   <button
                     aria-label="clear icon"
-                    class="v-icon notranslate v-icon--disabled v-icon--link v-icon--svg theme--light"
+                    class="v-icon notranslate v-icon--disabled v-icon--link theme--light"
                     disabled="disabled"
                     type="button"
                   >
                     <svg
                       aria-hidden="true"
-                      height="24"
+                      class="v-icon__svg"
                       role="img"
                       viewBox="0 0 24 24"
-                      width="24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
@@ -1753,14 +1736,13 @@ exports[`Search renders properly with enabled filter 1`] = `
                 >
                   <span
                     aria-hidden="true"
-                    class="v-icon notranslate v-icon--svg theme--light"
+                    class="v-icon notranslate theme--light"
                   >
                     <svg
                       aria-hidden="true"
-                      height="24"
+                      class="v-icon__svg"
                       role="img"
                       viewBox="0 0 24 24"
-                      width="24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
@@ -1776,7 +1758,6 @@ exports[`Search renders properly with enabled filter 1`] = `
             </div>
             <div
               class="v-menu"
-              offsety="true"
             >
               <!---->
             </div>
@@ -1805,16 +1786,15 @@ exports[`Search renders properly with enabled filter 1`] = `
           class="v-input__append-outer"
         >
           <button
-            class="v-icon notranslate v-icon--link v-icon--svg theme--light"
+            class="v-icon notranslate v-icon--link theme--light"
             id="s-filter-icn"
             type="button"
           >
             <svg
               aria-hidden="true"
-              height="24"
+              class="v-icon__svg"
               role="img"
               viewBox="0 0 24 24"
-              width="24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path

@@ -2,9 +2,13 @@
 
 exports[`Snackbar.vue renders properly 1`] = `
 <v-snackbar-stub
+  app="true"
   color="info"
+  contentclass=""
+  tag="div"
   timeout="3000"
   top="true"
+  transition="v-snack-transition"
 >
   <!---->
   

@@ -72,6 +72,7 @@
                     >
                       <template v-slot:activator="{on}">
                         <v-btn
+                          id="open-gif-del-modal"
                           :disabled="$store.state.gifCount < 1"
                           color="error"
                           v-on="on"

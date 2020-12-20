@@ -8,7 +8,7 @@ exports[`Empty.vue renders properly 1`] = `
     class="text-center col col-12"
   >
     <div
-      class="display-2 v-sheet v-sheet--tile theme--light"
+      class="display-2 v-sheet theme--light rounded-0"
       style="height: 100%; width: 100%;"
     >
       

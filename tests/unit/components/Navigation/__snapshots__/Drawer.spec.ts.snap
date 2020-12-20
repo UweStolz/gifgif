@@ -16,7 +16,6 @@ exports[`Drawer.vue renders properly 1`] = `
 >
   <v-list-stub
     tag="div"
-    tile="true"
   >
     <v-list-item-group-stub
       activeclass="v-item--active"
