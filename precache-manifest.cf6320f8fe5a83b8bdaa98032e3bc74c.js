@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7ee612a9b3c6e3ecb810",
+    "revision": "e1488b5f5bf09cac13f2",
     "url": "/gifgif/css/app.25695df5.css"
   },
   {
@@ -8,15 +8,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gifgif/css/chunk-vendors.82f40282.css"
   },
   {
-    "revision": "e1bd4fdfe2d2c28176e1",
+    "revision": "9ee5786f078126aab019",
     "url": "/gifgif/css/configuration.107b5a54.css"
   },
   {
-    "revision": "1fd881ae4617cbb6e340",
+    "revision": "63e1becf7d90a189ca74",
     "url": "/gifgif/css/favourites.352eae88.css"
   },
   {
-    "revision": "4bca6a208c1ad9b7a457",
+    "revision": "b15ddbc7de8e16f9974a",
     "url": "/gifgif/css/search.9d714000.css"
   },
   {
@@ -24,7 +24,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gifgif/css/search~translate.69c3c3ae.css"
   },
   {
-    "revision": "ab912f4be3abef5dfd2e",
+    "revision": "065be2ff7e3664c4fa7a",
     "url": "/gifgif/css/translate.8483dbc1.css"
   },
   {
@@ -136,44 +136,44 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gifgif/img/vuetify.668cf772.svg"
   },
   {
-    "revision": "44a31f21b8aa5e364dcdb51a11e53740",
+    "revision": "1797984e87e6da86253e793960a7e4f4",
     "url": "/gifgif/index.html"
   },
   {
-    "revision": "cd29d846b174f05b90f1",
-    "url": "/gifgif/js/about.904e72bd.js"
+    "revision": "146c5cdf696b8cb9b308",
+    "url": "/gifgif/js/about.f8f28696.js"
   },
   {
     "revision": "2ca50b415d3cb336c08f",
     "url": "/gifgif/js/about~configuration.6f5d36dd.js"
   },
   {
-    "revision": "7ee612a9b3c6e3ecb810",
-    "url": "/gifgif/js/app.ff713197.js"
+    "revision": "e1488b5f5bf09cac13f2",
+    "url": "/gifgif/js/app.9dd7fbac.js"
   },
   {
     "revision": "10284f63f44d97c94d61",
     "url": "/gifgif/js/chunk-vendors.18202165.js"
   },
   {
-    "revision": "e1bd4fdfe2d2c28176e1",
-    "url": "/gifgif/js/configuration.7621f783.js"
+    "revision": "9ee5786f078126aab019",
+    "url": "/gifgif/js/configuration.3af872ab.js"
   },
   {
-    "revision": "1fd881ae4617cbb6e340",
-    "url": "/gifgif/js/favourites.64c3a34c.js"
+    "revision": "63e1becf7d90a189ca74",
+    "url": "/gifgif/js/favourites.7c36ef93.js"
   },
   {
-    "revision": "4bca6a208c1ad9b7a457",
-    "url": "/gifgif/js/search.c347ee1d.js"
+    "revision": "b15ddbc7de8e16f9974a",
+    "url": "/gifgif/js/search.bbaa2f4c.js"
   },
   {
     "revision": "6d1d2c979f174d29d728",
     "url": "/gifgif/js/search~translate.91519d15.js"
   },
   {
-    "revision": "ab912f4be3abef5dfd2e",
-    "url": "/gifgif/js/translate.0f1ffac3.js"
+    "revision": "065be2ff7e3664c4fa7a",
+    "url": "/gifgif/js/translate.8352f95e.js"
   },
   {
     "revision": "1668f1d2499c8176b5f0c8abb4a5e5d0",
